@@ -741,6 +741,18 @@ a {
     .nav {
         display: none;
     }
+
+    .hotels-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destinations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .city-grid {
+        grid-template-columns: 1fr;
+    }
     
     .footer-content {
         flex-direction: column;
