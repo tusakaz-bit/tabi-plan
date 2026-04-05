@@ -617,9 +617,10 @@ a {
 
 /* Portal Styles */
 .portal-hero {
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    padding-top: 100px;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #c2410c 85%, #f59e0b 100%);
     position: relative;
     overflow: hidden;
