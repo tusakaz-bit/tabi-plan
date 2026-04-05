@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabi Plan | 次の旅を、賢く美しく計画しよう</title>
+    <meta name="description" content="毎日更新される最安値ホテルプランと、地元民おすすめの観光ガイド。福岡から順次拡大中の次世代旅行ポータル。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">TABI <span>PLAN</span></h1>
+            <nav class="nav">
+                <a href="#about">Concept</a>
+                <a href="#cities">Destinations</a>
+                <a href="fukuoka/">Fukuoka</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="portal-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle" style="color: #fbbf24;">A New Journey Begins</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">次の旅を、<br><span class="highlight">最高の夜明け</span>から。</h2>
+                    <p class="description">Tabi Planは、日本中の「最高の一日」をデザインする旅行ポータルです。毎日更新される最安値の宿泊プランと、地元目線で選んだ本当に価値ある観光スポット情報を、一つの美しいインターフェースに凝縮しました。</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; position: relative; z-index: 10;">
+                        <a href="#cities" class="cta-button">都市を選ぶ <i class="fa-solid fa-location-dot"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cities" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Explore Cities</h3>
+                    <p class="section-subtitle">現在展開中の都市と、近日公開予定のエリア</p>
+                </div>
+                
+                <div class="city-grid">
+                    <!-- Fukuoka -->
+                    <div class="city-card" onclick="window.location.href='fukuoka/'">
+                        <div class="city-card-image" style="background-image: url('fukuoka_tower_1775312229586.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Available Now</span>
+                            <h4 class="city-name">福岡 / Fukuoka</h4>
+                        </div>
+                    </div>
+
+                    <!-- Osaka -->
+                    <div class="city-card coming-soon">
+                        <div class="city-card-image" style="background: linear-gradient(135deg, #3b82f6, #1e40af);"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status coming-soon-badge">Coming Soon</span>
+                            <h4 class="city-name">大阪 / Osaka</h4>
+                        </div>
+                    </div>
+
+                    <!-- Tokyo -->
+                    <div class="city-card coming-soon">
+                        <div class="city-card-image" style="background: linear-gradient(135deg, #10b981, #065f46);"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status coming-soon-badge">Coming Soon</span>
+                            <h4 class="city-name">東京 / Tokyo</h4>
+                        </div>
+                    </div>
+
+                    <!-- Kyoto -->
+                    <div class="city-card coming-soon">
+                        <div class="city-card-image" style="background: linear-gradient(135deg, #f43f5e, #9f1239);"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status coming-soon-badge">Coming Soon</span>
+                            <h4 class="city-name">京都 / Kyoto</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container" style="padding: 4rem; text-align: center;">
+                    <h3 class="section-title">Brand Concept</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 3rem; text-align: left;">
+                        <div class="feature-item">
+                            <div class="feature-icon" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 1.5rem;">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h4 style="margin-bottom: 1rem; color: #fff;">Daily Best Deals</h4>
+                            <p style="color: #94a3b8; line-height: 1.6;">楽天トラベルの膨大なデータから、その日の最安値・最適プランをAIが自動抽出。探す手間を極限まで減らします。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon" style="font-size: 2.5rem; color: #fbbf24; margin-bottom: 1.5rem;">
+                                <i class="fa-solid fa-yen-sign"></i>
+                            </div>
+                            <h4 style="margin-bottom: 1rem; color: #fff;">0 Yen & Budget Guide</h4>
+                            <p style="color: #94a3b8; line-height: 1.6;">宿泊費を浮かせた分、どこで楽しむか。地元民が愛する「0円スポット」や「格安グルメ」を厳選してご紹介。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon" style="font-size: 2.5rem; color: #ec4899; margin-bottom: 1.5rem;">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <h4 style="margin-bottom: 1rem; color: #fff;">Premium Identity</h4>
+                            <p style="color: #94a3b8; line-height: 1.6;">「安さ」だけではなく「体験の質」にこだわります。美しく磨かれたインターフェースで、旅の計画そのものを楽しみに。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2>TABI <span>PLAN</span></h2>
+                <p>次の旅を、最高の夜明けから。</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. All Rights Reserved.</p>
+                <div style="margin-top: 10px;">
+                    <a href="privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

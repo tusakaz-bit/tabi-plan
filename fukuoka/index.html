@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福岡の宿泊・観光ガイド：最安ホテル & 0円・格安スポット | Fukuoka Premium Stays</title>
+    <meta name="description" content="福岡市内のホテル最安値プランを毎日更新。大濠公園やキャナルシティ博多など、0円・格安で楽しめるおすすめ観光スポット、グルメ情報を掲載。賢くお得な福岡滞在をサポートします。">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "福岡 0円・格安観光スポット 2026",
+      "description": "福岡市内で無料で楽しめるスポットと格安グルメのリスト",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "大濠公園",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=大濠公園"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "キャナルシティ博多",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=キャナルシティ博多"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "水鏡天満宮",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=水鏡天満宮"
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='../'">TABI <span>PLAN</span></h1>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#ladies-hotels">Ladies Plan</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">Fukuoka City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">福岡で最も<br><span class="highlight">お得な滞在</span>を。</h2>
+                    <p class="description">楽天トラベルが提供する数多くのプランの中から、本日の福岡市エリアでの最安プランと、女性におすすめのレディースプランをそれぞれ厳選してピックアップ。洗練された空間で、最高の旅を。</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#hotels" class="cta-button">最安値プラン <i class="fa-solid fa-arrow-down"></i></a>
+                        <a href="#ladies-hotels" class="cta-button" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); box-shadow: none;">レディースプラン <i class="fa-solid fa-heart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Today's Top 5 Deals</h3>
+                    <p class="section-subtitle">本日の福岡市での最安値プラン</p>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のホテル情報を取得しています...</p>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>情報の取得に失敗しました。後でもう一度お試しください。</p>
+                </div>
+
+                <div id="hotels-container" class="hotels-grid">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="ladies-hotels" class="hotels-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Ladies Plan Top 5</h3>
+                    <p class="section-subtitle">女性におすすめのレディースプラン5選</p>
+                </div>
+                
+                <div id="ladies-loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のホテル情報を取得しています...</p>
+                </div>
+
+                <div id="ladies-error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>情報の取得に失敗しました。後でもう一度お試しください。</p>
+                </div>
+
+                <div id="ladies-hotels-container" class="hotels-grid">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">0円・格安福岡ガイド</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、ここで贅沢できる！地元民おすすめスポット</p>
+                </div>
+
+                <div class="budget-category">
+                    <h4 class="category-title"><i class="fa-solid fa-star"></i> 0円スポット（定番・癒やし）</h4>
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="大濠公園 - 水辺と緑の都会のオアシス" style="background-image: url('../ohori_park_1775352451663.png')"></div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">大濠公園</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">市内の中心部にありながら、水と緑に囲まれた広大な敷地を無料で散策できる都会のオアシス。<br>
+                                    <a href="https://www.ohorikouen.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> プライスレスな絶景
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=大濠公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約15分（大濠公園駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image evening-view" role="img" aria-label="キャナルシティ博多 - 噴水ショーが楽しめる大型商業施設" style="background-image: url('../media__1775357185261.jpg')"></div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">キャナルシティ博多</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">音楽と光、そしてダイナミックな水しぶきが舞う本格的な噴水ショーが毎日なんと無料で開催！<br>
+                                    <a href="https://canalcity.co.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 本格ショーが無料
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=キャナルシティ博多" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">徒歩 約10分（博多駅から）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="水鏡天満宮 - 天神の歴史あるパワースポット" style="background-image: url('../media__1775312820889.png')"></div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">水鏡天満宮</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">天神のド真ん中に佇むパワースポット. 都会の喧騒を忘れて心静かな時間を過ごせます。<br>
+                                    <a href="https://gofukuoka.jp/spots/detail/1510" target="_blank" rel="noopener noreferrer" class="official-link">観光ガイド <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 都心の隠れ社
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=水鏡天満宮" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">徒歩 数分（天神駅から）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="budget-category" style="margin-top: 4rem;">
+                    <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安グルメ（地元民の味）</h4>
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="みやけうどん - 伝統の博多うどんイメージ" style="background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-bowl-food" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">みやけうどん</h5>
+                                <p class="spot-price">約500円</p>
+                                <p class="spot-desc">博多うどんの真髄！極太ふわふわ麺と優しい出汁。大きな「丸天」は満足感たっぷり。<br>
+                                    <a href="https://tabelog.com/fukuoka/A4001/A400106/40000084/" target="_blank" rel="noopener noreferrer" class="official-link">詳細情報 (食べログ) <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> ワンコインで伝統の味
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=みやけうどん" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約5分（呉服町駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="今屋のハンバーガー - 西公園の伝説のバーガーイメージ" style="background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-burger" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">今屋のハンバーガー</h5>
+                                <p class="spot-price">約500円</p>
+                                <p class="spot-desc">ホットドッグスタイルの伝説的バーガー. カリッとしたパンと手作り具材が絶品。<br>
+                                    <a href="https://imayahamburger.com/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 奇跡のコスパバーガー
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=今屋のハンバーガー+西公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">西公園 徒歩圏内</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="budget-category" style="margin-top: 4rem;">
+                    <h4 class="category-title"><i class="fa-solid fa-calendar-days"></i> 最新・期間限定（2026年版）</h4>
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="舞鶴公園さくらまつり - 福岡城跡と満開の桜" style="background: linear-gradient(135deg, #ec4899, #d946ef); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-leaf" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">舞鶴公園さくらまつり</h5>
+                                <p class="spot-price">入場無料</p>
+                                <p class="spot-desc">福岡城跡と1000本の桜。ライトアップされた幻想的な雰囲気がタダで楽しめます。<br>
+                                    <a href="https://www.midorimachi.jp/maiduru/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 春限定の極上絶景
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=舞鶴公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約5分（赤坂駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="アクロス福井 ステップガーデン - 緑あふれる階段庭園と福岡市街の夜景" style="background-image: url('../bg_fukuoka.png')"></div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">アクロス福岡 ステップガーデン</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">巨大な屋上階段庭園. 最上階からは福岡市内から博多湾までを一望できます。<br>
+                                    <a href="https://www.acros.or.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 屋上展望がタダ
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=アクロス福岡" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">天神エリア 徒歩すぐ</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Access Guide</h3>
+                    <p class="section-subtitle">博多駅からの主要な観光地・イベント会場へのアクセス</p>
+                </div>
+                
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-image" style="background-image: url('../paypay_dome_1775312096984.png')"></div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">みずほPayPayドーム福岡</h4>
+                            <p class="destination-desc">大規模コンサート・野球観戦<br>
+                                <a href="https://www.softbankhawks.co.jp/stadium/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=みずほPayPayドーム福岡" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-bus"></i> バス約20分</span>
+                                <span class="fare-badge">240円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <div class="destination-image" style="background-image: url('../marine_messe_1775312138758.png')"></div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">マリンメッセ福岡</h4>
+                            <p class="destination-desc">有名アーティストのライブ・イベント<br>
+                                <a href="https://www.marinemesse.or.jp/messe/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=マリンメッセ福岡" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-bus"></i> バス約15分</span>
+                                <span class="fare-badge">240円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image evening-view" style="background-image: url('../media__1775356978076.jpg')"></div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">太宰府天満宮</h4>
+                            <p class="destination-desc">学問の神様・美しい歴史的建造物<br>
+                                <a href="https://www.dazaifutenmangu.or.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=太宰府天満宮" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-train"></i> バス直行 約40分</span>
+                                <span class="fare-badge">610円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image" style="background-image: url('../fukuoka_tower_1775312229586.png')"></div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">福岡タワー・百道浜</h4>
+                            <p class="destination-desc">絶景の夜景とシーサイドリゾート<br>
+                                <a href="https://www.fukuokatower.co.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=博多駅&destination=福岡タワー" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-bus"></i> バス約25分</span>
+                                <span class="fare-badge">240円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2>TABI <span>PLAN</span></h2>
+                <p>Find your perfect stay in Fukuoka.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. Powered by Rakuten Travel API.</p>
+                <div style="margin-top: 10px;">
+                    <a href="../privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
