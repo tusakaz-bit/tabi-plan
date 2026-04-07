@@ -212,6 +212,7 @@ a {
 /* Hotels Section */
 .hotels-section {
     padding: 5rem 0 10rem;
+    scroll-margin-top: 80px;
 }
 
 .section-header {
