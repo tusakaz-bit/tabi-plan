@@ -116,9 +116,7 @@
         <div class="container">
             <div class="contact-content">
                 <h2>お問い合わせ</h2>
-                <form action="https://formspree.io/f/mvzvyvwq" method="POST">
-                    <!-- Formspree送信後のリダイレクト先（ホームへ戻る） -->
-                    <input type="hidden" name="_next" value="https://tabi-plan.org/index.html">
+                <form id="contact-form" action="https://formspree.io/f/mvzvyvwq" method="POST">
                     <div class="form-group">
                         <label for="name" class="form-label">お名前</label>
                         <input type="text" id="name" name="name" class="form-control" required placeholder="例: 山田 太郎">
@@ -157,5 +155,32 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        var form = document.getElementById("contact-form");
+        
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("お問い合わせを受け付けました。ホームに戻ります。");
+                    window.location.href = "https://tabi-plan.org/";
+                } else {
+                    alert("送信に失敗しました。時間をおいて再度お試しください。");
+                }
+            }).catch(error => {
+                alert("通信エラーが発生しました。");
+            });
+        }
+        
+        form.addEventListener("submit", handleSubmit);
+    </script>
 </body>
 </html>
