@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // API Request parameters
     const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
-    const PARAMS = new URLSearchParams({
+    const parsedParams = {
         applicationId: APP_ID,
         affiliateId: AFFILIATE_ID,
         format: 'json',
@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
         middleClassCode: isOsaka ? 'osaka' : 'hukuoka', // 大阪か福岡か
         smallClassCode: isOsaka ? 'shi' : 'fukuoka',    // 大阪市または福岡市
         sort: '+roomCharge' // 最安値順
-    });
+    };
+    if (isOsaka) {
+        parsedParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋（尼崎を除外し、取得エラーを防ぐ）
+    }
+    const PARAMS = new URLSearchParams(parsedParams);
 
     const loadingEl = document.getElementById('loading');
     const containerEl = document.getElementById('hotels-container');
@@ -47,14 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch Ladies Plan (Top 5)
     const LADIES_API_URL = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
-    const LADIES_PARAMS = new URLSearchParams({
+    const parsedLadiesParams = {
         applicationId: APP_ID,
         affiliateId: AFFILIATE_ID,
         format: 'json',
         keyword: 'レディース',
         middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
         smallClassCode: isOsaka ? 'shi' : 'fukuoka'
-    });
+    };
+    if (isOsaka) {
+        parsedLadiesParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋（尼崎などを除外）
+    }
+    const LADIES_PARAMS = new URLSearchParams(parsedLadiesParams);
 
     fetch(`${LADIES_API_URL}?${LADIES_PARAMS.toString()}`)
         .then(response => {
