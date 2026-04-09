@@ -128,6 +128,16 @@ a {
     color: var(--accent-color);
 }
 
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+
 .nav a {
     margin-left: 2rem;
     font-size: 0.9rem;
@@ -173,6 +183,7 @@ a {
 .highlight {
     background: linear-gradient(to right, #60a5fa, #a78bfa);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -373,6 +384,7 @@ a {
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -739,8 +751,39 @@ a {
         font-size: 2.8rem;
     }
     
+    .mobile-menu-btn {
+        display: block;
+    }
+
     .nav {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--card-border);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav a {
+        margin: 0;
+        padding: 1rem 2rem;
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav a:last-child {
+        border-bottom: none;
     }
 
     .hotels-grid {
