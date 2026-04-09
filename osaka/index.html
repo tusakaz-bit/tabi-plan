@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大阪の宿泊・観光ガイド：最安ホテル & 0円・格安スポット | Osaka Premium Stays</title>
+    <meta name="description" content="大阪市内のホテル最安値プランを毎日更新。道頓堀や大阪城など、0円・格安で楽しめるおすすめ観光スポット、グルメ情報を掲載。賢くお得な大阪滞在をサポートします。">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "大阪 0円・格安観光スポット 2026",
+      "description": "大阪市内で無料で楽しめるスポットと格安グルメのリスト",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "道頓堀",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=道頓堀"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "大阪城公園",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=大阪城公園"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "新世界",
+          "url": "https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=新世界"
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation" style="background: url('../bg_osaka_1775740031415.png') center/cover no-repeat;">
+        <div class="glow glow-1" style="background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-2" style="background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#ladies-hotels">Ladies Plan</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">Osaka City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">大阪で最も<br><span class="highlight">お得な滞在</span>を。</h2>
+                    <p class="description">楽天トラベルが提供する数多くのプランの中から、本日の大阪市エリアでの最安プランと、女性におすすめのレディースプランをそれぞれ厳選してピックアップ。洗練された空間で、最高の旅を。</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#hotels" class="cta-button">最安値プラン <i class="fa-solid fa-arrow-down"></i></a>
+                        <a href="#ladies-hotels" class="cta-button" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); box-shadow: none;">レディースプラン <i class="fa-solid fa-heart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Today's Top 5 Deals</h3>
+                    <p class="section-subtitle">本日の大阪市での最安値プラン</p>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のホテル情報を取得しています...</p>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>情報の取得に失敗しました。後でもう一度お試しください。</p>
+                </div>
+                
+                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;"></p>
+
+                <div id="hotels-container" class="hotels-grid">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="ladies-hotels" class="hotels-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Ladies Plan Top 5</h3>
+                    <p class="section-subtitle">女性におすすめのレディースプラン5選</p>
+                </div>
+                
+                <div id="ladies-loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のホテル情報を取得しています...</p>
+                </div>
+
+                <div id="ladies-error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>情報の取得に失敗しました。後でもう一度お試しください。</p>
+                </div>
+
+                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;"></p>
+
+                <div id="ladies-hotels-container" class="hotels-grid">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">0円・格安大阪ガイド</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、ここで贅沢できる！地元民おすすめスポット</p>
+                </div>
+
+                <div class="budget-category">
+                    <h4 class="category-title"><i class="fa-solid fa-star"></i> 0円スポット（定番・癒やし）</h4>
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="道頓堀" style="background: linear-gradient(135deg, #f59e0b, #ea580c); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-camera" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">道頓堀</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">大阪といえばここ！巨大な看板やネオンサインが立ち並ぶ活気あるエリアを歩くだけで楽しめます。<br>
+                                    <a href="https://osaka-info.jp/spot/dotonbori/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> ザ・大阪の熱気
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=道頓堀" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約10分（なんば駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image evening-view" role="img" aria-label="天王寺公園 (てんしば)" style="background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-tree" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">てんしば（天王寺公園）</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">あべのハルカスを望む広大な芝生広場。カフェやイベントもあり、都会の真ん中でピクニック気分。<br>
+                                    <a href="https://www.tennoji-park.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 都会のオアシス
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=天王寺公園+てんしば" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">電車/地下鉄 約15分（天王寺駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="新世界・通天閣周辺" style="background: linear-gradient(135deg, #ef4444, #b91c1c); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-store" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">新世界界隈</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">通天閣を中心としたレトロな下町。ド派手な看板がひしめく独特の風景は写真映え間違いなし。<br>
+                                    <a href="https://osaka-info.jp/spot/shinsekai/" target="_blank" rel="noopener noreferrer" class="official-link">観光ガイド <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> ディープな大阪体験
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=新世界" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約15分（動物園前駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="budget-category" style="margin-top: 4rem;">
+                    <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安グルメ（安くてウマイ）</h4>
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="たこ焼き" style="background: linear-gradient(135deg, #fbbf24, #d97706); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-fire" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">たこ焼き（難波・道頓堀）</h5>
+                                <p class="spot-price">約500円</p>
+                                <p class="spot-desc">激戦区で食べるアツアツのたこ焼き。ワンコインでお腹も心も満たされる大阪のソウルフード。<br>
+                                    <a href="https://tabelog.com/osaka/A2701/A270202/rstLst/takoyaki/" target="_blank" rel="noopener noreferrer" class="official-link">詳細情報 (食べログ) <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 食べ歩きの王様
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=道頓堀" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約10分（なんば駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="串カツ" style="background: linear-gradient(135deg, #f87171, #dc2626); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-drumstick-bite" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">串カツ（新世界）</h5>
+                                <p class="spot-price">1本約120円〜</p>
+                                <p class="spot-desc">「二度漬け禁止」で有名な串カツ。サクサクの衣と秘伝のソースがたまりません。<br>
+                                    <a href="https://tabelog.com/osaka/A2701/A270206/rstLst/RC010304/" target="_blank" rel="noopener noreferrer" class="official-link">詳細情報 (食べログ) <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 驚きのコスパ
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=新世界" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約15分（動物園前駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="budget-category" style="margin-top: 4rem;">
+                    <h4 class="category-title"><i class="fa-solid fa-calendar-days"></i> 最新・期間限定（2026年版）</h4>
+                    <div class="destinations-grid">
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="大阪城公園" style="background: linear-gradient(135deg, #ec4899, #d946ef); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-brands fa-pagelines" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">大阪城公園</h5>
+                                <p class="spot-price">入場無料（天守閣は有料）</p>
+                                <p class="spot-desc">桜や梅など四季折々の花が楽しめる広大な公園。天守閣を背景にした写真は必見です。<br>
+                                    <a href="https://www.osakacastlepark.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 壮大な景色がタダ
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=大阪城公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">電車 約10分（大阪城公園駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="destination-card">
+                            <div class="destination-image" role="img" aria-label="アメリカ村" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                <i class="fa-solid fa-music" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                            </div>
+                            <div class="destination-content">
+                                <h5 class="spot-title">アメリカ村</h5>
+                                <p class="spot-price">0円</p>
+                                <p class="spot-desc">関西の若者文化の発信地。個性的な古着屋や雑貨店、ウォールアートなど街歩きが楽しいエリア。<br>
+                                    <a href="https://americamura.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                </p>
+                                <div class="spot-info">
+                                    <span class="info-label">ここがお得！:</span> 最新カルチャー散策
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=アメリカ村" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                    <span class="transit-badge">地下鉄 約10分（心斎橋駅）</span>
+                                    <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Access Guide</h3>
+                    <p class="section-subtitle">大阪駅・梅田エリアからの主要な観光地・イベント会場へのアクセス</p>
+                </div>
+                
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #1e3a8a, #1d4ed8); display: flex; align-items: center; justify-content: center; height: 180px;">
+                            <i class="fa-solid fa-baseball" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                        </div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">京セラドーム大阪</h4>
+                            <p class="destination-desc">大規模コンサート・野球観戦<br>
+                                <a href="https://www.kyoceradome-osaka.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=京セラドーム大阪" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-train"></i> 電車 約15分</span>
+                                <span class="fare-badge">190円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #0284c7, #0ea5e9); display: flex; align-items: center; justify-content: center; height: 180px;">
+                            <i class="fa-solid fa-water" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                        </div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">海遊館</h4>
+                            <p class="destination-desc">世界最大級の水族館<br>
+                                <a href="https://www.kaiyukan.com/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=海遊館" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-train"></i> 電車 約30分</span>
+                                <span class="fare-badge">290円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #b45309, #d97706); display: flex; align-items: center; justify-content: center; height: 180px;">
+                            <i class="fa-solid fa-building-columns" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                        </div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">大阪城ホール</h4>
+                            <p class="destination-desc">有名アーティストのライブ・イベント<br>
+                                <a href="https://www.osaka-johall.com/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=大阪城ホール" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-train"></i> 電車 約10分</span>
+                                <span class="fare-badge">170円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="destination-card">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #be123c, #e11d48); display: flex; align-items: center; justify-content: center; height: 180px;">
+                            <i class="fa-solid fa-film" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                        </div>
+                        <div class="destination-content">
+                            <h4 class="destination-title">ユニバーサル・スタジオ・ジャパン</h4>
+                            <p class="destination-desc">世界最高峰のエンターテイメント<br>
+                                <a href="https://www.usj.co.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=大阪駅&destination=ユニバーサル・スタジオ・ジャパン" target="_blank" rel="noopener noreferrer" class="destination-access access-link" title="Googleマップでルートを見る">
+                                <span class="transit-badge"><i class="fa-solid fa-train"></i> 電車直通 約11分</span>
+                                <span class="fare-badge">190円</span>
+                                <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2 style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h2>
+                <p>Find your perfect stay in Osaka.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. Powered by Rakuten Travel API.</p>
+                <div style="margin-top: 10px;">
+                    <a href="../privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                    <span style="color: #94a3b8; margin: 0 5px;">|</span>
+                    <a href="../contact.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

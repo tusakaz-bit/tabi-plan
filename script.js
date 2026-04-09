@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
     const AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
     
+    const isOsaka = window.location.pathname.includes('osaka');
+
     // API Request parameters
     const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
     const PARAMS = new URLSearchParams({
@@ -9,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: 'hukuoka', // APIではhukuoka
-        smallClassCode: 'fukuoka', // 博多・福岡市周辺を中心とする
+        middleClassCode: isOsaka ? 'osaka' : 'hukuoka', // 大阪か福岡か
+        smallClassCode: isOsaka ? 'shi' : 'fukuoka',    // 大阪市または福岡市
         sort: '+roomCharge' // 最安値順
     });
 
@@ -50,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         keyword: 'レディース',
-        middleClassCode: 'hukuoka', // 福岡県
-        smallClassCode: 'fukuoka' // 福岡市周辺を優先
+        middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
+        smallClassCode: isOsaka ? 'shi' : 'fukuoka'
     });
 
     fetch(`${LADIES_API_URL}?${LADIES_PARAMS.toString()}`)
@@ -79,7 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.display = 'block';
     }
 
+    function updateTimestamp() {
+        const now = new Date();
+        const dateStr = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ' 現在';
+        const updateElements = document.querySelectorAll('.update-time');
+        updateElements.forEach(el => el.textContent = `最終更新: ${dateStr}`);
+    }
+
     function renderHotels(hotels, container) {
+        updateTimestamp();
+        
+        const baseStation = isOsaka ? '大阪・梅田' : '博多';
+
         hotels.forEach((hotelData, index) => {
             const info = hotelData.hotel[0].hotelBasicInfo;
             
@@ -123,8 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
 
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                        <span class="transit-badge" title="博多駅からの移動時間"><i class="fa-regular fa-clock"></i> 博多から${transit.time}</span>
-                        <span class="fare-badge" title="博多からの交通費目安"><i class="fa-solid fa-yen-sign"></i> ${transit.fare}</span>
+                        <span class="transit-badge" title="${baseStation}駅からの移動時間"><i class="fa-regular fa-clock"></i> ${baseStation}から${transit.time}</span>
+                        <span class="fare-badge" title="${baseStation}からの交通費目安"><i class="fa-solid fa-yen-sign"></i> ${transit.fare}</span>
                     </div>
                     
                     <div class="hotel-price">
@@ -153,20 +166,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!station) return { time: '不明', fare: '不明' };
         
         const s = station.toLowerCase();
-        if (s.includes('博多')) {
-            return { time: '徒歩 5分', fare: '0円' };
-        } else if (s.includes('中洲') || s.includes('中洲川端')) {
-            return { time: '地下鉄 5分 + 徒歩5分', fare: '210円' };
-        } else if (s.includes('天神')) {
-            return { time: '地下鉄 6分 + 徒歩3分', fare: '210円' };
-        } else if (s.includes('祇園')) {
-             return { time: '徒歩 12分 (地下鉄1分)', fare: '0円 / 210円' };
-        } else if (s.includes('呉服町')) {
-            return { time: 'バス 10分', fare: '150円' };
-        } else if (s.includes('渡辺通') || s.includes('薬院')) {
-            return { time: 'バス 15分', fare: '150円' };
+        
+        if (isOsaka) {
+            if (s.includes('大阪') || s.includes('梅田')) {
+                return { time: '徒歩 5分', fare: '0円' };
+            } else if (s.includes('なんば') || s.includes('難波') || s.includes('心斎橋')) {
+                return { time: '地下鉄 約10分', fare: '240円' };
+            } else if (s.includes('天王寺')) {
+                return { time: '電車 約15分', fare: '200円' };
+            } else if (s.includes('新大阪')) {
+                return { time: '電車 約5分', fare: '170円' };
+            } else {
+                return { time: '電車/地下鉄 約15分〜', fare: '200円〜' };
+            }
         } else {
-            return { time: 'バス/電車 約15分〜', fare: '210円〜' };
+            if (s.includes('博多')) {
+                return { time: '徒歩 5分', fare: '0円' };
+            } else if (s.includes('中洲') || s.includes('中洲川端')) {
+                return { time: '地下鉄 5分 + 徒歩5分', fare: '210円' };
+            } else if (s.includes('天神')) {
+                return { time: '地下鉄 6分 + 徒歩3分', fare: '210円' };
+            } else if (s.includes('祇園')) {
+                 return { time: '徒歩 12分 (地下鉄1分)', fare: '0円 / 210円' };
+            } else if (s.includes('呉服町')) {
+                return { time: 'バス 10分', fare: '150円' };
+            } else if (s.includes('渡辺通') || s.includes('薬院')) {
+                return { time: 'バス 15分', fare: '150円' };
+            } else {
+                return { time: 'バス/電車 約15分〜', fare: '210円〜' };
+            }
         }
     }
 
