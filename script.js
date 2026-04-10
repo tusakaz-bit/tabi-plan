@@ -75,23 +75,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 都市名プレフィックス（キーワードの地域精度向上に使用）
-    const cityPrefix = isOsaka ? '大阪 ' : '福岡 ';
+    const cityPrefix = isOsaka ? '大阪' : '博多';
+
+    // 住所で市内のホテルのみに絞り込むフィルター（最も確実な方法）
+    const cityName = isOsaka ? '大阪市' : '福岡市';
+    function filterByCity(hotels) {
+        if (!hotels) return [];
+        return hotels.filter(h => {
+            const info = h.hotel[0].hotelBasicInfo;
+            const addr = (info.address1 || '') + (info.address2 || '');
+            return addr.includes(cityName);
+        });
+    }
 
     // 5カテゴリ同時取得
     Promise.all([
         fetch(`${API_URL}?${PARAMS.toString()}`).then(res => res.json()).catch(() => null),
         fetch(`${KEYWORD_API_URL}?${buildKeywordParams('レディース')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + 'カップル')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + '高級ホテル')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + '駅近')}`).then(res => res.json()).catch(() => null)
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + ' カップル')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('高級ホテル')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('駅近')}`).then(res => res.json()).catch(() => null)
     ]).then(([dealsData, ladiesData, coupleData, luxuryData, stationData]) => {
         loadingEl.style.display = 'none';
 
-        if (dealsData && dealsData.hotels)    hotelData.deals   = dealsData.hotels;
-        if (ladiesData && ladiesData.hotels)  hotelData.ladies  = ladiesData.hotels;
-        if (coupleData && coupleData.hotels)  hotelData.couple  = coupleData.hotels;
-        if (luxuryData && luxuryData.hotels)  hotelData.luxury  = luxuryData.hotels;
-        if (stationData && stationData.hotels) hotelData.station = stationData.hotels;
+        // 最安値はSimpleSearchで確実にエリア指定済みのためフィルタ不要
+        if (dealsData && dealsData.hotels)   hotelData.deals   = dealsData.hotels;
+        // キーワード検索は住所フィルタを適用して市外を除外
+        if (ladiesData)  hotelData.ladies  = filterByCity(ladiesData.hotels);
+        if (coupleData)  hotelData.couple  = filterByCity(coupleData.hotels);
+        if (luxuryData)  hotelData.luxury  = filterByCity(luxuryData.hotels);
+        if (stationData) hotelData.station = filterByCity(stationData.hotels);
 
         renderCurrentTab();
     });
