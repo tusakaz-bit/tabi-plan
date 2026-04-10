@@ -43,27 +43,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // State management
     const hotelData = {
         deals: [],
-        ladies: []
+        ladies: [],
+        couple: [],
+        luxury: [],
+        station: []
     };
     const displayCounts = {
         deals: 5,
-        ladies: 5
+        ladies: 5,
+        couple: 5,
+        luxury: 5,
+        station: 5
     };
     let currentTab = 'deals';
 
-    // Fetch both datasets concurrently
+    // カテゴリ別のKeyword検索APIパラメータを作成するヘルパー関数
+    const KEYWORD_API_URL = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
+
+    function buildKeywordParams(keyword) {
+        const p = {
+            applicationId: APP_ID,
+            affiliateId: AFFILIATE_ID,
+            format: 'json',
+            keyword: keyword,
+            middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
+            smallClassCode: isOsaka ? 'shi' : 'fukuoka'
+        };
+        if (isOsaka) p.detailClassCode = 'D';
+        return new URLSearchParams(p).toString();
+    }
+
+    // 5カテゴリ同時取得
     Promise.all([
         fetch(`${API_URL}?${PARAMS.toString()}`).then(res => res.json()).catch(() => null),
-        fetch(`${LADIES_API_URL}?${LADIES_PARAMS.toString()}`).then(res => res.json()).catch(() => null)
-    ]).then(([dealsData, ladiesData]) => {
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('レディース')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('カップル')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('旅館')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('駅近')}`).then(res => res.json()).catch(() => null)
+    ]).then(([dealsData, ladiesData, coupleData, luxuryData, stationData]) => {
         loadingEl.style.display = 'none';
 
-        if (dealsData && dealsData.hotels) {
-            hotelData.deals = dealsData.hotels;
-        }
-        if (ladiesData && ladiesData.hotels) {
-            hotelData.ladies = ladiesData.hotels;
-        }
+        if (dealsData && dealsData.hotels)  hotelData.deals   = dealsData.hotels;
+        if (ladiesData && ladiesData.hotels) hotelData.ladies  = ladiesData.hotels;
+        if (coupleData && coupleData.hotels) hotelData.couple  = coupleData.hotels;
+        if (luxuryData && luxuryData.hotels) hotelData.luxury  = luxuryData.hotels;
+        if (stationData && stationData.hotels) hotelData.station = stationData.hotels;
 
         renderCurrentTab();
     });
