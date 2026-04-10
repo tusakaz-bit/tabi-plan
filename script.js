@@ -110,10 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ]).then(([dealsData, ladiesData, coupleData, luxuryData, stationData]) => {
         loadingEl.style.display = 'none';
 
-        // 最安値・高級ホテルはSimpleSearchで確実にエリア指定済みのためフィルタ不要
-        if (dealsData && dealsData.hotels)  hotelData.deals  = dealsData.hotels;
-        if (luxuryData && luxuryData.hotels) hotelData.luxury = luxuryData.hotels;
-        // キーワード検索は住所フィルタを適用して市外を除外
+        // 最安値・高級ホテルはSimpleSearchだが、smallClassCodeが太宰府も含む広域のため住所フィルタを適用
+        if (dealsData && dealsData.hotels)   hotelData.deals  = dealsData.hotels; // 最安値はエリア混入しても許容
+        if (luxuryData && luxuryData.hotels) hotelData.luxury = filterByCity(luxuryData.hotels); // 高級ホテルは市内のみ
+        // キーワード検索も住所フィルタを適用して市外を除外
         if (ladiesData)  hotelData.ladies  = filterByCity(ladiesData.hotels);
         if (coupleData)  hotelData.couple  = filterByCity(coupleData.hotels);
         if (stationData) hotelData.station = filterByCity(stationData.hotels);
