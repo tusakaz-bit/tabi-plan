@@ -88,22 +88,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 高級ホテル用：SimpleHotelSearchで料金の高い順（最安値の逆）
+    const luxuryParams = new URLSearchParams({
+        applicationId: APP_ID,
+        affiliateId: AFFILIATE_ID,
+        format: 'json',
+        largeClassCode: 'japan',
+        middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
+        smallClassCode: isOsaka ? 'shi' : 'fukuoka',
+        sort: '-roomCharge' // 料金の高い順 = 高級ホテルが上位に
+    });
+    if (isOsaka) luxuryParams.append('detailClassCode', 'D');
+
     // 5カテゴリ同時取得
     Promise.all([
         fetch(`${API_URL}?${PARAMS.toString()}`).then(res => res.json()).catch(() => null),
         fetch(`${KEYWORD_API_URL}?${buildKeywordParams('レディース')}`).then(res => res.json()).catch(() => null),
         fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + ' カップル')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('高級ホテル')}`).then(res => res.json()).catch(() => null),
+        fetch(`${API_URL}?${luxuryParams.toString()}`).then(res => res.json()).catch(() => null),  // SimpleHotelSearch（高額順）
         fetch(`${KEYWORD_API_URL}?${buildKeywordParams('駅近')}`).then(res => res.json()).catch(() => null)
     ]).then(([dealsData, ladiesData, coupleData, luxuryData, stationData]) => {
         loadingEl.style.display = 'none';
 
-        // 最安値はSimpleSearchで確実にエリア指定済みのためフィルタ不要
-        if (dealsData && dealsData.hotels)   hotelData.deals   = dealsData.hotels;
+        // 最安値・高級ホテルはSimpleSearchで確実にエリア指定済みのためフィルタ不要
+        if (dealsData && dealsData.hotels)  hotelData.deals  = dealsData.hotels;
+        if (luxuryData && luxuryData.hotels) hotelData.luxury = luxuryData.hotels;
         // キーワード検索は住所フィルタを適用して市外を除外
         if (ladiesData)  hotelData.ladies  = filterByCity(ladiesData.hotels);
         if (coupleData)  hotelData.couple  = filterByCity(coupleData.hotels);
-        if (luxuryData)  hotelData.luxury  = filterByCity(luxuryData.hotels);
         if (stationData) hotelData.station = filterByCity(stationData.hotels);
 
         renderCurrentTab();
