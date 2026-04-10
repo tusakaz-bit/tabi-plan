@@ -66,27 +66,31 @@ document.addEventListener('DOMContentLoaded', () => {
             affiliateId: AFFILIATE_ID,
             format: 'json',
             keyword: keyword,
+            largeClassCode: 'japan',           // エリア絞り込み精度を上げるため追加
             middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
             smallClassCode: isOsaka ? 'shi' : 'fukuoka'
         };
-        if (isOsaka) p.detailClassCode = 'D';
+        if (isOsaka) p.detailClassCode = 'D'; // 大阪市：なんば・天王寺・心斎橋エリア
         return new URLSearchParams(p).toString();
     }
+
+    // 都市名プレフィックス（キーワードの地域精度向上に使用）
+    const cityPrefix = isOsaka ? '大阪 ' : '福岡 ';
 
     // 5カテゴリ同時取得
     Promise.all([
         fetch(`${API_URL}?${PARAMS.toString()}`).then(res => res.json()).catch(() => null),
         fetch(`${KEYWORD_API_URL}?${buildKeywordParams('レディース')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('カップル')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('旅館')}`).then(res => res.json()).catch(() => null),
-        fetch(`${KEYWORD_API_URL}?${buildKeywordParams('駅近')}`).then(res => res.json()).catch(() => null)
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + 'カップル')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + '高級ホテル')}`).then(res => res.json()).catch(() => null),
+        fetch(`${KEYWORD_API_URL}?${buildKeywordParams(cityPrefix + '駅近')}`).then(res => res.json()).catch(() => null)
     ]).then(([dealsData, ladiesData, coupleData, luxuryData, stationData]) => {
         loadingEl.style.display = 'none';
 
-        if (dealsData && dealsData.hotels)  hotelData.deals   = dealsData.hotels;
-        if (ladiesData && ladiesData.hotels) hotelData.ladies  = ladiesData.hotels;
-        if (coupleData && coupleData.hotels) hotelData.couple  = coupleData.hotels;
-        if (luxuryData && luxuryData.hotels) hotelData.luxury  = luxuryData.hotels;
+        if (dealsData && dealsData.hotels)    hotelData.deals   = dealsData.hotels;
+        if (ladiesData && ladiesData.hotels)  hotelData.ladies  = ladiesData.hotels;
+        if (coupleData && coupleData.hotels)  hotelData.couple  = coupleData.hotels;
+        if (luxuryData && luxuryData.hotels)  hotelData.luxury  = luxuryData.hotels;
         if (stationData && stationData.hotels) hotelData.station = stationData.hotels;
 
         renderCurrentTab();
