@@ -20,36 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const PARAMS = new URLSearchParams(parsedParams);
 
-    const loadingEl = document.getElementById('loading');
-    const containerEl = document.getElementById('hotels-container');
-    const errorEl = document.getElementById('error-message');
-
-    const ladiesLoadingEl = document.getElementById('ladies-loading');
-    const ladiesContainerEl = document.getElementById('ladies-hotels-container');
-    const ladiesErrorEl = document.getElementById('ladies-error-message');
-
-    // Fetch Regular Deals (Top 5)
-    fetch(`${API_URL}?${PARAMS.toString()}`)
-        .then(response => {
-            if (!response.ok) throw new Error('ネットワークエラー');
-            return response.json();
-        })
-        .then(data => {
-            loadingEl.style.display = 'none';
-            if (data.hotels && data.hotels.length > 0) {
-                const top5Hotels = data.hotels.slice(0, 5);
-                renderHotels(top5Hotels, containerEl);
-            } else {
-                showError(errorEl, '条件に一致するホテルが見つかりませんでした。');
-            }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            loadingEl.style.display = 'none';
-            showError(errorEl);
-        });
-
-    // Fetch Ladies Plan (Top 5)
     const LADIES_API_URL = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
     const parsedLadiesParams = {
         applicationId: APP_ID,
@@ -64,24 +34,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const LADIES_PARAMS = new URLSearchParams(parsedLadiesParams);
 
-    fetch(`${LADIES_API_URL}?${LADIES_PARAMS.toString()}`)
-        .then(response => {
-            if (!response.ok) throw new Error('ネットワークエラー');
-            return response.json();
-        })
-        .then(data => {
-            ladiesLoadingEl.style.display = 'none';
-            if (data.hotels && data.hotels.length > 0) {
-                renderHotels(data.hotels.slice(0, 5), ladiesContainerEl);
-            } else {
-                showError(ladiesErrorEl, '条件に一致するホテルが見つかりませんでした。');
-            }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            ladiesLoadingEl.style.display = 'none';
-            showError(ladiesErrorEl);
+    const loadingEl = document.getElementById('loading');
+    const containerEl = document.getElementById('hotels-container');
+    const errorEl = document.getElementById('error-message');
+    const loadMoreContainer = document.querySelector('.load-more-container');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+
+    // State management
+    const hotelData = {
+        deals: [],
+        ladies: []
+    };
+    const displayCounts = {
+        deals: 5,
+        ladies: 5
+    };
+    let currentTab = 'deals';
+
+    // Fetch both datasets concurrently
+    Promise.all([
+        fetch(`${API_URL}?${PARAMS.toString()}`).then(res => res.json()).catch(() => null),
+        fetch(`${LADIES_API_URL}?${LADIES_PARAMS.toString()}`).then(res => res.json()).catch(() => null)
+    ]).then(([dealsData, ladiesData]) => {
+        loadingEl.style.display = 'none';
+
+        if (dealsData && dealsData.hotels) {
+            hotelData.deals = dealsData.hotels;
+        }
+        if (ladiesData && ladiesData.hotels) {
+            hotelData.ladies = ladiesData.hotels;
+        }
+
+        renderCurrentTab();
+    });
+
+    // Tab switching logic
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const selectedTab = e.target.getAttribute('data-tab');
+            if (currentTab === selectedTab) return;
+
+            // Update active styling
+            tabButtons.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            currentTab = selectedTab;
+            
+            // 別のタブを開いたときは常に5件に戻すか、前回開いた状態を維持するか。
+            // ここではフレッシュに見せるため5件に戻します。
+            displayCounts[currentTab] = 5; 
+
+            renderCurrentTab();
         });
+    });
+
+    // Load More Logic
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            displayCounts[currentTab] += 5;
+            renderCurrentTab();
+        });
+    }
+
+    function renderCurrentTab() {
+        containerEl.innerHTML = '';
+        errorEl.style.display = 'none';
+
+        const data = hotelData[currentTab];
+        
+        if (!data || data.length === 0) {
+            showError(errorEl, '条件に一致するホテルが見つかりませんでした。');
+            if(loadMoreContainer) loadMoreContainer.style.display = 'none';
+            return;
+        }
+
+        const count = displayCounts[currentTab];
+        const hotelsToShow = data.slice(0, count);
+
+        // 描画
+        renderHotels(hotelsToShow, containerEl);
+
+        // もっと見るボタンの表示/非表示制御
+        if (loadMoreContainer) {
+            if (count < data.length) {
+                loadMoreContainer.style.display = 'block';
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+        }
+    }
 
     function showError(element, msg = '情報の取得に失敗しました。後でもう一度お試しください。') {
         const p = element.querySelector('p');

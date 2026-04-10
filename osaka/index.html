@@ -82,10 +82,15 @@
         <section id="hotels" class="hotels-section">
             <div class="container">
                 <div class="section-header">
-                    <h3 class="section-title">Today's Top 5 Deals</h3>
-                    <p class="section-subtitle">本日の大阪市での最安値プラン</p>
+                    <h3 class="section-title">Today's Deals</h3>
+                    <p class="section-subtitle">大阪市で見つかる、本日の厳選プラン</p>
                 </div>
                 
+                <div class="hotel-tabs">
+                    <button class="tab-button active" data-tab="deals">最安値プラン</button>
+                    <button class="tab-button" data-tab="ladies">レディースプラン</button>
+                </div>
+
                 <div id="loading" class="loading">
                     <div class="spinner"></div>
                     <p>最新のホテル情報を取得しています...</p>
@@ -101,30 +106,9 @@
                 <div id="hotels-container" class="hotels-grid">
                     <!-- Cards will be injected here -->
                 </div>
-            </div>
-        </section>
-
-        <section id="ladies-hotels" class="hotels-section" style="padding-top: 0;">
-            <div class="container">
-                <div class="section-header">
-                    <h3 class="section-title">Ladies Plan Top 5</h3>
-                    <p class="section-subtitle">女性におすすめのレディースプラン5選</p>
-                </div>
                 
-                <div id="ladies-loading" class="loading">
-                    <div class="spinner"></div>
-                    <p>最新のホテル情報を取得しています...</p>
-                </div>
-
-                <div id="ladies-error-message" class="error-message" style="display: none;">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <p>情報の取得に失敗しました。後でもう一度お試しください。</p>
-                </div>
-
-                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;"></p>
-
-                <div id="ladies-hotels-container" class="hotels-grid">
-                    <!-- Cards will be injected here -->
+                <div class="load-more-container" style="text-align: center; margin-top: 3rem; display: none;">
+                    <button id="load-more-btn" class="cta-button" style="padding: 0.8rem 2rem; font-size: 0.95rem;">もっと見る <i class="fa-solid fa-chevron-down"></i></button>
                 </div>
             </div>
         </section>
