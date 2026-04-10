@@ -220,6 +220,44 @@ a {
     transform: translateX(5px);
 }
 
+/* Hero Category Tags */
+.hero-category-tags {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.hero-cat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-primary);
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.hero-cat-tag:hover {
+    background: rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.6);
+    color: #93c5fd;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25);
+}
+
+.hero-cat-tag[data-tab="ladies"]:hover  { background: rgba(236, 72, 153, 0.2); border-color: rgba(236, 72, 153, 0.5); color: #f9a8d4; box-shadow: 0 6px 16px rgba(236, 72, 153, 0.2); }
+.hero-cat-tag[data-tab="couple"]:hover  { background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe; box-shadow: 0 6px 16px rgba(168, 85, 247, 0.2); }
+.hero-cat-tag[data-tab="luxury"]:hover  { background: rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.5); color: #fcd34d; box-shadow: 0 6px 16px rgba(245, 158, 11, 0.2); }
+.hero-cat-tag[data-tab="station"]:hover { background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.5); color: #6ee7b7; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2); }
+
 /* Hotels Section */
 .hotels-section {
     padding: 5rem 0 10rem;

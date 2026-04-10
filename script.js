@@ -121,6 +121,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ヒーローのカテゴリタグ → タブ選択 + スクロール
+    document.querySelectorAll('.hero-cat-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            const selectedTab = tag.getAttribute('data-tab');
+
+            // タブボタンのアクティブ状態を切り替え
+            tabButtons.forEach(b => b.classList.remove('active'));
+            const matchingTab = document.querySelector(`.tab-button[data-tab="${selectedTab}"]`);
+            if (matchingTab) matchingTab.classList.add('active');
+
+            // 状態を更新して再描画
+            currentTab = selectedTab;
+            displayCounts[currentTab] = 5;
+            renderCurrentTab();
+
+            // ホテルセクションへスムーズスクロール
+            const hotelsSection = document.getElementById('hotels');
+            if (hotelsSection) {
+                hotelsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
     function renderCurrentTab() {
         containerEl.innerHTML = '';
         errorEl.style.display = 'none';
