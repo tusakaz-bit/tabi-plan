@@ -820,6 +820,21 @@ a {
 }
 
 @media (max-width: 768px) {
+    .header {
+        padding: 1rem 0;
+    }
+
+    .hero {
+        padding-top: 130px;
+        min-height: auto;
+        padding-bottom: 4rem;
+        align-items: flex-start;
+    }
+
+    .subtitle {
+        margin-top: 0;
+    }
+
     .title {
         font-size: 2.8rem;
     }
