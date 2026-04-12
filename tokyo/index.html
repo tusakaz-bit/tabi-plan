@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東京の宿泊・観光ガイド：都心の最安ホテル & 0円スポット | Tokyo Premium Stays</title>
+    <meta name="description" content="東京駅・新宿・浅草など、東京都心エリアのホテル最安値プランを毎日更新。都庁展望室や浅草寺など、0円・格安で楽しめるおすすめ観光スポット、グルメ情報を掲載。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation" style="background-image: url('../bg_tokyo_urban_night_1775962062378.png');">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">Tokyo City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">次の旅を、<br><span class="highlight">東京の中心</span>から。</h2>
+                    <p class="description">日本の心臓部、東京。最新のトレンドと古き良き伝統が交差するこの街で、本日の「最安値」「レディース」「カップル」「高級ホテル」「駅チカ」プランを厳選。東京駅・銀座エリアを中心に、最高の滞在をプロデュースします。</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem; letter-spacing: 1px;">▶ 希望のプランを選んでスキップ</p>
+                    <div class="hero-category-tags">
+                        <button class="hero-cat-tag" data-tab="deals"><i class="fa-solid fa-yen-sign"></i> 最安値</button>
+                        <button class="hero-cat-tag" data-tab="ladies"><i class="fa-solid fa-heart"></i> レディース</button>
+                        <button class="hero-cat-tag" data-tab="couple"><i class="fa-solid fa-user-group"></i> カップル</button>
+                        <button class="hero-cat-tag" data-tab="luxury"><i class="fa-solid fa-crown"></i> 高級ホテル</button>
+                        <button class="hero-cat-tag" data-tab="station"><i class="fa-solid fa-train"></i> 駅チカ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Tokyo Prime Deals</h3>
+                    <p class="section-subtitle">都心エリア（東京駅・銀座・日本橋）の厳選プラン</p>
+                </div>
+                
+                <div class="hotel-tabs">
+                    <button class="tab-button active" data-tab="deals">最安値プラン</button>
+                    <button class="tab-button" data-tab="ladies">レディースプラン</button>
+                    <button class="tab-button" data-tab="couple">カップル向け</button>
+                    <button class="tab-button" data-tab="luxury">高級ホテル</button>
+                    <button class="tab-button" data-tab="station">駅チカ</button>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のプランを検索中...</p>
+                </div>
+
+                <div id="hotels-container" class="hotels-grid"></div>
+
+                <div class="load-more-container" style="display: none;">
+                    <button id="load-more-btn" class="cta-button secondary">
+                        もっと見る <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>申し訳ありません。プランの取得に失敗しました。時間をおいて再度お試しください。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container">
+                    <h3 class="section-title" style="margin-bottom: 1rem;">Tokyo Budget Guide</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、東京を120%楽しむための賢い選択</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-camera"></i> 0円スポット（定番・絶景）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="東京都庁展望室" style="background: linear-gradient(135deg, #1e293b, #334155); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                    <i class="fa-solid fa-building" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">東京都庁 展望室</h5>
+                                    <p class="spot-price">0円</p>
+                                    <p class="spot-desc">新宿の地上202mから都心のパノラマを一望！夜景も無料で楽しめる、東京最高のコスパスポット。<br>
+                                        <a href="https://www.yokoso.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 入場料完全無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=東京都庁" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">新宿駅 徒歩約10分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="浅草寺" style="background: linear-gradient(135deg, #ef4444, #b91c1c); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                    <i class="fa-solid fa-torii-gate" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">浅草寺・雷門</h5>
+                                    <p class="spot-price">0円</p>
+                                    <p class="spot-desc">東京最古の寺院。雷門から本堂までの活気あふれる雰囲気は、歩くだけで江戸情景を味わえます。<br>
+                                        <a href="https://www.senso-ji.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 伝統文化をタダで体験
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=浅草寺" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">浅草駅 徒歩約5分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安グルメ（江戸の味）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="浅草 仲見世通り食べ歩き" style="background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                    <i class="fa-solid fa-cookie-bite" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">仲見世通り 食べ歩き</h5>
+                                    <p class="spot-price">約300円〜</p>
+                                    <p class="spot-desc">揚げまんじゅうやメンチカツなど、ワンコイン以下の絶品グルメが勢揃い。小腹を満たすのに最適。<br>
+                                        <a href="https://www.tabelog.com/tokyo/A1311/A131102/rstLst/RC25/" target="_blank" rel="noopener noreferrer" class="official-link">食べログ詳細 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 江戸のファストフード
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=浅草+仲見世通り" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">浅草駅 徒歩圏内</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="日枝神社の千本鳥居" style="background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; height: 180px;">
+                                    <i class="fa-solid fa-camera-retro" style="font-size: 3rem; color: rgba(255,255,255,0.5);"></i>
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">日枝神社・千本鳥居</h5>
+                                    <p class="spot-price">参拝無料</p>
+                                    <p class="spot-desc">都会のビル群に突如現れる赤い鳥居の列。SNS映え間違いなしの幻想的な空間が楽しめます。<br>
+                                        <a href="https://www.hiejinja.or.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 都心の隠れぬ絶景
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=日枝神社" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">赤坂駅 徒歩約3分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Major Gateways</h3>
+                    <p class="section-subtitle">主要ターミナルからのアクセス情報</p>
+                </div>
+                
+                <div class="city-grid">
+                    <div class="city-card no-click">
+                        <div class="city-card-overlay">
+                            <span class="city-status">Gateway</span>
+                            <h4 class="city-name">東京駅 / Tokyo Sta.</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">新幹線・主要路線の拠点。ここをベースに東京中へアクセス可能です。</p>
+                        </div>
+                    </div>
+                    <div class="city-card no-click">
+                        <div class="city-card-overlay">
+                            <span class="city-status">Airport</span>
+                            <h4 class="city-name">羽田空港 / Haneda</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">都心まで京急線・モノレールで約20〜30分。最もスムーズな空の玄関口。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h4 class="logo">TABI <span>PLAN</span></h4>
+                <p>&copy; 2026 Tabi Plan. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <p>次の旅を、賢く美しく計画しよう。</p>
+                <div class="social-links" style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

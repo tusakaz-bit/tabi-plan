@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
     
     const isOsaka = window.location.pathname.includes('osaka');
+    const isTokyo = window.location.pathname.includes('tokyo');
 
     // API Request parameters
     const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
@@ -11,74 +12,38 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isOsaka ? 'osaka' : 'hukuoka', // 大阪か福岡か
-        smallClassCode: isOsaka ? 'shi' : 'fukuoka',    // 大阪市または福岡市
+        middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
+        smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'),
         sort: '+roomCharge' // 最安値順
     };
     if (isOsaka) {
-        parsedParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋（尼崎を除外し、取得エラーを防ぐ）
+        parsedParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋
+    } else if (isTokyo) {
+        parsedParams.detailClassCode = 'A'; // 東京駅・銀座・日本橋エリア
     }
     const PARAMS = new URLSearchParams(parsedParams);
 
-    const LADIES_API_URL = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
-    const parsedLadiesParams = {
-        applicationId: APP_ID,
-        affiliateId: AFFILIATE_ID,
-        format: 'json',
-        keyword: 'レディース',
-        middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
-        smallClassCode: isOsaka ? 'shi' : 'fukuoka'
-    };
-    if (isOsaka) {
-        parsedLadiesParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋（尼崎などを除外）
-    }
-    const LADIES_PARAMS = new URLSearchParams(parsedLadiesParams);
-
-    const loadingEl = document.getElementById('loading');
-    const containerEl = document.getElementById('hotels-container');
-    const errorEl = document.getElementById('error-message');
-    const loadMoreContainer = document.querySelector('.load-more-container');
-    const loadMoreBtn = document.getElementById('load-more-btn');
-
-    // State management
-    const hotelData = {
-        deals: [],
-        ladies: [],
-        couple: [],
-        luxury: [],
-        station: []
-    };
-    const displayCounts = {
-        deals: 5,
-        ladies: 5,
-        couple: 5,
-        luxury: 5,
-        station: 5
-    };
-    let currentTab = 'deals';
-
-    // カテゴリ別のKeyword検索APIパラメータを作成するヘルパー関数
     const KEYWORD_API_URL = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
-
     function buildKeywordParams(keyword) {
         const p = {
             applicationId: APP_ID,
             affiliateId: AFFILIATE_ID,
             format: 'json',
             keyword: keyword,
-            largeClassCode: 'japan',           // エリア絞り込み精度を上げるため追加
-            middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
-            smallClassCode: isOsaka ? 'shi' : 'fukuoka'
+            largeClassCode: 'japan',
+            middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
+            smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')
         };
-        if (isOsaka) p.detailClassCode = 'D'; // 大阪市：なんば・天王寺・心斎橋エリア
+        if (isOsaka) p.detailClassCode = 'D';
+        if (isTokyo) p.detailClassCode = 'A';
         return new URLSearchParams(p).toString();
     }
 
-    // 都市名プレフィックス（キーワードの地域精度向上に使用）
-    const cityPrefix = isOsaka ? '大阪' : '博多';
+    // 都市名プレフィックス
+    const cityPrefix = isOsaka ? '大阪' : (isTokyo ? '東京' : '博多');
 
-    // 住所で市内のホテルのみに絞り込むフィルター（最も確実な方法）
-    const cityName = isOsaka ? '大阪市' : '福岡市';
+    // 住所フィルタ
+    const cityName = isOsaka ? '大阪市' : (isTokyo ? '東京都' : '福岡市');
     function filterByCity(hotels) {
         if (!hotels) return [];
         return hotels.filter(h => {
