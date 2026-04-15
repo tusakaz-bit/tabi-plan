@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
     
     const isOsaka = window.location.pathname.includes('osaka');
+    const isTokyo = window.location.pathname.includes('tokyo');
 
     // API Request parameters
     const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
@@ -11,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isOsaka ? 'osaka' : 'hukuoka', // 大阪か福岡か
-        smallClassCode: isOsaka ? 'shi' : 'fukuoka',    // 大阪市または福岡市
+        middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
+        smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'),
         sort: '+roomCharge' // 最安値順
     };
     if (isOsaka) {
-        parsedParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋（尼崎を除外し、取得エラーを防ぐ）
+        parsedParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋
+    } else if (isTokyo) {
+        parsedParams.detailClassCode = 'A'; // 東京駅・銀座・日本橋エリア
     }
     const PARAMS = new URLSearchParams(parsedParams);
 
@@ -52,18 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
             format: 'json',
             keyword: keyword,
             largeClassCode: 'japan',
-            middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
-            smallClassCode: isOsaka ? 'shi' : 'fukuoka'
+            middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
+            smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')
         };
         if (isOsaka) p.detailClassCode = 'D';
+        if (isTokyo) p.detailClassCode = 'A';
         return new URLSearchParams(p).toString();
     }
 
     // 都市名プレフィックス
-    const cityPrefix = isOsaka ? '大阪' : '博多';
+    const cityPrefix = isOsaka ? '大阪' : (isTokyo ? '東京' : '博多');
 
     // 住所フィルタ
-    const cityName = isOsaka ? '大阪市' : '福岡市';
+    const cityName = isOsaka ? '大阪市' : (isTokyo ? '東京都' : '福岡市');
     function filterByCity(hotels) {
         if (!hotels) return [];
         return hotels.filter(h => {
@@ -79,11 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isOsaka ? 'osaka' : 'hukuoka',
-        smallClassCode: isOsaka ? 'shi' : 'fukuoka',
+        middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
+        smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'),
         sort: '-roomCharge'
     });
     if (isOsaka) luxuryParams.append('detailClassCode', 'D');
+    if (isTokyo) luxuryParams.append('detailClassCode', 'A');
 
     // 5カテゴリ同時取得
     Promise.all([
@@ -183,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderHotels(hotels, container) {
         updateTimestamp();
-        const baseStation = isOsaka ? '大阪・梅田' : '博多';
+        const baseStation = isOsaka ? '大阪・梅田' : (isTokyo ? '東京' : '博多');
         hotels.forEach((hotelData, index) => {
             const info = hotelData.hotel[0].hotelBasicInfo;
             const card = document.createElement('div');
@@ -228,7 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function getTransitInfo(station) {
         if (!station) return { time: '不明', fare: '不明' };
         const s = station.toLowerCase();
-        if (isOsaka) {
+        if (isTokyo) {
+            if (s.includes('東京')) return { time: '徒歩 5分', fare: '0円' };
+            if (s.includes('新宿')) return { time: '電車/地下鉄 約15分', fare: '210円' };
+            if (s.includes('銀座')) return { time: '徒歩/地下鉄 約5分', fare: '0円 / 180円' };
+            if (s.includes('品川')) return { time: '電車 約10分', fare: '170円' };
+            if (s.includes('渋谷') || s.includes('池袋')) return { time: '電車 約20分', fare: '210円' };
+            return { time: '電車 約10-20分', fare: '200円〜' };
+        } else if (isOsaka) {
             if (s.includes('大阪') || s.includes('梅田')) return { time: '徒歩 5分', fare: '0円' };
             if (s.includes('なんば') || s.includes('難波') || s.includes('心斎橋')) return { time: '地下鉄 約10分', fare: '240円' };
             if (s.includes('天王寺')) return { time: '電車 約15分', fare: '200円' };
