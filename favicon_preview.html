@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Color Proposals</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+        h1 { margin-bottom: 40px; }
+        .grid {
+            display: flex;
+            gap: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .icon-preview {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto 20px;
+            background: #1e293b;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 10px;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tabi Plan Favicon "Dawn" Concepts</h1>
+
+    <div class="grid">
+        <!-- Option A -->
+        <div class="card">
+            <div class="icon-preview">
+                <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradA" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#312e81" />
+                            <stop offset="50%" stop-color="#be185d" />
+                            <stop offset="100%" stop-color="#f97316" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 2C19.85 2 10 11.85 10 24c0 15.5 22 38 22 38s22-22.5 22-38C54 11.85 44.15 2 32 2z" fill="url(#gradA)" />
+                    <circle cx="32" cy="22" r="13" fill="#ffffff" />
+                    <text x="32" y="30.5" font-family="sans-serif" font-weight="900" font-size="24" fill="url(#gradA)" text-anchor="middle">¥</text>
+                </svg>
+            </div>
+            <h3>A. Twilight Sky</h3>
+            <p class="desc">深い夜のブルーから、朝焼けのピンク・オレンジへ移り変わるエモーショナルな空を表現。</p>
+        </div>
+
+        <!-- Option B -->
+        <div class="card">
+            <div class="icon-preview">
+                <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradB" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0284c7" />
+                            <stop offset="100%" stop-color="#10b981" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 2C19.85 2 10 11.85 10 24c0 15.5 22 38 22 38s22-22.5 22-38C54 11.85 44.15 2 32 2z" fill="url(#gradB)" />
+                    <circle cx="32" cy="22" r="13" fill="#ffffff" />
+                    <text x="32" y="30.5" font-family="sans-serif" font-weight="900" font-size="24" fill="url(#gradB)" text-anchor="middle">¥</text>
+                </svg>
+            </div>
+            <h3>B. Emerald Dawn</h3>
+            <p class="desc">現在のサイトのアクセントカラー（緑）を引き継ぎつつ、夜明けの澄んだ空気感を示すブルーグリーン。</p>
+        </div>
+
+        <!-- Option C -->
+        <div class="card">
+            <div class="icon-preview">
+                <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradC" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f59e0b" />
+                            <stop offset="100%" stop-color="#b45309" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 2C19.85 2 10 11.85 10 24c0 15.5 22 38 22 38s22-22.5 22-38C54 11.85 44.15 2 32 2z" fill="url(#gradC)" />
+                    <circle cx="32" cy="22" r="13" fill="#ffffff" />
+                    <text x="32" y="30.5" font-family="sans-serif" font-weight="900" font-size="24" fill="url(#gradC)" text-anchor="middle">¥</text>
+                </svg>
+            </div>
+            <h3>C. Sunrise Gold</h3>
+            <p class="desc">太陽が昇る瞬間の強い光。プレミアム感や「お得な価格（¥）」を直感的に伝えるゴールドカラー。</p>
+        </div>
+    </div>
+
+</body>
+</html>
