@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         parsedParams.detailClassCode = 'D'; // なんば・天王寺・心斎橋
     } else if (isTokyo) {
         parsedParams.detailClassCode = 'A'; // 東京駅・銀座・日本橋エリア
+    } else if (isKyoto) {
+        parsedParams.detailClassCode = 'B'; // 河原町・四条烏丸
     }
     const PARAMS = new URLSearchParams(parsedParams);
 
@@ -61,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         if (isOsaka) p.detailClassCode = 'D';
         if (isTokyo) p.detailClassCode = 'A';
+        if (isKyoto) p.detailClassCode = 'B';
         return new URLSearchParams(p).toString();
     }
 
@@ -90,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (isOsaka) luxuryParams.append('detailClassCode', 'D');
     if (isTokyo) luxuryParams.append('detailClassCode', 'A');
+    if (isKyoto) luxuryParams.append('detailClassCode', 'B');
 
     // 5カテゴリ同時取得
     Promise.all([
