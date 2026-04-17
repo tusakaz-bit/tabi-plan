@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 都市名プレフィックス
-    const cityPrefix = isOsaka ? '大阪' : (isTokyo ? '東京' : '博多');
+    const cityPrefix = isKyoto ? '京都' : (isOsaka ? '大阪' : (isTokyo ? '東京' : '博多'));
 
     // 住所フィルタ
-    const cityName = isOsaka ? '大阪市' : (isTokyo ? '東京都' : '福岡市');
+    const cityName = isKyoto ? '京都市' : (isOsaka ? '大阪市' : (isTokyo ? '東京都' : '福岡市'));
     function filterByCity(hotels) {
         if (!hotels) return [];
         return hotels.filter(h => {
@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
-        smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'),
+        middleClassCode: isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka')),
+        smallClassCode: isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')),
         sort: '-roomCharge'
     });
     if (isOsaka) luxuryParams.append('detailClassCode', 'D');
