@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PERSW1V95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4PERSW1V95');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>札幌の宿泊・観光ガイド：最安ホテル & 0円・格安スポット | Sapporo Premium Stays</title>
+    <meta name="description" content="札幌駅・大通・すすきのエリアのホテル最安値プランを毎日更新。大通公園や時計台、モエレ沼公園など、0円・格安で楽しめるおすすめ観光スポット、グルメ情報を掲載。">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation" style="background-image: url('../bg_sapporo_japanese_dark_hero_1776434374881.png');">
+        <div class="glow glow-1" style="background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-2" style="background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">Sapporo City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">北の大地を、<br><span class="highlight">スマートに巡る。</span></h2>
+                    <p class="description">四季折々の美しさを魅せる札幌。大通公園の緑から冬の白銀の世界まで。本日の最安値・レディース・カップル・高級・駅チカプランをリアルタイムで抽出。札幌駅・大通エリアを中心に、最高の拠点探しをお手伝いします。</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem; letter-spacing: 1px;">▶ 希望のプランを選んでスキップ</p>
+                    <div class="hero-category-tags">
+                        <button class="hero-cat-tag" data-tab="deals"><i class="fa-solid fa-yen-sign"></i> 最安値</button>
+                        <button class="hero-cat-tag" data-tab="ladies"><i class="fa-solid fa-heart"></i> レディース</button>
+                        <button class="hero-cat-tag" data-tab="couple"><i class="fa-solid fa-user-group"></i> カップル</button>
+                        <button class="hero-cat-tag" data-tab="luxury"><i class="fa-solid fa-crown"></i> 高級ホテル</button>
+                        <button class="hero-cat-tag" data-tab="station"><i class="fa-solid fa-train"></i> 駅チカ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Sapporo Prime Deals</h3>
+                    <p class="section-subtitle">札幌市内（札幌駅・大通・すすきの）の厳選プラン</p>
+                </div>
+                
+                <div class="hotel-tabs">
+                    <button class="tab-button active" data-tab="deals">最安値プラン</button>
+                    <button class="tab-button" data-tab="ladies">レディースプラン</button>
+                    <button class="tab-button" data-tab="couple">カップル向け</button>
+                    <button class="tab-button" data-tab="luxury">高級ホテル</button>
+                    <button class="tab-button" data-tab="station">駅チカ</button>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のプランを検索中...</p>
+                </div>
+
+                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;"></p>
+                <div id="hotels-container" class="hotels-grid"></div>
+
+                <div class="load-more-container" style="display: none;">
+                    <button id="load-more-btn" class="cta-button secondary">
+                        もっと見る <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>申し訳ありません。プランの取得に失敗しました。時間をおいて再度お試しください。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container">
+                    <h3 class="section-title" style="margin-bottom: 1rem;">Sapporo Budget Guide</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、北海道グルメと観光を120%楽しむ</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-camera"></i> 0円スポット（定番・絶景）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="大通公園" style="background-image: url('../bg_sapporo_japanese_dark_hero_1776434374881.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">大通公園</h5>
+                                    <p class="spot-price">散策無料</p>
+                                    <p class="spot-desc">札幌の中心部を東西に貫く広大な公園。夏はビアガーデン、冬はさっぽろ雪まつりの会場として、一年中無料で楽しめます。<br>
+                                        <a href="https://odori-park.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> イベントの宝庫が0円
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=大通公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">地下鉄 大通駅 直結</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="札幌市時計台" style="background-image: url('../sapporo_clock_tower_japanese_dark_1776434389961.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">札幌市時計台</h5>
+                                    <p class="spot-price">外観見学0円 / 入館200円</p>
+                                    <p class="spot-desc">明治時代から時を刻み続ける札幌のシンボル。美しい白い外観をバックに記念撮影が定番。夜のライトアップも必見です。<br>
+                                        <a href="http://sapporoshi-tokeidai.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 歴史的価値あるシンボル
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=札幌市時計台" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">札幌駅から徒歩約10分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安・癒やしの体験</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="サッポロビール博物館" style="background-image: url('../sapporo_beer_museum_japanese_dark_1776434405240.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">サッポロビール博物館</h5>
+                                    <p class="spot-price">見学無料 (自由見学)</p>
+                                    <p class="spot-desc">赤レンガの美しい歴史的建造物。ビールの歴史を学べるギャラリーは無料で開放されており、有料での試飲も格安です。<br>
+                                        <a href="https://www.sapporobeer.jp/brewery/s_museum/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 絶品ビールの試飲も格安
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=サッポロビール博物館" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">バス サッポロビール園前 直結</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="二条市場" style="background-image: url('../sapporo_kaisen_don_japanese_dark_gourmet_1776434436038.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">二条市場 / 海鮮グルメ</h5>
+                                    <p class="spot-price">見学無料 / 食事 1000円〜</p>
+                                    <p class="spot-desc">札幌の台所として親しまれる市場。新鮮な魚介類が並び、市場ならではのリーズナブルな価格で海鮮丼を楽しめる店が多数あります。<br>
+                                        <a href="https://nijomarket.com/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 産地直送の「本物」を格安で
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=二条市場" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">大通駅から徒歩約5分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Major Gateways</h3>
+                    <p class="section-subtitle">北海道各地、全国への玄関口</p>
+                </div>
+                
+                <div class="city-grid">
+                    <div class="city-card" onclick="window.open('https://www.jrhokkaido.co.jp/network/station/station.html?name=sapporo', '_blank')">
+                        <div class="city-card-image" style="background-image: url('../sapporo_station_japanese_dark_1776434420486.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Gateway <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
+                            <h4 class="city-name">札幌駅 / Sapporo Sta.</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">JR・地下鉄が乗り入れる北の最大拠点。ショッピングモールも充実。</p>
+                        </div>
+                    </div>
+                    <div class="city-card" onclick="window.open('https://www.new-chitose-airport.jp/', '_blank')">
+                        <div class="city-card-image" style="background-image: url('../new_chitose_airport_japanese_dark_hub_1776434452831.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Airport <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
+                            <h4 class="city-name">新千歳空港 / New Chitose</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">快速エアポートで札幌まで約40分。グルメやお土産も世界級です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2 style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h2>
+                <p>Find your perfect stay in Sapporo.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. Powered by Rakuten Travel API.</p>
+                <div style="margin-top: 10px;">
+                    <a href="../privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                    <span style="color: #94a3b8; margin: 0 5px;">|</span>
+                    <a href="../contact.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js?v=2"></script>
+</body>
+</html>
