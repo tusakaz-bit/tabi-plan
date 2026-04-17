@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PERSW1V95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4PERSW1V95');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京都の宿泊・観光ガイド：最安ホテル & 0円・格安スポット | Kyoto Premium Stays</title>
+    <meta name="description" content="京都駅・河原町・祇園など、京都市内エリアのホテル最安値プランを毎日更新。伏見稲荷大社や嵐山など、0円・格安で楽しめるおすすめ観光スポット、グルメ情報を掲載。">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation" style="background-image: url('../bg_kyoto_night_1776398726246.png');">
+        <div class="glow glow-1" style="background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-2" style="background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">Kyoto City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">千年の都を、<br><span class="highlight">賢く美しく。</span></h2>
+                    <p class="description">日本の原風景、京都。歴史ある寺社仏閣と四季折々の自然を誇るこの街で、本日の「最安値」「レディース」「カップル」「高級ホテル」「駅チカ」プランを厳選。京都駅・河原町エリアを中心に最高の滞在をプロデュースします。</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem; letter-spacing: 1px;">▶ 希望のプランを選んでスキップ</p>
+                    <div class="hero-category-tags">
+                        <button class="hero-cat-tag" data-tab="deals"><i class="fa-solid fa-yen-sign"></i> 最安値</button>
+                        <button class="hero-cat-tag" data-tab="ladies"><i class="fa-solid fa-heart"></i> レディース</button>
+                        <button class="hero-cat-tag" data-tab="couple"><i class="fa-solid fa-user-group"></i> カップル</button>
+                        <button class="hero-cat-tag" data-tab="luxury"><i class="fa-solid fa-crown"></i> 高級ホテル</button>
+                        <button class="hero-cat-tag" data-tab="station"><i class="fa-solid fa-train"></i> 駅チカ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Kyoto Prime Deals</h3>
+                    <p class="section-subtitle">京都市内（京都駅・烏丸・河原町）の厳選プラン</p>
+                </div>
+                
+                <div class="hotel-tabs">
+                    <button class="tab-button active" data-tab="deals">最安値プラン</button>
+                    <button class="tab-button" data-tab="ladies">レディースプラン</button>
+                    <button class="tab-button" data-tab="couple">カップル向け</button>
+                    <button class="tab-button" data-tab="luxury">高級ホテル</button>
+                    <button class="tab-button" data-tab="station">駅チカ</button>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のプランを検索中...</p>
+                </div>
+
+                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;"></p>
+                <div id="hotels-container" class="hotels-grid"></div>
+
+                <div class="load-more-container" style="display: none;">
+                    <button id="load-more-btn" class="cta-button secondary">
+                        もっと見る <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>申し訳ありません。プランの取得に失敗しました。時間をおいて再度お試しください。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container">
+                    <h3 class="section-title" style="margin-bottom: 1rem;">Kyoto Budget Guide</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、京都を120%楽しむための賢い選択</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-camera"></i> 0円スポット（定番・絶景）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="伏見稲荷大社" style="background-image: url('../kyoto_fushimi_1776398742029.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">伏見稲荷大社・千本鳥居</h5>
+                                    <p class="spot-price">参拝無料</p>
+                                    <p class="spot-desc">全国の稲荷神社の総本宮。朱塗りの鳥居が延々と続く幻想的な千本鳥居は、世界中の観光客を魅了します。<br>
+                                        <a href="https://inari.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 世界的絶景が無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=伏見稲荷大社" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">JR 稲荷駅 徒歩すぐ</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="嵐山 竹林の小径" style="background-image: url('../kyoto_arashiyama_1776398759907.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">嵐山・竹林の小径</h5>
+                                    <p class="spot-price">0円</p>
+                                    <p class="spot-desc"> 하늘高く伸びる竹林に囲まれた小径。木漏れ日や風の音が織りなす和の空間を無料で散策できます。<br>
+                                        <a href="https://ja.kyoto.travel/tourism/single01.php?category_id=8&tourism_id=2683" target="_blank" rel="noopener noreferrer" class="official-link">京都観光Navi <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 癒やしの空間をタダで体験
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=嵐山+竹林の小径" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">嵯峨野線 嵯峨嵐山駅 徒歩約15分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安・癒やしのスポット</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="祇園白川" style="background-image: url('../kyoto_gion_1776398783945.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">祇園白川の町並み</h5>
+                                    <p class="spot-price">散策無料</p>
+                                    <p class="spot-desc">石畳の道と趣ある町家、川沿いの柳が織りなす「これぞ京都」という美しい景観。夜のライトアップも。<br>
+                                        <a href="https://ja.kyoto.travel/tourism/single01.php?category_id=8&tourism_id=2684" target="_blank" rel="noopener noreferrer" class="official-link">京都観光Navi <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 最高のフォトスポット
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=祇園白川" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">祇園四条駅 徒歩約5分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="錦市場" style="background-image: url('../kyoto_nishiki_1776398800762.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">錦市場（京の台所）</h5>
+                                    <p class="spot-price">食べ歩き 約300円〜</p>
+                                    <p class="spot-desc">約400年の歴史を持つアーケード商店街。おばんざいや湯葉、抹茶スイーツなど、手頃な値段で絶品グルメを楽しめます。<br>
+                                        <a href="https://www.kyoto-nishiki.or.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 食べ歩きで満腹に
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=錦市場" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">烏丸駅・四条駅 徒歩約3分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Major Gateways</h3>
+                    <p class="section-subtitle">主要ターミナルからのアクセス情報</p>
+                </div>
+                
+                <div class="city-grid">
+                    <div class="city-card" onclick="window.open('https://www.kyoto-station-building.co.jp/', '_blank')">
+                        <div class="city-card-image" style="background-image: url('../kyoto_station_1776398815887.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Gateway <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
+                            <h4 class="city-name">京都駅 / Kyoto Sta.</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">新幹線や各線が乗り入れる巨大ターミナル。京都観光の出発地点です。</p>
+                        </div>
+                    </div>
+                    <div class="city-card" onclick="window.open('https://www.kansai-airport.or.jp/', '_blank')">
+                        <div class="city-card-image" style="background-image: url('../kix_airport_1776398830538.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Airport <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
+                            <h4 class="city-name">関西国際空港 / KIX</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">特急はるかで京都駅まで直結（約80分）。西日本の空の玄関口。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2 style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h2>
+                <p>Find your perfect stay in Kyoto.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. Powered by Rakuten Travel API.</p>
+                <div style="margin-top: 10px;">
+                    <a href="../privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                    <span style="color: #94a3b8; margin: 0 5px;">|</span>
+                    <a href="../contact.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

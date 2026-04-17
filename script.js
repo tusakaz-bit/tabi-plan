@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const isOsaka = window.location.pathname.includes('osaka');
     const isTokyo = window.location.pathname.includes('tokyo');
+    const isKyoto = window.location.pathname.includes('kyoto');
 
     // API Request parameters
     const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
@@ -12,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
-        smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'),
+        middleClassCode: isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka')),
+        smallClassCode: isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')),
         sort: '+roomCharge' // 最安値順
     };
     if (isOsaka) {
@@ -55,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             format: 'json',
             keyword: keyword,
             largeClassCode: 'japan',
-            middleClassCode: isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'),
-            smallClassCode: isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')
+            middleClassCode: isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka')),
+            smallClassCode: isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'))
         };
         if (isOsaka) p.detailClassCode = 'D';
         if (isTokyo) p.detailClassCode = 'A';
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderHotels(hotels, container) {
         updateTimestamp();
-        const baseStation = isOsaka ? '大阪・梅田' : (isTokyo ? '東京' : '博多');
+        const baseStation = isKyoto ? '京都' : (isOsaka ? '大阪・梅田' : (isTokyo ? '東京' : '博多'));
         hotels.forEach((hotelData, index) => {
             const info = hotelData.hotel[0].hotelBasicInfo;
             const card = document.createElement('div');
@@ -246,6 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (s.includes('天王寺')) return { time: '電車 約15分', fare: '200円' };
             if (s.includes('新大阪')) return { time: '電車 約5分', fare: '170円' };
             return { time: '電車/地下鉄 約15分〜', fare: '200円〜' };
+        } else if (isKyoto) {
+            if (s.includes('京都')) return { time: '徒歩 5分', fare: '0円' };
+            if (s.includes('烏丸') || s.includes('河原町')) return { time: '地下鉄 約10分', fare: '230円' };
+            if (s.includes('嵐山')) return { time: '電車 約20分', fare: '240円' };
+            if (s.includes('祇園')) return { time: 'バス/電車 約15分', fare: '230円' };
+            return { time: '地下鉄/バス 約15分〜', fare: '230円〜' };
         } else {
             if (s.includes('博多')) return { time: '徒歩 5分', fare: '0円' };
             if (s.includes('中洲') || s.includes('中洲川端')) return { time: '地下鉄 5分 + 徒歩5分', fare: '210円' };
