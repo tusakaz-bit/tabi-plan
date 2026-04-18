@@ -11,7 +11,7 @@ const client = new TwitterApi({
     accessSecret: process.env.X_ACCESS_TOKEN_SECRET,
 });
 
-const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085'; // 既存のID
+const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
 const CITIES = [
@@ -40,12 +40,10 @@ async function getLowestPriceHotel(city) {
         const response = await axios.get(url, { params });
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             const hotel = response.data.hotels[0].hotel[0].hotelBasicInfo;
-            // フィルタリング（script.jsと同じロジックが必要な場合はここに追加）
             return {
                 name: hotel.hotelName,
                 price: hotel.hotelMinCharge,
-                url: hotel.affiliateUrl,
-                address: (hotel.address1 || '') + (hotel.address2 || '')
+                url: hotel.affiliateUrl
             };
         }
     } catch (error) {
@@ -60,9 +58,7 @@ async function run() {
     
     for (const city of CITIES) {
         const hotel = await getLowestPriceHotel(city);
-        if (hotel) {
-            results.push({ city, hotel });
-        }
+        if (hotel) results.push({ city, hotel });
     }
 
     if (results.length === 0) {
@@ -71,30 +67,25 @@ async function run() {
     }
 
     // --- Create Thread ---
-    
-    // 1. Summary Tweet
-    let summaryText = `【本日の最安値ガイド】\n旅プランがお届けする各都市の目玉プランはこちら！\n\n`;
+    let summaryText = `【本日の最安値ガイド】\n旅プラン厳選の目玉プランはこちら！\n\n`;
     results.forEach(r => {
         summaryText += `📍${r.city.name}: ${r.hotel.price.toLocaleString()}円〜\n`;
     });
-    summaryText += `\n詳細は各ツリーをチェック👇\n#TabiPlan #格安旅行 #最安値`;
+    summaryText += `\n詳細は各ツリーをチェック👇\n#TabiPlan #最安値 #旅行`;
 
     try {
-        // Upload Media (optional but recommended for visual appeal)
-        // Note: github actions environment doesn't have the images locally unless we commit them or they are in the repo.
-        // We assume images are in the root directory as in index.html.
-
         const tweets = [];
         tweets.push(summaryText);
 
         for (const r of results) {
-            const tweetText = `【${r.city.name}エリア最安値】\n\n🏨 ${r.hotel.name}\n💰 料金: ${r.hotel.price.toLocaleString()}円〜\n\n那覇・国際通り周辺や主要駅へのアクセスも抜群。「賢く、美しく」旅を楽しみましょう。\n\n▼詳細・予約はこちら\n${r.hotel.url}\n\n#${r.city.name}旅行 #最安値ホテル #TabiPlan`;
+            // 文字数制限を考慮してシャープに
+            const tweetText = `【${r.city.name}エリア最安値】\n\n🏨 ${r.hotel.name}\n💰 料金: ${r.hotel.price.toLocaleString()}円〜\n\n「賢く、美しく」旅を楽しみましょう。\n\n▼詳細・予約はこちら\n${r.hotel.url}\n\n#${r.city.name}旅行 #TabiPlan`;
             
-            // Image data
             let mediaId = null;
-            const imagePath = path.join(__dirname, '../', r.city.image);
+            const imagePath = path.resolve(__dirname, '../', r.city.image);
             if (fs.existsSync(imagePath)) {
                 try {
+                    console.log(`Uploading media for ${r.city.name}: ${imagePath}`);
                     mediaId = await client.v1.uploadMedia(imagePath);
                 } catch (e) {
                     console.error(`Media upload failed for ${r.city.name}:`, e.message);
@@ -104,11 +95,17 @@ async function run() {
             tweets.push({ text: tweetText, ...(mediaId ? { media: { media_ids: [mediaId] } } : {}) });
         }
 
-        // Post thread
+        console.log('Posting thread to X...');
         await client.v2.tweetThread(tweets);
         console.log('Successfully posted thread to X!');
     } catch (error) {
-        console.error('Error posting to X:', error);
+        // 詳細なエラー情報を出力
+        if (error.data) {
+            console.error('X API Error Detail:', JSON.stringify(error.data, null, 2));
+        } else {
+            console.error('Error posting to X:', error.message);
+        }
+        process.exit(1); 
     }
 }
 
