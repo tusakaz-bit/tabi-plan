@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isTokyo = window.location.pathname.includes('tokyo');
     const isKyoto = window.location.pathname.includes('kyoto');
     const isSapporo = window.location.pathname.includes('sapporo');
+    const isOkinawa = window.location.pathname.includes('okinawa');
 
     // API Request parameters
     const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
@@ -14,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isSapporo ? 'hokkaido' : (isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'))),
-        smallClassCode: isSapporo ? 'sapporo' : (isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'))),
+        middleClassCode: isOkinawa ? 'okinawa' : (isSapporo ? 'hokkaido' : (isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka')))),
+        smallClassCode: isOkinawa ? 'nahashi' : (isSapporo ? 'sapporo' : (isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')))),
         sort: '+roomCharge' // 最安値順
     };
     if (isOsaka) {
@@ -61,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
             format: 'json',
             keyword: keyword,
             largeClassCode: 'japan',
-            middleClassCode: isSapporo ? 'hokkaido' : (isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'))),
-            smallClassCode: isSapporo ? 'sapporo' : (isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')))
+            middleClassCode: isOkinawa ? 'okinawa' : (isSapporo ? 'hokkaido' : (isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka')))),
+            smallClassCode: isOkinawa ? 'nahashi' : (isSapporo ? 'sapporo' : (isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'))))
         };
         if (isOsaka) p.detailClassCode = 'D';
         if (isTokyo) p.detailClassCode = 'A';
@@ -72,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 都市名プレフィックス
-    const cityPrefix = isSapporo ? '札幌' : (isKyoto ? '京都' : (isOsaka ? '大阪' : (isTokyo ? '東京' : '博多')));
+    const cityPrefix = isOkinawa ? '沖縄' : (isSapporo ? '札幌' : (isKyoto ? '京都' : (isOsaka ? '大阪' : (isTokyo ? '東京' : '博多'))));
 
     // 住所フィルタ
-    const cityName = isSapporo ? '札幌市' : (isKyoto ? '京都市' : (isOsaka ? '大阪市' : (isTokyo ? '東京都' : '福岡市')));
+    const cityName = isOkinawa ? '那覇市' : (isSapporo ? '札幌市' : (isKyoto ? '京都市' : (isOsaka ? '大阪市' : (isTokyo ? '東京都' : '福岡市'))));
     function filterByCity(hotels) {
         if (!hotels) return [];
         return hotels.filter(h => {
@@ -91,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: isSapporo ? 'hokkaido' : (isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka'))),
-        smallClassCode: isSapporo ? 'sapporo' : (isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka'))),
+        middleClassCode: isOkinawa ? 'okinawa' : (isSapporo ? 'hokkaido' : (isKyoto ? 'kyoto' : (isOsaka ? 'osaka' : (isTokyo ? 'tokyo' : 'hukuoka')))),
+        smallClassCode: isOkinawa ? 'nahashi' : (isSapporo ? 'sapporo' : (isKyoto ? 'shi' : (isOsaka ? 'shi' : (isTokyo ? 'tokyo' : 'fukuoka')))),
         sort: '-roomCharge'
     });
     if (isOsaka) luxuryParams.append('detailClassCode', 'D');
@@ -268,6 +269,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (s.includes('すすきの')) return { time: '地下鉄 約3分', fare: '210円' };
             if (s.includes('中島公園')) return { time: '地下鉄 約5分', fare: '210円' };
             return { time: '地下鉄 約5-10分', fare: '210円〜' };
+        } else if (isOkinawa) {
+            if (s.includes('那覇空港')) return { time: 'モノレール 約5分', fare: '230円' };
+            if (s.includes('県庁前')) return { time: 'モノレール 約12分', fare: '300円' };
+            if (s.includes('旭橋')) return { time: 'モノレール 約11分', fare: '270円' };
+            if (s.includes('おもろまち')) return { time: 'モノレール 約19分', fare: '300円' };
+            if (s.includes('牧志')) return { time: 'モノレール 約16分', fare: '300円' };
+            return { time: 'モノレール 約15-20分', fare: '300円〜' };
         } else {
             if (s.includes('博多')) return { time: '徒歩 5分', fare: '0円' };
             if (s.includes('中洲') || s.includes('中洲川端')) return { time: '地下鉄 5分 + 徒歩5分', fare: '210円' };

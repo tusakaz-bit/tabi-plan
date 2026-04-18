@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PERSW1V95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4PERSW1V95');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖縄（那覇市）の宿泊・観光ガイド：最安ホテル & 0円・格安スポット | Okinawa Naha Premium Stays</title>
+    <meta name="description" content="那覇市街・国際通り周辺のホテル最安値プランを毎日更新。国際通りや波の上ビーチ、首里城公園など、0円・格安で楽しめるおすすめ観光スポット、グルメ情報を掲載。">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation" style="background-image: url('../bg_okinawa_japanese_dark_hero_beach_1776487605725.png');">
+        <div class="glow glow-1" style="background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-2" style="background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">Okinawa City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">琉球の風を、<br><span class="highlight">賢く美しく。</span></h2>
+                    <p class="description">青い海と豊かな歴史が息づく沖縄。本日の「最安値」「レディース」「カップル」「高級ホテル」「駅チカ」プランを、アクセスの良い那覇市街エリアから厳選。国際通り周辺の拠点探しをサポートします。</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem; letter-spacing: 1px;">▶ 希望のプランを選んでスキップ</p>
+                    <div class="hero-category-tags">
+                        <button class="hero-cat-tag" data-tab="deals"><i class="fa-solid fa-yen-sign"></i> 最安値</button>
+                        <button class="hero-cat-tag" data-tab="ladies"><i class="fa-solid fa-heart"></i> レディース</button>
+                        <button class="hero-cat-tag" data-tab="couple"><i class="fa-solid fa-user-group"></i> カップル</button>
+                        <button class="hero-cat-tag" data-tab="luxury"><i class="fa-solid fa-crown"></i> 高級ホテル</button>
+                        <button class="hero-cat-tag" data-tab="station"><i class="fa-solid fa-train"></i> 駅チカ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Okinawa Naha Prime Deals</h3>
+                    <p class="section-subtitle">那覇市街（国際通り・県庁前・旭橋周辺）の厳選プラン</p>
+                    <p style="color: #fbbf24; font-size: 0.9rem; margin-top: 5px;"><i class="fa-solid fa-location-dot"></i> 掲載ホテルはすべて「那覇市エリア」の物件です</p>
+                </div>
+                
+                <div class="hotel-tabs">
+                    <button class="tab-button active" data-tab="deals">最安値プラン</button>
+                    <button class="tab-button" data-tab="ladies">レディースプラン</button>
+                    <button class="tab-button" data-tab="couple">カップル向け</button>
+                    <button class="tab-button" data-tab="luxury">高級ホテル</button>
+                    <button class="tab-button" data-tab="station">駅チカ</button>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>最新のプランを検索中...</p>
+                </div>
+
+                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;"></p>
+                <div id="hotels-container" class="hotels-grid"></div>
+
+                <div class="load-more-container" style="display: none;">
+                    <button id="load-more-btn" class="cta-button secondary">
+                        もっと見る <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p>申し訳ありません。プランの取得に失敗しました。時間をおいて再度お試しください。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container">
+                    <h3 class="section-title" style="margin-bottom: 1rem;">Naha Budget Guide</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、沖縄グルメとアクティビティを120%楽しむ</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-camera"></i> 0円スポット（散策・絶景）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="国際通り" style="background-image: url('../kokusai_dori_japanese_dark_street_1776487618758.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">国際通り</h5>
+                                    <p class="spot-price">散策無料</p>
+                                    <p class="spot-desc">那覇最大のメインストリート。お土産店や飲食店が建ち並び、歩くだけでも活気ある沖縄の雰囲気を感じられます。<br>
+                                        <a href="https://naha-kokusaidori.okinawa/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 活気ある街の雰囲気が0円
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=那覇空港&destination=国際通り" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">県庁前駅・牧志駅から徒歩すぐ</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="波の上ビーチ・波上宮" style="background-image: url('../naminoue_shrine_japanese_dark_night_1776487633304.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">波の上ビーチ・波上宮</h5>
+                                    <p class="spot-price">参拝・ビーチ利用無料</p>
+                                    <p class="spot-desc">那覇市内で唯一遊泳可能なビーチと、断崖の上に立つ由緒ある神社。都会の中にありながら、美しい海を無料で楽しめます。<br>
+                                        <a href="https://www.naminouegu.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 市街地の絶景ビーチが0円
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=那覇空港&destination=波の上ビーチ" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">旭橋駅から徒歩約15分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安・伝統の体験</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="首里城公園" style="background-image: url('../shuri_castle_gate_japanese_dark_1776487646352.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">首里城公園（無料区域）</h5>
+                                    <p class="spot-price">無料区域あり / 守礼門など</p>
+                                    <p class="spot-desc">琉球王国の象徴。復興中の正殿以外のエリアや守礼門などは無料で開放されており、高台からの那覇の街並みを一望できます。<br>
+                                        <a href="https://oki-park.jp/shurijo/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 歴史の重みとパノラマビュー
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=那覇空港&destination=首里城" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">首里駅から徒歩約15分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="瀬長島ウミカジテラス" style="background-image: url('../umikaji_terrace_japanese_dark_sunset_1776487659159.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">瀬長島ウミカジテラス</h5>
+                                    <p class="spot-price">散策・夕景無料</p>
+                                    <p class="spot-desc">那覇空港近くの複合施設。異国情緒あふれる白い建物が並び、飛行機の離着陸と東シナ海に沈む夕日を無料で楽しめます。<br>
+                                        <a href="https://www.umikajiterrace.com/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 飛行機と海を望む絶景スポット
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=那覇空港&destination=瀬長島ウミカジテラス" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">那覇空港から車で約15分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Major Gateways</h3>
+                    <p class="section-subtitle">空路・陸路の要となるアクセス拠点</p>
+                </div>
+                
+                <div class="city-grid">
+                    <div class="city-card" onclick="window.open('https://www.naha-airport.co.jp/', '_blank')">
+                        <div class="city-card-image" style="background-image: url('../naha_airport_japanese_dark_modern_1776487691907.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Gateway <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
+                            <h4 class="city-name">那覇空港 / Naha Airport</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">沖縄の空の玄関口。国際通りまではモノレール一本で約12分と抜群のアクセス。</p>
+                        </div>
+                    </div>
+                    <div class="city-card" onclick="window.open('https://www.yui-rail.co.jp/', '_blank')">
+                        <div class="city-card-image" style="background-image: url('../bg_okinawa_naha_city_card_1776487705236.png')"></div>
+                        <div class="city-card-overlay">
+                            <span class="city-status">Transit <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
+                            <h4 class="city-name">ゆいレール / Yui Rail</h4>
+                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">那覇市内を繋ぐ沖縄唯一のモノレール。ICカード対応により観光もスマートに。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2 style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h2>
+                <p>Find your perfect stay in Naha City, Okinawa.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. Powered by Rakuten Travel API.</p>
+                <div style="margin-top: 10px;">
+                    <a href="../privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                    <span style="color: #94a3b8; margin: 0 5px;">|</span>
+                    <a href="../contact.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js?v=2"></script>
+</body>
+</html>
