@@ -1,0 +1,13 @@
+{
+  "name": "tabi-plan-x-bot",
+  "version": "1.0.0",
+  "description": "Tabi Plan Daily X Post Bot",
+  "main": "scripts/post_to_x.js",
+  "scripts": {
+    "start": "node scripts/post_to_x.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "twitter-api-v2": "^1.15.2"
+  }
+}
