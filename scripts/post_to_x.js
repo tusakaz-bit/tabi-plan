@@ -74,6 +74,7 @@ async function run() {
 
 ${results.map(r => `📍${r.city.name}: ${Number(r.hotel.price).toLocaleString()}円〜`).join('\n')}
 
+※情報は投稿時点のものであり、価格は常に変動します。
 詳細は各ツリーをチェック👇
 #TabiPlan #格安旅行 #最安値
 \`\`\`
