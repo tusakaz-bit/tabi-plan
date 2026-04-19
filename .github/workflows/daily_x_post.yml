@@ -1,4 +1,4 @@
-name: Daily X Post
+name: Daily X Post Draft Generator
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # 手動実行ボタンを有効化
 
 jobs:
-  post-to-x:
+  generate-draft:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -16,15 +16,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # 最新安定版に更新
+          node-version: '22'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run post script
-        env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_SECRET: ${{ secrets.X_API_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+      - name: Generate Draft
         run: node scripts/post_to_x.js
