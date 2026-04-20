@@ -57,9 +57,13 @@ async function run() {
         return;
     }
 
-    // --- Generate Phrases and Date ---
+    // --- Generate Phrases and Date (Tomorrow) ---
     const now = new Date();
-    const jstDate = new Intl.DateTimeFormat('ja-JP', { month: 'numeric', day: 'numeric', timeZone: 'Asia/Tokyo' }).format(now);
+    // 翌日の日付を計算（準備して翌朝投稿することを想定）
+    const tomorrow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const jstDate = `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`;
     
     // ランダムな挨拶文のパターン
     const greetings = [
