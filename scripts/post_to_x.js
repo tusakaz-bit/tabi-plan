@@ -57,19 +57,30 @@ async function run() {
         return;
     }
 
+    // --- Generate Phrases and Date ---
+    const now = new Date();
+    const jstDate = new Intl.DateTimeFormat('ja-JP', { month: 'numeric', day: 'numeric', timeZone: 'Asia/Tokyo' }).format(now);
+    
+    // ランダムな挨拶文のパターン
+    const greetings = [
+        "旅プラン厳選の目玉プランです✨",
+        "今、チェックすべきお得な宿をピックアップしました。",
+        "賢く美しい旅、ここから始めてみませんか？",
+        "本日の旅のインスピレーションをお届けします。"
+    ];
+    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
     // --- Generate GitHub Actions Summary (Markdown) ---
     let summaryMarkdown = `
 # 📝 本日のX投稿用原稿 (Buffer用)
-最新の最安値データに基づいた投稿原稿です。以下の順番でコピー＆ペーストして予約投稿を作成してください。
+最新の最安値データに基づいた投稿原稿です。
 
 ---
 
 ## 1. 【親ツイート】まとめ
-まずはこの文章を1つ目の投稿として作成します。
-
 \`\`\`text
-【本日の最安値ガイド】
-旅プラン厳選の目玉プランです✨
+【${jstDate}の最安値ガイド】
+${randomGreeting}
 賢く美しい旅の第一歩に。
 
 ${results.map(r => `📍${r.city.name}: ${Number(r.hotel.price).toLocaleString()}円〜`).join('\n')}
