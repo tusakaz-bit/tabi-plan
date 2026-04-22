@@ -1,0 +1,12 @@
+{
+  "name": "tabi-plan-automation",
+  "version": "1.0.0",
+  "description": "Daily X Draft Generator",
+  "main": "post_to_x.js",
+  "scripts": {
+    "start": "node post_to_x.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
