@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="rank-badge">${index + 1}</div>
                 <div class="hotel-image-wrapper">
                     <img src="${imageUrl}" alt="${info.hotelName}" class="hotel-image" loading="lazy">
+                    <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
                 <div class="hotel-content">
                     <h4 class="hotel-title">${info.hotelName}</h4>
