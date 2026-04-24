@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zentis Osaka | 今週のピックアップ宿 - Tabi Plan</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent-gold: #D4AF37;
+            --bg-dark: #0F0F12;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        .pickup-hero {
+            position: relative;
+            height: 70vh;
+            background: url('https://img.travel.rakuten.co.jp/share/HOTEL/179619/179619.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem 5%;
+            overflow: hidden;
+        }
+
+        .pickup-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, var(--bg-dark));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .category-tag {
+            background: var(--accent-gold);
+            color: black;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .hotel-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body {
+            max-width: 900px;
+            margin: -5rem auto 5rem;
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .glass-card {
+            background: rgba(20, 20, 25, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 3rem;
+        }
+
+        .highlight-item i {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 3rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 3rem;
+        }
+
+        .info-table th, .info-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .info-table th {
+            width: 30%;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-booking {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: black;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-booking:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 18, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card { padding: 1.5rem; }
+            .hotel-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='../'">TABI <span>PLAN</span></h1>
+    </nav>
+
+    <header class="pickup-hero">
+        <div class="hero-content">
+            <span class="category-tag">週末のご褒美</span>
+            <span class="publish-date" style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-left: 1rem;">2026年4月24日 掲載</span>
+            <h1 class="hotel-title">Zentis Osaka</h1>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1.2rem;">洗練されたデザインと機能性が融合する、都会の隠れ家。</p>
+        </div>
+    </header>
+
+    <main class="article-body">
+        <div class="glass-card">
+            <div class="highlights">
+                <div class="highlight-item">
+                    <i class="fas fa-gem"></i>
+                    <h3>賢い選択</h3>
+                    <p>パレスホテルが手掛ける高品質なサービス。一流のホスピタリティを、驚くほどスマートな価格で享受できます。</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-sparkles"></i>
+                    <h3>美しき滞在</h3>
+                    <p>「Encounters of a New Kind」をコンセプトに、世界的デザイナーが手掛けた空間。まさに<b>「モデルルームに泊まる雰囲気」</b>を味わえます。</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>最高の立地</h3>
+                    <p>大阪・堂島浜。ビジネスとレジャーが交差する、静寂と活気が共存するエリアに位置します。</p>
+                </div>
+            </div>
+
+            <section class="description">
+                <p>一歩足を踏み入れた瞬間から、日常が遠のいていく。Zentis Osakaは、都会の中心にありながら、まるで洗練されたプライベートレジデンスのような安心感を与えてくれる場所です。</p>
+                <p>インテリアの一つ一つに物語があり、機能性と美しさが高い次元で両立しています。ユーザー様からも<b>「モデルルームに泊まる雰囲気」</b>と評される通り、無駄がなく、それでいて温かみのある客室は、クリエイティブな刺激を与えてくれるでしょう。自分をリセットしたい、週末の特別な滞在に最適です。</p>
+            </section>
+
+            <table class="info-table">
+                <tr>
+                    <th>所在地</th>
+                    <td>大阪府大阪市北区堂島浜1-4-26</td>
+                </tr>
+                <tr>
+                    <th>評価</th>
+                    <td><i class="fas fa-star" style="color: var(--accent-gold);"></i> 4.54</td>
+                </tr>
+                <tr>
+                    <th>設備</th>
+                    <td>ゲストラウンジ, フィットネス, ランドリー, 多目的ルーム</td>
+                </tr>
+            </table>
+
+            <div class="cta-section">
+                <h2>この宿で、特別な時間を過ごしませんか？</h2>
+                <p>現在、楽天トラベルにて注目プランが公開されています。</p>
+                <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F179619%2F179619.html" class="btn-booking" target="_blank" rel="noopener">
+                    空室確認・予約ページへ <i class="fas fa-external-link-alt" style="font-size: 0.9rem; margin-left: 0.5rem;"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 4rem; color: rgba(255,255,255,0.1); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        &copy; 2026 Tabi Plan. Smart & Beautiful Travels.
+    </footer>
+</body>
+</html>
