@@ -106,18 +106,17 @@ ${results.map(r => `📍${r.city.name}: ${Number(r.hotel.price).toLocaleString()
         summaryMarkdown += `
 ### 📍 ${r.city.name} エリア
 \`\`\`text
-【${r.city.name}エリア最安値】
+📍【${r.city.name}】本日の最安値
 
 🏨 ${r.hotel.name}
-💰 料金: ${Number(r.hotel.price).toLocaleString()}円〜
+💰 ${Number(r.hotel.price).toLocaleString()}円〜
 
-「賢く、美しく」旅を楽しみましょう。
-エリアの魅力やアクセス詳細は、Tabi Planのサイトで公開中。
+エリアの魅力やアクセス詳細は、Tabi Planで公開中✨
 
-▼詳細ページはこちら
+▼詳細はこちら
 ${BASE_URL}/${r.city.id}/
 
-#${r.city.name}旅行 #最安値ホテル #TabiPlan
+#${r.city.name}旅行 #TabiPlan
 \`\`\`
 `;
     });
