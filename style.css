@@ -92,6 +92,22 @@ a {
     margin-bottom: 1rem;
 }
 
+.pc-only {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .pc-only {
+        display: block;
+    }
+}
+
+.portal-hero .title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
 .pickup-title {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 900;
