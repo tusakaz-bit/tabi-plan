@@ -49,10 +49,69 @@ async function getLowestPriceHotel(city) {
     return null;
 }
 
-async function postToHatena(title, body) {
+// Basic認証のヘッダーを生成
+function getBasicAuthHeader() {
+    const credentials = Buffer.from(`${HATENA_ID}:${HATENA_API_KEY}`, 'utf-8').toString('base64');
+    return { 'Authorization': `Basic ${credentials}` };
+}
+
+// WSSE認証のヘッダーを生成
+function getWsseAuthHeaders() {
+    const nonceBytes = crypto.randomBytes(20);
+    const nonceBase64 = nonceBytes.toString('base64');
+    const created = new Date().toISOString();
+    const digest = crypto.createHash('sha1')
+        .update(Buffer.concat([nonceBytes, Buffer.from(created), Buffer.from(HATENA_API_KEY)]))
+        .digest('base64');
+    const wsseHeader = `UsernameToken Username="${HATENA_ID}", PasswordDigest="${digest}", Nonce="${nonceBase64}", Created="${created}"`;
+    return {
+        'X-WSSE': wsseHeader,
+        'Authorization': 'WSSE profile="UsernameToken"'
+    };
+}
+
+async function testAuth() {
     const url = `https://blog.hatena.ne.jp/${HATENA_ID}/${HATENA_BLOG_ID}/atom/entry`;
     
-    // AtomPub用のXMLを作成（HTMLタグがXMLを壊さないようCDATAで囲む）
+    // デバッグ用ログ（値はGitHubが自動マスクするので安全）
+    console.log(`--- Debug Info ---`);
+    console.log(`HATENA_ID length: ${HATENA_ID.length}, value: [${HATENA_ID}]`);
+    console.log(`HATENA_BLOG_ID length: ${HATENA_BLOG_ID.length}, value: [${HATENA_BLOG_ID}]`);
+    console.log(`HATENA_API_KEY length: ${HATENA_API_KEY.length}, value: [${HATENA_API_KEY}]`);
+    console.log(`Full URL: ${url}`);
+    console.log(`--- End Debug ---`);
+
+    // まずBasic認証でGETリクエストを試す（記事一覧の取得）
+    console.log('Testing Basic Auth (GET)...');
+    try {
+        const response = await axios.get(url, {
+            headers: { ...getBasicAuthHeader(), 'Accept': 'application/xml' }
+        });
+        console.log('Basic Auth GET succeeded:', response.status);
+        return 'basic';
+    } catch (error) {
+        console.log('Basic Auth GET failed:', error.response ? `${error.response.status}` : error.message);
+    }
+
+    // WSSEでGETリクエストを試す
+    console.log('Testing WSSE Auth (GET)...');
+    try {
+        const response = await axios.get(url, {
+            headers: { ...getWsseAuthHeaders(), 'Accept': 'application/xml' }
+        });
+        console.log('WSSE Auth GET succeeded:', response.status);
+        return 'wsse';
+    } catch (error) {
+        console.log('WSSE Auth GET failed:', error.response ? `${error.response.status}` : error.message);
+    }
+
+    return null;
+}
+
+async function postToHatena(title, body, authMethod) {
+    const url = `https://blog.hatena.ne.jp/${HATENA_ID}/${HATENA_BLOG_ID}/atom/entry`;
+    
+    // AtomPub用のXMLを作成
     const xml = `<?xml version="1.0" encoding="utf-8"?>
 <entry xmlns="http://www.w3.org/2005/Atom"
        xmlns:app="http://www.w3.org/2007/app">
@@ -65,38 +124,34 @@ ${body}
   </app:control>
 </entry>`;
 
+    const authHeaders = authMethod === 'basic' ? getBasicAuthHeader() : getWsseAuthHeaders();
+
     try {
-        // WSSE認証ヘッダーの生成
-        const nonceBytes = crypto.randomBytes(20);
-        const nonceBase64 = nonceBytes.toString('base64');
-        const created = new Date().toISOString();
-        const digest = crypto.createHash('sha1')
-            .update(Buffer.concat([nonceBytes, Buffer.from(created), Buffer.from(HATENA_API_KEY)]))
-            .digest('base64');
-        
-        const wsseHeader = `UsernameToken Username="${HATENA_ID}", PasswordDigest="${digest}", Nonce="${nonceBase64}", Created="${created}"`;
-
-        console.log(`Posting to: ${url}`);
-
         const response = await axios.post(url, xml, {
             headers: {
                 'Content-Type': 'application/xml',
-                'X-WSSE': wsseHeader,
-                'Authorization': 'WSSE profile="UsernameToken"'
+                ...authHeaders
             }
         });
         console.log('Successfully posted to Hatena Blog (Draft):', response.status);
     } catch (error) {
         console.error('Error posting to Hatena Blog:', error.response ? error.response.status : '', error.response ? error.response.data : error.message);
-        // プロセスを失敗させてGitHub Actionsでエラーを分かりやすく表示する
         process.exit(1);
     }
 }
 
 async function run() {
     console.log('Starting Hatena Blog auto-post...');
+
+    // 認証テスト
+    const authMethod = await testAuth();
+    if (!authMethod) {
+        console.error('Both Basic and WSSE authentication failed. Please verify your HATENA_ID, HATENA_BLOG_ID, and HATENA_API_KEY secrets.');
+        process.exit(1);
+    }
+    console.log(`Using ${authMethod} authentication.`);
+
     const results = [];
-    
     for (const city of CITIES) {
         const hotel = await getLowestPriceHotel(city);
         if (hotel) results.push({ city, hotel });
@@ -138,7 +193,7 @@ async function run() {
 <p>※表示価格は投稿時点のものです。最新の情報はリンク先をご確認ください。</p>
 <p>その他のエリアや観光情報は、<a href="https://tabi-plan.org/">Tabi Plan公式サイト</a>をご覧ください。</p>`;
 
-    await postToHatena(title, body);
+    await postToHatena(title, body, authMethod);
 }
 
 run();
