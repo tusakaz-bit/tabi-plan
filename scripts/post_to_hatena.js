@@ -51,14 +51,14 @@ async function getLowestPriceHotel(city) {
 async function postToHatena(title, body) {
     const url = `https://blog.hatena.ne.jp/${HATENA_ID}/${HATENA_BLOG_ID}/atom/entry`;
     
-    // AtomPub用のXMLを作成
+    // AtomPub用のXMLを作成（HTMLタグがXMLを壊さないようCDATAで囲む）
     const xml = `<?xml version="1.0" encoding="utf-8"?>
 <entry xmlns="http://www.w3.org/2005/Atom"
        xmlns:app="http://www.w3.org/2007/app">
   <title>${title}</title>
-  <content type="text/html">
-    ${body}
-  </content>
+  <content type="text/html"><![CDATA[
+${body}
+  ]]></content>
   <app:control>
     <app:draft>yes</app:draft>
   </app:control>
