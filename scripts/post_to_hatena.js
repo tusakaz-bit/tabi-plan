@@ -1,5 +1,6 @@
 const axios = require('axios');
 const fs = require('fs');
+const crypto = require('crypto');
 
 // 環境変数から認証情報を取得（前後の余計な空白や改行を自動で取り除く処理を追加）
 const HATENA_ID = (process.env.HATENA_ID || '').trim();
@@ -65,16 +66,31 @@ ${body}
 </entry>`;
 
     try {
-        const auth = Buffer.from(`${HATENA_ID}:${HATENA_API_KEY}`).toString('base64');
+        // WSSE認証ヘッダーの生成
+        const nonce = crypto.randomBytes(20).toString('hex');
+        const created = new Date().toISOString();
+        const digest = crypto.createHash('sha1')
+            .update(nonce + created + HATENA_API_KEY)
+            .digest('base64');
+        const nonceBase64 = Buffer.from(nonce).toString('base64');
+        
+        const wsseHeader = `UsernameToken Username="${HATENA_ID}", PasswordDigest="${digest}", Nonce="${nonceBase64}", Created="${created}"`;
+
+        console.log(`Posting to: ${url}`);
+        console.log(`HATENA_ID: ${HATENA_ID}, BLOG_ID: ${HATENA_BLOG_ID}`);
+
         const response = await axios.post(url, xml, {
             headers: {
                 'Content-Type': 'application/xml',
-                'Authorization': `Basic ${auth}`
+                'X-WSSE': wsseHeader,
+                'Authorization': 'WSSE profile="UsernameToken"'
             }
         });
         console.log('Successfully posted to Hatena Blog (Draft):', response.status);
     } catch (error) {
-        console.error('Error posting to Hatena Blog:', error.response ? error.response.data : error.message);
+        console.error('Error posting to Hatena Blog:', error.response ? error.response.status : '', error.response ? error.response.data : error.message);
+        // プロセスを失敗させてGitHub Actionsでエラーを分かりやすく表示する
+        process.exit(1);
     }
 }
 
