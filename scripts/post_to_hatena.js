@@ -67,17 +67,16 @@ ${body}
 
     try {
         // WSSE認証ヘッダーの生成
-        const nonce = crypto.randomBytes(20).toString('hex');
+        const nonceBytes = crypto.randomBytes(20);
+        const nonceBase64 = nonceBytes.toString('base64');
         const created = new Date().toISOString();
         const digest = crypto.createHash('sha1')
-            .update(nonce + created + HATENA_API_KEY)
+            .update(Buffer.concat([nonceBytes, Buffer.from(created), Buffer.from(HATENA_API_KEY)]))
             .digest('base64');
-        const nonceBase64 = Buffer.from(nonce).toString('base64');
         
         const wsseHeader = `UsernameToken Username="${HATENA_ID}", PasswordDigest="${digest}", Nonce="${nonceBase64}", Created="${created}"`;
 
         console.log(`Posting to: ${url}`);
-        console.log(`HATENA_ID: ${HATENA_ID}, BLOG_ID: ${HATENA_BLOG_ID}`);
 
         const response = await axios.post(url, xml, {
             headers: {
