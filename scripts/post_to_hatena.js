@@ -1,10 +1,10 @@
 const axios = require('axios');
 const fs = require('fs');
 
-// 環境変数から認証情報を取得
-const HATENA_ID = process.env.HATENA_ID;
-const HATENA_BLOG_ID = process.env.HATENA_BLOG_ID;
-const HATENA_API_KEY = process.env.HATENA_API_KEY;
+// 環境変数から認証情報を取得（前後の余計な空白や改行を自動で取り除く処理を追加）
+const HATENA_ID = (process.env.HATENA_ID || '').trim();
+const HATENA_BLOG_ID = (process.env.HATENA_BLOG_ID || '').trim();
+const HATENA_API_KEY = (process.env.HATENA_API_KEY || '').trim();
 
 const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
