@@ -23,7 +23,12 @@ jobs:
           cd scripts
           npm install
 
-      - name: Generate Draft
+      - name: Generate Draft and Post to Hatena
         run: |
           cd scripts
           node post_to_x.js
+          node post_to_hatena.js
+        env:
+          HATENA_ID: ${{ secrets.HATENA_ID }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
