@@ -69,7 +69,7 @@ function generateHtmlBody(intro, results) {
 function getDateString() {
     const now = new Date();
     const jstDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-    return \`\${jstDate.getFullYear()}年\${jstDate.getMonth() + 1}月\${jstDate.getDate()}日\`;
+    return `${jstDate.getFullYear()}年${jstDate.getMonth() + 1}月${jstDate.getDate()}日`;
 }
 
 module.exports = {
