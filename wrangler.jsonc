@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tabi-plan",
+  "compatibility_date": "2026-05-06",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "exclude": [
+      ".git",
+      ".github",
+      "node_modules",
+      "scripts",
+      "*.js",
+      "scratch_*.js"
+    ]
+  }
+}
