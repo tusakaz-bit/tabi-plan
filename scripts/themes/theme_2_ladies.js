@@ -1,0 +1,31 @@
+const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi, generateHtmlBody, getDateString } = require('../utils');
+
+async function generate() {
+    const results = [];
+    const url = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
+
+    for (const city of CITIES) {
+        const params = {
+            applicationId: RAKUTEN_APP_ID,
+            affiliateId: RAKUTEN_AFFILIATE_ID,
+            format: 'json',
+            keyword: 'レディース',
+            middleClassCode: city.middle,
+            smallClassCode: city.small,
+            hits: 30 // 複数取得してutils内で最安値をソートするため
+        };
+        if (city.detail) params.detailClassCode = city.detail;
+
+        const hotel = await fetchRakutenApi(url, params);
+        if (hotel) results.push({ city, hotel });
+    }
+
+    const title = `【${getDateString()}版】女性ひとり旅に最適！今日のレディースプラン特集 - Tabi Plan`;
+    const intro = `Tabi Plan AIが厳選した、本日の全国主要エリアの「レディースプラン」最安値をお届けします。<br>安心のアメニティやセキュリティなど、女性に嬉しい特典付きプランで素敵な時間をお過ごしください。`;
+    const body = generateHtmlBody(intro, results);
+    const tags = ["国内旅行", "ホテル", "楽天トラベル", "最安値", "レディースプラン", "女性旅", "一人旅", "TabiPlan"];
+
+    return { title, body, tags };
+}
+
+module.exports = { generate };
