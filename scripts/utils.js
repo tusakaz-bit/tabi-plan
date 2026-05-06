@@ -28,7 +28,10 @@ async function fetchRakutenApi(url, params) {
                     name: hotel.hotelName,
                     price: hotel.hotelMinCharge,
                     url: hotel.affiliateUrl,
-                    imageUrl: hotel.hotelImageUrl
+                    imageUrl: hotel.hotelImageUrl,
+                    special: hotel.hotelSpecial,
+                    reviewAverage: hotel.reviewAverage,
+                    reviewCount: hotel.reviewCount
                 };
             }
         }
@@ -43,15 +46,29 @@ function generateHtmlBody(intro, results) {
 <hr />`;
 
     results.forEach(r => {
+        // レビューの星表示を作成
+        let reviewHtml = '';
+        if (r.hotel.reviewAverage) {
+            reviewHtml = `<p style="font-size: 0.9rem; color: #f39c12; margin: 5px 0;">★ ${r.hotel.reviewAverage} <span style="color: #666; font-size: 0.8rem;">(${r.hotel.reviewCount}件の評価)</span></p>`;
+        }
+
+        // PR文の長さを調整（長すぎる場合は省略）
+        let specialText = r.hotel.special || '';
+        if (specialText.length > 80) {
+            specialText = specialText.substring(0, 80) + '...';
+        }
+
         body += `
 <h2 style="border-left: 5px solid #D4AF37; padding-left: 15px; margin-top: 30px;">📍 ${r.city.name} エリア</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; background: #f9f9f9; padding: 20px; border-radius: 8px;">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; background: #f9f9f9; padding: 20px; border-radius: 8px;">
     <div style="flex: 1; min-width: 200px;">
         <img src="${r.hotel.imageUrl}" alt="${r.hotel.name}" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
     </div>
     <div style="flex: 2; min-width: 250px;">
-        <h3 style="margin-top: 0;">${r.hotel.name}</h3>
-        <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold;">最安料金：${Number(r.hotel.price).toLocaleString()}円〜</p>
+        <h3 style="margin-top: 0; margin-bottom: 5px;">${r.hotel.name}</h3>
+        ${reviewHtml}
+        <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.5;">${specialText}</p>
+        <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold; margin-bottom: 15px;">最安料金：${Number(r.hotel.price).toLocaleString()}円〜</p>
         <p><a href="${r.hotel.url}" target="_blank" style="display: inline-block; background: #D4AF37; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">空室状況・詳細を見る</a></p>
     </div>
 </div>
