@@ -2,5 +2,4 @@
 .github/
 node_modules/
 scripts/
-*.js
 scratch_*.js
