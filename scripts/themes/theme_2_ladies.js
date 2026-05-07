@@ -9,7 +9,7 @@ async function generate() {
             applicationId: RAKUTEN_APP_ID,
             affiliateId: RAKUTEN_AFFILIATE_ID,
             format: 'json',
-            keyword: 'レディース',
+            keyword: `${city.keyword} レディース`,
             middleClassCode: city.middle,
             smallClassCode: city.small,
             hits: 30 // 複数取得してutils内で最安値をソートするため

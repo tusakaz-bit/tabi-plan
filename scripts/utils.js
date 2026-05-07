@@ -4,12 +4,12 @@ const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
 const CITIES = [
-    { name: '東京', id: 'tokyo', middle: 'tokyo', small: 'tokyo', detail: 'A' },
-    { name: '大阪', id: 'osaka', middle: 'osaka', small: 'shi', detail: 'D' },
-    { name: '京都', id: 'kyoto', middle: 'kyoto', small: 'shi', detail: 'B' },
-    { name: '札幌', id: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B' },
-    { name: '沖縄', id: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '' },
-    { name: '福岡', id: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '' }
+    { name: '東京', id: 'tokyo', middle: 'tokyo', small: 'tokyo', detail: 'A', keyword: '東京駅' },
+    { name: '大阪', id: 'osaka', middle: 'osaka', small: 'shi', detail: 'D', keyword: '大阪駅' },
+    { name: '京都', id: 'kyoto', middle: 'kyoto', small: 'shi', detail: 'B', keyword: '京都駅' },
+    { name: '札幌', id: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B', keyword: '札幌駅' },
+    { name: '沖縄', id: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '', keyword: '国際通り' },
+    { name: '福岡', id: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', keyword: '博多駅' }
 ];
 
 async function fetchRakutenApi(url, params) {

@@ -9,7 +9,7 @@ async function generate() {
             applicationId: RAKUTEN_APP_ID,
             affiliateId: RAKUTEN_AFFILIATE_ID,
             format: 'json',
-            keyword: 'カップル',
+            keyword: `${city.keyword} カップル`,
             middleClassCode: city.middle,
             smallClassCode: city.small,
             hits: 30

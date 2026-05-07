@@ -2,17 +2,17 @@ const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi, generateH
 
 async function generate() {
     const results = [];
-    const url = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const url = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
 
     for (const city of CITIES) {
         const params = {
             applicationId: RAKUTEN_APP_ID,
             affiliateId: RAKUTEN_AFFILIATE_ID,
             format: 'json',
-            largeClassCode: 'japan',
+            keyword: city.keyword,
             middleClassCode: city.middle,
             smallClassCode: city.small,
-            sort: '+roomCharge'
+            hits: 30 // 複数取得して最安値をソート
         };
         if (city.detail) params.detailClassCode = city.detail;
 
