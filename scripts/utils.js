@@ -24,10 +24,14 @@ async function fetchRakutenApi(url, params) {
             
             if (sortedHotels.length > 0) {
                 const hotel = sortedHotels[0];
+                // affiliateUrlは画像サーバーのURLになることがあるため、
+                // hotelNoから正しいアフィリエイトURLを確実に生成する
+                const hotelNo = hotel.hotelNo;
+                const affiliateUrl = `https://hb.afl.rakuten.co.jp/hgc/g0190dd5.j8v222a0.g0190dd5.j8v22325/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`;
                 return {
                     name: hotel.hotelName,
                     price: hotel.hotelMinCharge,
-                    url: hotel.affiliateUrl,
+                    url: affiliateUrl,
                     imageUrl: hotel.hotelImageUrl,
                     special: hotel.hotelSpecial,
                     reviewAverage: hotel.reviewAverage,
