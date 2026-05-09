@@ -70,6 +70,7 @@ a {
     background-position: center;
     background-size: cover;
     transition: transform 0.5s;
+    position: relative;
 }
 
 .pickup-card:hover .pickup-image {
