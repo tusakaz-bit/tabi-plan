@@ -65,8 +65,9 @@ function generateHtmlBody(intro, results) {
         body += `
 <h2 style="border-left: 5px solid #D4AF37; padding-left: 15px; margin-top: 30px;">📍 ${r.city.name} エリア</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; background: #f9f9f9; padding: 20px; border-radius: 8px;">
-    <div style="flex: 1; min-width: 200px;">
-        <img src="${r.hotel.imageUrl}" alt="${r.hotel.name}" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+    <div style="flex: 1; min-width: 200px; position: relative;">
+        <img src="${r.hotel.imageUrl}" alt="${r.hotel.name}" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block;" />
+        <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0, 0, 0, 0.6); color: white; padding: 2px 8px; font-size: 0.7rem; border-radius: 3px; font-weight: bold; pointer-events: none; z-index: 5;">Rakuten Travel</div>
     </div>
     <div style="flex: 2; min-width: 250px;">
         <h3 style="margin-top: 0; margin-bottom: 5px;">${r.hotel.name}</h3>
