@@ -70,7 +70,7 @@ function generateHtmlBody(intro, results) {
         <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0, 0, 0, 0.6); color: white; padding: 2px 8px; font-size: 0.7rem; border-radius: 3px; font-weight: bold; pointer-events: none; z-index: 5;">Rakuten Travel</div>
     </div>
     <div style="flex: 2; min-width: 250px;">
-        <h3 style="margin-top: 0; margin-bottom: 5px;">${r.hotel.name}</h3>
+        <h3 style="margin-top: 0; margin-bottom: 5px; color: #333;">${r.hotel.name}</h3>
         ${reviewHtml}
         <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.5;">${specialText}</p>
         <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold; margin-bottom: 15px;">最安料金：${Number(r.hotel.price).toLocaleString()}円〜</p>
