@@ -1,11 +1,42 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const Kuroshiro = require('kuroshiro').default;
+const KuromojiAnalyzer = require('kuroshiro-analyzer-kuromoji');
 
 const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
 const TEMPLATE_PATH = path.join(__dirname, '../pickup/template.html');
+
+// kuroshiroのインスタンスを初期化（一度だけ）
+const kuroshiro = new Kuroshiro();
+let kuroshiroReady = false;
+
+async function initKuroshiro() {
+    if (!kuroshiroReady) {
+        await kuroshiro.init(new KuromojiAnalyzer());
+        kuroshiroReady = true;
+    }
+}
+
+// ホテル名を英語スラグ（URL用）に変換する関数
+async function toSlug(japaneseName) {
+    try {
+        await initKuroshiro();
+        const romaji = await kuroshiro.convert(japaneseName, { to: 'romaji', mode: 'spaced' });
+        return romaji
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')   // 英数字・スペース・ハイフン以外を除去
+            .trim()
+            .replace(/\s+/g, '-')            // スペースをハイフンに変換
+            .replace(/-+/g, '-')             // 連続ハイフンを1つに
+            .substring(0, 50);               // 長すぎる場合は50文字で切る
+    } catch (e) {
+        // 変換失敗時はホテルNoをフォールバックとして使用
+        return null;
+    }
+}
 
 async function getHotelDetail(hotelNo) {
     const url = 'https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426';
@@ -83,7 +114,9 @@ async function generateArticle(hotelNo, category = "今週のピックアップ"
         html = html.split(key).join(value);
     }
 
-    const fileName = `${new Date().toISOString().split('T')[0]}-hotel-${hotelNo}.html`;
+    // ホテル名を英語スラグに変換してURLに含める
+    const slug = await toSlug(info.hotelName) || `hotel-${hotelNo}`;
+    const fileName = `${new Date().toISOString().split('T')[0]}-${slug}.html`;
     const outputPath = path.join(__dirname, '../pickup/', fileName);
     
     fs.writeFileSync(outputPath, html);
