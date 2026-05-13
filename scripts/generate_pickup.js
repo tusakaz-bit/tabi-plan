@@ -28,19 +28,24 @@ async function getHotelDetail(hotelNo) {
 }
 
 // AIが宿を「選ぶ」ための簡易的なデモ関数（今後拡張可能）
-async function findPremiumHotels(middleClassCode) {
+async function findPremiumHotels(city) {
     const url = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
         format: 'json',
         largeClassCode: 'japan',
-        middleClassCode: middleClassCode,
-        sort: '-reviewAverage' // 評価が高い順
+        middleClassCode: city.middle,
+        smallClassCode: city.small
     };
+    if (city.detail) {
+        params.detailClassCode = city.detail;
+    }
 
     try {
         const response = await axios.get(url, { params });
-        return response.data.hotels.filter(h => h.hotel[0].hotelBasicInfo.reviewAverage >= 4.0);
+        const hotels = response.data.hotels.filter(h => h.hotel[0].hotelBasicInfo.reviewAverage >= 4.0);
+        // 評価が高い順にソート
+        return hotels.sort((a, b) => b.hotel[0].hotelBasicInfo.reviewAverage - a.hotel[0].hotelBasicInfo.reviewAverage);
     } catch (error) {
         console.error('Error finding hotels:', error.message);
         return [];
@@ -82,6 +87,7 @@ async function generateArticle(hotelNo, category = "今週のピックアップ"
     
     fs.writeFileSync(outputPath, html);
     console.log(`Successfully generated article: ${fileName}`);
+    return { fileName, info, data };
 }
 
 // 実行例（もしホテルIDが分かればここに入れる）
