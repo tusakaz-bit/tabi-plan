@@ -20,20 +20,117 @@ async function initKuroshiro() {
     }
 }
 
+// ホテル名スラグ生成用：よく使われる用語を先に英語に置換してから変換
+const HOTEL_WORD_MAP = [
+    [/ホテル/g, 'hotel'],
+    [/リゾート/g, 'resort'],
+    [/グランド/g, 'grand'],
+    [/ロイヤル/g, 'royal'],
+    [/パレス/g, 'palace'],
+    [/タワー/g, 'tower'],
+    [/ガーデン/g, 'garden'],
+    [/プラザ/g, 'plaza'],
+    [/ウィング|ウイング/g, 'wing'],
+    [/ザ・|ザ /g, 'the '],
+    [/オークラ/g, 'okura'],
+    [/ニッコウ|ニッコー|ニッコ/g, 'nikko'],
+    [/ヒルトン/g, 'hilton'],
+    [/マリオット/g, 'marriott'],
+    [/シェラトン/g, 'sheraton'],
+    [/ハイアット/g, 'hyatt'],
+    [/インターコンチネンタル/g, 'intercontinental'],
+    [/コンラッド/g, 'conrad'],
+    [/フォーシーズンズ|フォー・シーズンズ/g, 'four-seasons'],
+    [/リッツ・カールトン|リッツカールトン/g, 'ritz-carlton'],
+    [/ウェスティン/g, 'westin'],
+    [/セントレジス/g, 'st-regis'],
+    [/ワシントン/g, 'washington'],
+    [/プリンス/g, 'prince'],
+    [/センチュリー/g, 'century'],
+    [/インターナショナル/g, 'intl'],
+    [/東急/g, 'tokyu'],
+    [/京王/g, 'keio'],
+    [/近鉄/g, 'kintetsu'],
+    [/アネックス/g, 'annex'],
+    [/ビジネス/g, 'business'],
+    [/スイート/g, 'suite'],
+    [/クラブ/g, 'club'],
+    [/エグゼクティブ/g, 'executive'],
+    [/レジデンス/g, 'residence'],
+    [/コート/g, 'court'],
+    [/フロント/g, 'front'],
+    [/ステーション/g, 'station'],
+    [/オリエンタル/g, 'oriental'],
+    [/パシフィック/g, 'pacific'],
+    [/メトロポリタン/g, 'metropolitan'],
+    [/セレナーデ|セレーネ/g, 'serene'],
+    [/ブロッサム/g, 'blossom'],
+    [/グレース/g, 'grace'],
+    [/ハレクラニ/g, 'halekulani'],
+    [/セントラル/g, 'central'],
+    [/大阪/g, 'osaka'],
+    [/東京/g, 'tokyo'],
+    [/京都/g, 'kyoto'],
+    [/札幌/g, 'sapporo'],
+    [/福岡/g, 'fukuoka'],
+    [/沖縄/g, 'okinawa'],
+    [/神戸/g, 'kobe'],
+    [/横浜/g, 'yokohama'],
+    [/名古屋/g, 'nagoya'],
+    [/博多/g, 'hakata'],
+    [/新宿/g, 'shinjuku'],
+    [/渋谷/g, 'shibuya'],
+    [/銀座/g, 'ginza'],
+    [/梅田/g, 'umeda'],
+    [/難波|なんば/g, 'namba'],
+    [/祇園/g, 'gion'],
+    [/四条|四條/g, 'shijo'],
+    [/河原町/g, 'kawaramachi'],
+    [/中央/g, 'chuo'],
+    [/湯縁|由縁/g, 'yuen'],
+    [/温泉旅館/g, 'onsen-ryokan'],
+    [/温泉/g, 'onsen'],
+    [/旅館/g, 'ryokan'],
+    [/　/g, ' '],  // 全角スペース→半角
+];
+
 // ホテル名を英語スラグ（URL用）に変換する関数
-async function toSlug(japaneseName) {
+// cityEn: 都市の英語名（例: 'kyoto', 'tokyo'）
+async function toSlug(japaneseName, cityEn) {
     try {
         await initKuroshiro();
-        const romaji = await kuroshiro.convert(japaneseName, { to: 'romaji', mode: 'spaced' });
-        return romaji
+
+        // Step1: 辞書で既知の用語を先に英語に置換
+        let name = japaneseName;
+        for (const [pattern, replacement] of HOTEL_WORD_MAP) {
+            name = name.replace(pattern, ` ${replacement} `);
+        }
+
+        // Step2: 残った日本語をkuroshiroでローマ字変換
+        const romaji = await kuroshiro.convert(name, { to: 'romaji', mode: 'spaced' });
+
+        // Step3: スラグ形式に整形
+        let slug = romaji
             .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')   // 英数字・スペース・ハイフン以外を除去
+            .replace(/[^a-z0-9\s-]/g, '')
             .trim()
-            .replace(/\s+/g, '-')            // スペースをハイフンに変換
-            .replace(/-+/g, '-')             // 連続ハイフンを1つに
-            .substring(0, 50);               // 長すぎる場合は50文字で切る
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+
+        // Step4: 長すぎる場合は最初の4単語（ハイフン区切り）だけ使用
+        const parts = slug.split('-').filter(p => p.length > 0);
+        if (parts.length > 4) {
+            slug = parts.slice(0, 4).join('-');
+        }
+
+        // Step5: 都市名が含まれていない場合は末尾に追加
+        if (cityEn && !slug.includes(cityEn.toLowerCase())) {
+            slug = `${slug}-${cityEn.toLowerCase()}`;
+        }
+
+        return slug.substring(0, 45);
     } catch (e) {
-        // 変換失敗時はホテルNoをフォールバックとして使用
+        // 変換失敗時はフォールバック
         return null;
     }
 }
@@ -58,7 +155,7 @@ async function getHotelDetail(hotelNo) {
     return null;
 }
 
-// AIが宿を「選ぶ」ための簡易的なデモ関数（今後拡張可能）
+// AIが宿を「選ぶ」ための関数
 async function findPremiumHotels(city) {
     const url = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
     const params = {
@@ -83,7 +180,8 @@ async function findPremiumHotels(city) {
     }
 }
 
-async function generateArticle(hotelNo, category = "今週のピックアップ") {
+// cityEn: 都市の英語名（スラグに使用）
+async function generateArticle(hotelNo, category = '今週のピックアップ', cityEn = '') {
     const hotel = await getHotelDetail(hotelNo);
     if (!hotel) return;
 
@@ -114,8 +212,8 @@ async function generateArticle(hotelNo, category = "今週のピックアップ"
         html = html.split(key).join(value);
     }
 
-    // ホテル名を英語スラグに変換してURLに含める
-    const slug = await toSlug(info.hotelName) || `hotel-${hotelNo}`;
+    // ホテル名を英語スラグに変換してURLに含める（都市名付き）
+    const slug = await toSlug(info.hotelName, cityEn) || `hotel-${hotelNo}`;
     const fileName = `${new Date().toISOString().split('T')[0]}-${slug}.html`;
     const outputPath = path.join(__dirname, '../pickup/', fileName);
     

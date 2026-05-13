@@ -3,12 +3,12 @@ const path = require('path');
 const { generateArticle, findPremiumHotels } = require('./generate_pickup');
 
 const CITIES = [
-    { name: '東京', middle: 'tokyo', small: 'tokyo', detail: 'A' },
-    { name: '大阪', middle: 'osaka', small: 'shi', detail: 'D' },
-    { name: '京都', middle: 'kyoto', small: 'shi', detail: 'B' },
-    { name: '札幌', middle: 'hokkaido', small: 'sapporo', detail: 'B' },
-    { name: '沖縄', middle: 'okinawa', small: 'nahashi', detail: '' },
-    { name: '福岡', middle: 'hukuoka', small: 'fukuoka', detail: '' }
+    { name: '東京', en: 'tokyo',   middle: 'tokyo',   small: 'tokyo',   detail: 'A' },
+    { name: '大阪', en: 'osaka',   middle: 'osaka',   small: 'shi',     detail: 'D' },
+    { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B' },
+    { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B' },
+    { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '' },
+    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '' }
 ];
 
 async function updateIndexHtml(articleData, city) {
@@ -53,8 +53,8 @@ async function run() {
         const selectedHotel = premiumHotels[Math.floor(Math.random() * premiumHotels.length)];
         const hotelNo = selectedHotel.hotel[0].hotelBasicInfo.hotelNo;
         
-        // 記事を生成
-        const articleData = await generateArticle(hotelNo, `本日の注目宿 - ${city.name}`);
+        // 記事を生成（都市の英語名をスラグに使用）
+        const articleData = await generateArticle(hotelNo, `本日の注目宿 - ${city.name}`, city.en);
         
         if (articleData) {
             // トップページを更新
