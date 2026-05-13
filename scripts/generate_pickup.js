@@ -204,7 +204,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         '{{MIN_CHARGE}}': `${Number(info.hotelMinCharge).toLocaleString()}円〜`,
         '{{RATING}}': rating,
         '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
-        '{{AFFILIATE_URL}}': info.hotelInformationUrl || info.planListUrl,
+        '{{AFFILIATE_URL}}': `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`,
         '{{PUBLISH_DATE}}': new Date().toISOString().split('T')[0]
     };
 
