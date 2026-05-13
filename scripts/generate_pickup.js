@@ -75,7 +75,8 @@ async function generateArticle(hotelNo, category = "今週のピックアップ"
         '{{MIN_CHARGE}}': `${Number(info.hotelMinCharge).toLocaleString()}円〜`,
         '{{RATING}}': rating,
         '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
-        '{{AFFILIATE_URL}}': info.hotelInformationUrl || info.planListUrl
+        '{{AFFILIATE_URL}}': info.hotelInformationUrl || info.planListUrl,
+        '{{PUBLISH_DATE}}': new Date().toISOString().split('T')[0]
     };
 
     for (const [key, value] of Object.entries(data)) {
