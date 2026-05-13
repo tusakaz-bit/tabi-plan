@@ -44,7 +44,7 @@ ${body}
   ]]></content>
 ${tagsXml}
   <app:control>
-    <app:draft>yes</app:draft>
+    <app:draft>no</app:draft>
   </app:control>
 </entry>`;
 
@@ -55,7 +55,7 @@ ${tagsXml}
                 ...getWsseAuthHeaders()
             }
         });
-        console.log('Successfully posted to Hatena Blog (Draft):', response.status);
+        console.log('Successfully posted to Hatena Blog (Published):', response.status);
     } catch (error) {
         console.error('Error posting to Hatena Blog:', error.response ? error.response.status : '', error.response ? error.response.data : error.message);
         process.exit(1);
