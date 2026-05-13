@@ -75,14 +75,14 @@ async function generateArticle(hotelNo, category = "今週のピックアップ"
         '{{MIN_CHARGE}}': `${Number(info.hotelMinCharge).toLocaleString()}円〜`,
         '{{RATING}}': rating,
         '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
-        '{{AFFILIATE_URL}}': info.affiliateUrl
+        '{{AFFILIATE_URL}}': info.hotelInformationUrl || info.planListUrl
     };
 
     for (const [key, value] of Object.entries(data)) {
         html = html.split(key).join(value);
     }
 
-    const fileName = `${new Date().toISOString().split('T')[0]}-${info.hotelName.replace(/\s+/g, '_')}.html`;
+    const fileName = `${new Date().toISOString().split('T')[0]}-hotel-${hotelNo}.html`;
     const outputPath = path.join(__dirname, '../pickup/', fileName);
     
     fs.writeFileSync(outputPath, html);
