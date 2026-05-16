@@ -52,11 +52,24 @@ async function updateIndexHtml(articleData, city) {
                 </div>
             </a>`;
 
-    // archive-gridの直後に挿入する
     const gridStartTag = '<div class="archive-grid">';
     archiveHtml = archiveHtml.replace(gridStartTag, `${gridStartTag}\n${newArchiveCard}`);
     fs.writeFileSync(archivePath, archiveHtml);
     console.log('Successfully updated pickup/index.html');
+
+    // サイトマップ（sitemap.xml）の更新
+    const sitemapPath = path.join(__dirname, '../sitemap.xml');
+    let sitemapHtml = fs.readFileSync(sitemapPath, 'utf8');
+    const newSitemapUrl = `  <url>
+    <loc>https://tabi-plan.org/pickup/${articleData.fileName}</loc>
+    <lastmod>${articleData.data['{{PUBLISH_DATE}}']}</lastmod>
+    <priority>0.8</priority>
+  </url>`;
+
+    // </urlset>の直前に挿入する
+    sitemapHtml = sitemapHtml.replace('</urlset>', `${newSitemapUrl}\n</urlset>`);
+    fs.writeFileSync(sitemapPath, sitemapHtml);
+    console.log('Successfully updated sitemap.xml');
 }
 
 async function run() {
