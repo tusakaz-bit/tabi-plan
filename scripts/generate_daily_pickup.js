@@ -13,8 +13,10 @@ const CITIES = [
 
 async function updateIndexHtml(articleData, city) {
     const indexPath = path.join(__dirname, '../index.html');
-    let html = fs.readFileSync(indexPath, 'utf8');
-
+    const archivePath = path.join(__dirname, '../pickup/index.html');
+    
+    // トップページの更新
+    let indexHtml = fs.readFileSync(indexPath, 'utf8');
     const newPickupHtml = `
                 <a href="pickup/${articleData.fileName}" class="pickup-card-link">
                     <div class="pickup-card">
@@ -30,12 +32,31 @@ async function updateIndexHtml(articleData, city) {
                     </div>
                 </a>`;
 
-    // index.htmlのピックアップ部分を正規表現で置き換える
     const pickupRegex = /<a href="pickup\/.*?class="pickup-card-link">[\s\S]*?<\/a>/i;
-    html = html.replace(pickupRegex, newPickupHtml.trim());
+    indexHtml = indexHtml.replace(pickupRegex, newPickupHtml.trim());
+    fs.writeFileSync(indexPath, indexHtml);
+    console.log('Successfully updated index.html');
 
-    fs.writeFileSync(indexPath, html);
-    console.log('Successfully updated index.html with new pickup article.');
+    // 過去のピックアップ一覧（pickup/index.html）の更新
+    let archiveHtml = fs.readFileSync(archivePath, 'utf8');
+    const newArchiveCard = `
+            <!-- ${articleData.info.hotelName} -->
+            <a href="${articleData.fileName}" class="archive-card">
+                <div class="archive-image" style="background-image: url('${articleData.info.hotelImageUrl}')">
+                    <div class="rakuten-credit">Rakuten Travel</div>
+                </div>
+                <div class="archive-content">
+                    <span class="archive-date">${articleData.data['{{PUBLISH_DATE}}'].replace(/-/g, '.')} 掲載</span>
+                    <h3 class="archive-title">${articleData.info.hotelName}</h3>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 1rem;">${articleData.data['{{CATCHCOPY}}']}</p>
+                </div>
+            </a>`;
+
+    // archive-gridの直後に挿入する
+    const gridStartTag = '<div class="archive-grid">';
+    archiveHtml = archiveHtml.replace(gridStartTag, `${gridStartTag}\n${newArchiveCard}`);
+    fs.writeFileSync(archivePath, archiveHtml);
+    console.log('Successfully updated pickup/index.html');
 }
 
 async function run() {
