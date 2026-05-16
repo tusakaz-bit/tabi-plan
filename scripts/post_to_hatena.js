@@ -71,9 +71,20 @@ async function run() {
     const dayOfWeek = jstDate.getDay();
 
     const themes = [theme7, theme1, theme2, theme3, theme4, theme5, theme6];
-    const currentTheme = themes[dayOfWeek];
+    const categoryNames = [
+        "長期滞在・連泊向き", // 0: 日
+        "格安・コスパ宿",     // 1: 月
+        "レディースプラン",   // 2: 火
+        "カップル・記念日",   // 3: 水
+        "駅チカホテル",       // 4: 木
+        "露天風呂付ホテル",   // 5: 金
+        "朝食が美味しいホテル" // 6: 土
+    ];
 
-    console.log(`Today is day ${dayOfWeek}, running theme...`);
+    const currentTheme = themes[dayOfWeek];
+    const displayCategory = categoryNames[dayOfWeek];
+
+    console.log(`Today is day ${dayOfWeek}, running theme: ${displayCategory}`);
 
     const { title, body, tags } = await currentTheme.generate();
 
@@ -82,7 +93,10 @@ async function run() {
         return;
     }
 
-    await postToHatena(title, body, tags);
+    // 表示用のカテゴリーをタグに追加（既存のタグとマージ）
+    const finalTags = Array.from(new Set([displayCategory, ...(tags || [])]));
+
+    await postToHatena(title, body, finalTags);
 }
 
 run();
