@@ -191,6 +191,13 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
     let html = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
     // 置換処理
+    // 日本時間（JST）で今日の日付を取得するヘルパー
+    const now = new Date();
+    const jstDate = new Intl.DateTimeFormat('ja-JP', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        timeZone: 'Asia/Tokyo'
+    }).format(now).replace(/\//g, '-');
+
     const data = {
         '{{HOTEL_NAME}}': info.hotelName,
         '{{CATEGORY_NAME}}': category,
@@ -205,7 +212,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         '{{RATING}}': rating,
         '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
         '{{AFFILIATE_URL}}': `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`,
-        '{{PUBLISH_DATE}}': new Date().toISOString().split('T')[0]
+        '{{PUBLISH_DATE}}': jstDate
     };
 
     for (const [key, value] of Object.entries(data)) {
@@ -214,8 +221,14 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
 
     // ホテル名を英語スラグに変換してURLに含める（都市名付き）
     const slug = await toSlug(info.hotelName, cityEn) || `hotel-${hotelNo}`;
-    const fileName = `${new Date().toISOString().split('T')[0]}-${slug}.html`;
+    const fileName = `${jstDate}-${slug}.html`;
     const outputPath = path.join(__dirname, '../pickup/', fileName);
+    
+    // 上書き防止：既にファイルが存在する場合はエラー（例外）を出す
+    if (fs.existsSync(outputPath)) {
+        console.error(`Error: Article for ${jstDate} already exists at ${fileName}. Skipping to prevent overwrite.`);
+        return null;
+    }
     
     fs.writeFileSync(outputPath, html);
     console.log(`Successfully generated article: ${fileName}`);
