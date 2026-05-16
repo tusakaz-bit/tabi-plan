@@ -1,0 +1,25 @@
+name: Fix Hatena Categories
+
+on:
+  workflow_dispatch: # 手動実行用
+  push:
+    paths:
+      - 'scripts/update_past_hatena_categories.js' # このファイルが更新されたら実行
+
+jobs:
+  fix-categories:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install axios xml2js
+      - name: Run fix script
+        env:
+          HATENA_ID: ${{ secrets.HATENA_ID }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: node scripts/update_past_hatena_categories.js
