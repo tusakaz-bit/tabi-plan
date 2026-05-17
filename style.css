@@ -103,17 +103,6 @@ a {
     }
 }
 
-.portal-hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    position: relative;
-    background: linear-gradient(135deg, rgba(10, 10, 11, 0.85) 0%, rgba(10, 10, 11, 0.45) 55%, rgba(10, 10, 11, 0.15) 100%), 
-                url('bg_portal_hero_dawn_1778997402964.png') center/cover no-repeat;
-    z-index: 1;
-}
-
 .portal-hero .title {
     font-size: clamp(1.8rem, 8vw, 4.5rem);
     line-height: 1.2;
@@ -849,7 +838,8 @@ a {
     display: flex;
     align-items: center;
     padding-top: 100px;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #c2410c 85%, #f59e0b 100%);
+    background: linear-gradient(135deg, rgba(10, 10, 11, 0.85) 0%, rgba(10, 10, 11, 0.45) 55%, rgba(10, 10, 11, 0.15) 100%), 
+                url('bg_portal_hero_dawn_1778997402964.png') center/cover no-repeat;
     position: relative;
     overflow: hidden;
 }
