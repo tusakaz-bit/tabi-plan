@@ -12,15 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // 5と0のつく日用の設定
         promo50: {
             url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fcamp%2F50campaign%2F`,
+            // TODO: ここに実際の5と0のつく日バナー画像のURLを指定してください（例：ご自身のサーバーにアップした画像URLなど）
+            bannerUrl: "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/01/a0001004/img/ja/a0001004_parts_5e60805c87e4c.jpg",
             // 前日フライング用の文言
             pre: {
-                title: "＼まもなく開催！／ 本日20時からクーポン事前配布中！（※お得な予約は日付が変わってから）",
-                micro: "＼まもなく開催！／ 5と0のつく日クーポン事前配布中！（※日付が変わってからの予約がお得！）"
+                title: "＼まもなく開催！／ 本日20時からクーポン事前配布中！（※対象ホテルは要確認）",
+                micro: "＼まもなく開催！／ 5と0のつく日クーポン配布中！（※対象施設限定）"
             },
             // 当日開催用の文言
             active: {
-                title: "＼本日は5と0のつく日！／ 毎月5と0のつく日は高級宿・温泉宿が最大20%OFF！",
-                micro: "＼本日は5と0のつく日！／ 高級宿・温泉宿が最大20%OFFクーポン配布中！"
+                title: "＼本日は5と0のつく日！／ 高級宿・温泉宿が最大20%OFF！（※対象施設限定）",
+                micro: "＼本日は5と0のつく日！／ 対象の高級宿・温泉宿が最大20%OFF！"
             }
         },
 
@@ -31,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             endDate: "2026-06-15T23:59:59+09:00",   // 終了JST
             title: "＼年に数回のビッグチャンス！／ 楽天トラベル スーパーSALE 開催中！半額プラン＆限定クーポン多数！",
             micro: "＼年に数回のビッグチャンス！／ 楽天トラベル スーパーSALE 開催中！半額プラン＆限定クーポン多数！",
-            url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fspecial%2Fsupersale%2F`
+            url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fspecial%2Fsupersale%2F`,
+            // TODO: ここに実際のスーパーSALEバナー画像のURLを指定してください（現在はダミーURLです）
+            bannerUrl: "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/01/a0001004/img/ja/a0001004_parts_5e60805c87e4c.jpg"
         }
     };
     
@@ -532,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // 強調したい箇所のマークアップ（文言調整）
                 let formattedText = microcopyText.replace(
-                    /(最大20%OFF|半額プラン＆限定クーポン|5と0のつく日クーポン|日付が変わってからの予約がお得)/g, 
+                    /(最大20%OFF|半額プラン＆限定クーポン|5と0のつく日クーポン|対象の高級宿・温泉宿|対象施設限定|対象ホテルは要確認)/g, 
                     '<strong>$1</strong>'
                 );
 
@@ -551,6 +555,45 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+
+            // ----------------------------------------
+            // 3. CTAエリア（.cta-section）直前への巨大プロモーションバナーの挿入
+            // ----------------------------------------
+            let bannerImgUrl = '';
+            let bannerTopMicro = '';
+            let bannerTopClass = '';
+
+            if (promo.type === 'supersale') {
+                bannerImgUrl = PROMO_CONFIG.superSale.bannerUrl || '';
+                bannerTopMicro = '＼ 今すぐ取得してお得に予約！ ／';
+                bannerTopClass = 'promo-large-banner-supersale';
+            } else if (promo.type === '50') {
+                bannerImgUrl = PROMO_CONFIG.promo50.bannerUrl || '';
+                bannerTopMicro = promo.phase === 'pre' ? '＼ まもなくクーポン配布！対象施設かチェック ／' : '＼ 5と0のつく日クーポン！（※対象施設限定） ／';
+                bannerTopClass = 'promo-large-banner-50';
+            }
+
+            if (bannerImgUrl) {
+                const ctaSections = document.querySelectorAll('.cta-section');
+                ctaSections.forEach(cta => {
+                    // 既にバナーが挿入済みならスキップ
+                    if (cta.previousElementSibling && cta.previousElementSibling.classList.contains('promo-large-banner-container')) {
+                        return;
+                    }
+
+                    const bannerContainer = document.createElement('div');
+                    bannerContainer.className = `promo-large-banner-container ${bannerTopClass}`;
+                    bannerContainer.innerHTML = `
+                        <div class="promo-large-banner-micro">${bannerTopMicro}</div>
+                        <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="promo-large-banner-link">
+                            <img src="${bannerImgUrl}" alt="楽天トラベル キャンペーンバナー" class="promo-large-banner-img">
+                        </a>
+                    `;
+
+                    // .cta-section の直前に挿入
+                    cta.parentNode.insertBefore(bannerContainer, cta);
+                });
+            }
         }
     }
 

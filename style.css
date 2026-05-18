@@ -1285,3 +1285,74 @@ body.has-promo-bar .sticky-header {
     10%, 30%, 50%, 70%, 90% { transform: rotate(-5deg); }
     20%, 40%, 60%, 80% { transform: rotate(5deg); }
 }
+
+/* ==========================================
+   Affiliate Large Banner Styles (CTA直前用)
+   ========================================== */
+.promo-large-banner-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto 3rem auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.promo-large-banner-micro {
+    display: inline-block;
+    background: #D4AF37;
+    color: #0F0F12;
+    padding: 6px 20px;
+    border-radius: 20px 20px 0 0;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+}
+
+.promo-large-banner-link {
+    display: block;
+    background: rgba(255, 255, 255, 0.03);
+    border: 3px solid #D4AF37;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.promo-large-banner-link:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+    border-color: #E5C158;
+}
+
+.promo-large-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.promo-large-banner-link:hover .promo-large-banner-img {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+.promo-large-banner-supersale .promo-large-banner-micro {
+    background: #dc2626;
+    color: white;
+}
+
+.promo-large-banner-supersale .promo-large-banner-link {
+    border-color: #dc2626;
+    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+}
+
+.promo-large-banner-supersale .promo-large-banner-link:hover {
+    border-color: #f87171;
+    box-shadow: 0 20px 40px rgba(220, 38, 38, 0.5);
+}
