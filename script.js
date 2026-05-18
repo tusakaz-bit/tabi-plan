@@ -530,9 +530,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // マイクロコピー要素の作成
-                const microCopyContainer = document.createElement('div');
+                // マイクロコピー要素の作成（クリック可能なリンクに変更してコンバージョン率を最大化）
+                const microCopyContainer = document.createElement('a');
                 microCopyContainer.className = `promo-micro-copy ${microcopyClass}`;
+                microCopyContainer.href = targetUrl;
+                microCopyContainer.target = "_blank";
+                microCopyContainer.rel = "noopener noreferrer";
                 
                 // 強調したい箇所のマークアップ（文言調整）
                 let formattedText = microcopyText.replace(

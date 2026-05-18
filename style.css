@@ -1175,8 +1175,22 @@ body.has-promo-bar .sticky-header {
     letter-spacing: 0.02em;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-decoration: none; /* リンクのデフォルト下線を排除 */
+    cursor: pointer; /* 常にクリック可能なポインター */
+}
+
+/* ホバー時に優しく浮き上がり発光するマイクロインタラクション */
+.promo-micro-copy:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.18); /* 微発光させてクリックを促進 */
+}
+
+.promo-micro-copy:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 5と0のつく日（当日）マイクロコピー */
