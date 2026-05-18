@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 5と0のつく日用の設定
         promo50: {
-            url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fcamp%2F50campaign%2F`,
+            url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fcamp%2F50luxday%2F`,
             // Tabi Planオリジナルの5と0のつく日用バナー画像（imagesフォルダに配置済み）
             bannerUrl: "../images/promo-50-banner.png",
             // 前日フライング用の文言
