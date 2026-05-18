@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // 5と0のつく日用の設定
         promo50: {
             url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fcamp%2F50campaign%2F`,
-            // TODO: ここに実際の5と0のつく日バナー画像のURLを指定してください（例：ご自身のサーバーにアップした画像URLなど）
-            bannerUrl: "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/01/a0001004/img/ja/a0001004_parts_5e60805c87e4c.jpg",
+            // Tabi Planオリジナルの5と0のつく日用バナー画像（imagesフォルダに配置済み）
+            bannerUrl: "../images/promo-50-banner.png",
             // 前日フライング用の文言
             pre: {
                 title: "＼まもなく開催！／ 本日20時からクーポン事前配布中！（※対象ホテルは要確認）",
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "＼年に数回のビッグチャンス！／ 楽天トラベル スーパーSALE 開催中！半額プラン＆限定クーポン多数！",
             micro: "＼年に数回のビッグチャンス！／ 楽天トラベル スーパーSALE 開催中！半額プラン＆限定クーポン多数！",
             url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fspecial%2Fsupersale%2F`,
-            // TODO: ここに実際のスーパーSALEバナー画像のURLを指定してください（現在はダミーURLです）
-            bannerUrl: "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/01/a0001004/img/ja/a0001004_parts_5e60805c87e4c.jpg"
+            // Tabi PlanオリジナルのスーパーSALE用バナー画像（imagesフォルダに配置済み）
+            bannerUrl: "../images/promo-supersale-banner.png"
         }
     };
     
