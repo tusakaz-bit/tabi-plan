@@ -472,35 +472,67 @@ document.addEventListener('DOMContentLoaded', () => {
         // ----------------------------------------
         // 1. グローバルヘッダー「お知らせプロモーションバー」の描画
         // ----------------------------------------
-        if (noticeBarEl) {
-            if (!promo.type) {
+        // クーポン表示非アクティブ時の余白・固定位置の完全リセット処理
+        const resetPromoSpacing = () => {
+            if (noticeBarEl) {
                 noticeBarEl.innerHTML = '';
                 noticeBarEl.style.display = 'none';
-                document.body.classList.remove('has-promo-bar'); // ボディと固定ヘッダーの押し下げを解除
-            } else {
-                let titleText = '';
-                let linkUrl = '';
-                let bannerClass = '';
-
-                if (promo.type === 'supersale') {
-                    titleText = PROMO_CONFIG.superSale.title;
-                    linkUrl = PROMO_CONFIG.superSale.url;
-                    bannerClass = 'promo-banner-supersale';
-                } else if (promo.type === '50') {
-                    titleText = promo.phase === 'pre' ? PROMO_CONFIG.promo50.pre.title : PROMO_CONFIG.promo50.active.title;
-                    linkUrl = PROMO_CONFIG.promo50.url;
-                    bannerClass = promo.phase === 'pre' ? 'promo-banner-50-pre' : 'promo-banner-50-active';
-                }
-
-                noticeBarEl.innerHTML = `
-                    <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="promo-banner-bar ${bannerClass}">
-                        <i class="fa-solid fa-gift"></i>
-                        <span>${titleText}</span>
-                        <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; margin-left: 5px;"></i>
-                    </a>`;
-                noticeBarEl.style.display = 'block';
-                document.body.classList.add('has-promo-bar'); // ボディと固定ヘッダーを綺麗に押し下げる
             }
+            document.body.classList.remove('has-promo-bar');
+            document.body.style.removeProperty('padding-top');
+            
+            const fixedElements = document.querySelectorAll('.header, header, .fixed-top, .sticky-header, .nav-container');
+            fixedElements.forEach(el => {
+                el.style.removeProperty('top');
+            });
+        };
+
+        // ----------------------------------------
+        // 1. グローバルヘッダー「お知らせプロモーションバー」の描画
+        // ----------------------------------------
+        if (noticeBarEl && promo.type) {
+            let titleText = '';
+            let linkUrl = '';
+            let bannerClass = '';
+
+            if (promo.type === 'supersale') {
+                titleText = PROMO_CONFIG.superSale.title;
+                linkUrl = PROMO_CONFIG.superSale.url;
+                bannerClass = 'promo-banner-supersale';
+            } else if (promo.type === '50') {
+                titleText = promo.phase === 'pre' ? PROMO_CONFIG.promo50.pre.title : PROMO_CONFIG.promo50.active.title;
+                linkUrl = PROMO_CONFIG.promo50.url;
+                bannerClass = promo.phase === 'pre' ? 'promo-banner-50-pre' : 'promo-banner-50-active';
+            }
+
+            noticeBarEl.innerHTML = `
+                <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="promo-banner-bar ${bannerClass}">
+                    <i class="fa-solid fa-gift"></i>
+                    <span>${titleText}</span>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; margin-left: 5px; flex-shrink: 0;"></i>
+                </a>`;
+            noticeBarEl.style.display = 'block';
+            document.body.classList.add('has-promo-bar');
+            
+            // バーの高さをリアルタイムに計測して他の要素を押し下げる関数
+            const adjustSpacing = () => {
+                if (!document.body.classList.contains('has-promo-bar')) return;
+                const barHeight = noticeBarEl.offsetHeight;
+                document.body.style.setProperty('padding-top', `${barHeight}px`, 'important');
+                
+                // 固定配置されたヘッダー要素を自動検知して押し下げる
+                const fixedElements = document.querySelectorAll('.header, header, .fixed-top, .sticky-header, .nav-container');
+                fixedElements.forEach(el => {
+                    el.style.setProperty('top', `${barHeight}px`, 'important');
+                });
+            };
+            
+            // DOMへの反映と画像のロード時間などを考慮して少し待って実行
+            setTimeout(adjustSpacing, 50);
+            window.addEventListener('resize', adjustSpacing);
+            window.addEventListener('orientationchange', adjustSpacing);
+        } else {
+            resetPromoSpacing();
         }
 
         // ----------------------------------------

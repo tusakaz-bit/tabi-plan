@@ -1095,18 +1095,19 @@ body.has-promo-bar .sticky-header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 45px;
+    height: auto; /* スマホのテキスト折り返しに対応するため可変高さに変更 */
+    min-height: 45px;
     z-index: 99999; /* すべての要素の最前面に表示 */
-    overflow: hidden;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* グローバルプロモーションお知らせバー */
 .promo-banner-bar {
     width: 100%;
-    height: 100%;
-    padding: 0 24px;
-    font-size: 0.88rem;
+    min-height: 45px;
+    height: auto;
+    padding: 8px 32px 8px 24px; /* 左右と上下に適度な余白を設ける */
+    font-size: 0.85rem;
     font-weight: 700;
     text-align: center;
     color: #ffffff;
@@ -1119,19 +1120,37 @@ body.has-promo-bar .sticky-header {
     position: relative;
     text-decoration: none;
     transition: all 0.3s ease;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
 
+.promo-banner-bar span {
+    line-height: 1.4; /* 改行された時の行間をスッキリ整える */
+    word-break: break-all;
+}
+
 .promo-banner-bar i {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    flex-shrink: 0; /* 改行時にアイコンが潰れないように固定 */
     animation: promoShake 2.5s infinite;
 }
 
 .promo-banner-bar:hover {
     filter: brightness(1.15);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* スマホ表示におけるお知らせバーの最適化（改行対策） */
+@media (max-width: 480px) {
+    .promo-banner-bar {
+        font-size: 0.74rem; /* 画面幅が極端に狭いスマホでも1〜2行に美しく収まる文字サイズ */
+        padding: 8px 24px 8px 16px;
+        gap: 6px;
+    }
+    .promo-banner-bar i {
+        font-size: 0.9rem;
+    }
 }
 
 /* 5と0のつく日（当日）：ゴールド＆レッドの力強いグラデーション */
