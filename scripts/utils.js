@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
+const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
 const CITIES = [
@@ -14,7 +14,7 @@ const CITIES = [
 
 async function fetchRakutenApi(url, params) {
     try {
-        const response = await axios.get(url, { params });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             // 最安値で手動ソート（KeywordHotelSearchは自動ソートされないため）
             const sortedHotels = response.data.hotels

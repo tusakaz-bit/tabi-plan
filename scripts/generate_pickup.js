@@ -136,16 +136,17 @@ async function toSlug(japaneseName, cityEn) {
 }
 
 async function getHotelDetail(hotelNo) {
-    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/HotelDetailSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
         affiliateId: RAKUTEN_AFFILIATE_ID,
         format: 'json',
         hotelNo: hotelNo
     };
 
     try {
-        const response = await axios.get(url, { params });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
         if (response.data && response.data.hotels) {
             return response.data.hotels[0].hotel[0];
         }
@@ -157,9 +158,10 @@ async function getHotelDetail(hotelNo) {
 
 // AIが宿を「選ぶ」ための関数
 async function findPremiumHotels(city) {
-    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
         format: 'json',
         largeClassCode: 'japan',
         middleClassCode: city.middle,
@@ -170,7 +172,7 @@ async function findPremiumHotels(city) {
     }
 
     try {
-        const response = await axios.get(url, { params });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
         const hotels = response.data.hotels.filter(h => h.hotel[0].hotelBasicInfo.reviewAverage >= 4.0);
         // 評価が高い順にソート
         return hotels.sort((a, b) => b.hotel[0].hotelBasicInfo.reviewAverage - a.hotel[0].hotelBasicInfo.reviewAverage);

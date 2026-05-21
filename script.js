@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const isOkinawa = window.location.pathname.includes('okinawa');
 
     // API Request parameters
-    const API_URL = 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const API_URL = 'https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426';
     const parsedParams = {
         applicationId: APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const PARAMS = new URLSearchParams(parsedParams);
 
-    const KEYWORD_API_URL = 'https://openapi.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
+    const KEYWORD_API_URL = 'https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426';
 
     const loadingEl = document.getElementById('loading');
     const containerEl = document.getElementById('hotels-container');
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function buildKeywordParams(keyword) {
         const p = {
             applicationId: APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
             affiliateId: AFFILIATE_ID,
             format: 'json',
             keyword: keyword,
@@ -126,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 高級ホテル用：SimpleHotelSearchで料金の高い順
     const luxuryParams = new URLSearchParams({
         applicationId: APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
         affiliateId: AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',

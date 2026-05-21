@@ -15,9 +15,10 @@ const CITIES = [
 ];
 
 async function getLowestPriceHotel(city) {
-    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
         affiliateId: RAKUTEN_AFFILIATE_ID,
         format: 'json',
         largeClassCode: 'japan',
@@ -28,7 +29,7 @@ async function getLowestPriceHotel(city) {
     if (city.detail) params.detailClassCode = city.detail;
 
     try {
-        const response = await axios.get(url, { params });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             const hotel = response.data.hotels[0].hotel[0].hotelBasicInfo;
             return {

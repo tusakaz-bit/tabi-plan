@@ -1,15 +1,16 @@
-﻿const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi, generateHtmlBody, getDateString } = require('../utils');
+const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi, generateHtmlBody, getDateString } = require('../utils');
 
 async function generate() {
     const results = [];
-    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426';
 
     for (const city of CITIES) {
         const params = {
             applicationId: RAKUTEN_APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
             affiliateId: RAKUTEN_AFFILIATE_ID,
             format: 'json',
-            keyword: `${city.keyword} 繧ｫ繝・・繝ｫ`,
+            keyword: `${city.keyword} カップル`,
             middleClassCode: city.middle,
             smallClassCode: city.small,
             hits: 30
@@ -20,10 +21,10 @@ async function generate() {
         if (hotel) results.push({ city, hotel });
     }
 
-    const title = `縲・{getDateString()}迚医代ョ繝ｼ繝医↓繧りｨ伜ｿｵ譌･縺ｫ繧ゑｼ∽ｻ頑律縺ｮ繧ｫ繝・・繝ｫ蜷代￠繝励Λ繝ｳ迚ｹ髮・- Tabi Plan`;
-    const intro = `Tabi Plan AI縺悟宍驕ｸ縺励◆縲∵悽譌･縺ｮ蜈ｨ蝗ｽ荳ｻ隕√お繝ｪ繧｢縺ｮ縲後き繝・・繝ｫ蜷代￠繝励Λ繝ｳ縲肴怙螳牙､繧偵♀螻翫￠縺励∪縺吶・br>螟ｧ蛻・↑莠ｺ縺ｨ縺ｮ迚ｹ蛻･縺ｪ譎る俣繧偵√♀蠕励↑繝励Λ繝ｳ縺ｧ貅蝟ｫ縺励※縺上□縺輔＞縲Ａ;
+    const title = `【${getDateString()}版】デートにも記念日にも！今日のカップル向けプラン特集 - Tabi Plan`;
+    const intro = `Tabi Plan AIが厳選した、本日の全国主要エリアの「カップル向けプラン」最安値をお届けします。<br>大切な人との特別な時間を、お得なプランで満喫してください。`;
     const body = generateHtmlBody(intro, results);
-    const tags = ["蝗ｽ蜀・羅陦・, "繝帙ユ繝ｫ", "讌ｽ螟ｩ繝医Λ繝吶Ν", "譛螳牙､", "繧ｫ繝・・繝ｫ", "險伜ｿｵ譌･譌・｡・, "莠御ｺｺ譌・, "TabiPlan"];
+    const tags = ["国内旅行", "ホテル", "楽天トラベル", "最安値", "カップル", "記念日旅行", "二人旅", "TabiPlan"];
 
     return { title, body, tags };
 }
