@@ -4,7 +4,7 @@ const path = require('path');
 const Kuroshiro = require('kuroshiro').default;
 const KuromojiAnalyzer = require('kuroshiro-analyzer-kuromoji');
 
-const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
+const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
 const TEMPLATE_PATH = path.join(__dirname, '../pickup/template.html');
@@ -136,7 +136,7 @@ async function toSlug(japaneseName, cityEn) {
 }
 
 async function getHotelDetail(hotelNo) {
-    const url = 'https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
         affiliateId: RAKUTEN_AFFILIATE_ID,
@@ -157,7 +157,7 @@ async function getHotelDetail(hotelNo) {
 
 // AIが宿を「選ぶ」ための関数
 async function findPremiumHotels(city) {
-    const url = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
         format: 'json',

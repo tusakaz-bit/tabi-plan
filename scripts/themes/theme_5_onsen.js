@@ -1,15 +1,15 @@
-const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi, generateHtmlBody, getDateString } = require('../utils');
+﻿const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi, generateHtmlBody, getDateString } = require('../utils');
 
 async function generate() {
     const results = [];
-    const url = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
 
     for (const city of CITIES) {
         const params = {
             applicationId: RAKUTEN_APP_ID,
             affiliateId: RAKUTEN_AFFILIATE_ID,
             format: 'json',
-            keyword: `${city.keyword} 露天風呂`,
+            keyword: `${city.keyword} 髴ｲ螟ｩ鬚ｨ蜻Ａ,
             middleClassCode: city.middle,
             smallClassCode: city.small,
             hits: 30
@@ -20,10 +20,10 @@ async function generate() {
         if (hotel) results.push({ city, hotel });
     }
 
-    const title = `【${getDateString()}版】週末前に癒しを！今日の露天風呂付きホテル特集 - Tabi Plan`;
-    const intro = `Tabi Plan AIが厳選した、本日の全国主要エリアの「露天風呂・温泉付きプラン」最安値をお届けします。<br>日々の疲れを癒やす、極上のリラックスタイムをお過ごしください。`;
+    const title = `縲・{getDateString()}迚医鷹ｱ譛ｫ蜑阪↓逋偵＠繧抵ｼ∽ｻ頑律縺ｮ髴ｲ螟ｩ鬚ｨ蜻ゆｻ倥″繝帙ユ繝ｫ迚ｹ髮・- Tabi Plan`;
+    const intro = `Tabi Plan AI縺悟宍驕ｸ縺励◆縲∵悽譌･縺ｮ蜈ｨ蝗ｽ荳ｻ隕√お繝ｪ繧｢縺ｮ縲碁愆螟ｩ鬚ｨ蜻ゅ・貂ｩ豕我ｻ倥″繝励Λ繝ｳ縲肴怙螳牙､繧偵♀螻翫￠縺励∪縺吶・br>譌･縲・・逍ｲ繧後ｒ逋偵ｄ縺吶∵･ｵ荳翫・繝ｪ繝ｩ繝・け繧ｹ繧ｿ繧､繝繧偵♀驕弱＃縺励￥縺縺輔＞縲Ａ;
     const body = generateHtmlBody(intro, results);
-    const tags = ["国内旅行", "ホテル", "楽天トラベル", "最安値", "温泉", "露天風呂", "癒し旅", "TabiPlan"];
+    const tags = ["蝗ｽ蜀・羅陦・, "繝帙ユ繝ｫ", "讌ｽ螟ｩ繝医Λ繝吶Ν", "譛螳牙､", "貂ｩ豕・, "髴ｲ螟ｩ鬚ｨ蜻・, "逋偵＠譌・, "TabiPlan"];
 
     return { title, body, tags };
 }

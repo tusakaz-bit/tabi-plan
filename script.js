@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
+    const APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
     const AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
     // ==========================================
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isOkinawa = window.location.pathname.includes('okinawa');
 
     // API Request parameters
-    const API_URL = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const API_URL = 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
     const parsedParams = {
         applicationId: APP_ID,
         affiliateId: AFFILIATE_ID,
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const PARAMS = new URLSearchParams(parsedParams);
 
-    const KEYWORD_API_URL = 'https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
+    const KEYWORD_API_URL = 'https://openapi.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426';
 
     const loadingEl = document.getElementById('loading');
     const containerEl = document.getElementById('hotels-container');

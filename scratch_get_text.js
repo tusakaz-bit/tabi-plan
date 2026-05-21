@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const RAKUTEN_APP_ID = '2d0fb5d11e725c9ab3b42cf9f5bca085';
+const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
 const CITIES = [
@@ -13,7 +13,7 @@ const CITIES = [
 ];
 
 async function getLowestPriceHotel(city) {
-    const url = 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
+    const url = 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
         affiliateId: RAKUTEN_AFFILIATE_ID,
