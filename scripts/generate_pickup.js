@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const Kuroshiro = require('kuroshiro').default;
 const KuromojiAnalyzer = require('kuroshiro-analyzer-kuromoji');
+const { GoogleGenAI } = require('@google/genai');
 
 const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
@@ -182,17 +183,70 @@ async function findPremiumHotels(city) {
     }
 }
 
+// Gemini API を使用して、ホテル情報に基づいた完全オリジナルのSEO最適化コンテンツを生成する
+async function generateAIContent(info) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+        console.warn("Warning: GEMINI_API_KEY is not defined. Falling back to default static content.");
+        return null;
+    }
+
+    try {
+        const ai = new GoogleGenAI({ apiKey });
+        
+        const prompt = `
+以下のホテル情報をもとに、旅行予約サイトの紹介記事として、魅力的かつSEOに最適化されたオリジナルの文章（日本語）を生成してください。
+楽天APIの元の説明文（コピペ）を絶対にそのまま使わず、完全オリジナルの文章を作成してください。
+
+【ホテル情報】
+ホテル名: ${info.hotelName}
+キャッチコピー: ${info.hotelSpecial || 'なし'}
+特徴・設備・詳細情報: 
+${info.hotelInformationEmail || 'なし'}
+住所: ${info.address1}${info.address2}
+最安料金目安: ${info.hotelMinCharge || '不明'} 円
+クチコミ評価: ${info.reviewAverage || '4.0'} / 5.0 (件数: ${info.reviewCount || 0}件)
+アクセス: ${info.access || 'なし'}
+
+【出力フォーマット】
+以下のJSONフォーマット（プレーンなJSONオブジェクトのみ、Markdownの\`\`\`json等のコードブロック囲みは不要）で出力してください。
+
+{
+  "metaDescription": "120文字〜140文字程度で、検索エンジン向けにホテルの魅力を簡潔にまとめ、検索結果でクリックしたくなるような紹介文。",
+  "catchcopy": "ホテルの魅力を表現した、キャッチーで短い一行のキャッチコピー。",
+  "smartPoint": "100文字程度で、コスパや評価、独自の強み（『賢い選択』）を客観的・論理的に解説する文章。",
+  "beautifulPoint": "100文字程度で、デザインや空間、サービスなどの情緒的な魅力（『美しき滞在』）を美しく表現する文章。",
+  "locationPoint": "100文字程度で、立地やアクセス、周辺観光への利便性（『最高の立地』）を分かりやすく解説する文章。",
+  "detailedDescription": "HTML of <p> tags で囲まれた3〜4つの段落からなる、本格的な宿の紹介記事（全体で600〜800文字程度）。宿泊客が実際に滞在しているシーンが目に浮かぶような、エモーショナルで説得力のあるオリジナルの文章。"
+}
+`;
+
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: prompt,
+            config: {
+                responseMimeType: 'application/json'
+            }
+        });
+
+        const jsonText = response.text;
+        // マークダウンのコードブロックなどで囲まれていた場合を取り除く
+        const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+        return JSON.parse(cleanedJson);
+    } catch (e) {
+        console.error("Error generating AI content:", e);
+        return null;
+    }
+}
+
 // cityEn: 都市の英語名（スラグに使用）
 async function generateArticle(hotelNo, category = '今週のピックアップ', cityEn = '') {
     const hotel = await getHotelDetail(hotelNo);
-    if (!hotel) return;
+    if (!hotel) return null;
 
     const info = hotel.hotelBasicInfo;
     const rating = info.reviewAverage || '4.0';
     
-    let html = fs.readFileSync(TEMPLATE_PATH, 'utf8');
-
-    // 置換処理
     // 日本時間（JST）で今日の日付を取得するヘルパー
     const now = new Date();
     const jstDate = new Intl.DateTimeFormat('ja-JP', {
@@ -200,44 +254,85 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         timeZone: 'Asia/Tokyo'
     }).format(now).replace(/\//g, '-');
 
-    const data = {
-        '{{HOTEL_NAME}}': info.hotelName,
-        '{{CATEGORY_NAME}}': category,
-        '{{HERO_IMAGE}}': info.hotelImageUrl,
-        '{{CATCHCOPY}}': info.hotelSpecial || '非日常を楽しむ、極上の滞在を。',
-        '{{SMART_POINT}}': `評価${rating}の高水準でありながら、周辺相場と比較しても納得のプライス。`,
-        '{{BEAUTIFUL_POINT}}': info.hotelSpecial || '洗練された空間デザインと、細やかなおもてなし。',
-        '{{LOCATION_POINT}}': info.access || '主要駅からのアクセスも良好で、観光の拠点に最適。',
-        '{{DETAILED_DESCRIPTION}}': `<p>${info.hotelInformationEmail || '詳しい情報は予約ページをご確認ください。'}</p><p>旅の疲れを癒やす心地よい空間。モダンなインテリアと落ち着いた照明が、上質なひとときを演出します。</p>`,
-        '{{ADDRESS}}': `${info.address1}${info.address2}`,
-        '{{MIN_CHARGE}}': `${Number(info.hotelMinCharge).toLocaleString()}円〜`,
-        '{{RATING}}': rating,
-        '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
-        '{{AFFILIATE_URL}}': `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`,
-        '{{PUBLISH_DATE}}': jstDate
-    };
-
-    for (const [key, value] of Object.entries(data)) {
-        html = html.split(key).join(value);
-    }
-
     // ホテル名を英語スラグに変換してURLに含める（都市名付き）
     const slug = await toSlug(info.hotelName, cityEn) || `hotel-${hotelNo}`;
     const fileName = `${jstDate}-${slug}.html`;
     const outputPath = path.join(__dirname, '../pickup/', fileName);
     
-    // 上書き防止：既にファイルが存在する場合はエラー（例外）を出す
+    // 上書き防止：既にファイルが存在する場合はエラーを出す
     if (fs.existsSync(outputPath)) {
         console.error(`Error: Article for ${jstDate} already exists at ${fileName}. Skipping to prevent overwrite.`);
         return null;
+    }
+
+    // Gemini APIでオリジナルコンテンツを生成
+    console.log(`Generating AI content for ${info.hotelName}...`);
+    const aiData = await generateAIContent(info);
+    if (aiData) {
+        console.log("Successfully generated AI content.");
+    } else {
+        console.warn("AI generation failed or skipped. Using fallback content.");
+    }
+
+    // JSON-LDを生成
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": info.hotelName,
+        "description": aiData?.metaDescription || info.hotelSpecial || '',
+        "image": info.hotelImageUrl,
+        "address": {
+            "@type": "PostalAddress",
+            "postalCode": info.postalCode || "",
+            "addressRegion": info.address1 || "",
+            "streetAddress": info.address2 || "",
+            "addressCountry": "JP"
+        },
+        "telephone": info.telephoneNo || "",
+        "url": `https://tabi-plan.org/pickup/${fileName}`
+    };
+    if (info.reviewAverage && Number(info.reviewCount) > 0) {
+        jsonLd.aggregateRating = {
+            "@type": "AggregateRating",
+            "ratingValue": String(info.reviewAverage),
+            "reviewCount": String(info.reviewCount),
+            "bestRating": "5",
+            "worstRating": "1"
+        };
+    }
+    const jsonLdString = `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`;
+
+    let html = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+
+    const defaultDesc = `<p>${info.hotelInformationEmail || '詳しい情報は予約ページをご確認ください。'}</p><p>旅の疲れを癒やす心地よい空間。モダンなインテリアと落ち着いた照明が、上質なひとときを演出します。</p>`;
+
+    const data = {
+        '{{HOTEL_NAME}}': info.hotelName,
+        '{{CATEGORY_NAME}}': category,
+        '{{HERO_IMAGE}}': info.hotelImageUrl,
+        '{{CATCHCOPY}}': aiData?.catchcopy || info.hotelSpecial || '非日常を楽しむ、極上の滞在を。',
+        '{{SMART_POINT}}': aiData?.smartPoint || `評価${rating}の高水準でありながら、周辺相場と比較しても納得のプライス。`,
+        '{{BEAUTIFUL_POINT}}': aiData?.beautifulPoint || info.hotelSpecial || '洗練された空間デザインと、細やかなおもてなし。',
+        '{{LOCATION_POINT}}': aiData?.locationPoint || info.access || '主要駅からのアクセスも良好で、観光の拠点に最適。',
+        '{{DETAILED_DESCRIPTION}}': aiData?.detailedDescription || defaultDesc,
+        '{{ADDRESS}}': `${info.address1}${info.address2}`,
+        '{{MIN_CHARGE}}': info.hotelMinCharge ? `${Number(info.hotelMinCharge).toLocaleString()}円〜` : '設定なし',
+        '{{RATING}}': rating,
+        '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
+        '{{AFFILIATE_URL}}': `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`,
+        '{{PUBLISH_DATE}}': jstDate,
+        '{{FILENAME}}': fileName,
+        '{{META_DESCRIPTION}}': aiData?.metaDescription || `${info.hotelName}の紹介。${info.hotelSpecial || ''}`.substring(0, 140),
+        '{{JSON_LD}}': jsonLdString
+    };
+
+    for (const [key, value] of Object.entries(data)) {
+        html = html.split(key).join(value);
     }
     
     fs.writeFileSync(outputPath, html);
     console.log(`Successfully generated article: ${fileName}`);
     return { fileName, info, data };
 }
-
-// 実行例（もしホテルIDが分かればここに入れる）
-// generateArticle(12345);
 
 module.exports = { generateArticle, findPremiumHotels };

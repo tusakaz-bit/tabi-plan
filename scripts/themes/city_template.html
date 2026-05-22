@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PERSW1V95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4PERSW1V95');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://tabi-plan.org/{{CITY_EN}}/">
+    <title>{{CITY_NAME}}の宿泊・観光ガイド：おすすめホテル & 0円スポット | {{CITY_NAME}} Premium Stays</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    {{JSON_LD}}
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation" style="background-image: url('../bg_{{CITY_EN}}_1776258940200.png'), url('../bg_{{CITY_EN}}.png'); background-size: cover; background-position: center;">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <!-- お知らせプロモーションバー（JSによって動的に書き換えられます） -->
+    <div id="promo-notice-bar" style="display: none;"></div>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <a href="../">Home</a>
+                <a href="#about">Concept</a>
+                <a href="#hotels">Top Deals</a>
+                <a href="#budget-guide">Budget Guide</a>
+                <a href="#destinations">Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="subtitle">{{CITY_NAME}} City Guide</p>
+                    <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">{{HERO_TITLE}}</h2>
+                    <p class="description">{{HERO_SUBTITLE}}</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem; letter-spacing: 1px;">▶ 希望のプランを選んでスキップ</p>
+                    <div class="hero-category-tags">
+                        <button class="hero-cat-tag" data-tab="deals"><i class="fa-solid fa-yen-sign"></i> 最安値</button>
+                        <button class="hero-cat-tag" data-tab="ladies"><i class="fa-solid fa-heart"></i> レディース</button>
+                        <button class="hero-cat-tag" data-tab="couple"><i class="fa-solid fa-user-group"></i> カップル</button>
+                        <button class="hero-cat-tag" data-tab="luxury"><i class="fa-solid fa-crown"></i> 高級ホテル</button>
+                        <button class="hero-cat-tag" data-tab="station"><i class="fa-solid fa-train"></i> 駅チカ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">{{CITY_NAME}} Prime Deals</h3>
+                    <p class="section-subtitle">{{CITY_NAME}}エリアの厳選プラン（毎日自動更新）</p>
+                </div>
+                
+                <div class="hotel-tabs">
+                    <button class="tab-button active" data-tab="deals">最安値プラン</button>
+                    <button class="tab-button" data-tab="ladies">レディースプラン</button>
+                    <button class="tab-button" data-tab="couple">カップル向け</button>
+                    <button class="tab-button" data-tab="luxury">高級ホテル</button>
+                    <button class="tab-button" data-tab="station">駅チカ</button>
+                </div>
+
+                <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;">最終更新: {{UPDATE_TIME}}</p>
+                
+                <!-- 最安値プラン -->
+                <div id="hotels-container-deals" class="hotels-grid tab-content-gridactive" style="display: grid;">
+                    {{HOTELS_DEALS}}
+                </div>
+
+                <!-- レディースプラン -->
+                <div id="hotels-container-ladies" class="hotels-grid tab-content-grid" style="display: none;">
+                    {{HOTELS_LADIES}}
+                </div>
+
+                <!-- カップル向け -->
+                <div id="hotels-container-couple" class="hotels-grid tab-content-grid" style="display: none;">
+                    {{HOTELS_COUPLE}}
+                </div>
+
+                <!-- 高級ホテル -->
+                <div id="hotels-container-luxury" class="hotels-grid tab-content-grid" style="display: none;">
+                    {{HOTELS_LUXURY}}
+                </div>
+
+                <!-- 駅チカ -->
+                <div id="hotels-container-station" class="hotels-grid tab-content-grid" style="display: none;">
+                    {{HOTELS_STATION}}
+                </div>
+            </div>
+        </section>
+
+        <!-- AI生成 長文オリジナル観光コラムセクション -->
+        <section id="city-guide-article" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container city-guide-column" style="padding: 3rem; line-height: 1.8;">
+                    {{CITY_GUIDE_CONTENT}}
+                </div>
+            </div>
+        </section>
+
+        <section id="budget-guide" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container">
+                    <h3 class="section-title" style="margin-bottom: 1rem;">{{CITY_NAME}} Budget Guide</h3>
+                    <p class="section-subtitle">宿泊費を浮かせた分、{{CITY_NAME}}を120%楽しむための賢い選択</p>
+
+                    <!-- ここは各都市ごとの固有コンテンツエリア。generate_city_pages.js で既存ファイルの観光・グルメ部分をマージします -->
+                    {{BUDGET_GUIDE_CONTENT}}
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="hotels-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Major Gateways</h3>
+                    <p class="section-subtitle">主要ターミナルからのアクセス情報</p>
+                </div>
+                
+                <div class="city-grid">
+                    {{GATEWAY_CONTENT}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2 style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h2>
+                <p>Find your perfect stay in {{CITY_NAME}}.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Tabi Plan. Powered by Rakuten Travel API & Gemini AI.</p>
+                <div style="margin-top: 10px;">
+                    <a href="../privacy.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">プライバシーポリシー</a>
+                    <span style="color: #94a3b8; margin: 0 5px;">|</span>
+                    <a href="../contact.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
