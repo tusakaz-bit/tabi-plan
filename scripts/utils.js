@@ -14,7 +14,7 @@ const CITIES = [
 
 async function fetchRakutenApi(url, params) {
     try {
-        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/', 'Origin': 'https://tabi-plan.org' } });
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             // 最安値で手動ソート（KeywordHotelSearchは自動ソートされないため）
             const sortedHotels = response.data.hotels

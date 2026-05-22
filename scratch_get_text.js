@@ -27,7 +27,7 @@ async function getLowestPriceHotel(city) {
     if (city.detail) params.detailClassCode = city.detail;
 
     try {
-        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/', 'Origin': 'https://tabi-plan.org' } });
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             const hotel = response.data.hotels[0].hotel[0].hotelBasicInfo;
             return {

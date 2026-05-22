@@ -146,7 +146,7 @@ async function getHotelDetail(hotelNo) {
     };
 
     try {
-        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/', 'Origin': 'https://tabi-plan.org' } });
         if (response.data && response.data.hotels) {
             return response.data.hotels[0].hotel[0];
         }
@@ -172,7 +172,7 @@ async function findPremiumHotels(city) {
     }
 
     try {
-        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/' } });
+        const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/', 'Origin': 'https://tabi-plan.org' } });
         const hotels = response.data.hotels.filter(h => h.hotel[0].hotelBasicInfo.reviewAverage >= 4.0);
         // 評価が高い順にソート
         return hotels.sort((a, b) => b.hotel[0].hotelBasicInfo.reviewAverage - a.hotel[0].hotelBasicInfo.reviewAverage);
