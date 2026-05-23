@@ -1193,31 +1193,89 @@
                     <p class="section-subtitle">宿泊費を浮かせた分、札幌を120%楽しむための賢い選択</p>
 
                     <!-- ここは各都市ごとの固有コンテンツエリア。generate_city_pages.js で既存ファイルの観光・グルメ部分をマージします -->
-                    <div class="city-grid">
-                    <div class="city-grid">
-                    <div class="city-grid">
-                    <div class="city-card" onclick="window.open('https://www.jrhokkaido.co.jp/network/station/station.html?name=sapporo', '_blank')">
-                        <div class="city-card-image" style="background-image: url('../sapporo_station_japanese_dark_1776434420486.png')"></div>
-                        <div class="city-card-overlay">
-                            <span class="city-status">Gateway <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
-                            <h4 class="city-name">札幌駅 / Sapporo Sta.</h4>
-                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">JR・地下鉄が乗り入れる北の最大拠点。ショッピングモールも充実。</p>
+                    <div class="budget-category">
+                        <h4 class="category-title"><i class="fa-solid fa-landmark"></i> 無料・格安の絶景スポット</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="大通公園・テレビ塔" style="background-image: url('../sapporo_clock_tower_japanese_dark_1776434389961.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">大通公園・時計台</h5>
+                                    <p class="spot-price">公園無料・時計台200円</p>
+                                    <p class="spot-desc">札幌のシンボル・大通公園と重要文化財の時計台が徒歩圏内。四季折々の花や雪まつり会場としても有名なエリア。<br>
+                                        <a href="https://www.sapporoshi-tokeidai.jp/" target="_blank" rel="noopener noreferrer" class="official-link">時計台公式 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 公園散策は完全無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=大通公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">大通駅 徒歩約3分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="モエレ沼公園 ガラスのピラミッド" style="background-image: url('../moerenuma_glass_pyramid_japanese_dark_art_1776434466941.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">モエレ沼公園</h5>
+                                    <p class="spot-price">入園無料</p>
+                                    <p class="spot-desc">彫刻家イサム・ノグチが設計した芸術的な公園。ガラスのピラミッドを中心に、広大な敷地が広がる北海道屈指のスポット。<br>
+                                        <a href="https://moerenumapark.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 入園完全無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=モエレ沼公園" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">バス約40分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="city-card" onclick="window.open('https://www.new-chitose-airport.jp/', '_blank')">
-                        <div class="city-card-image" style="background-image: url('../new_chitose_airport_japanese_dark_hub_1776434452831.png')"></div>
-                        <div class="city-card-overlay">
-                            <span class="city-status">Airport <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
-                            <h4 class="city-name">新千歳空港 / New Chitose</h4>
-                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">快速エアポートで札幌まで約40分。グルメやお土産も世界級です。</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安グルメ（北の幸）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="サッポロビール園" style="background-image: url('../sapporo_beer_museum_japanese_dark_1776434405240.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">サッポロビール博物館</h5>
+                                    <p class="spot-price">見学無料（試飲別途）</p>
+                                    <p class="spot-desc">日本最古のビール博物館。明治時代から続くビール醸造の歴史を学べる。ジンギスカンとビールの黄金コンビが堪能できる。<br>
+                                        <a href="https://www.sapporobeer.jp/brewery/s_museum/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 見学無料・試飲は低価格
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=サッポロビール博物館" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">バス約10分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="札幌場外市場 海鮮丼" style="background-image: url('../sapporo_kaisen_don_japanese_dark_gourmet_1776434436038.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">場外市場 海鮮丼</h5>
+                                    <p class="spot-price">約1,500円〜</p>
+                                    <p class="spot-desc">北海道の新鮮な海の幸が集まる二条市場・場外市場。カニ・ウニ・イクラが乗った豪華な海鮮丼を絶対に味わうべき。<br>
+                                        <a href="https://www.jyogai.com/" target="_blank" rel="noopener noreferrer" class="official-link">場外市場公式 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 新鮮な海鮮を市場価格で
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=札幌駅&destination=札幌場外市場" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">バス約10分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                </div>
-            </div>
-                </div>
-            </div>
                 </div>
             </div>
         </section>

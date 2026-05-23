@@ -1211,34 +1211,93 @@
                     <p class="section-subtitle">宿泊費を浮かせた分、東京を120%楽しむための賢い選択</p>
 
                     <!-- ここは各都市ごとの固有コンテンツエリア。generate_city_pages.js で既存ファイルの観光・グルメ部分をマージします -->
-                    <div class="city-grid">
-                    <div class="city-grid">
-                    <div class="city-grid">
-                    <div class="city-card" onclick="window.open('https://www.jreast.co.jp/estation/stations/1039.html', '_blank')">
-                        <div class="city-card-image" style="background-image: url('../tokyo_station_1776258956276.png')"></div>
-                        <div class="city-card-overlay">
-                            <span class="city-status">Gateway <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
-                            <h4 class="city-name">東京駅 / Tokyo Sta.</h4>
-                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">新幹線・主要路線の拠点。ここをベースに東京中へアクセス可能です。</p>
+                    <div class="budget-category">
+                        <h4 class="category-title"><i class="fa-solid fa-landmark"></i> 無料・格安の絶景スポット</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="東京都庁展望室" style="background-image: url('../tokyo_gov_building_1776350072229.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">東京都庁 展望室</h5>
+                                    <p class="spot-price">0円</p>
+                                    <p class="spot-desc">新宿の地上202mから都心のパノラマを一望！夜景も無料で楽しめる、東京最高のコスパスポット。<br>
+                                        <a href="https://www.yokoso.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 入場料完全無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=東京都庁" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">新宿駅 徒歩約10分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="浅草寺" style="background-image: url('../tokyo_sensoji_1776350088548.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">浅草寺・雷門</h5>
+                                    <p class="spot-price">0円</p>
+                                    <p class="spot-desc">東京最古の寺院。雷門から本堂までの活気あふれる雰囲気は、歩くだけで江戸情景を味わえます。<br>
+                                        <a href="https://www.senso-ji.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 伝統文化をタダで体験
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=浅草寺" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">浅草駅 徒歩約5分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="city-card" onclick="window.open('https://tokyo-haneda.com/', '_blank')">
-                        <div class="city-card-image" style="background-image: url('../haneda_airport_1776258971946.png')"></div>
-                        <div class="city-card-overlay">
-                            <span class="city-status">Airport <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
-                            <h4 class="city-name">羽田空港 / Haneda</h4>
-                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">都心まで京急線・モノレールで約20〜30分。最もスムーズな空の玄関口。</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安グルメ（江戸の味）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="浅草 仲見世通り食べ歩き" style="background-image: url('../tokyo_nakamise_1776350104219.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">仲見世通り 食べ歩き</h5>
+                                    <p class="spot-price">約300円〜</p>
+                                    <p class="spot-desc">揚げまんじゅうやメンチカツなど、ワンコイン以下の絶品グルメが勢揃い。小腹を満たすのに最適。<br>
+                                        <a href="https://www.tabelog.com/tokyo/A1311/A131102/rstLst/RC25/" target="_blank" rel="noopener noreferrer" class="official-link">食べログ詳細 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 江戸のファストフード
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=浅草+仲見世通り" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">浅草駅 徒歩圏内</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="日枝神社の千本鳥居" style="background-image: url('../tokyo_hie_jinja_1776350119022.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">日枝神社・千本鳥居</h5>
+                                    <p class="spot-price">参拝無料</p>
+                                    <p class="spot-desc">都会のビル群に突如現れる赤い鳥居の列。SNS映え間違いなしの幻想的な空間が楽しめます。<br>
+                                        <a href="https://www.hiejinja.net/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 都心の隠れた絶景
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=日枝神社" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">赤坂駅 徒歩約3分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                </div>
-            </div>
-                </div>
-            </div>
                 </div>
             </div>
         </section>
+
 
         <section id="destinations" class="hotels-section">
             <div class="container">

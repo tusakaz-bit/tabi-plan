@@ -1211,31 +1211,89 @@
                     <p class="section-subtitle">宿泊費を浮かせた分、京都を120%楽しむための賢い選択</p>
 
                     <!-- ここは各都市ごとの固有コンテンツエリア。generate_city_pages.js で既存ファイルの観光・グルメ部分をマージします -->
-                    <div class="city-grid">
-                    <div class="city-grid">
-                    <div class="city-grid">
-                    <div class="city-card" onclick="window.open('https://www.kyoto-station-building.co.jp/', '_blank')">
-                        <div class="city-card-image" style="background-image: url('../kyoto_station_1776398815887.png')"></div>
-                        <div class="city-card-overlay">
-                            <span class="city-status">Gateway <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
-                            <h4 class="city-name">京都駅 / Kyoto Sta.</h4>
-                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">新幹線や各線が乗り入れる巨大ターミナル。京都観光の出発地点です。</p>
+                    <div class="budget-category">
+                        <h4 class="category-title"><i class="fa-solid fa-landmark"></i> 無料・格安の絶景スポット</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="伏見稲荷大社" style="background-image: url('../kyoto_fushimi_1776398742029.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">伏見稲荷大社</h5>
+                                    <p class="spot-price">参拝無料</p>
+                                    <p class="spot-desc">朱色の千本鳥居が連なる圧巻の景観。日本最古の稲荷神社で、早朝の参拝は特に幻想的な雰囲気を楽しめます。<br>
+                                        <a href="https://inari.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 24時間参拝無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=伏見稲荷大社" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">稲荷駅 徒歩約5分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="嵐山 竹林の小径" style="background-image: url('../kyoto_arashiyama_1776398759907.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">嵐山・竹林の小径</h5>
+                                    <p class="spot-price">通行無料</p>
+                                    <p class="spot-desc">高さ20mを超える青竹が生い茂る幻想的な道。渡月橋や天龍寺も徒歩圏内で、半日観光に最適なエリアです。<br>
+                                        <a href="https://www.arashiyama-tourism.com/" target="_blank" rel="noopener noreferrer" class="official-link">観光情報 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 散策は完全無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=嵐山竹林の小径" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">嵐山駅 徒歩約10分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="city-card" onclick="window.open('https://www.kansai-airport.or.jp/', '_blank')">
-                        <div class="city-card-image" style="background-image: url('../kix_airport_1776398830538.png')"></div>
-                        <div class="city-card-overlay">
-                            <span class="city-status">Airport <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em; margin-left:4px;"></i></span>
-                            <h4 class="city-name">関西国際空港 / KIX</h4>
-                            <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">特急はるかで京都駅まで直結（約80分）。西日本の空の玄関口。</p>
+
+                    <div class="budget-category" style="margin-top: 4rem;">
+                        <h4 class="category-title"><i class="fa-solid fa-utensils"></i> 格安グルメ（京の味）</h4>
+                        <div class="destinations-grid">
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="錦市場 食べ歩き" style="background-image: url('../kyoto_nishiki_1776398800762.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">錦市場 食べ歩き</h5>
+                                    <p class="spot-price">約200円〜</p>
+                                    <p class="spot-desc">「京の台所」と呼ばれる市場。湯葉、豆腐、漬物など京都の食文化を手軽に体験できる400年の歴史を持つ商店街。<br>
+                                        <a href="https://www.kyoto-nishiki.or.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 京の食文化を格安で体験
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=錦市場" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">四条駅 徒歩約5分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image" role="img" aria-label="清水寺 周辺" style="background-image: url('../kyoto_kiyomizu_1776399646391.png'); background-size: cover; background-position: center; height: 180px;">
+                                </div>
+                                <div class="destination-content">
+                                    <h5 class="spot-title">清水寺・産寧坂</h5>
+                                    <p class="spot-price">拝観料500円</p>
+                                    <p class="spot-desc">清水の舞台から見下ろす絶景と、産寧坂・二寧坂の石畳の街並みが美しい。周辺の甘味処でほっこり一休みも。<br>
+                                        <a href="https://www.kiyomizudera.or.jp/" target="_blank" rel="noopener noreferrer" class="official-link">公式サイト <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8em; margin-left:2px;"></i></a>
+                                    </p>
+                                    <div class="spot-info">
+                                        <span class="info-label">ここがお得！:</span> 周辺散策は無料
+                                    </div>
+                                    <a href="https://www.google.com/maps/dir/?api=1&origin=京都駅&destination=清水寺" target="_blank" rel="noopener noreferrer" class="destination-access access-link">
+                                        <span class="transit-badge">バス約20分</span>
+                                        <i class="fa-solid fa-map-location-dot" style="margin-left: auto; color: #94a3b8;"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                </div>
-            </div>
-                </div>
-            </div>
                 </div>
             </div>
         </section>

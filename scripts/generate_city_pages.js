@@ -216,16 +216,18 @@ function parseExistingStaticSections(cityEn) {
     const html = fs.readFileSync(filePath, 'utf8');
 
     // 1. Budget Guide Contentの抽出
+    // budget-guideセクションはglass-containerを持つ構造のため、そのコメントタグの後ろのコンテンツを取得する
     let budgetGuide = '';
-    const budgetRegex = /<section[^>]*id="budget-guide"[^>]*>[\s\S]*?<div[^>]*class="section-header"[^>]*>[\s\S]*?<\/div>([\s\S]*?)<\/section>/i;
+    const budgetRegex = /id="budget-guide"[\s\S]*?<!--[^>]*generate_city_pages[\s\S]*?-->\s*([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>\s*<\/section>/i;
     const budgetMatch = html.match(budgetRegex);
     if (budgetMatch && budgetMatch[1]) {
         budgetGuide = budgetMatch[1].trim();
     }
 
     // 2. Gateways (Access) Contentの抽出
+    // destinationsセクションはsection-headerクラスのdivを持つため、その直後のコンテンツを取得する
     let gateways = '';
-    const destRegex = /<section[^>]*id="destinations"[^>]*>[\s\S]*?<div[^>]*class="section-header"[^>]*>[\s\S]*?<\/div>([\s\S]*?)<\/section>/i;
+    const destRegex = /id="destinations"[\s\S]*?<div[^>]*class="section-header"[^>]*>[\s\S]*?<\/div>\s*([\s\S]*?)<\/div>\s*<\/div>\s*<\/section>/i;
     const destMatch = html.match(destRegex);
     if (destMatch && destMatch[1]) {
         gateways = destMatch[1].trim();
