@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="background-animation" style="background-image: url('../bg_{{CITY_EN}}_1776258940200.png'), url('../bg_{{CITY_EN}}.png'); background-size: cover; background-position: center;">
+    <div class="background-animation" style="background-image: {{HERO_BG_IMAGE}}; background-size: cover; background-position: center;">
         <div class="glow glow-1"></div>
         <div class="glow glow-2"></div>
         <div class="glow glow-3"></div>
@@ -85,7 +85,7 @@
                 <p class="update-time" style="font-size: 0.85rem; color: #94a3b8; text-align: right; margin-bottom: 1rem;">最終更新: {{UPDATE_TIME}}</p>
                 
                 <!-- 最安値プラン -->
-                <div id="hotels-container-deals" class="hotels-grid tab-content-gridactive" style="display: grid;">
+                <div id="hotels-container-deals" class="hotels-grid tab-content-grid active" style="display: grid;">
                     {{HOTELS_DEALS}}
                 </div>
 

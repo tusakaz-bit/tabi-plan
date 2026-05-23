@@ -9,12 +9,12 @@ const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 const TEMPLATE_PATH = path.join(__dirname, 'themes/city_template.html');
 
 const CITIES = [
-    { name: '東京', en: 'tokyo',   middle: 'tokyo',   small: 'tokyo',   detail: 'A', baseStation: '東京' },
-    { name: '大阪', en: 'osaka',   middle: 'osaka',   small: 'shi',     detail: 'D', baseStation: '大阪・梅田' },
-    { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B', baseStation: '京都' },
-    { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B', baseStation: '札幌' },
-    { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '', baseStation: '那覇空港' },
-    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多' }
+    { name: '東京', en: 'tokyo',   middle: 'tokyo',   small: 'tokyo',   detail: 'A', baseStation: '東京', bgImage: "url('../bg_tokyo_1776258940200.png'), url('../bg_tokyo.png')" },
+    { name: '大阪', en: 'osaka',   middle: 'osaka',   small: 'shi',     detail: 'D', baseStation: '大阪・梅田', bgImage: "url('../bg_osaka_1775740031415.png'), url('../bg_osaka.png')" },
+    { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B', baseStation: '京都', bgImage: "url('../bg_kyoto_night_1776398726246.png'), url('../bg_kyoto.png')" },
+    { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B', baseStation: '札幌', bgImage: "url('../bg_sapporo_japanese_dark_hero_1776434374881.png'), url('../bg_sapporo.png')" },
+    { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '', baseStation: '那覇空港', bgImage: "url('../bg_okinawa_japanese_dark_hero_beach_1776487605725.png'), url('../bg_okinawa.png')" },
+    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多', bgImage: "url('../bg_fukuoka.png')" }
 ];
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -216,35 +216,19 @@ function parseExistingStaticSections(cityEn) {
     const html = fs.readFileSync(filePath, 'utf8');
 
     // 1. Budget Guide Contentの抽出
-    // index.htmlの <h3 class="section-title" style="margin-bottom: 1rem;">... Budget Guide</h3> の下にある
-    // <div class="budget-category" ...> 〜 </div> </div> までの部分を正規表現で探します。
-    // (都市固有の0円スポットや格安グルメカード部分)
     let budgetGuide = '';
-    const budgetStartTag = '<p class="section-subtitle">宿泊費を浮かせた分、';
-    const budgetStartIndex = html.indexOf(budgetStartTag);
-    if (budgetStartIndex !== -1) {
-        // 次の </div> （つまり glass-container の終わり）の手前までを抜き出す
-        const containerEndIndex = html.indexOf('</div>\n            </div>\n        </section>', budgetStartIndex);
-        if (containerEndIndex !== -1) {
-            // スナップショットを抜き出す
-            const subText = html.substring(budgetStartIndex, containerEndIndex);
-            // 最初の改行以降を取得
-            const firstNewLine = subText.indexOf('\n');
-            if (firstNewLine !== -1) {
-                budgetGuide = subText.substring(firstNewLine).trim();
-            }
-        }
+    const budgetRegex = /<section[^>]*id="budget-guide"[^>]*>[\s\S]*?<div[^>]*class="section-header"[^>]*>[\s\S]*?<\/div>([\s\S]*?)<\/section>/i;
+    const budgetMatch = html.match(budgetRegex);
+    if (budgetMatch && budgetMatch[1]) {
+        budgetGuide = budgetMatch[1].trim();
     }
 
     // 2. Gateways (Access) Contentの抽出
     let gateways = '';
-    const gatewayStartTag = '<div class="city-grid">';
-    const gatewayStartIndex = html.indexOf(gatewayStartTag);
-    if (gatewayStartIndex !== -1) {
-        const gatewayEndIndex = html.indexOf('</div>\n            </div>\n        </section>', gatewayStartIndex);
-        if (gatewayEndIndex !== -1) {
-            gateways = html.substring(gatewayStartIndex + gatewayStartTag.length, gatewayEndIndex).trim();
-        }
+    const destRegex = /<section[^>]*id="destinations"[^>]*>[\s\S]*?<div[^>]*class="section-header"[^>]*>[\s\S]*?<\/div>([\s\S]*?)<\/section>/i;
+    const destMatch = html.match(destRegex);
+    if (destMatch && destMatch[1]) {
+        gateways = destMatch[1].trim();
     }
 
     // フォールバック
@@ -399,6 +383,7 @@ async function run() {
         const data = {
             '{{CITY_NAME}}': city.name,
             '{{CITY_EN}}': city.en,
+            '{{HERO_BG_IMAGE}}': city.bgImage,
             '{{META_DESCRIPTION}}': aiContent?.metaDescription || '',
             '{{JSON_LD}}': jsonLdString,
             '{{HERO_TITLE}}': (aiContent?.heroTitle || `次の旅を、\n${city.name}の中心から。`).replace(/\n/g, '<br>'),
