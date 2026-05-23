@@ -55,15 +55,18 @@ ${tagsXml}
                 ...getWsseAuthHeaders()
             }
         });
-        console.log('Successfully posted to Hatena Blog (Published):', response.status);
+        console.log(`Successfully posted to Hatena Blog (Published): ${title} (Status: ${response.status})`);
     } catch (error) {
-        console.error('Error posting to Hatena Blog:', error.response ? error.response.status : '', error.response ? error.response.data : error.message);
-        process.exit(1);
+        console.error(`Error posting to Hatena Blog [${title}]:`, error.response ? error.response.status : '', error.response ? error.response.data : error.message);
+        // 全体が止まらないようにエラーをスローしないが、ログは残す
     }
 }
 
+// レートリミット回避のためのスリープ関数
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function run() {
-    console.log('Starting Hatena Blog auto-post...');
+    console.log('Starting Hatena Blog auto-post (Per-city specialized posts)...');
 
     // 今日の曜日を取得 (0=日, 1=月, ..., 6=土)
     const now = new Date();
@@ -86,17 +89,33 @@ async function run() {
 
     console.log(`Today is day ${dayOfWeek}, running theme: ${displayCategory}`);
 
-    const { title, body, tags } = await currentTheme.generate();
+    // 都市ごとの記事配列（6記事分）を取得
+    const articles = await currentTheme.generate();
 
-    if (!body || body.indexOf('📍') === -1) {
-        console.log('No hotel data found for today\'s theme.');
+    if (!articles || articles.length === 0) {
+        console.log('No hotel data found for today\'s theme across all cities.');
         return;
     }
 
-    // 表示用のカテゴリーをタグに追加（既存のタグとマージ）
-    const finalTags = Array.from(new Set([displayCategory, ...(tags || [])]));
+    console.log(`Found ${articles.length} articles to post. Proceeding with sequential posting...`);
 
-    await postToHatena(title, body, finalTags);
+    for (let i = 0; i < articles.length; i++) {
+        const article = articles[i];
+        
+        // 表示用のカテゴリーをタグに追加（既存のタグとマージ）
+        const finalTags = Array.from(new Set([displayCategory, ...(article.tags || [])]));
+
+        console.log(`[${i + 1}/${articles.length}] Posting: ${article.title}`);
+        await postToHatena(article.title, article.body, finalTags);
+
+        // 最後の記事以外は、APIのレート制限（Rate Limit）を避けるために3秒待機
+        if (i < articles.length - 1) {
+            console.log('Sleeping for 3 seconds to avoid rate limits...');
+            await sleep(3000);
+        }
+    }
+    
+    console.log('All Hatena blog posts completed successfully.');
 }
 
 run();
