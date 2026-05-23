@@ -20,13 +20,11 @@ async function run() {
     console.log('Generating daily X post drafts (1 city focused thread)...');
 
     const now = new Date();
-    // 翌日の日付を計算（準備して翌朝投稿することを想定）
-    const tomorrow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    
-    const dayOfWeek = tomorrow.getDay(); // 投稿日の曜日 (0=日, 1=月, ..., 6=土)
+    // 実行日のJST日付を取得（はてなブログと完全に連動）
+    const jstDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const dayOfWeek = jstDate.getDay(); // 実行日の曜日 (0=日, 1=月, ..., 6=土)
 
-    // X用のテーマ定義（はてなと連動）
+    // X用のテーマ定義（はてなと完全に連動）
     const themes = [
         { name: "長期滞在・連泊向き", sort: 'cheap', minReview: 3.5, keywordSuffix: ' 連泊', hashtag: '#ワーケーション' }, // 0:日
         { name: "格安・コスパ最強", sort: 'cheap', minReview: 3.5, keywordSuffix: '', hashtag: '#格安旅行' }, // 1:月
@@ -37,11 +35,13 @@ async function run() {
         { name: "朝食が美味しい", sort: 'review', minReview: 4.0, keywordSuffix: ' 朝食', hashtag: '#ホテル朝食' } // 6:土
     ];
 
-    // 都市のローテーション（曜日ベースで日替わり: 0=東京, 1=大阪, ... 5=福岡, 6=東京に戻る）
-    const city = CITIES[dayOfWeek % CITIES.length];
+    // エポック日数（JST基準）を用いて、6都市が毎日均等に順次循環するようにローテーションを改善
+    const msInDay = 24 * 60 * 60 * 1000;
+    const epochDays = Math.floor((jstDate.getTime() + 9 * 60 * 60 * 1000) / msInDay);
+    const city = CITIES[epochDays % CITIES.length];
     const t = themes[dayOfWeek];
 
-    console.log(`Target City: ${city.name}, Theme: ${t.name}`);
+    console.log(`Target City: ${city.name}, Theme: ${t.name} (dayOfWeek: ${dayOfWeek}, epochDays: ${epochDays})`);
 
     const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426';
     const params = {
@@ -65,19 +65,18 @@ async function run() {
         return;
     }
 
-    // Xの全角140文字（半角280文字）制限に収まるようにPR文を抽出
-    // 固定テキストが約80〜90文字あるため、PR文は最大45文字に制限
-    const prText = truncateString(hotel.special, 45);
+    // Xの全角140文字（半角280文字）制限に確実に収まるようPR文の文字数を30文字に制限
+    const prText = truncateString(hotel.special, 30);
 
-    // 親ツイート（フック）
-    const tweet1 = `【〇〇ホテルが凄すぎる…】
-本日の${city.name}エリア、「${t.name}」の宿を発見しました✨
-楽天トラベルで★${hotel.reviewAverage || '-'}の高評価！
+    // 親ツイート（フック - 140文字制限に安全に収まるスッキリとした文言にリファクタリング）
+    const tweet1 = `【激推しの宿発見…】
+本日の${city.name}×${t.name}おすすめ宿✨
+楽天★${hotel.reviewAverage || '-'}の超高評価ホテル！
 
 「${prText}」
 
-これでお値段${Number(hotel.price).toLocaleString()}円〜は破格です😭
-旅行予定の方、絶対にチェックしてください👇
+このクオリティで1泊${Number(hotel.price).toLocaleString()}円〜は凄すぎる😭
+詳細＆予約はスレッドへ👇
 #${city.name}旅行 ${t.hashtag}`;
 
     // 子ツイート（送客・リンク）
