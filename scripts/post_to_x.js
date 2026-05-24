@@ -79,14 +79,13 @@ async function run() {
 詳細＆予約はスレッドへ👇
 #${city.name}旅行 ${t.hashtag}`;
 
-    // 子ツイート（送客・リンク）
+    // 子ツイート（送客・リンク：生のアフィリエイトリンクを廃止し、Tabi Planの各都市ページに一本化）
     const tweet2 = `🏨 ${hotel.name}
 
-▼空室状況・詳細（楽天ポイントも貯まります！）
-${hotel.url}
+▼空室状況・詳細（楽天ポイントも貯まります！）や観光ガイドはこちら👇
+${BASE_URL}/${city.id}/
 
-▼${city.name}の絶景スポットや格安グルメ、穴場情報はTabi Plan公式サイトへ！
-${BASE_URL}/${city.id}/`;
+絶景スポットや格安グルメ、穴場情報をTabi Planで詳しく紹介しています✨`;
 
     // --- Generate GitHub Actions Summary (Markdown) ---
     let summaryMarkdown = `
