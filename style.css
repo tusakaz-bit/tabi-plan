@@ -1069,7 +1069,8 @@ a {
 }
 
 /* コラム内の太字部分（スポット名など）のスタイル */
-.city-guide-column strong {
+.city-guide-column strong,
+.city-guide-column b {
     color: var(--text-primary);
     font-weight: 700;
 }
