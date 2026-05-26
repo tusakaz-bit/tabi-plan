@@ -55,6 +55,45 @@
             font-weight: 800;
             line-height: 1.4;
         }
+
+        /* ピル型タブUIのスタイル */
+        .filter-tabs-container {
+            margin-top: 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 10px; /* スクロールバー用の余白 */
+            scrollbar-width: none; /* Firefox */
+        }
+        .filter-tabs-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Edge */
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            padding: 0 5px;
+        }
+        .filter-tab {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .filter-tab:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .filter-tab.active {
+            background: #D4AF37;
+            color: #000;
+            border-color: #D4AF37;
+        }
     </style>
 </head>
 <body style="background-color: #0F0F12;">
@@ -69,10 +108,22 @@
             <p class="section-subtitle">これまでご紹介した「賢く、美しい名宿」たちの記録</p>
         </div>
 
+        <div class="filter-tabs-container">
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-filter="all">すべて</div>
+                <div class="filter-tab" data-filter="tokyo">東京</div>
+                <div class="filter-tab" data-filter="osaka">大阪</div>
+                <div class="filter-tab" data-filter="kyoto">京都</div>
+                <div class="filter-tab" data-filter="sapporo">札幌</div>
+                <div class="filter-tab" data-filter="okinawa">沖縄</div>
+                <div class="filter-tab" data-filter="fukuoka">福岡</div>
+            </div>
+        </div>
+
         <div class="archive-grid">
 
             <!-- ホリデイ・イン＆スイーツ札幌大通公園　ｂｙ　ＩＨＧ -->
-            <a href="2026-05-26-horideiin-sutsu-sapporo-daits.html" class="archive-card">
+            <a href="2026-05-26-horideiin-sutsu-sapporo-daits.html" class="archive-card" data-city="sapporo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/196890/196890.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -84,7 +135,7 @@
             </a>
 
             <!-- チェックイン四条烏丸 -->
-            <a href="2026-05-25-chekkuin-shijo-karasuma-kyoto.html" class="archive-card">
+            <a href="2026-05-25-chekkuin-shijo-karasuma-kyoto.html" class="archive-card" data-city="kyoto">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/140720/140720.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -96,7 +147,7 @@
             </a>
 
             <!-- ホリデイ・イン＆スイーツ札幌大通公園　ｂｙ　ＩＨＧ -->
-            <a href="2026-05-24-horideiin-sutsu-sapporo-daits.html" class="archive-card">
+            <a href="2026-05-24-horideiin-sutsu-sapporo-daits.html" class="archive-card" data-city="sapporo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/196890/196890.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -108,7 +159,7 @@
             </a>
 
             <!-- ホテルモントレ京都 -->
-            <a href="2026-05-23-hotel-montore-kyoto.html" class="archive-card">
+            <a href="2026-05-23-hotel-montore-kyoto.html" class="archive-card" data-city="kyoto">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/55347/55347.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -120,7 +171,7 @@
             </a>
 
             <!-- 博多グリーンホテル１号館 -->
-            <a href="2026-05-21-hakata-gurn-hotel-1-fukuoka.html" class="archive-card">
+            <a href="2026-05-21-hakata-gurn-hotel-1-fukuoka.html" class="archive-card" data-city="fukuoka">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/147709/147709.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -132,7 +183,7 @@
             </a>
 
             <!-- 都シティ　大阪天王寺 -->
-            <a href="2026-05-20-to-shiti-osaka-tennji.html" class="archive-card">
+            <a href="2026-05-20-to-shiti-osaka-tennji.html" class="archive-card" data-city="osaka">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/1145/1145.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -144,7 +195,7 @@
             </a>
 
             <!-- Ｒａｋｕｔｅｎ　ＳＴＡＹ　ＵＲＢＡＮ　京都四条大宮（旧：ホテルメルディア京都四条大宮） -->
-            <a href="2026-05-19-kyoto-shijo-miya-ky.html" class="archive-card">
+            <a href="2026-05-19-kyoto-shijo-miya-ky.html" class="archive-card" data-city="kyoto">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/187156/187156.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -156,7 +207,7 @@
             </a>
 
             <!-- 札幌ビューホテル大通公園 -->
-            <a href="2026-05-18-sapporo-by-hotel-daits.html" class="archive-card">
+            <a href="2026-05-18-sapporo-by-hotel-daits.html" class="archive-card" data-city="sapporo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/1430/1430.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -168,7 +219,7 @@
             </a>
 
             <!-- 京急ＥＸイン　東京・日本橋 -->
-            <a href="2026-05-17-ky-ky-in-tokyo.html" class="archive-card">
+            <a href="2026-05-17-ky-ky-in-tokyo.html" class="archive-card" data-city="tokyo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/178446/178446.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -179,7 +230,7 @@
                 </div>
             </a>
             <!-- 石狩の湯　ドーミーインＰＲＥＭＩＵＭ札幌（ドーミーイン・御宿野乃　ホテルズグループ） -->
-            <a href="2026-05-16-ishikari-no-yu-dmin-sapporo.html" class="archive-card">
+            <a href="2026-05-16-ishikari-no-yu-dmin-sapporo.html" class="archive-card" data-city="sapporo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/14019/14019.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -190,7 +241,7 @@
                 </div>
             </a>
             <!-- ＴＨＥ　ＮＥＳＴ那覇 -->
-            <a href="2026-05-15-naha-okinawa.html" class="archive-card">
+            <a href="2026-05-15-naha-okinawa.html" class="archive-card" data-city="okinawa">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/196246/196246.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -201,7 +252,7 @@
                 </div>
             </a>
             <!-- ホテルアールワン北心斎橋 -->
-            <a href="2026-05-14-hotel-arufwan-kita-shinsaibashi-osaka.html" class="archive-card">
+            <a href="2026-05-14-hotel-arufwan-kita-shinsaibashi-osaka.html" class="archive-card" data-city="osaka">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/141088/141088.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -212,7 +263,7 @@
                 </div>
             </a>
             <!-- The Okura Tokyo -->
-            <a href="2026-05-09-the-okura-tokyo.html" class="archive-card">
+            <a href="2026-05-09-the-okura-tokyo.html" class="archive-card" data-city="tokyo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/184582/184582.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -224,7 +275,7 @@
             </a>
 
             <!-- The Hotel Seiryu Kyoto Kiyomizu -->
-            <a href="2026-05-07-hotel-seiryu-kyoto.html" class="archive-card">
+            <a href="2026-05-07-hotel-seiryu-kyoto.html" class="archive-card" data-city="kyoto">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/188124/188124.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -236,7 +287,7 @@
             </a>
 
             <!-- Halekulani Okinawa -->
-            <a href="2026-05-06-halekulani-okinawa.html" class="archive-card">
+            <a href="2026-05-06-halekulani-okinawa.html" class="archive-card" data-city="okinawa">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/172611/172611.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -247,7 +298,7 @@
                 </div>
             </a>
             <!-- Ace Hotel Kyoto -->
-            <a href="2026-05-03-ace-hotel-kyoto.html" class="archive-card">
+            <a href="2026-05-03-ace-hotel-kyoto.html" class="archive-card" data-city="kyoto">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/183710/183710.jpg')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -259,7 +310,7 @@
             </a>
 
             <!-- Blossom Hakata -->
-            <a href="2026-05-01-blossom-hakata.html" class="archive-card">
+            <a href="2026-05-01-blossom-hakata.html" class="archive-card" data-city="fukuoka">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/172876/172876.jpg?v=3')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -271,7 +322,7 @@
             </a>
 
             <!-- Yuen Sapporo -->
-            <a href="2026-04-28-yuen-sapporo.html" class="archive-card">
+            <a href="2026-04-28-yuen-sapporo.html" class="archive-card" data-city="sapporo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/179353/179353.jpg?v=3')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -283,7 +334,7 @@
             </a>
 
             <!-- Zentis Osaka -->
-            <a href="2026-04-24-zentis-osaka.html" class="archive-card">
+            <a href="2026-04-24-zentis-osaka.html" class="archive-card" data-city="osaka">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/180526/180526.jpg?v=3')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -295,7 +346,7 @@
             </a>
 
             <!-- Hisoca -->
-            <a href="2026-04-22-hotel-hisoca.html" class="archive-card">
+            <a href="2026-04-22-hotel-hisoca.html" class="archive-card" data-city="tokyo">
                 <div class="archive-image" style="background-image: url('https://img.travel.rakuten.co.jp/share/HOTEL/183423/183423.jpg?v=2')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
@@ -313,5 +364,36 @@
     <footer style="text-align: center; padding: 4rem; color: rgba(255,255,255,0.1); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
         &copy; 2026 Tabi Plan. Smart & Beautiful Travels.
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.filter-tab');
+            const cards = document.querySelectorAll('.archive-card');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // タブのアクティブ状態を切り替え
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // 選択された都市を取得
+                    const selectedCity = tab.getAttribute('data-filter');
+
+                    // カードのフィルタリング
+                    cards.forEach(card => {
+                        if (selectedCity === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            if (card.getAttribute('data-city') === selectedCity) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>

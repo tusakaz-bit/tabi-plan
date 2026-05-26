@@ -41,7 +41,7 @@ async function updateIndexHtml(articleData, city) {
     let archiveHtml = fs.readFileSync(archivePath, 'utf8');
     const newArchiveCard = `
             <!-- ${articleData.info.hotelName} -->
-            <a href="${articleData.fileName}" class="archive-card">
+            <a href="${articleData.fileName}" class="archive-card" data-city="${city.en}">
                 <div class="archive-image" style="background-image: url('${articleData.info.hotelImageUrl}')">
                     <div class="rakuten-credit">Rakuten Travel</div>
                 </div>
