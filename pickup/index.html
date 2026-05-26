@@ -59,19 +59,14 @@
         /* ピル型タブUIのスタイル */
         .filter-tabs-container {
             margin-top: 2rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 10px; /* スクロールバー用の余白 */
-            scrollbar-width: none; /* Firefox */
-        }
-        .filter-tabs-container::-webkit-scrollbar {
-            display: none; /* Chrome/Safari/Edge */
+            margin-bottom: 2rem;
         }
         .filter-tabs {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
-            padding: 0 5px;
+            padding: 0;
         }
         .filter-tab {
             background: rgba(255,255,255,0.05);
