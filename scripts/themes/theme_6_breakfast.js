@@ -21,7 +21,7 @@ async function generate() {
         if (hotels && hotels.length > 0) {
             const title = `【${getDateString()}版・${city.name}】朝食が美味しい！口コミ高評価のホテル厳選3施設 - Tabi Plan`;
             const intro = `Tabi Plan AIが厳選した、本日の${city.name}エリアの「朝食が美味しい」高評価ホテルをお届けします。<br>地元の食材を活かした絶品朝食で、最高の1日のスタートを。`;
-            const body = generateHtmlBody(city, intro, hotels);
+            const body = await generateHtmlBody(city, intro, hotels);
             const tags = ["国内旅行", "ホテル", "楽天トラベル", "朝食バイキング", "ホテル朝食", city.name, "TabiPlan"];
             articles.push({ city: city.id, title, body, tags });
         }

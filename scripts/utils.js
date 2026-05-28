@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { GoogleGenAI } = require('@google/genai');
 
 const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
@@ -60,21 +61,61 @@ async function fetchRakutenApi(url, params, minReviewScore = 3.5, sortType = 'ch
     return [];
 }
 
-function generateHtmlBody(city, intro, hotels) {
+// Gemini APIを使用して、はてなブログ用のCVR特化型オリジナル紹介文を生成する
+async function generateHatenaAIContent(hotelInfo) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) return null;
+
+    try {
+        const ai = new GoogleGenAI({ apiKey });
+        const prompt = `
+以下のホテル情報をもとに、ブログの紹介文として「客観的ロジック（なぜ安い・お得なのか）」と「緊急性・限定性（なぜ今すぐ予約すべきか）」を含んだ、読者を強烈に惹きつける日本語のオリジナル文章（約150〜200文字）を生成してください。
+楽天APIの元の説明文のコピペは禁止です。
+
+【ホテル情報】
+ホテル名: ${hotelInfo.name}
+キャッチコピー: ${hotelInfo.special || 'なし'}
+最安料金目安: ${hotelInfo.price ? hotelInfo.price + '円〜' : '不明'}
+クチコミ評価: ${hotelInfo.reviewAverage || '4.0'} / 5.0
+
+【出力フォーマット】
+プレーンなテキスト（段落タグ不要）で出力してください。
+`;
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: prompt,
+        });
+        return response.text.trim();
+    } catch (e) {
+        console.error("Error generating AI content for Hatena:", e);
+        return null;
+    }
+}
+
+async function generateHtmlBody(city, intro, hotels) {
     let body = `<p>${intro}</p>\n<hr />\n`;
 
-    hotels.forEach((hotel, index) => {
+    for (let index = 0; index < hotels.length; index++) {
+        const hotel = hotels[index];
         // レビューの星表示を作成
         let reviewHtml = '';
         if (hotel.reviewAverage) {
             reviewHtml = `<p style="font-size: 0.95rem; color: #f39c12; margin: 5px 0; font-weight: bold;">★ ${hotel.reviewAverage} <span style="color: #666; font-size: 0.8rem; font-weight: normal;">(${hotel.reviewCount}件の評価)</span></p>`;
         }
 
-        // 自然な推薦文の抽出（ぶつ切りを防ぐ）
-        let specialText = hotel.special || '';
-        // 最初の文（。！？まで）、またはある程度キリの良いところで切る
-        let match = specialText.match(/^([^。！？]{10,120}[。！？])/);
-        let naturalDesc = match ? match[1] : (specialText.length > 120 ? specialText.substring(0, 120) + '...' : specialText);
+        // Gemini AIでCVR特化のオリジナル紹介文を生成
+        console.log(`Generating AI intro for Hatena: ${hotel.name}...`);
+        let aiDescription = await generateHatenaAIContent(hotel);
+        
+        // AI生成に失敗した場合は従来のテキスト抽出にフォールバック
+        if (!aiDescription) {
+            let specialText = hotel.special || '';
+            let match = specialText.match(/^([^。！？]{10,120}[。！？])/);
+            aiDescription = match ? match[1] : (specialText.length > 120 ? specialText.substring(0, 120) + '...' : specialText);
+        }
+
+        // AIのロジックを強調するバッジ表記
+        const aiBadgeHtml = `<span style="background: #e2e8f0; color: #334155; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px; font-weight: bold; margin-bottom: 5px; display: inline-block;">AI価格解析結果</span><br>`;
 
         body += `
 <h3 style="border-left: 5px solid #D4AF37; padding-left: 15px; margin-top: 30px; margin-bottom: 15px;">${index + 1}. ${hotel.name}</h3>
@@ -85,26 +126,26 @@ function generateHtmlBody(city, intro, hotels) {
     </div>
     <div style="flex: 2; min-width: 250px;">
         ${reviewHtml}
-        <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.6; background: #fff; padding: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">${naturalDesc}</p>
-        <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold; margin-bottom: 15px;">最安料金：${Number(hotel.price).toLocaleString()}円〜</p>
-        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #D4AF37; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box;">楽天トラベルで空室状況・詳細を見る</a></p>
+        <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.6; background: #fff; padding: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">${aiBadgeHtml}${aiDescription}</p>
+        <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold; margin-bottom: 15px;">最安料金目安：${Number(hotel.price).toLocaleString()}円〜</p>
+        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #D4AF37; color: white; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem;">最安値プランを楽天トラベルで確認する<br><span style="font-size: 0.75rem; font-weight: normal;">（※空室残りわずか）</span></a></p>
     </div>
 </div>
 `;
-    });
+    }
 
     body += `
 <hr style="margin-top: 40px;" />
 <div style="background: #e2e8f0; padding: 25px; border-radius: 8px; text-align: center;">
     <h4 style="margin-top: 0; color: #334155; font-size: 1.2rem;">✨ ${city.name}の観光をもっと楽しむなら ✨</h4>
     <p style="font-size: 0.95rem; color: #475569; margin-bottom: 20px; line-height: 1.6;">
-        周辺の絶景スポットや格安グルメ、知る人ぞ知る穴場情報は、公式サイトの特設ページで詳しく解説しています！
+        宿泊費を賢く抑えた予算で、旅先でしかできない極上の体験を。地元民しか知らない隠れ家スポットや、賢く贅沢な旅（Smart & Luxury）のプランニングは、Tabi Plan公式サイトで！
     </p>
     <a href="https://tabi-plan.org/${city.id}/" style="display: inline-block; background: #334155; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        Tabi Plan ${city.name}ガイドを見る
+        Tabi Plan ${city.name}特設ガイドを見る
     </a>
 </div>
-<p style="font-size: 0.8rem; color: #94a3b8; text-align: right; margin-top: 15px;">※表示価格や評価は投稿時点のものです。最新の情報はリンク先をご確認ください。</p>`;
+<p style="font-size: 0.8rem; color: #94a3b8; text-align: right; margin-top: 15px;">※表示価格や評価はAI解析時点のものです。最新の情報はリンク先で必ずご確認ください。</p>`;
     
     return body;
 }

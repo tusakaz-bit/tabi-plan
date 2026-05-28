@@ -21,7 +21,7 @@ async function generate() {
         if (hotels && hotels.length > 0) {
             const title = `【${getDateString()}版・${city.name}】長期滞在・ワーケーションにおすすめ！連泊プラン厳選3施設 - Tabi Plan`;
             const intro = `Tabi Plan AIが厳選した、本日の${city.name}エリアの「長期滞在・連泊」向け高コスパホテルをお届けします。<br>ワーケーションや出張、じっくり観光したい方に最適です。`;
-            const body = generateHtmlBody(city, intro, hotels);
+            const body = await generateHtmlBody(city, intro, hotels);
             const tags = ["国内旅行", "ホテル", "楽天トラベル", "ワーケーション", "長期滞在", city.name, "TabiPlan"];
             articles.push({ city: city.id, title, body, tags });
         }

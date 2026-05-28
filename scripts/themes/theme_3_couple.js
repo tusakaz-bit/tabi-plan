@@ -21,7 +21,7 @@ async function generate() {
         if (hotels && hotels.length > 0) {
             const title = `【${getDateString()}版・${city.name}】カップル・記念日におすすめ！高評価ホテル厳選3施設 - Tabi Plan`;
             const intro = `Tabi Plan AIが厳選した、本日の${city.name}エリアの「カップル・記念日向け」高評価ホテルをお届けします。<br>特別な日の思い出作りにぴったりな、素敵な宿を厳選しました。`;
-            const body = generateHtmlBody(city, intro, hotels);
+            const body = await generateHtmlBody(city, intro, hotels);
             const tags = ["国内旅行", "ホテル", "楽天トラベル", "カップル", "記念日旅行", city.name, "TabiPlan"];
             articles.push({ city: city.id, title, body, tags });
         }

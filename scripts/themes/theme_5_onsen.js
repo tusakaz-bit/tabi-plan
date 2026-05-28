@@ -21,7 +21,7 @@ async function generate() {
         if (hotels && hotels.length > 0) {
             const title = `【${getDateString()}版・${city.name}】週末前に癒しを！露天風呂・温泉付きホテル厳選3施設 - Tabi Plan`;
             const intro = `Tabi Plan AIが厳選した、本日の${city.name}エリアの「露天風呂・温泉付き」高評価ホテルをお届けします。<br>日々の疲れを癒やす、極上のリラックスタイムをお過ごしください。`;
-            const body = generateHtmlBody(city, intro, hotels);
+            const body = await generateHtmlBody(city, intro, hotels);
             const tags = ["国内旅行", "ホテル", "楽天トラベル", "温泉", "露天風呂", "癒し旅", city.name, "TabiPlan"];
             articles.push({ city: city.id, title, body, tags });
         }

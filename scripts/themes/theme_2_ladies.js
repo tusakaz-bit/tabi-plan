@@ -21,7 +21,7 @@ async function generate() {
         if (hotels && hotels.length > 0) {
             const title = `【${getDateString()}版・${city.name}】女性の一人旅にも！安心・快適なレディースプラン厳選3施設 - Tabi Plan`;
             const intro = `Tabi Plan AIが厳選した、本日の${city.name}エリアの「レディースプラン」高評価ホテルをお届けします。<br>女性の一人旅でも安心・快適に過ごせる極上の空間です。`;
-            const body = generateHtmlBody(city, intro, hotels);
+            const body = await generateHtmlBody(city, intro, hotels);
             const tags = ["国内旅行", "ホテル", "楽天トラベル", "レディースプラン", "女子旅", city.name, "TabiPlan"];
             articles.push({ city: city.id, title, body, tags });
         }

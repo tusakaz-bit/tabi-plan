@@ -21,7 +21,7 @@ async function generate() {
         if (hotels && hotels.length > 0) {
             const title = `【${getDateString()}版・${city.name}】コスパ最強！格安ホテルプラン厳選3施設 - Tabi Plan`;
             const intro = `Tabi Plan AIが厳選した、本日の${city.name}エリアの「高コスパ・格安」宿泊プラン（レビュー3.5以上）をお届けします。<br>賢く、お得な旅の計画にお役立てください。`;
-            const body = generateHtmlBody(city, intro, hotels);
+            const body = await generateHtmlBody(city, intro, hotels);
             const tags = ["国内旅行", "ホテル", "楽天トラベル", "格安旅行", city.name, "TabiPlan"];
             articles.push({ city: city.id, title, body, tags });
         }
