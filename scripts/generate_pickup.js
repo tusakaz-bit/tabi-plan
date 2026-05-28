@@ -196,7 +196,11 @@ async function generateAIContent(info) {
         
         const prompt = `
 以下のホテル情報をもとに、旅行予約サイトの紹介記事として、魅力的かつSEOに最適化されたオリジナルの文章（日本語）を生成してください。
-楽天APIの元の説明文（コピペ）を絶対にそのまま使わず、完全オリジナルの文章を作成してください。
+楽天APIの元の説明文をそのまま使わず、完全オリジナルの文章を作成してください。
+
+【重要ルール：CVR（成約率）を最大化するライティング】
+単なるホテルのスペック紹介ではなく、「客観的ロジック（なぜこの宿が今一番お得なのか）」と「緊急性・限定性（なぜ今すぐ予約すべきか）」を必ず含めてください。
+「AIが過去の価格やコスパ評価を解析した結果、今が最もお得である」という文脈で説得力を持たせてください。
 
 【ホテル情報】
 ホテル名: ${info.hotelName}
@@ -212,12 +216,12 @@ ${info.hotelInformationEmail || 'なし'}
 以下のJSONフォーマット（プレーンなJSONオブジェクトのみ、Markdownの\`\`\`json等のコードブロック囲みは不要）で出力してください。
 
 {
-  "metaDescription": "120文字〜140文字程度で、検索エンジン向けにホテルの魅力を簡潔にまとめ、検索結果でクリックしたくなるような紹介文。",
+  "metaDescription": "120文字程度で、検索エンジン向けにホテルの魅力を簡潔にまとめ、クリックしたくなるような紹介文。",
   "catchcopy": "ホテルの魅力を表現した、キャッチーで短い一行のキャッチコピー。",
-  "smartPoint": "100文字程度で、コスパや評価、独自の強み（『賢い選択』）を客観的・論理的に解説する文章。",
-  "beautifulPoint": "100文字程度で、デザインや空間、サービスなどの情緒的な魅力（『美しき滞在』）を美しく表現する文章。",
-  "locationPoint": "100文字程度で、立地やアクセス、周辺観光への利便性（『最高の立地』）を分かりやすく解説する文章。",
-  "detailedDescription": "HTML of <p> tags で囲まれた3〜4つの段落からなる、本格的な宿の紹介記事（全体で600〜800文字程度）。宿泊客が実際に滞在しているシーンが目に浮かぶような、エモーショナルで説得力のあるオリジナルの文章。"
+  "smartPoint": "【AI価格解析】等の言葉を使い、コスパ評価や相場と比較して『なぜ今この価格がバグっている（お得）なのか』を客観的・論理的に解説する文章(100文字)。",
+  "beautifulPoint": "空間の情緒的な魅力と、『浮いた予算でこんな贅沢ができる』という賢いラグジュアリー（Smart & Luxury）の提案(100文字)。",
+  "locationPoint": "立地の良さと、それを活かした旅のメリット(100文字)。",
+  "detailedDescription": "HTMLの<p>タグで囲まれた3つの段落からなる紹介文(全体600文字程度)。1段落目はAIによる厳選理由（客観的ロジック）、2段落目は滞在のエモーショナルな情景、3段落目は『空室が埋まる前に本日中の予約推奨』など、今すぐポチらないと損をする緊急性を煽るクロージング文。"
 }
 `;
 
@@ -275,7 +279,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
     }
 
     // JSON-LDを生成
-    const jsonLd = {
+    const hotelJsonLd = {
         "@context": "https://schema.org",
         "@type": "Hotel",
         "name": info.hotelName,
@@ -292,7 +296,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         "url": `https://tabi-plan.org/pickup/${fileName}`
     };
     if (info.reviewAverage && Number(info.reviewCount) > 0) {
-        jsonLd.aggregateRating = {
+        hotelJsonLd.aggregateRating = {
             "@type": "AggregateRating",
             "ratingValue": String(info.reviewAverage),
             "reviewCount": String(info.reviewCount),
@@ -300,7 +304,30 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
             "worstRating": "1"
         };
     }
-    const jsonLdString = `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`;
+
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": `${info.hotelName} - 本日の注目宿`,
+        "image": info.hotelImageUrl,
+        "datePublished": `${now.toISOString().split('T')[0]}T00:00:00+09:00`,
+        "author": {
+            "@type": "Person",
+            "name": "タビト",
+            "jobTitle": "編集長 / AIデータサイエンティスト×元企画会社社員",
+            "url": "https://tabi-plan.org/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Tabi Plan",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://tabi-plan.org/favicon.svg"
+            }
+        }
+    };
+
+    const jsonLdString = `<script type="application/ld+json">\n${JSON.stringify([hotelJsonLd, articleJsonLd], null, 2)}\n</script>`;
 
     let html = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
