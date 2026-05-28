@@ -69,23 +69,23 @@ async function run() {
     const prText = truncateString(hotel.special, 30);
 
     // 親ツイート（フック - 140文字制限に安全に収まるスッキリとした文言にリファクタリング）
-    const tweet1 = `【激推しの宿発見…】
+    const tweet1 = `💡【AI価格解析】コスパ異常値の宿を発見
 本日の${city.name}×${t.name}おすすめ宿✨
-楽天★${hotel.reviewAverage || '-'}の超高評価ホテル！
+楽天★${hotel.reviewAverage || '-'}の高評価ながら、現在相場と比較して価格がバグっている最安値帯プランです。
 
 「${prText}」
 
-このクオリティで1泊${Number(hotel.price).toLocaleString()}円〜は凄すぎる😭
-詳細＆予約はスレッドへ👇
+このクオリティで1泊${Number(hotel.price).toLocaleString()}円〜は賢すぎる選択。
+🚨※空室が埋まる前にスレッドへ👇
 #${city.name}旅行 ${t.hashtag}`;
 
     // 子ツイート（送客・リンク：生のアフィリエイトリンクを廃止し、Tabi Planの各都市ページに一本化）
     const tweet2 = `🏨 ${hotel.name}
 
-▼空室状況・詳細（楽天ポイントも貯まります！）や観光ガイドはこちら👇
+▼AI厳選の最安値プラン確認と、賢く贅沢な旅（Smart & Luxury）のプランニングはこちら👇
 ${BASE_URL}/${city.id}/
 
-絶景スポットや格安グルメ、穴場情報をTabi Planで詳しく紹介しています✨`;
+宿泊費を賢く抑えた予算で、極上の体験を。Tabi Plan公式サイトで特設ガイド公開中✨`;
 
     // --- Generate GitHub Actions Summary (Markdown) ---
     let summaryMarkdown = `
