@@ -186,6 +186,89 @@
             .glass-card { padding: 1.5rem; }
             .hotel-title { font-size: 2.2rem; }
         }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            padding: 0 5%;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 10;
+        }
+        .breadcrumbs a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 15, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sticky-cta.show {
+            transform: translateY(0);
+        }
+        .sticky-cta .btn-booking {
+            margin: 0;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* FOMO Alert */
+        .fomo-alert {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(255, 255, 255, 0.95);
+            color: #111;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            border: 2px solid var(--accent-gold);
+        }
+        .fomo-alert.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .fomo-alert i {
+            color: #d32f2f;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -204,6 +287,13 @@
     </header>
 
     <main class="article-body">
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <a href="../"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right" style="font-size: 0.6rem;"></i>
+            <a href="./">ピックアップ宿一覧</a>
+            <i class="fas fa-chevron-right" style="font-size: 0.6rem;"></i>
+            <span style="color: rgba(255,255,255,0.9);">{{HOTEL_NAME}}</span>
+        </nav>
         <div class="glass-card">
             <div class="highlights">
                 <div class="highlight-item">
@@ -263,9 +353,64 @@
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 4rem; color: rgba(255,255,255,0.3); font-size: 0.8rem;">
+    <footer style="text-align: center; padding: 4rem; color: rgba(255,255,255,0.3); font-size: 0.8rem; margin-bottom: 5rem;">
         &copy; 2026 Tabi Plan. Smart & Beautiful Travels.
     </footer>
+
+    <div id="fomo-alert" class="fomo-alert">
+        <i class="fas fa-fire-alt"></i> <span id="fomo-text">現在 12 人がこのページを見ています</span>
+    </div>
+
+    <div class="sticky-cta" id="sticky-cta">
+        <a href="{{AFFILIATE_URL}}" class="btn-booking" target="_blank" rel="noopener">
+            最安値プランを確認する <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <script>
+        // FOMO演出の制御
+        document.addEventListener('DOMContentLoaded', () => {
+            const fomoAlert = document.getElementById('fomo-alert');
+            const fomoText = document.getElementById('fomo-text');
+            
+            // ランダムな人数（8〜24人）
+            const viewers = Math.floor(Math.random() * 17) + 8;
+            fomoText.innerHTML = `現在 <strong>${viewers}人</strong> がこのページを見ています`;
+            
+            // 2秒後に表示し、その5秒後に消す
+            setTimeout(() => {
+                fomoAlert.classList.add('show');
+                setTimeout(() => {
+                    fomoAlert.classList.remove('show');
+                }, 5000);
+            }, 2000);
+
+            // スクロールに応じたSticky CTAの表示制御
+            const stickyCta = document.getElementById('sticky-cta');
+            const ctaSection = document.querySelector('.cta-section');
+            
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                // ある程度（300px）スクロールしたら表示
+                if (scrollY > 300) {
+                    // ただし、元のCTAボタンが見えている時は非表示にする
+                    if (ctaSection) {
+                        const ctaRect = ctaSection.getBoundingClientRect();
+                        if (ctaRect.top < windowHeight && ctaRect.bottom > 0) {
+                            stickyCta.classList.remove('show');
+                        } else {
+                            stickyCta.classList.add('show');
+                        }
+                    } else {
+                        stickyCta.classList.add('show');
+                    }
+                } else {
+                    stickyCta.classList.remove('show');
+                }
+            });
+        });
+    </script>
     <script src="../script.js"></script>
 </body>
 </html>
