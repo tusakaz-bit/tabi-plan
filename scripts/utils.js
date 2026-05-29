@@ -79,7 +79,8 @@ async function generateHatenaAIContent(hotelInfo) {
 クチコミ評価: ${hotelInfo.reviewAverage || '4.0'} / 5.0
 
 【出力フォーマット】
-プレーンなテキスト（段落タグ不要）で出力してください。
+プレーンなテキスト（段落タグ等のHTML不要）で出力してください。
+ただし、スマホで読みやすいように、2〜3文ごとに適度に改行（\n）を入れてください。
 `;
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
@@ -126,7 +127,7 @@ async function generateHtmlBody(city, intro, hotels) {
     </div>
     <div style="flex: 2; min-width: 250px;">
         ${reviewHtml}
-        <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.6; background: #fff; padding: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">${aiBadgeHtml}${aiDescription}</p>
+        <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.8; background: #fff; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0; white-space: pre-wrap;">${aiBadgeHtml}<br>${aiDescription}</p>
         <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold; margin-bottom: 15px;">最安料金目安：${Number(hotel.price).toLocaleString()}円〜</p>
         <p><a href="${hotel.url}" target="_blank" style="display: block; background: #D4AF37; color: white; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem;">最安値プランを楽天トラベルで確認する<br><span style="font-size: 0.75rem; font-weight: normal;">（※空室残りわずか）</span></a></p>
     </div>
