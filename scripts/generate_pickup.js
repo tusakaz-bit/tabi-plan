@@ -221,7 +221,7 @@ ${info.hotelInformationEmail || 'なし'}
   "smartPoint": "【AI価格解析】等の言葉を使い、コスパ評価や相場と比較して『なぜ今この価格がバグっている（お得）なのか』を客観的・論理的に解説する文章(100文字)。",
   "beautifulPoint": "空間の情緒的な魅力と、『浮いた予算でこんな贅沢ができる』という賢いラグジュアリー（Smart & Luxury）の提案(100文字)。",
   "locationPoint": "立地の良さと、それを活かした旅のメリット(100文字)。",
-  "detailedDescription": "HTMLの<p>タグで囲まれた3つの段落からなる紹介文(全体600文字程度)。1段落目はAIによる厳選理由（客観的ロジック）、2段落目は滞在のエモーショナルな情景、3段落目は『空室が埋まる前に本日中の予約推奨』など、今すぐポチらないと損をする緊急性を煽るクロージング文。"
+  "detailedDescription": "プレーンなテキスト（段落タグ不要）で出力してください。全体で400〜600文字程度。内容は以下の順で構成してください。①AIによる厳選理由（客観的ロジック）、②滞在のエモーショナルな情景、③『空室が埋まる前に本日中の予約推奨』など、今すぐポチらないと損をする緊急性を煽るクロージング文。"
 }
 `;
 
@@ -236,7 +236,14 @@ ${info.hotelInformationEmail || 'なし'}
         const jsonText = response.text;
         // マークダウンのコードブロックなどで囲まれていた場合を取り除く
         const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
-        return JSON.parse(cleanedJson);
+        const parsedData = JSON.parse(cleanedJson);
+        
+        // detailedDescriptionの句点「。」ごとに空行（\n\n）を入れて極限まで読みやすくする
+        if (parsedData.detailedDescription) {
+            parsedData.detailedDescription = parsedData.detailedDescription.replace(/。/g, '。\n\n').trim();
+        }
+        
+        return parsedData;
     } catch (e) {
         console.error("Error generating AI content:", e);
         return null;

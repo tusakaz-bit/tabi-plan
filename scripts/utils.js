@@ -80,7 +80,6 @@ async function generateHatenaAIContent(hotelInfo) {
 
 【出力フォーマット】
 プレーンなテキスト（段落タグ等のHTML不要）で出力してください。
-ただし、スマホで読みやすいように、2〜3文ごとに適度に改行（\n）を入れてください。
 `;
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
@@ -114,6 +113,9 @@ async function generateHtmlBody(city, intro, hotels) {
             let match = specialText.match(/^([^。！？]{10,120}[。！？])/);
             aiDescription = match ? match[1] : (specialText.length > 120 ? specialText.substring(0, 120) + '...' : specialText);
         }
+
+        // スマホでの読みやすさを究極にするため、句点「。」ごとに1行（2回の改行）空ける処理
+        aiDescription = aiDescription.replace(/。/g, '。\n\n').trim();
 
         // AIのロジックを強調するバッジ表記
         const aiBadgeHtml = `<span style="background: #e2e8f0; color: #334155; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px; font-weight: bold; margin-bottom: 5px; display: inline-block;">AI価格解析結果</span><br>`;
