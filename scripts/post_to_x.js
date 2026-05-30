@@ -65,19 +65,60 @@ async function run() {
         return;
     }
 
-    // Xの全角140文字（半角280文字）制限に確実に収まるようPR文の文字数を30文字に制限
-    const prText = truncateString(hotel.special, 30);
+    // X（旧Twitter）の日本語環境における文字数カウント（全角＝2ポイント、半角＝1ポイント）
+    // 最大280ポイント（全角140文字）制限
+    function countXPoints(str) {
+        if (!str) return 0;
+        let points = 0;
+        for (let i = 0; i < str.length; i++) {
+            const code = str.charCodeAt(i);
+            if ((code >= 0x0000 && code <= 0x007f) || (code >= 0xff61 && code <= 0xff9f)) {
+                points += 1;
+            } else {
+                points += 2;
+            }
+        }
+        return points;
+    }
 
-    // 親ツイート（フック - 140文字制限に安全に収まるスッキリとした文言にリファクタリング）
-    const tweet1 = `💡【AI価格解析】コスパ異常値の宿を発見
-本日の${city.name}×${t.name}おすすめ宿✨
-楽天★${hotel.reviewAverage || '-'}の高評価ながら、現在相場と比較して価格がバグっている最安値帯プランです。
+    // デフォルトのPR文の切り出し（スリムに20文字）
+    let prTextLength = 20;
+    let prText = truncateString(hotel.special, prTextLength);
+    let tweet1 = '';
+    
+    // 280ポイント（全角140文字）以内に収まるまで、PR文の長さを削りながら自動調整するループ
+    while (true) {
+        tweet1 = `💡【AI解析】コスパバグりの宿を発見！
+本日の${city.name}×${t.name}おすすめ✨
+楽天★${hotel.reviewAverage || '-'}と高評価なのに、価格が相場以下に崩壊中。
 
 「${prText}」
 
-このクオリティで1泊${Number(hotel.price).toLocaleString()}円〜は賢すぎる選択。
-🚨※空室が埋まる前にスレッドへ👇
+この質で1泊${Number(hotel.price).toLocaleString()}円〜は賢すぎる選択。
+🚨詳細はスレッドへ👇
 #${city.name}旅行 ${t.hashtag}`;
+
+        const points = countXPoints(tweet1);
+        if (points <= 280) {
+            console.log(`Tweet1 successfully formatted within limits! Points: ${points} (${Math.ceil(points / 2)} chars equivalent)`);
+            break;
+        }
+
+        // 超過している場合は、PR文をさらに短くする
+        if (prTextLength > 5) {
+            prTextLength -= 2;
+            prText = truncateString(hotel.special, prTextLength);
+        } else {
+            // PR文を削りきっても収まらない場合は、ハッシュタグなどの一部の文言を削って強制終了
+            tweet1 = `💡【AI解析】最安コスパ宿を発見！
+${city.name}×${t.name}おすすめ✨
+評価★${hotel.reviewAverage || '-'}で1泊${Number(hotel.price).toLocaleString()}円〜はバグレベルにお得。
+🚨詳細はスレッドへ👇
+#${city.name}旅行`;
+            console.log(`Fallback slim tweet applied due to extreme length constraints.`);
+            break;
+        }
+    }
 
     // 子ツイート（送客・リンク：生のアフィリエイトリンクを廃止し、Tabi Planの各都市ページに一本化）
     const tweet2 = `🏨 ${hotel.name}
@@ -87,9 +128,11 @@ ${BASE_URL}/${city.id}/
 
 宿泊費を賢く抑えた予算で、極上の体験を。Tabi Plan公式サイトで特設ガイド公開中✨`;
 
+    const dateStr = `${jstDate.getMonth() + 1}月${jstDate.getDate()}日投稿分`;
+
     // --- Generate GitHub Actions Summary (Markdown) ---
     let summaryMarkdown = `
-# 📝 本日のX投稿用原稿 (Buffer用)
+# 📝 X投稿用原稿：${dateStr} (Buffer用)
 最新の高評価・コスパデータに基づいた「スレッド形式」の投稿原稿です。
 
 ---
@@ -101,7 +144,7 @@ ${BASE_URL}/${city.id}/
 ${tweet1}
 \`\`\`
 
-*(文字数目安: 約 ${tweet1.length} 文字 / 140文字以内)*
+*(文字数目安: 約 ${Math.ceil(countXPoints(tweet1) / 2)} 文字（全角換算）/ 140文字以内)*
 
 ---
 
