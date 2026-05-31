@@ -261,6 +261,18 @@ async function run() {
 
     let templateHtml = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
+    // SEOオーバーライド設定のロード
+    const overridesPath = path.join(__dirname, 'seo_overrides.json');
+    let seoOverrides = {};
+    if (fs.existsSync(overridesPath)) {
+        try {
+            seoOverrides = JSON.parse(fs.readFileSync(overridesPath, 'utf8'));
+            console.log(`✅ SEOオーバーライド設定をロードしました (${Object.keys(seoOverrides).length}件)`);
+        } catch (e) {
+            console.error(`⚠️ seo_overrides.json のパースエラー: ${e.message}`);
+        }
+    }
+
     for (const city of CITIES) {
         console.log(`\n========================================\nProcessing city: ${city.name} (${city.en})\n========================================`);
 
@@ -392,11 +404,25 @@ async function run() {
 
         let finalHtml = templateHtml;
 
+        // SEOタイトルとメタディスクリプションの決定 (オーバーライド優先)
+        const pageKey = `/${city.en}/`;
+        let pageTitle = `${city.name}の宿泊・観光ガイド：おすすめホテル & 0円スポット | ${city.name} Premium Stays`;
+        let metaDescription = aiContent?.metaDescription || `${city.name}の格安プラン・おすすめホテルと観光地情報を毎日自動更新！`;
+
+        if (seoOverrides[pageKey]) {
+            console.log(`🎯 [SEO適用] 都市 ${city.name} に対してお宝SEOメタデータを適用します:`);
+            console.log(`   - タイトル: ${seoOverrides[pageKey].title}`);
+            console.log(`   - 説明: ${seoOverrides[pageKey].metaDescription}`);
+            pageTitle = seoOverrides[pageKey].title;
+            metaDescription = seoOverrides[pageKey].metaDescription;
+        }
+
         const data = {
             '{{CITY_NAME}}': city.name,
             '{{CITY_EN}}': city.en,
             '{{HERO_BG_IMAGE}}': city.bgImage,
-            '{{META_DESCRIPTION}}': aiContent?.metaDescription || '',
+            '{{PAGE_TITLE}}': pageTitle,
+            '{{META_DESCRIPTION}}': metaDescription,
             '{{JSON_LD}}': jsonLdString,
             '{{HERO_TITLE}}': (aiContent?.heroTitle || `次の旅を、\n${city.name}の中心から。`).replace(/\n/g, '<br>'),
             '{{HERO_SUBTITLE}}': aiContent?.heroSubtitle || '',

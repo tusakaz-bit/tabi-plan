@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 .env
 *.log
+credentials.json
+oauth_credentials.json
+token.json
+scripts/seo_report.md

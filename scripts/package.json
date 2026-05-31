@@ -9,6 +9,7 @@
   "dependencies": {
     "@google/genai": "^2.6.0",
     "axios": "^1.6.0",
+    "googleapis": "^173.0.0",
     "kuroshiro": "^1.2.0",
     "kuroshiro-analyzer-kuromoji": "^1.1.0"
   }
