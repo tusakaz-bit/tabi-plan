@@ -137,6 +137,9 @@ async function toSlug(japaneseName, cityEn) {
 }
 
 async function getHotelDetail(hotelNo) {
+    // 楽天APIの短時間での連続コール（1秒制限）を防ぐため、1.5秒待機する
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
     const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/HotelDetailSearch/20170426';
     const params = {
         applicationId: RAKUTEN_APP_ID,
