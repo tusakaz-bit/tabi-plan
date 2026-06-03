@@ -1,3 +1,6 @@
+// .envファイルから環境変数（GEMINI_API_KEY等）を読み込む
+require('dotenv').config();
+
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
