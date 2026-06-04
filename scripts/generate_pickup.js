@@ -1,5 +1,6 @@
 // .envファイルから環境変数（GEMINI_API_KEY等）を読み込む
-require('dotenv').config();
+// GitHub Actions等のCI環境ではdotenvが不要なため、オプショナルで読み込む
+try { require('dotenv').config(); } catch (e) { /* dotenvが無い環境（CI等）では無視 */ }
 
 const axios = require('axios');
 const fs = require('fs');
