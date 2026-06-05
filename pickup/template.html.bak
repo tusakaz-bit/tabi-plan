@@ -3,83 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PERSW1V95"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-4PERSW1V95');
-    </script>
-    <title>静鉄ホテルプレジオ京都烏丸御池 | 本日の注目宿 - Tabi Plan</title>
-    <meta name="description" content="京都の中心、烏丸御池駅徒歩1分の静鉄ホテルプレジオ。AI価格解析で今が最安値と判明！上質な空間で贅沢な京都旅を。高評価ホテルを賢く予約して、特別な体験を。">
-    <link rel="canonical" href="https://tabi-plan.org/pickup/2026-05-31-sei-tetsu-hotel-purejio-kyoto.html">
-    <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Hotel",
-    "name": "静鉄ホテルプレジオ京都烏丸御池",
-    "description": "京都の中心、烏丸御池駅徒歩1分の静鉄ホテルプレジオ。AI価格解析で今が最安値と判明！上質な空間で贅沢な京都旅を。高評価ホテルを賢く予約して、特別な体験を。",
-    "image": "https://img.travel.rakuten.co.jp/share/HOTEL/172146/172146.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "postalCode": "604-0843",
-      "addressRegion": "京都府",
-      "streetAddress": "京都市中京区車屋町通御池上る塗師屋町339",
-      "addressCountry": "JP"
-    },
-    "telephone": "075-741-6071",
-    "url": "https://tabi-plan.org/pickup/2026-05-31-sei-tetsu-hotel-purejio-kyoto.html",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.39",
-      "reviewCount": "761",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "静鉄ホテルプレジオ京都烏丸御池 - 本日の注目宿",
-    "image": "https://img.travel.rakuten.co.jp/share/HOTEL/172146/172146.jpg",
-    "datePublished": "2026-05-31T00:00:00+09:00",
-    "author": {
-      "@type": "Person",
-      "name": "タビト",
-      "jobTitle": "編集長 / AIデータサイエンティスト×元企画会社社員",
-      "url": "https://tabi-plan.org/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Tabi Plan",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://tabi-plan.org/favicon.svg"
-      }
-    }
-  }
-]
-</script>
+    <title>{{HOTEL_NAME}} | 本日の注目宿 - Tabi Plan</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <link rel="canonical" href="https://tabi-plan.org/pickup/{{FILENAME}}">
+    {{JSON_LD}}
     <!-- OGP -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://tabi-plan.org/pickup/2026-05-31-sei-tetsu-hotel-purejio-kyoto.html">
-    <meta property="og:title" content="静鉄ホテルプレジオ京都烏丸御池 | 本日の注目宿 - Tabi Plan">
-    <meta property="og:description" content="京都の中心、烏丸御池駅徒歩1分の静鉄ホテルプレジオ。AI価格解析で今が最安値と判明！上質な空間で贅沢な京都旅を。高評価ホテルを賢く予約して、特別な体験を。">
-    <meta property="og:image" content="https://img.travel.rakuten.co.jp/share/HOTEL/172146/172146.jpg">
+    <meta property="og:url" content="https://tabi-plan.org/pickup/{{FILENAME}}">
+    <meta property="og:title" content="{{HOTEL_NAME}} | 本日の注目宿 - Tabi Plan">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:image" content="{{HERO_IMAGE}}">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:site_name" content="Tabi Plan">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="静鉄ホテルプレジオ京都烏丸御池 | Tabi Plan ピックアップ">
-    <meta name="twitter:description" content="京都の中心、烏丸御池駅徒歩1分の静鉄ホテルプレジオ。AI価格解析で今が最安値と判明！上質な空間で贅沢な京都旅を。高評価ホテルを賢く予約して、特別な体験を。">
-    <meta name="twitter:image" content="https://img.travel.rakuten.co.jp/share/HOTEL/172146/172146.jpg">
+    <meta name="twitter:title" content="{{HOTEL_NAME}} | Tabi Plan ピックアップ">
+    <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+    <meta name="twitter:image" content="{{HERO_IMAGE}}">
     <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.travel.rakuten.co.jp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -92,7 +35,7 @@
         .pickup-hero {
             position: relative;
             height: 70vh;
-            background: url('https://img.travel.rakuten.co.jp/share/HOTEL/172146/172146.jpg?v=2') center/cover no-repeat;
+            background: url('{{HERO_IMAGE}}?v=2') center/cover no-repeat;
             display: flex;
             align-items: flex-end;
             padding: 4rem 5%;
@@ -331,16 +274,16 @@
 </head>
 <body>
     <nav>
-        <div class="logo" style="cursor: pointer;" onclick="window.location.href='../'">TABI <span>PLAN</span></h1>
+        <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='../'">TABI <span>PLAN</span></h1>
     </nav>
 
     <header class="pickup-hero">
         <div class="rakuten-credit" style="bottom: 50px; left: 5%; z-index: 20; position: absolute;">Rakuten Travel</div>
         <div class="hero-content">
-            <span class="category-tag">本日の注目宿 - 京都</span>
-            <span class="publish-date" style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-left: 1rem;">2026-05-31 掲載</span>
-            <h1 class="hotel-title">静鉄ホテルプレジオ京都烏丸御池</h1>
-            <p style="color: rgba(255,255,255,0.7); font-size: 1.2rem;">烏丸御池駅徒歩1分。AI厳選、高評価ホテルで叶える京都の粋な滞在。</p>
+            <span class="category-tag">{{CATEGORY_NAME}}</span>
+            <span class="publish-date" style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-left: 1rem;">{{PUBLISH_DATE}} 掲載</span>
+            <h1 class="hotel-title">{{HOTEL_NAME}}</h1>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1.2rem;">{{CATCHCOPY}}</p>
         </div>
     </header>
 
@@ -350,76 +293,54 @@
             <i class="fas fa-chevron-right" style="font-size: 0.6rem;"></i>
             <a href="./">ピックアップ宿一覧</a>
             <i class="fas fa-chevron-right" style="font-size: 0.6rem;"></i>
-            <span style="color: rgba(255,255,255,0.9);">静鉄ホテルプレジオ京都烏丸御池</span>
+            <span style="color: rgba(255,255,255,0.9);">{{HOTEL_NAME}}</span>
         </nav>
         <div class="glass-card">
             <div class="highlights">
                 <div class="highlight-item">
                     <i class="fas fa-gem"></i>
                     <h3>賢い選択</h3>
-                    <p>AI価格解析が断言！過去数年のデータ比較から、この高評価ホテル（4.39点）が信じられない5,100円〜は破格。今予約しない手はありません。</p>
+                    <p>{{SMART_POINT}}</p>
                 </div>
                 <div class="highlight-item">
                     <i class="fas fa-sparkles"></i>
                     <h3>美しき滞在</h3>
-                    <p>洗練された和モダン空間で、京の雅を感じるひとときを。浮いた宿泊費で老舗料亭での京懐石や、特別な京都土産を。心ゆくまで贅沢を味わう賢い選択です。</p>
+                    <p>{{BEAUTIFUL_POINT}}</p>
                 </div>
                 <div class="highlight-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>最高の立地</h3>
-                    <p>烏丸御池駅1番出口からわずか徒歩1分。主要観光地へのアクセスは抜群、移動時間を最小限に。早朝観光や夜の散策も思いのまま。京都の街を最大限に満喫できます。</p>
+                    <p>{{LOCATION_POINT}}</p>
                 </div>
             </div>
 
             <section class="description">
-                AIの最新価格解析により、静鉄ホテルプレジオ京都烏丸御池は今、過去数年で最もお得な宿泊機会を提供していると判明しました。
-
-クチコミ評価4.39（761件）という高評価と、烏丸御池駅徒歩1分という抜群の立地を考えると、最安5,100円〜という料金は常識外れ。
-
-AIが保証する、質と価格の黄金比を誇る唯一無二のチャンスです。
-
-
-京の風情とモダンな快適さが融合した上質な空間で、心ゆくまでお寛ぎください。
-
-早朝の散策から夜の美食まで、最高のロケーションがあなたの京都旅を豊かに彩ります。
-
-AI分析で浮いた費用は、老舗料亭での会席や、特別な京土産、人力車体験など、ワンランク上の思い出作りに。
-
-賢く贅沢を叶えるスマートな滞在を。
-
-
-このAI厳選の破格は、いつまで続くか予測不能です。
-
-特に人気シーズンは瞬時に満室となるため、迷っている暇はありません。
-
-最高の京都旅を最高のコスパで実現するなら「今」。
-
-空室がなくなる前に、本日中のご予約を強くお勧めします！
+                {{DETAILED_DESCRIPTION}}
             </section>
 
             <table class="info-table">
                 <tr>
                     <th>所在地</th>
-                    <td>京都府京都市中京区車屋町通御池上る塗師屋町339</td>
+                    <td>{{ADDRESS}}</td>
                 </tr>
                 <tr>
                     <th>最安目安</th>
-                    <td>5,100円〜</td>
+                    <td>{{MIN_CHARGE}}</td>
                 </tr>
                 <tr>
                     <th>評価</th>
-                    <td><i class="fas fa-star" style="color: var(--accent-gold);"></i> 4.39</td>
+                    <td><i class="fas fa-star" style="color: var(--accent-gold);"></i> {{RATING}}</td>
                 </tr>
                 <tr>
                     <th>設備</th>
-                    <td>Wi-Fi, レストラン, 大浴場, ルームサービス等</td>
+                    <td>{{FACILITIES}}</td>
                 </tr>
             </table>
 
             <div class="cta-section">
                 <h2>この宿で、特別な時間を過ごしませんか？</h2>
                 <p>現在、楽天トラベルにてお得なプランが公開されています。</p>
-                <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F172146%2F172146.html" class="btn-booking" target="_blank" rel="noopener">
+                <a href="{{AFFILIATE_URL}}" class="btn-booking" target="_blank" rel="noopener">
                     最安値プランを楽天トラベルで確認する <i class="fas fa-external-link-alt" style="font-size: 0.9rem; margin-left: 0.5rem;"></i>
                 </a>
             </div>
@@ -442,7 +363,7 @@ AI分析で浮いた費用は、老舗料亭での会席や、特別な京土産
     </div>
 
     <div class="sticky-cta" id="sticky-cta">
-        <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F172146%2F172146.html" class="btn-booking" target="_blank" rel="noopener">
+        <a href="{{AFFILIATE_URL}}" class="btn-booking" target="_blank" rel="noopener">
             最安値プランを確認する <i class="fas fa-arrow-right"></i>
         </a>
     </div>
