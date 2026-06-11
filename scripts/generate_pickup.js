@@ -191,6 +191,7 @@ async function findPremiumHotels(city) {
 }
 
 // Gemini API を使用して、ホテル情報に基づいた完全オリジナルのSEO最適化コンテンツを生成する
+// リトライ＆フォールバックモデル機能付き：メインモデルが失敗しても代替モデルで再試行する
 async function generateAIContent(info) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -198,10 +199,16 @@ async function generateAIContent(info) {
         return null;
     }
 
-    try {
-        const ai = new GoogleGenAI({ apiKey });
-        
-        const prompt = `
+    const ai = new GoogleGenAI({ apiKey });
+
+    // 試行するモデルの優先順位（メイン → フォールバック1 → フォールバック2）
+    const modelsToTry = [
+        'gemini-2.5-flash',
+        'gemini-2.0-flash',
+        'gemini-1.5-flash'
+    ];
+
+    const prompt = `
 以下のホテル情報をもとに、旅行予約サイトの紹介記事として、魅力的かつSEOに最適化されたオリジナルの文章（日本語）を生成してください。
 楽天APIの元の説明文をそのまま使わず、完全オリジナルの文章を作成してください。
 
@@ -232,29 +239,55 @@ ${info.hotelInformationEmail || 'なし'}
 }
 `;
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: prompt,
-            config: {
-                responseMimeType: 'application/json'
-            }
-        });
+    // 各モデルを順番に試行し、レート制限エラーの場合は待機してから再試行する
+    for (let i = 0; i < modelsToTry.length; i++) {
+        const modelName = modelsToTry[i];
+        const maxRetries = 2; // 同じモデルで最大2回まで再試行
 
-        const jsonText = response.text;
-        // マークダウンのコードブロックなどで囲まれていた場合を取り除く
-        const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
-        const parsedData = JSON.parse(cleanedJson);
-        
-        // detailedDescriptionの句点「。」ごとに空行（\n\n）を入れて極限まで読みやすくする
-        if (parsedData.detailedDescription) {
-            parsedData.detailedDescription = parsedData.detailedDescription.replace(/。/g, '。\n\n').trim();
+        for (let retry = 0; retry <= maxRetries; retry++) {
+            try {
+                console.log(`  [AI] モデル: ${modelName} で生成を試行中... (試行 ${retry + 1}/${maxRetries + 1})`);
+                const response = await ai.models.generateContent({
+                    model: modelName,
+                    contents: prompt,
+                    config: {
+                        responseMimeType: 'application/json'
+                    }
+                });
+
+                const jsonText = response.text;
+                // マークダウンのコードブロックなどで囲まれていた場合を取り除く
+                const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+                const parsedData = JSON.parse(cleanedJson);
+
+                // detailedDescriptionの句点「。」ごとに空行（\n\n）を入れて極限まで読みやすくする
+                if (parsedData.detailedDescription) {
+                    parsedData.detailedDescription = parsedData.detailedDescription.replace(/。/g, '。\n\n').trim();
+                }
+
+                console.log(`  [AI] ✅ ${modelName} での生成に成功しました。`);
+                return parsedData;
+            } catch (e) {
+                const isRateLimit = e.message && (e.message.includes('429') || e.message.includes('RESOURCE_EXHAUSTED') || e.message.includes('quota'));
+                const isServerError = e.message && (e.message.includes('503') || e.message.includes('500') || e.message.includes('UNAVAILABLE'));
+
+                if ((isRateLimit || isServerError) && retry < maxRetries) {
+                    // レート制限またはサーバーエラー：待機してから同じモデルで再試行
+                    const waitSec = isRateLimit ? 60 : 15;
+                    console.warn(`  [AI] ⚠️ ${modelName} でエラー発生 (${isRateLimit ? 'レート制限' : 'サーバーエラー'}). ${waitSec}秒後にリトライします...`);
+                    await new Promise(r => setTimeout(r, waitSec * 1000));
+                } else {
+                    // リトライ回数を使い切った or 別種のエラー → 次のモデルへ
+                    console.warn(`  [AI] ❌ ${modelName} での生成に失敗。次のモデルを試行します... エラー: ${e.message?.substring(0, 150)}`);
+                    break; // 内側のretryループを抜けて次のモデルへ
+                }
+            }
         }
-        
-        return parsedData;
-    } catch (e) {
-        console.error("Error generating AI content:", e);
-        return null;
     }
+
+    // すべてのモデル・リトライが失敗した場合
+    console.error("  [AI] ❌ 全モデルでのAI生成に失敗しました。フォールバックコンテンツを使用します。");
+    return null;
 }
 
 // cityEn: 都市の英語名（スラグに使用）
