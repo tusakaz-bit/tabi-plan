@@ -399,7 +399,15 @@ async function run() {
             '{{JSON_LD}}': jsonLdString,
             '{{HERO_TITLE}}': (aiContent?.heroTitle || `次の旅を、\n${city.name}の中心から。`).replace(/\n/g, '<br>'),
             '{{HERO_SUBTITLE}}': aiContent?.heroSubtitle || '',
-            '{{CITY_GUIDE_CONTENT}}': aiContent?.articleHtml || '',
+            '{{CITY_GUIDE_SECTION}}': aiContent && aiContent.articleHtml ? `
+        <!-- AI生成 長文オリジナル観光コラムセクション -->
+        <section id="city-guide-article" class="hotels-section" style="padding-top: 0; background: transparent;">
+            <div class="container">
+                <div class="glass-container city-guide-column" style="padding: 3rem; line-height: 1.8;">
+                    ${aiContent.articleHtml}
+                </div>
+            </div>
+        </section>` : '',
             '{{HOTELS_DEALS}}': htmlDeals,
             '{{HOTELS_LADIES}}': htmlLadies,
             '{{HOTELS_COUPLE}}': htmlCouple,
