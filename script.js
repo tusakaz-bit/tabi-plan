@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         superSale: {
             active: false, // 手動で一括ONにする場合は true
             startDate: "2026-06-04T20:00:00+09:00", // 開始JST
-            endDate: "2026-06-15T23:59:59+09:00",   // 終了JST
+            endDate: "2026-06-11T23:59:59+09:00",   // 終了JST
             title: "＼年に数回のビッグチャンス！／ 楽天トラベル スーパーSALE 開催中！半額プラン＆限定クーポン多数！",
             micro: "＼年に数回のビッグチャンス！／ 楽天トラベル スーパーSALE 開催中！半額プラン＆限定クーポン多数！",
             url: `https://hb.afl.rakuten.co.jp/hgc/${AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2Fspecial%2Fsupersale%2F`,
