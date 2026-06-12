@@ -1,3 +1,4 @@
+try { require('dotenv').config(); } catch (e) { /* dotenvが無い環境（CI等）では無視 */ }
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
@@ -200,7 +201,7 @@ async function generateCityAIContent(city) {
 
 
         const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-3.5-flash',
             contents: prompt,
             config: {
                 responseMimeType: 'application/json'
@@ -216,44 +217,14 @@ async function generateCityAIContent(city) {
     }
 }
 
-// 既存の index.html から特定の静的セクション（Budget Guide、Gateways）をスクレイプして再利用する関数
-function parseExistingStaticSections(cityEn) {
-    const filePath = path.join(__dirname, `../${cityEn}/index.html`);
-    if (!fs.existsSync(filePath)) {
-        return { budgetGuide: '', gateways: '' };
-    }
-
-    const html = fs.readFileSync(filePath, 'utf8');
-
-    // 1. Budget Guide Contentの抽出
-    // budget-guideセクションはglass-containerを持つ構造のため、そのコメントタグの後ろのコンテンツを取得する
-    let budgetGuide = '';
-    const budgetRegex = /id="budget-guide"[\s\S]*?<!--[^>]*generate_city_pages[\s\S]*?-->\s*([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>\s*<\/section>/i;
-    const budgetMatch = html.match(budgetRegex);
-    if (budgetMatch && budgetMatch[1]) {
-        budgetGuide = budgetMatch[1].trim();
-    }
-
-    // 2. Gateways (Access) Contentの抽出
-    // destinationsセクションはsection-headerクラスのdivを持つため、その直後のコンテンツを取得する
-    let gateways = '';
-    const destRegex = /id="destinations"[\s\S]*?<div[^>]*class="section-header"[^>]*>[\s\S]*?<\/div>\s*([\s\S]*?)<\/div>\s*<\/div>\s*<\/section>/i;
-    const destMatch = html.match(destRegex);
-    if (destMatch && destMatch[1]) {
-        gateways = destMatch[1].trim();
-    }
-
-    // フォールバック
-    if (!budgetGuide) {
-        console.warn(`Warning: Could not parse Budget Guide for ${cityEn}. Using default placeholder.`);
-        budgetGuide = '<p>観光・お食事情報は現在準備中です。</p>';
-    }
-    if (!gateways) {
-        console.warn(`Warning: Could not parse Gateways for ${cityEn}. Using default placeholder.`);
-        gateways = '<p>アクセス情報は現在準備中です。</p>';
-    }
-
-    return { budgetGuide, gateways };
+// あらかじめ Git から抽出したクリーンな静的都市データ（Budget Guide & Gateways）をロードして使用する
+const STATIC_DATA_PATH = path.join(__dirname, 'city_static_data.json');
+let cityStaticData = {};
+try {
+    cityStaticData = JSON.parse(fs.readFileSync(STATIC_DATA_PATH, 'utf8'));
+    console.log(`✅ 静的都市データ（Budget Guide & Gateways）を正常にロードしました。`);
+} catch (e) {
+    console.error(`⚠️ 静的都市データのロードに失敗しました: ${e.message}`);
 }
 
 async function run() {
@@ -276,8 +247,10 @@ async function run() {
     for (const city of CITIES) {
         console.log(`\n========================================\nProcessing city: ${city.name} (${city.en})\n========================================`);
 
-        // 1. 既存の静的観光地ガイド等のコンテンツを抽出
-        const { budgetGuide, gateways } = parseExistingStaticSections(city.en);
+        // 1. ロードした静的データから観光ガイド・アクセス情報を取得
+        const cityData = cityStaticData[city.en] || {};
+        const budgetGuide = cityData.budgetGuide || '<p>観光・お食事情報は現在準備中です。</p>';
+        const gateways = cityData.gateways || '<p>アクセス情報は現在準備中です。</p>';
 
         // 2. 楽天APIから5カテゴリの宿情報を取得
         console.log('Fetching hotel data from Rakuten API...');
