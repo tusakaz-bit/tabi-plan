@@ -122,6 +122,7 @@ async function run() {
 3. **表現のルール**:
    - 「〜となっています」「〜が特徴です」「ぜひ訪れてみてください」「〜はいかがでしょうか」といった、ありきたりなAI風・ブログ風の表現は絶対に使わないでください。
    - プロの旅行ライター・インフルエンサーが発信しているような、リアルで魅力あふれる投稿文にしてください。
+   - 「バグ級」「コスパバグり」「AI解析」「発見！」といった安易な煽り文句や、不自然に高いテンションの表現は厳禁です。もっと知的な大人の旅行を提案するような、上質で自然な表現にしてください。
 
 【出力フォーマット】
 以下のJSONフォーマット（プレーンなJSONオブジェクトのみ、Markdownの\`\`\`json等のコードブロック囲みは不要）で出力してください。キー名は必ず一致させてください。
@@ -133,7 +134,7 @@ async function run() {
 `;
 
             const response = await ai.models.generateContent({
-                model: 'gemini-3.5-flash',
+                model: 'gemini-2.0-flash',
                 contents: prompt,
                 config: {
                     responseMimeType: 'application/json'
@@ -172,14 +173,14 @@ async function run() {
         let prText = truncateString(hotel.special, prTextLength);
         
         while (true) {
-            tweet1 = `💡【AI解析】コスパバグりの宿を発見！
-本日の${city.name}×${t.name}おすすめ✨
-楽天★${hotel.reviewAverage || '-'}と高評価なのに、価格が相場以下に崩壊中。
+            tweet1 = `✨ 注目のおすすめ宿情報
+本日の${city.name}×${t.name}セレクト。
+楽天★${hotel.reviewAverage || '-'}と高評価ながら、賢く滞在できる魅力的な価格設定です。
 
 「${prText}」
 
-この質で1泊${Number(hotel.price).toLocaleString()}円〜は賢すぎる選択。
-🚨詳細はスレッドへ👇
+1泊${Number(hotel.price).toLocaleString()}円〜で叶う上質な時間を。
+詳細はスレッドにて👇
 #${city.name}旅行 ${t.hashtag}`;
 
             const points = countXPoints(tweet1);
@@ -191,10 +192,10 @@ async function run() {
                 prTextLength -= 2;
                 prText = truncateString(hotel.special, prTextLength);
             } else {
-                tweet1 = `💡【AI解析】最安コスパ宿を発見！
-${city.name}×${t.name}おすすめ✨
-評価★${hotel.reviewAverage || '-'}で1泊${Number(hotel.price).toLocaleString()}円〜はバグレベルにお得。
-🚨詳細はスレッドへ👇
+                tweet1 = `✨ 今日のイチオシ宿
+${city.name}×${t.name}セレクト。
+評価★${hotel.reviewAverage || '-'}で1泊${Number(hotel.price).toLocaleString()}円〜と、非常に満足度の高い宿泊プランです。
+詳細はスレッドにて👇
 #${city.name}旅行`;
                 break;
             }
