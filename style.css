@@ -325,6 +325,20 @@ a {
     max-width: 500px;
 }
 
+.description-lead {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--accent-gold, #D4AF37);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.description-paragraph {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
 .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;

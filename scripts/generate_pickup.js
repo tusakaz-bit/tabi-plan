@@ -271,9 +271,15 @@ ${info.hotelInformationEmail || 'なし'}
                 const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
                 const parsedData = JSON.parse(cleanedJson);
 
-                // detailedDescriptionの句点「。」ごとに空行（\n\n）を入れて極限まで読みやすくする
+                // detailedDescriptionを段落ごとに分解し、リード文と本文のHTMLタグでラップする
                 if (parsedData.detailedDescription) {
-                    parsedData.detailedDescription = parsedData.detailedDescription.replace(/。/g, '。\n\n').trim();
+                    const cleanText = parsedData.detailedDescription.replace(/。/g, '。\n\n').trim();
+                    const paragraphs = cleanText.split('\n\n').map(p => p.trim()).filter(p => p.length > 0);
+                    if (paragraphs.length > 0) {
+                        const lead = paragraphs[0];
+                        const body = paragraphs.slice(1).map(p => `<p class="description-paragraph">${p}</p>`).join('');
+                        parsedData.detailedDescription = `<p class="description-lead">${lead}</p>${body}`;
+                    }
                 }
 
                 console.log(`  [AI] ✅ ${modelName} での生成に成功しました。`);
@@ -389,7 +395,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
 
     let html = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
-    const defaultDesc = `<p>${info.hotelInformationEmail || '詳しい情報は予約ページをご確認ください。'}</p><p>旅の疲れを癒やす心地よい空間。モダンなインテリアと落ち着いた照明が、上質なひとときを演出します。</p>`;
+    const defaultDesc = `<p class="description-lead">旅の疲れを癒やす心地よい空間。</p><p class="description-paragraph">${info.hotelInformationEmail || '詳しい情報は予約ページをご確認ください。'}</p><p class="description-paragraph">モダンなインテリアと落ち着いた照明が、上質なひとときを演出します。</p>`;
 
     const data = {
         '{{HOTEL_NAME}}': info.hotelName,
