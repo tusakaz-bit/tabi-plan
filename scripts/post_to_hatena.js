@@ -1,5 +1,6 @@
 const axios = require('axios');
 const crypto = require('crypto');
+const { getDateString, CITIES } = require('./utils');
 const theme1 = require('./themes/theme_1_cheapest');
 const theme2 = require('./themes/theme_2_ladies');
 const theme3 = require('./themes/theme_3_couple');
@@ -99,21 +100,26 @@ async function run() {
 
     console.log(`Found ${articles.length} articles to post. Proceeding with sequential posting...`);
 
+    // 1つの記事にまとめる処理
+    const combinedTitle = `【${getDateString()}版】全国「${displayCategory}」おすすめホテル厳選まとめ - Tabi Plan`;
+    let combinedBody = `<p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; text-align: center;">本日は全国の主要都市から、<strong>${displayCategory}</strong>をテーマにTabi Plan AIが厳選したおすすめ宿をまとめてご紹介します！<br>各都市ごとに素晴らしいホテルをピックアップしましたので、次のご旅行の参考にしてください。</p>\n`;
+    let combinedTags = new Set([displayCategory, "国内旅行", "ホテルまとめ", "TabiPlan"]);
+
     for (let i = 0; i < articles.length; i++) {
         const article = articles[i];
-        
-        // 表示用のカテゴリーをタグに追加（既存のタグとマージ）
-        const finalTags = Array.from(new Set([displayCategory, ...(article.tags || [])]));
+        const cityObj = CITIES.find(c => c.id === article.city) || { name: article.city };
 
-        console.log(`[${i + 1}/${articles.length}] Posting: ${article.title}`);
-        await postToHatena(article.title, article.body, finalTags);
+        combinedBody += `\n<h2 style="background: #D4AF37; color: white; padding: 12px; margin-top: 50px; text-align: center; border-radius: 5px; font-size: 1.4rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">📍 ${cityObj.name}エリアの厳選宿</h2>\n`;
+        combinedBody += article.body;
 
-        // 最後の記事以外は、APIのレート制限（Rate Limit）を避けるために3秒待機
-        if (i < articles.length - 1) {
-            console.log('Sleeping for 3 seconds to avoid rate limits...');
-            await sleep(3000);
+        // 各記事のタグをマージ（都市名なども含まれる）
+        if (article.tags) {
+            article.tags.forEach(tag => combinedTags.add(tag));
         }
     }
+
+    console.log(`Posting combined article: ${combinedTitle}`);
+    await postToHatena(combinedTitle, combinedBody, Array.from(combinedTags));
     
     console.log('All Hatena blog posts completed successfully.');
 }
