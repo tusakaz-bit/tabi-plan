@@ -101,8 +101,8 @@ async function run() {
     console.log(`Found ${articles.length} articles to post. Proceeding with sequential posting...`);
 
     // 1つの記事にまとめる処理
-    const combinedTitle = `【${getDateString()}版】全国「${displayCategory}」おすすめホテル厳選まとめ - Tabi Plan`;
-    let combinedBody = `<p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; text-align: center;">本日は全国の主要都市から、<strong>${displayCategory}</strong>をテーマにTabi Plan AIが厳選したおすすめ宿をまとめてご紹介します！<br>各都市ごとに素晴らしいホテルをピックアップしましたので、次のご旅行の参考にしてください。</p>\n`;
+    const combinedTitle = `【${getDateString()}】失敗しない宿選び！主要6都市の「${displayCategory}」各エリア厳選3施設まとめ`;
+    let combinedBody = `<p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; text-align: center;">本日は国内の主要6都市（東京・大阪・京都・札幌・福岡・沖縄）から、<strong>${displayCategory}</strong>をテーマに、Tabi Plan AIが各エリアごとにおすすめの「厳選3施設」をピックアップしました！<br>ハズレなしの素晴らしいホテルばかりですので、次のご旅行の参考にぜひご覧ください。</p>\n`;
     let combinedTags = new Set([displayCategory, "国内旅行", "ホテルまとめ", "TabiPlan"]);
 
     for (let i = 0; i < articles.length; i++) {
