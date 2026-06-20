@@ -4,6 +4,8 @@ const { GoogleGenAI } = require('@google/genai');
 const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 const CITIES = [
     { name: '東京', id: 'tokyo', middle: 'tokyo', small: 'tokyo', detail: 'A', keyword: '東京駅' },
     { name: '大阪', id: 'osaka', middle: 'osaka', small: 'shi', detail: 'D', keyword: '大阪駅' },
@@ -15,6 +17,7 @@ const CITIES = [
 
 async function fetchRakutenApi(url, params, minReviewScore = 3.5, sortType = 'cheap', count = 3) {
     try {
+        await sleep(1000); // 楽天APIのレート制限（429エラー）を回避するための待機
         const response = await axios.get(url, { params, headers: { 'Referer': 'https://tabi-plan.org/', 'Origin': 'https://tabi-plan.org' } });
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             let filteredHotels = response.data.hotels
