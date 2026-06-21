@@ -91,13 +91,32 @@ function getTransitInfo(cityEn, station) {
     }
 }
 
-// 住所による簡易フィルタ
-function filterByCity(hotels, cityName) {
+// 住所や品質基準による厳格なフィルタ
+function filterHotels(hotels, cityName) {
     if (!hotels) return [];
     return hotels.filter(h => {
         const info = h.hotel[0].hotelBasicInfo;
-        const addr = (info.address1 || '') + (info.address2 || '');
-        return addr.includes(cityName);
+        
+        // 1. 住所フィルタ
+        if (cityName) {
+            const addr = (info.address1 || '') + (info.address2 || '');
+            if (!addr.includes(cityName)) return false;
+        }
+
+        // 2. ¥1 バグや異常な低価格を除外 (1000円未満を除外)
+        if (!info.hotelMinCharge || info.hotelMinCharge < 1000) return false;
+
+        // 3. レビュー点数と件数での足切り (3.5点未満、または口コミ5件未満を除外)
+        if (!info.reviewAverage || info.reviewAverage < 3.5) return false;
+        if (!info.reviewCount || info.reviewCount < 5) return false;
+
+        // 4. 民泊・ホステル・ゲストハウスの除外
+        const name = (info.hotelName || '').toLowerCase();
+        if (name.includes('民泊') || name.includes('ホステル') || name.includes('ゲストハウス') || name.includes('キャビン') || name.includes('bnb')) {
+            return false;
+        }
+
+        return true;
     });
 }
 
@@ -307,11 +326,11 @@ async function run() {
         // フィルタ処理
         const filterName = city.en === 'okinawa' ? '那覇市' : (city.en === 'sapporo' ? '札幌市' : (city.en === 'kyoto' ? '京都市' : (city.en === 'osaka' ? '大阪市' : (city.en === 'tokyo' ? '東京都' : '福岡市'))));
 
-        const hotelsDeals = dealsData?.hotels || [];
-        const hotelsLadies = filterByCity(ladiesData?.hotels, filterName);
-        const hotelsCouple = filterByCity(coupleData?.hotels, filterName);
-        const hotelsLuxury = filterByCity(luxuryData?.hotels, filterName);
-        const hotelsStation = filterByCity(stationData?.hotels, filterName);
+        const hotelsDeals = filterHotels(dealsData?.hotels, filterName);
+        const hotelsLadies = filterHotels(ladiesData?.hotels, filterName);
+        const hotelsCouple = filterHotels(coupleData?.hotels, filterName);
+        const hotelsLuxury = filterHotels(luxuryData?.hotels, filterName);
+        const hotelsStation = filterHotels(stationData?.hotels, filterName);
 
         // カードHTML組み立て
         const htmlDeals = renderHotelCards(hotelsDeals, city);

@@ -22,11 +22,17 @@ async function fetchRakutenApi(url, params, minReviewScore = 3.5, sortType = 'ch
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             let filteredHotels = response.data.hotels
                 .map(h => h.hotel[0].hotelBasicInfo)
-                .filter(h => h.hotelMinCharge); // 料金が設定されているもののみ
+                .filter(h => h.hotelMinCharge && h.hotelMinCharge >= 1000); // 1000円未満（¥1バグ）を除外
 
-            // レビュー点数での足切り
+            // 民泊・ホステル等の除外
+            filteredHotels = filteredHotels.filter(h => {
+                const name = (h.hotelName || '').toLowerCase();
+                return !name.includes('民泊') && !name.includes('ホステル') && !name.includes('ゲストハウス') && !name.includes('キャビン') && !name.includes('bnb');
+            });
+
+            // レビュー点数と件数での足切り
             if (minReviewScore > 0) {
-                filteredHotels = filteredHotels.filter(h => h.reviewAverage && h.reviewAverage >= minReviewScore);
+                filteredHotels = filteredHotels.filter(h => h.reviewAverage && h.reviewAverage >= minReviewScore && h.reviewCount && h.reviewCount >= 5);
             }
 
             // ソート
