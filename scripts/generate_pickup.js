@@ -377,8 +377,8 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         "datePublished": `${now.toISOString().split('T')[0]}T00:00:00+09:00`,
         "author": {
             "@type": "Person",
-            "name": "タビト",
-            "jobTitle": "編集長 / AIデータサイエンティスト×元企画会社社員",
+            "name": "まつお つかさ",
+            "jobTitle": "メーカー生産管理職 / Tabi Plan 開発者",
             "url": "https://tabi-plan.org/"
         },
         "publisher": {
