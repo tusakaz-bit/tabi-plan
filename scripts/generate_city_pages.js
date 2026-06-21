@@ -43,52 +43,27 @@ async function fetchRakutenAPI(url, params) {
     }
 }
 
-// 基準駅からの交通アクセス情報算出（script.jsのロジックのバックエンド移植）
-function getTransitInfo(cityEn, station) {
-    if (!station) return { time: '不明', fare: '不明' };
-    const s = station.toLowerCase();
+// 楽天APIのアクセス情報から駅名と徒歩・車時間を抽出（生産管理アプローチによる規格化）
+function extractAccessInfo(accessText) {
+    if (!accessText) return { text: '好アクセス（詳細はページ内へ）', icon: 'fa-location-dot' };
     
-    if (cityEn === 'tokyo') {
-        if (s.includes('東京')) return { time: '徒歩 5分', fare: '0円' };
-        if (s.includes('新宿')) return { time: '電車/地下鉄 約15分', fare: '210円' };
-        if (s.includes('銀座')) return { time: '徒歩/地下鉄 約5分', fare: '0円 / 180円' };
-        if (s.includes('品川')) return { time: '電車 約10分', fare: '170円' };
-        if (s.includes('渋谷') || s.includes('池袋')) return { time: '電車 約20分', fare: '210円' };
-        return { time: '電車 約10-20分', fare: '200円〜' };
-    } else if (cityEn === 'osaka') {
-        if (s.includes('大阪') || s.includes('梅田')) return { time: '徒歩 5分', fare: '0円' };
-        if (s.includes('なんば') || s.includes('難波') || s.includes('心斎橋')) return { time: '地下鉄 約10分', fare: '240円' };
-        if (s.includes('天王寺')) return { time: '電車 約15分', fare: '200円' };
-        if (s.includes('新大阪')) return { time: '電車 約5分', fare: '170円' };
-        return { time: '電車/地下鉄 約15分〜', fare: '200円〜' };
-    } else if (cityEn === 'kyoto') {
-        if (s.includes('京都')) return { time: '徒歩 5分', fare: '0円' };
-        if (s.includes('烏丸') || s.includes('河原町')) return { time: '地下鉄 約10分', fare: '230円' };
-        if (s.includes('嵐山')) return { time: '電車 約20分', fare: '240円' };
-        if (s.includes('祇園')) return { time: 'バス/電車 約15分', fare: '230円' };
-        return { time: '地下鉄/バス 約15分〜', fare: '230円〜' };
-    } else if (cityEn === 'sapporo') {
-        if (s.includes('札幌')) return { time: '徒歩 5分', fare: '0円' };
-        if (s.includes('大通')) return { time: '地下鉄 約2分', fare: '210円' };
-        if (s.includes('すすきの')) return { time: '地下鉄 約3分', fare: '210円' };
-        if (s.includes('中島公園')) return { time: '地下鉄 約5分', fare: '210円' };
-        return { time: '地下鉄 約5-10分', fare: '210円〜' };
-    } else if (cityEn === 'okinawa') {
-        if (s.includes('那覇空港')) return { time: 'モノレール 約5分', fare: '230円' };
-        if (s.includes('県庁前')) return { time: 'モノレール 約12分', fare: '300円' };
-        if (s.includes('旭橋')) return { time: 'モノレール 約11分', fare: '270円' };
-        if (s.includes('おもろまち')) return { time: 'モノレール 約19分', fare: '300円' };
-        if (s.includes('牧志')) return { time: 'モノレール 約16分', fare: '300円' };
-        return { time: 'モノレール 約15-20分', fare: '300円〜' };
-    } else {
-        if (s.includes('博多')) return { time: '徒歩 5分', fare: '0円' };
-        if (s.includes('中洲') || s.includes('中洲川端')) return { time: '地下鉄 5分 + 徒歩5分', fare: '210円' };
-        if (s.includes('天神')) return { time: '地下鉄 6分 + 徒歩3分', fare: '210円' };
-        if (s.includes('祇園')) return { time: '徒歩 12分 (地下鉄1分)', fare: '0円 / 210円' };
-        if (s.includes('呉服町')) return { time: 'バス 10分', fare: '150円' };
-        if (s.includes('渡辺通') || s.includes('薬院')) return { time: 'バス 15分', fare: '150円' };
-        return { time: 'バス/電車 約15分〜', fare: '210円〜' };
+    // パターン1: 〇〇駅から徒歩〇分
+    const walkMatch = accessText.match(/([^、。]*?駅(?:.*?口)?)[^\d]*徒歩[^\d]*(\d+)分/);
+    if (walkMatch) {
+        let station = walkMatch[1].replace(/^(?:【.*?】|JR|ＪＲ|地下鉄|私鉄|メトロ)/, '').trim();
+        if (station.length > 10) station = station.substring(0, 10) + '...';
+        return { text: `${station} 徒歩${walkMatch[2]}分`, icon: 'fa-walking' };
     }
+    
+    // パターン2: 〇〇空港/駅から車で〇分
+    const carMatch = accessText.match(/([^、。]*?(?:空港|駅|IC|ＩＣ))[^\d]*(?:車|タクシー)[^\d]*(\d+)分/);
+    if (carMatch) {
+        let place = carMatch[1].trim();
+        if (place.length > 10) place = place.substring(0, 10) + '...';
+        return { text: `${place} 車で${carMatch[2]}分`, icon: 'fa-car' };
+    }
+    
+    return { text: '好アクセス（詳細はページ内へ）', icon: 'fa-location-dot' };
 }
 
 // 住所や品質基準による厳格なフィルタ
@@ -150,7 +125,7 @@ function renderHotelCards(hotels, city) {
             starsHtml = '<span style="color: #94a3b8; font-size: 0.85rem;">評価なし</span>';
         }
 
-        const transit = getTransitInfo(city.en, info.nearestStation);
+        const transit = extractAccessInfo(info.access);
 
         html += `
                 <div class="hotel-card">
@@ -163,8 +138,7 @@ function renderHotelCards(hotels, city) {
                         <h4 class="hotel-title">${info.hotelName}</h4>
                         <div class="hotel-address"><i class="fa-solid fa-location-dot"></i> <span>${info.address1}${info.address2}</span></div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                            <span class="transit-badge"><i class="fa-regular fa-clock"></i> ${baseStation}から${transit.time}</span>
-                            <span class="fare-badge"><i class="fa-solid fa-yen-sign"></i> ${transit.fare}</span>
+                            <span class="transit-badge"><i class="fas ${transit.icon}"></i> ${transit.text}</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥${priceLabel}</span><span style="font-size: 0.9rem">~ /泊</span></div>
                         <div class="review-widget"><div class="review-stars">${starsHtml}</div><div class="review-score">${reviewAvg !== '---' ? reviewAvg : ''}</div><div class="review-count">(${reviewCount}件の口コミ)</div></div>
