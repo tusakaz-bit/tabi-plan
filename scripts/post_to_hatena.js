@@ -1,20 +1,14 @@
 const axios = require('axios');
 const crypto = require('crypto');
-const { getDateString, CITIES } = require('./utils');
-const theme1 = require('./themes/theme_1_cheapest');
-const theme2 = require('./themes/theme_2_ladies');
-const theme3 = require('./themes/theme_3_couple');
-const theme4 = require('./themes/theme_4_station');
-const theme5 = require('./themes/theme_5_onsen');
-const theme6 = require('./themes/theme_6_breakfast');
-const theme7 = require('./themes/theme_7_longstay');
+const fs = require('fs');
+const path = require('path');
+const { getDateString, fetchRakutenApi, RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID } = require('./utils');
+const { GoogleGenAI } = require('@google/genai');
 
-// 環境変数から認証情報を取得（前後の余計な空白や改行を自動で取り除く処理を追加）
 const HATENA_ID = (process.env.HATENA_ID || '').trim();
 const HATENA_BLOG_ID = (process.env.HATENA_BLOG_ID || '').trim();
 const HATENA_API_KEY = (process.env.HATENA_API_KEY || '').trim();
 
-// WSSE認証のヘッダーを生成する関数
 function getWsseAuthHeaders() {
     const nonceBytes = crypto.randomBytes(20);
     const nonceBase64 = nonceBytes.toString('base64');
@@ -30,12 +24,13 @@ function getWsseAuthHeaders() {
 }
 
 async function postToHatena(title, body, tags) {
+    if (!HATENA_ID || !HATENA_BLOG_ID || !HATENA_API_KEY) {
+        console.log('Hatena credentials missing. Skipping actual API post.');
+        return;
+    }
     const url = `https://blog.hatena.ne.jp/${HATENA_ID}/${HATENA_BLOG_ID}/atom/entry`;
-    
-    // タグのXML文字列を生成
     const tagsXml = tags.map(tag => `  <category term="${tag}" />`).join('\n');
 
-    // AtomPub用のXMLを作成
     const xml = `<?xml version="1.0" encoding="utf-8"?>
 <entry xmlns="http://www.w3.org/2005/Atom"
        xmlns:app="http://www.w3.org/2007/app">
@@ -59,69 +54,123 @@ ${tagsXml}
         console.log(`Successfully posted to Hatena Blog (Published): ${title} (Status: ${response.status})`);
     } catch (error) {
         console.error(`Error posting to Hatena Blog [${title}]:`, error.response ? error.response.status : '', error.response ? error.response.data : error.message);
-        // 全体が止まらないようにエラーをスローしないが、ログは残す
     }
 }
 
-// レートリミット回避のためのスリープ関数
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+async function generateHatenaArticle(niche, hotel) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) return null;
+
+    const ai = new GoogleGenAI({ apiKey });
+    const prompt = `
+あなたはプロの旅行系Webライター兼SEOマーケターです。
+自社サイト（Tabi Plan）の特設ページへユーザーを誘導するための、はてなブログ用記事（HTML形式）を作成してください。
+
+【対象の特設ページ（ニッチ条件）】
+都市: ${niche.cityName}
+ターゲットキーワード: ${niche.keyword}
+URL: https://tabi-plan.org/${niche.city}/${niche.slug}/
+
+【ピックアップホテル例】
+ホテル名: ${hotel.name}
+料金目安: ${Number(hotel.price).toLocaleString()}円〜
+クチコミ評価: ${hotel.reviewAverage || '-'}
+
+【出力要件】
+1. HTML形式で出力してください（<body>タグの中身のみ。<style>や<html>タグは不要）。見出しには<h2>や<h3>を使用してください。
+2. 記事構成:
+   - 読者の悩みへの共感（例：「${niche.cityName}で${niche.keyword.replace(/ /g, '')}を探すのって意外と大変ですよね...」）
+   - 条件に合うホテル選びのコツ
+   - ピックアップホテルの簡単な紹介（${hotel.name}）
+   - 「すべての厳選ホテルランキングと詳細な解説はこちら！」という形で、対象URLへの強力な誘導（クリックしたくなるボタン風のリンクや太字リンク）
+3. 文字数は800文字程度で、自然で読みやすいブログ文体にしてください。
+
+出力はHTMLのみを行ってください。Markdownのバッククォート(\`\`\`html)などは含めないでください。
+`;
+
+    try {
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.0-flash',
+            contents: prompt,
+        });
+        return response.text.replace(/\`\`\`html/g, '').replace(/\`\`\`/g, '').trim();
+    } catch (e) {
+        console.error("Gemini API Error:", e.message);
+        return null;
+    }
+}
 
 async function run() {
-    console.log('Starting Hatena Blog auto-post (Per-city specialized posts)...');
+    console.log('Starting Hatena Blog auto-post (V2 Niche Focus)...');
 
-    // 今日の曜日を取得 (0=日, 1=月, ..., 6=土)
+    const configPath = path.join(__dirname, 'niche_config.json');
+    const niches = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    const nicheKeys = Object.keys(niches);
+
+    // 毎日ローテーションでニッチを選ぶ
     const now = new Date();
     const jstDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-    const dayOfWeek = jstDate.getDay();
+    const msInDay = 24 * 60 * 60 * 1000;
+    const epochDays = Math.floor((jstDate.getTime() + 9 * 60 * 60 * 1000) / msInDay);
+    
+    const selectedKey = nicheKeys[epochDays % nicheKeys.length];
+    const niche = niches[selectedKey];
 
-    const themes = [theme7, theme1, theme2, theme3, theme4, theme5, theme6];
-    const categoryNames = [
-        "長期滞在・連泊向き", // 0: 日
-        "格安・コスパ宿",     // 1: 月
-        "レディースプラン",   // 2: 火
-        "カップル・記念日",   // 3: 水
-        "駅チカホテル",       // 4: 木
-        "露天風呂付ホテル",   // 5: 金
-        "朝食が美味しいホテル" // 6: 土
-    ];
+    console.log(`Selected Niche for today: ${niche.keyword}`);
 
-    const currentTheme = themes[dayOfWeek];
-    const displayCategory = categoryNames[dayOfWeek];
+    // 代表的なホテルを1件取得して記事のフックにする
+    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426';
+    const params = {
+        applicationId: RAKUTEN_APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
+        affiliateId: RAKUTEN_AFFILIATE_ID,
+        format: 'json',
+        keyword: niche.searchParams.keyword,
+        hits: 10
+    };
 
-    console.log(`Today is day ${dayOfWeek}, running theme: ${displayCategory}`);
-
-    // 都市ごとの記事配列（6記事分）を取得
-    const articles = await currentTheme.generate();
-
-    if (!articles || articles.length === 0) {
-        console.log('No hotel data found for today\'s theme across all cities.');
+    let hotels = await fetchRakutenApi(url, params, niche.filters.minReview, 'standard', 1);
+    if (!hotels || hotels.length === 0) {
+        hotels = await fetchRakutenApi(url, params, niche.fallbackFilters.minReview, 'standard', 1);
+    }
+    
+    if (!hotels || hotels.length === 0) {
+        console.log('No hotels found. Exiting.');
         return;
     }
 
-    console.log(`Found ${articles.length} articles to post. Proceeding with sequential posting...`);
+    const hotel = hotels[0];
+    
+    // 記事本文の生成
+    let articleBody = await generateHatenaArticle(niche, hotel);
+    if (!articleBody) {
+        console.log('Falling back to static template for Hatena Blog.');
+        articleBody = `
+<h2>${niche.cityName}で「${niche.keyword}」をお探しの皆様へ</h2>
+<p>${niche.cityName}のホテル探し、条件が細かくなると意外と苦労しますよね。今回は、アクセスも良く設備も充実している話題の厳選ホテルをご紹介します。</p>
 
-    // 1つの記事にまとめる処理
-    const combinedTitle = `【${getDateString()}】失敗しない宿選び！主要6都市の「${displayCategory}」各エリア厳選3施設まとめ`;
-    let combinedBody = `<p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; text-align: center;">本日は国内の主要6都市（東京・大阪・京都・札幌・福岡・沖縄）から、<strong>${displayCategory}</strong>をテーマに、Tabi Plan AIが各エリアごとにおすすめの「厳選3施設」をピックアップしました！<br>ハズレなしの素晴らしいホテルばかりですので、次のご旅行の参考にぜひご覧ください。</p>\n`;
-    let combinedTags = new Set([displayCategory, "国内旅行", "ホテルまとめ", "TabiPlan"]);
+<h3>🏨 本日のピックアップ：${hotel.name}</h3>
+<ul>
+  <li><strong>最安料金目安：</strong> ${Number(hotel.price).toLocaleString()}円〜</li>
+  <li><strong>クチコミ評価：</strong> ${hotel.reviewAverage || '-'}</li>
+  <li><strong>ホテルの特徴：</strong> ${hotel.special || '詳細は公式サイトでご確認ください'}</li>
+</ul>
 
-    for (let i = 0; i < articles.length; i++) {
-        const article = articles[i];
-        const cityObj = CITIES.find(c => c.id === article.city) || { name: article.city };
+<p>こちらのホテルをはじめ、Tabi Planでは「<strong>${niche.keyword}</strong>」という条件にぴったり合うコスパ最強ホテルを独自にランキング化しています。</p>
 
-        combinedBody += `\n<h2 style="background: #D4AF37; color: white; padding: 12px; margin-top: 50px; text-align: center; border-radius: 5px; font-size: 1.4rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">📍 ${cityObj.name}エリアの厳選宿</h2>\n`;
-        combinedBody += article.body;
-
-        // 各記事のタグをマージ（都市名なども含まれる）
-        if (article.tags) {
-            article.tags.forEach(tag => combinedTags.add(tag));
-        }
+<p style="text-align: center; margin: 30px 0;">
+  <a href="https://tabi-plan.org/${niche.city}/${niche.slug}/" style="background-color: #D4AF37; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.2em; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">すべての厳選ホテルランキングと詳細を見る</a>
+</p>
+<p>賢く安く、ワンランク上の旅行を実現するために、ぜひチェックしてみてくださいね！</p>
+        `;
     }
 
-    console.log(`Posting combined article: ${combinedTitle}`);
-    await postToHatena(combinedTitle, combinedBody, Array.from(combinedTags));
-    
-    console.log('All Hatena blog posts completed successfully.');
+    const title = `【${getDateString()}】${niche.cityName}の宿選び：${niche.keyword.replace(/ /g, '・')}の厳選ホテル`;
+    const tags = [niche.cityName, "ホテル選び", "国内旅行", "TabiPlan"];
+
+    console.log(`Posting article: ${title}`);
+    await postToHatena(title, articleBody, tags);
+    console.log('Done.');
 }
 
 run();

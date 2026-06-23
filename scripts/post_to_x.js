@@ -1,131 +1,66 @@
-try { require('dotenv').config(); } catch (e) { /* dotenvが無い環境（CI等）では無視 */ }
+try { require('dotenv').config(); } catch (e) { /* dotenvが無い環境では無視 */ }
 const fs = require('fs');
-const { RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID, CITIES, fetchRakutenApi } = require('./utils');
+const path = require('path');
+const { fetchRakutenApi, RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID } = require('./utils');
 const { GoogleGenAI } = require('@google/genai');
 
 const BASE_URL = 'https://tabi-plan.org';
 
-function truncateString(str, maxLength) {
-    if (!str) return '';
-    // 最初の句点までを優先して取得
-    let match = str.match(/^([^。！？]{10,50}[。！？])/);
-    let naturalDesc = match ? match[1] : str;
-    
-    // それでも長ければ強制カット
-    if (naturalDesc.length > maxLength) {
-        naturalDesc = naturalDesc.substring(0, maxLength - 1) + '…';
+function countXPoints(str) {
+    if (!str) return 0;
+    let points = 0;
+    for (let i = 0; i < str.length; i++) {
+        const code = str.charCodeAt(i);
+        if ((code >= 0x0000 && code <= 0x007f) || (code >= 0xff61 && code <= 0xff9f)) {
+            points += 1;
+        } else {
+            points += 2;
+        }
     }
-    return naturalDesc;
+    return points;
 }
 
-async function run() {
-    console.log('Generating daily X post drafts (1 city focused thread)...');
+async function generateXTweets(niche, hotel) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) return null;
 
-    const now = new Date();
-    // 実行日のJST日付を取得（はてなブログと完全に連動）
-    const jstDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-    const dayOfWeek = jstDate.getDay(); // 実行日の曜日 (0=日, 1=月, ..., 6=土)
-
-    // X用のテーマ定義（はてなと完全に連動）
-    const themes = [
-        { name: "長期滞在・連泊向き", sort: 'cheap', minReview: 3.5, keywordSuffix: ' 連泊', hashtag: '#ワーケーション' }, // 0:日
-        { name: "格安・コスパ最強", sort: 'cheap', minReview: 3.5, keywordSuffix: '', hashtag: '#格安旅行' }, // 1:月
-        { name: "レディースプラン", sort: 'review', minReview: 4.0, keywordSuffix: ' レディース', hashtag: '#女子旅' }, // 2:火
-        { name: "カップル・記念日", sort: 'review', minReview: 4.0, keywordSuffix: ' 記念日', hashtag: '#記念日旅行' }, // 3:水
-        { name: "アクセス抜群（駅チカなど）", sort: 'review', minReview: 3.8, keywordSuffix: ' 駅チカ', hashtag: '#便利' }, // 4:木
-        { name: "露天風呂・温泉付き", sort: 'review', minReview: 4.0, keywordSuffix: ' 露天風呂', hashtag: '#温泉旅行' }, // 5:金
-        { name: "朝食が美味しい", sort: 'review', minReview: 4.0, keywordSuffix: ' 朝食', hashtag: '#ホテル朝食' } // 6:土
-    ];
-
-    // エポック日数（JST基準）を用いて、6都市が毎日均等に順次循環するようにローテーションを改善
-    const msInDay = 24 * 60 * 60 * 1000;
-    const epochDays = Math.floor((jstDate.getTime() + 9 * 60 * 60 * 1000) / msInDay);
-    const city = CITIES[epochDays % CITIES.length];
-    const t = themes[dayOfWeek];
-
-    console.log(`Target City: ${city.name}, Theme: ${t.name} (dayOfWeek: ${dayOfWeek}, epochDays: ${epochDays})`);
-
-    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426';
-    const params = {
-        applicationId: RAKUTEN_APP_ID,
-        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
-        affiliateId: RAKUTEN_AFFILIATE_ID,
-        format: 'json',
-        keyword: city.keyword + t.keywordSuffix,
-        middleClassCode: city.middle,
-        smallClassCode: city.small,
-        hits: 30
-    };
-    if (city.detail) params.detailClassCode = city.detail;
-
-    // utilsの関数を使って、ソートと足切りを適用したトップ1件を取得
-    const hotels = await fetchRakutenApi(url, params, t.minReview, t.sort, 1);
-    const hotel = hotels && hotels.length > 0 ? hotels[0] : null;
-
-    if (!hotel) {
-        console.log(`No hotel data found for ${city.name} (${t.name}).`);
-        return;
-    }
-
-    // X（旧Twitter）の日本語環境における文字数カウント（全角＝2ポイント、半角＝1ポイント）
-    // 最大280ポイント（全角140文字）制限
-    function countXPoints(str) {
-        if (!str) return 0;
-        let points = 0;
-        for (let i = 0; i < str.length; i++) {
-            const code = str.charCodeAt(i);
-            if ((code >= 0x0000 && code <= 0x007f) || (code >= 0xff61 && code <= 0xff9f)) {
-                points += 1;
-            } else {
-                points += 2;
-            }
-        }
-        return points;
-    }
-
-    // X（旧Twitter）用テキストの自動生成関数
-    async function generateXTweets(city, theme, hotel) {
-        const apiKey = process.env.GEMINI_API_KEY;
-        if (!apiKey) {
-            console.warn("GEMINI_API_KEY is not defined. Using fallback static template.");
-            return null;
-        }
-
-        try {
-            const ai = new GoogleGenAI({ apiKey });
-            const prompt = `
-以下のホテル情報と今日のテーマをもとに、X（旧Twitter）に投稿する「スレッド投稿（親ツイートと子ツイートの2件）」の文章を日本語で生成してください。
+    try {
+        const ai = new GoogleGenAI({ apiKey });
+        const prompt = `
+以下の情報をもとに、X（旧Twitter）に投稿する「スレッド投稿（親ツイートと子ツイートの2件）」の文章を日本語で生成してください。
 ユーザーの興味を惹きつけ、リンクをクリックして詳細を見たくなるような、洗練されたマーケティング文章（「ポチらせる」文章）を作成してください。
 
-【テーマとホテル情報】
-都市名: ${city.name}
-今日のテーマ: ${theme.name}
+【対象の特設ページ（ニッチ条件）】
+都市名: ${niche.cityName}
+ターゲット層・キーワード: ${niche.keyword}
+特設ページURL: ${BASE_URL}/${niche.city}/${niche.slug}/
+
+【ピックアップホテル例】
 ホテル名: ${hotel.name}
-最安料金目安: ${Number(hotel.price).toLocaleString()} 円
+最安料金目安: ${Number(hotel.price).toLocaleString()} 円〜
 クチコミ評価: ${hotel.reviewAverage || '4.0'} / 5.0
 ホテルの特徴（楽天APIより）: ${hotel.special || 'なし'}
 
 【作成ルール】
 1. **親ツイート（tweet1）の作成ルール**:
-   - 旅に行きたくなるエモーショナルな感情や、コスパの良さをアピールするフックとなる魅力的な文章。
-   - 文字数はハッシュタグを含めて**厳密に全角130文字以内**（合計260ポイント/バイト以内）に収めてください。
+   - そのキーワード（例：${niche.keyword}）で探している人の悩みに寄り添う、または魅力的な提案をするフック文章。
+   - 文字数は**厳密に全角130文字以内**（合計260ポイント/バイト以内）に収めてください。
    - 文末に必ず以下のハッシュタグをスペース区切りで含めてください：
-     #${city.name}旅行 ${theme.hashtag}
+     #${niche.cityName}旅行 #ホテル選び
    - 「💡【AI解析】〜」などの機械的な固定文頭は避け、毎回新鮮なフックから書き始めてください。
 
 2. **子ツイート（tweet2）の作成ルール**:
-   - ホテル名（${hotel.name}）を明記し、その宿の最大の魅力を端的に紹介する文章。
-   - 必ず以下のURLを含めてください（文字数カウントに含まれます）：
-     ${BASE_URL}/${city.id}/
-   - URLとホテル名を含めて**厳密に全角130文字以内**（合計260ポイント/バイト以内）に収めてください。
+   - 今回ピックアップした「${hotel.name}」を例に挙げつつ、「この他にも条件に合う厳選宿をランキングでまとめています」と案内する文章。
+   - 必ず以下の特設ページURLを含めてください（文字数カウントに含まれます）：
+     ${BASE_URL}/${niche.city}/${niche.slug}/
+   - URLを含めて**厳密に全角130文字以内**（合計260ポイント/バイト以内）に収めてください。
 
 3. **表現のルール**:
-   - 「〜となっています」「〜が特徴です」「ぜひ訪れてみてください」「〜はいかがでしょうか」といった、ありきたりなAI風・ブログ風の表現は絶対に使わないでください。
-   - プロの旅行ライター・インフルエンサーが発信しているような、リアルで魅力あふれる投稿文にしてください。
-   - 「バグ級」「コスパバグり」「AI解析」「発見！」といった安易な煽り文句や、不自然に高いテンションの表現は厳禁です。もっと知的な大人の旅行を提案するような、上質で自然な表現にしてください。
+   - プロの旅行ライターが発信しているような、リアルで魅力あふれる投稿文にしてください。
+   - 「バグ級」「コスパバグり」「発見！」といった安易な煽り文句は厳禁です。
 
 【出力フォーマット】
-以下のJSONフォーマット（プレーンなJSONオブジェクトのみ、Markdownの\`\`\`json等のコードブロック囲みは不要）で出力してください。キー名は必ず一致させてください。
+以下のJSONフォーマット（プレーンなJSONオブジェクトのみ、Markdownの\`\`\`json等のコードブロック囲みは不要）で出力してください。
 
 {
   "tweet1": "生成された親ツイートの文章（ハッシュタグを含む、130文字以内）",
@@ -133,104 +68,113 @@ async function run() {
 }
 `;
 
-            const response = await ai.models.generateContent({
-                model: 'gemini-2.0-flash',
-                contents: prompt,
-                config: {
-                    responseMimeType: 'application/json'
-                }
-            });
-
-            const jsonText = response.text;
-            const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
-            const parsedData = JSON.parse(cleanedJson);
-            
-            if (parsedData.tweet1 && parsedData.tweet2) {
-                return parsedData;
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.0-flash',
+            contents: prompt,
+            config: {
+                responseMimeType: 'application/json'
             }
-        } catch (e) {
-            console.error('Error generating tweets via Gemini:', e.message);
+        });
+
+        const jsonText = response.text;
+        const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+        const parsedData = JSON.parse(cleanedJson);
+        
+        if (parsedData.tweet1 && parsedData.tweet2) {
+            return parsedData;
         }
-        return null;
+    } catch (e) {
+        console.error('Error generating tweets via Gemini:', e.message);
+    }
+    return null;
+}
+
+async function run() {
+    console.log('Generating daily X post drafts (V2 Niche Focus)...');
+
+    const configPath = path.join(__dirname, 'niche_config.json');
+    const niches = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    const nicheKeys = Object.keys(niches);
+
+    // 毎日ローテーションでニッチを選ぶ
+    const now = new Date();
+    const jstDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const msInDay = 24 * 60 * 60 * 1000;
+    const epochDays = Math.floor((jstDate.getTime() + 9 * 60 * 60 * 1000) / msInDay);
+    
+    // はてなブログとは別のニッチが選ばれるように少しオフセットをかける
+    const selectedKey = nicheKeys[(epochDays + 3) % nicheKeys.length];
+    const niche = niches[selectedKey];
+
+    console.log(`Target Niche: ${niche.cityName} - ${niche.keyword}`);
+
+    const url = 'https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426';
+    const params = {
+        applicationId: RAKUTEN_APP_ID,
+        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
+        affiliateId: RAKUTEN_AFFILIATE_ID,
+        format: 'json',
+        keyword: niche.searchParams.keyword,
+        hits: 10
+    };
+
+    let hotels = await fetchRakutenApi(url, params, niche.filters.minReview, 'standard', 1);
+    if (!hotels || hotels.length === 0) {
+        hotels = await fetchRakutenApi(url, params, niche.fallbackFilters.minReview, 'standard', 1);
+    }
+    
+    if (!hotels || hotels.length === 0) {
+        console.log('No hotels found. Exiting.');
+        return;
     }
 
-    let tweet1 = '';
-    let tweet2 = '';
+    const hotel = hotels[0];
     
     // AIによる生成を実行
-    const aiTweets = await generateXTweets(city, t, hotel);
+    const aiTweets = await generateXTweets(niche, hotel);
+    let tweet1 = '', tweet2 = '';
     
-    // AI生成成功、かつ文字数制限内に収まっているかチェック
     if (aiTweets && countXPoints(aiTweets.tweet1) <= 280 && countXPoints(aiTweets.tweet2) <= 280) {
-        console.log(`[AI] ✅ Dynamic tweets successfully generated by Gemini 3.5 Flash!`);
+        console.log(`[AI] ✅ Dynamic tweets successfully generated by Gemini!`);
         tweet1 = aiTweets.tweet1;
         tweet2 = aiTweets.tweet2;
     } else {
-        // フォールバック：以前の静的テンプレートロジックで安全に生成
-        console.warn(`[AI] ⚠️ Falling back to static templates (AI failed or text exceeded limit).`);
-        
-        let prTextLength = 20;
-        let prText = truncateString(hotel.special, prTextLength);
-        
-        while (true) {
-            tweet1 = `✨ 注目のおすすめ宿情報
-本日の${city.name}×${t.name}セレクト。
-楽天★${hotel.reviewAverage || '-'}と高評価ながら、賢く滞在できる魅力的な価格設定です。
-
-「${prText}」
-
-1泊${Number(hotel.price).toLocaleString()}円〜で叶う上質な時間を。
+        console.log(`[AI] ⚠️ Falling back to static templates.`);
+        tweet1 = `✨ 今日の宿選び
+${niche.cityName}で「${niche.keyword}」をお探しですか？
+評価★${hotel.reviewAverage || '-'}で1泊${Number(hotel.price).toLocaleString()}円〜と、非常に満足度の高い宿泊プランを見つけました。
 詳細はスレッドにて👇
-#${city.name}旅行 ${t.hashtag}`;
-
-            const points = countXPoints(tweet1);
-            if (points <= 280) {
-                break;
-            }
-
-            if (prTextLength > 5) {
-                prTextLength -= 2;
-                prText = truncateString(hotel.special, prTextLength);
-            } else {
-                tweet1 = `✨ 今日のイチオシ宿
-${city.name}×${t.name}セレクト。
-評価★${hotel.reviewAverage || '-'}で1泊${Number(hotel.price).toLocaleString()}円〜と、非常に満足度の高い宿泊プランです。
-詳細はスレッドにて👇
-#${city.name}旅行`;
-                break;
-            }
-        }
-
+#${niche.cityName}旅行 #ホテル選び`;
         tweet2 = `🏨 ${hotel.name}
 
-▼AI厳選の最安値プラン確認と、賢く贅沢な旅（Smart & Luxury）のプランニングはこちら👇
-${BASE_URL}/${city.id}/
+▼AI厳選の最安値プラン確認と、この条件に合うその他のおすすめホテルランキングはこちら👇
+${BASE_URL}/${niche.city}/${niche.slug}/
 
 宿泊費を賢く抑えた予算で、極上の体験を。Tabi Plan公式サイトで特設ガイド公開中✨`;
     }
 
     const dateStr = `${jstDate.getMonth() + 1}月${jstDate.getDate()}日投稿分`;
 
-    // --- Generate GitHub Actions Summary (Markdown) ---
     let summaryMarkdown = `
-# 📝 X投稿用原稿：${dateStr} (Buffer用)
-最新の高評価・コスパデータに基づいた「スレッド形式」の投稿原稿です。
+# 📝 X投稿用原稿：${dateStr} (Buffer用 - ニッチ訴求版)
+最新の高評価データに基づいた「特設ページ誘導型」のスレッド形式投稿原稿です。
 
 ---
 
 ## 1. 【親ツイート】（興味付け・フック）
-以下の文章をコピーし、**${city.name}の美しい風景画像（公式サイト背景など）**を1枚添付して投稿してください。
+以下の文章をコピーし、**${niche.cityName}の美しい風景画像** または **ホテルの写真** を1枚添付して投稿してください。
 
 \`\`\`text
 ${tweet1}
 \`\`\`
 
-*(文字数目安: 約 ${Math.ceil(countXPoints(tweet1) / 2)} 文字（全角換算）/ 140文字以内)*
+*(文字数目安: 約 ${Math.ceil(countXPoints(tweet1) / 2)} 文字 / 140文字以内)*
 
 ---
 
-## 2. 【子ツイート】（詳細・公式サイトへの送客）
+## 2. 【子ツイート】（詳細・特設ページへの送客）
 上記ツイートの「返信（スレッド追加）」として、以下の文章を繋げてください。
+※URLを貼ることで、X上で自動的に「特設ページのOGP画像（リンクカード）」が表示されます。
 
 \`\`\`text
 ${tweet2}
@@ -241,7 +185,6 @@ ${tweet2}
 > **Bufferでのコツ**: 「Create Post」で1つ目の文章を入力した後、右下の「Add thread item」を押すと連投が作成できます。
 `;
 
-    // Write to GitHub Step Summary
     if (process.env.GITHUB_STEP_SUMMARY) {
         fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summaryMarkdown);
     } else {
