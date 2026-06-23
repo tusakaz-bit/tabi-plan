@@ -276,6 +276,27 @@ async function run() {
 
         fs.writeFileSync(path.join(outputDir, 'index.html'), finalHtml);
         console.log(`SUCCESS: Generated niche page -> ${niche.city}/${niche.slug}/index.html`);
+
+        // 5. サイトマップへの登録・更新
+        const urlStr = `https://tabi-plan.org/${niche.city}/${niche.slug}/`;
+        const sitemapPath = path.join(__dirname, '../sitemap.xml');
+        if (fs.existsSync(sitemapPath)) {
+            let sitemapHtml = fs.readFileSync(sitemapPath, 'utf8');
+            const todayStr = jstDate.split(' ')[0].replace(/\//g, '-');
+            
+            if (!sitemapHtml.includes(urlStr)) {
+                const newSitemapUrl = `  <url>\n    <loc>${urlStr}</loc>\n    <lastmod>${todayStr}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.7</priority>\n  </url>`;
+                sitemapHtml = sitemapHtml.replace('</urlset>', `${newSitemapUrl}\n</urlset>`);
+                fs.writeFileSync(sitemapPath, sitemapHtml);
+                console.log(`- Added ${urlStr} to sitemap.xml`);
+            } else {
+                // すでに存在する場合はlastmodのみ更新
+                const regex = new RegExp(`(<loc>${urlStr}</loc>\\s*<lastmod>)[^<]+(</lastmod>)`);
+                sitemapHtml = sitemapHtml.replace(regex, `$1${todayStr}$2`);
+                fs.writeFileSync(sitemapPath, sitemapHtml);
+                console.log(`- Updated lastmod in sitemap.xml for ${urlStr}`);
+            }
+        }
     }
 
     if (configUpdated) {

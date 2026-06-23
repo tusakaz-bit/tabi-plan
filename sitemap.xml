@@ -317,4 +317,28 @@
     <lastmod>2026-06-23</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://tabi-plan.org/fukuoka/hakata-daiyokujo/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/fukuoka/tenjin-sudomari/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/osaka/shinosaka-cospa/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/osaka/namba-couple/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
