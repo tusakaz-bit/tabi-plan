@@ -237,6 +237,18 @@ async function run() {
         }
     }
 
+    // ニッチページ設定のロード
+    const nicheConfigPath = path.join(__dirname, 'niche_config.json');
+    let nicheConfig = {};
+    if (fs.existsSync(nicheConfigPath)) {
+        try {
+            nicheConfig = JSON.parse(fs.readFileSync(nicheConfigPath, 'utf8'));
+            console.log(`✅ ニッチページ設定をロードしました`);
+        } catch (e) {
+            console.error(`⚠️ niche_config.json のパースエラー: ${e.message}`);
+        }
+    }
+
     for (const city of CITIES) {
         console.log(`\n========================================\nProcessing city: ${city.name} (${city.en})\n========================================`);
 
@@ -383,6 +395,25 @@ async function run() {
             metaDescription = seoOverrides[pageKey].metaDescription;
         }
 
+        // ニッチページへのリンク生成
+        let nicheLinksHtml = '';
+        const cityNiches = Object.values(nicheConfig).filter(n => n.city === city.en);
+        if (cityNiches.length > 0) {
+            const links = cityNiches.map(n => `<a href="${n.slug}/" class="booking-button" style="display:inline-block; margin: 0.5rem; background: #1e293b; color: #fbbf24; border: 1px solid #fbbf24;">${n.keyword} <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i></a>`).join('');
+            nicheLinksHtml = `
+        <section id="niche-links" class="hotels-section" style="background: rgba(15, 15, 18, 0.9);">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Niche Collections</h3>
+                    <p class="section-subtitle">${city.name}の条件別おすすめホテル特集</p>
+                </div>
+                <div style="text-align: center;">
+                    ${links}
+                </div>
+            </div>
+        </section>`;
+        }
+
         const data = {
             '{{CITY_NAME}}': city.name,
             '{{CITY_EN}}': city.en,
@@ -408,6 +439,7 @@ async function run() {
             '{{HOTELS_STATION}}': htmlStation,
             '{{BUDGET_GUIDE_CONTENT}}': budgetGuide,
             '{{GATEWAY_CONTENT}}': gateways,
+            '{{NICHE_LINKS_SECTION}}': nicheLinksHtml,
             '{{UPDATE_TIME}}': jstDate
         };
 
