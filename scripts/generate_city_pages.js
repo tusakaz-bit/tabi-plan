@@ -18,6 +18,15 @@ const CITIES = [
     { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多', bgImage: "url('../bg_fukuoka.png')" }
 ];
 
+const CITY_BG_FILENAME = {
+    tokyo: "bg_tokyo_1776258940200.png",
+    osaka: "bg_osaka_1775740031415.png",
+    kyoto: "bg_kyoto_night_1776398726246.png",
+    sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
+    okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
+    fukuoka: "bg_fukuoka.png"
+};
+
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // 楽天APIの429エラーを回避するためのディレイ付き通信クライアント
@@ -418,6 +427,7 @@ async function run() {
             '{{CITY_NAME}}': city.name,
             '{{CITY_EN}}': city.en,
             '{{HERO_BG_IMAGE}}': city.bgImage,
+            '{{OG_IMAGE}}': `https://tabi-plan.org/${CITY_BG_FILENAME[city.en]}`,
             '{{PAGE_TITLE}}': pageTitle,
             '{{META_DESCRIPTION}}': metaDescription,
             '{{JSON_LD}}': jsonLdString,

@@ -27,6 +27,15 @@ const CITY_BG = {
     fukuoka: "url('../../bg_fukuoka.png')"
 };
 
+const CITY_BG_FILENAME = {
+    tokyo: "bg_tokyo_1776258940200.png",
+    osaka: "bg_osaka_1775740031415.png",
+    kyoto: "bg_kyoto_night_1776398726246.png",
+    sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
+    okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
+    fukuoka: "bg_fukuoka.png"
+};
+
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function fetchRakutenAPI(url, params) {
@@ -256,6 +265,7 @@ async function run() {
             '{{PAGE_TITLE}}': pageTitle,
             '{{META_DESCRIPTION}}': metaDesc,
             '{{HERO_BG_IMAGE}}': CITY_BG[niche.city],
+            '{{OG_IMAGE}}': `https://tabi-plan.org/${CITY_BG_FILENAME[niche.city]}`,
             '{{BREADCRUMB_CITY_NAME}}': breadcrumbCity,
             '{{BREADCRUMB_NICHE_NAME}}': breadcrumbNiche,
             '{{HERO_TITLE}}': niche.title,
