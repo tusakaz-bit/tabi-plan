@@ -51,7 +51,7 @@ async function fetchRakutenApi(url, params, minReviewScore = 3.5, sortType = 'ch
                 // 上位 count 件を返す
                 return filteredHotels.slice(0, count).map(hotel => {
                     const hotelNo = hotel.hotelNo;
-                    const affiliateUrl = `https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`;
+                    const affiliateUrl = `https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/tabiplan-web/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`;
                     return {
                         name: hotel.hotelName,
                         price: hotel.hotelMinCharge,
