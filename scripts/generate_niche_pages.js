@@ -272,6 +272,8 @@ async function run() {
             '{{NICHE_GUIDE_HTML}}': guideHtmlWrapper,
             '{{FALLBACK_MESSAGE}}': fallbackMessage,
             '{{HOTELS_HTML}}': hotelsHtml,
+            '{{NICHE_CITY}}': niche.city,
+            '{{NICHE_SLUG}}': niche.slug,
             '{{UPDATE_TIME}}': jstDate
         };
 
