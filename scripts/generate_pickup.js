@@ -400,10 +400,25 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
 
     const defaultDesc = `<p class="description-lead">旅の疲れを癒やす心地よい空間。</p><p class="description-paragraph">${info.hotelInformationEmail || '詳しい情報は予約ページをご確認ください。'}</p><p class="description-paragraph">モダンなインテリアと落ち着いた照明が、上質なひとときを演出します。</p>`;
 
+    const CITY_BG_FILENAME = {
+        tokyo: "bg_tokyo_1776258940200.png",
+        osaka: "bg_osaka_1775740031415.png",
+        kyoto: "bg_kyoto_night_1776398726246.png",
+        sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
+        okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
+        fukuoka: "bg_fukuoka.png"
+    };
+
+    let ogImage = 'https://tabi-plan.org/favicon.svg'; // デフォルトフォールバック
+    if (cityEn && CITY_BG_FILENAME[cityEn.toLowerCase()]) {
+        ogImage = `https://tabi-plan.org/${CITY_BG_FILENAME[cityEn.toLowerCase()]}`;
+    }
+
     const data = {
         '{{HOTEL_NAME}}': info.hotelName,
         '{{CATEGORY_NAME}}': category,
         '{{HERO_IMAGE}}': info.hotelImageUrl,
+        '{{OG_IMAGE}}': ogImage,
         '{{CATCHCOPY}}': aiData?.catchcopy || info.hotelSpecial || '非日常を楽しむ、極上の滞在を。',
         '{{SMART_POINT}}': aiData?.smartPoint || `評価${rating}の高水準でありながら、周辺相場と比較しても納得のプライス。`,
         '{{BEAUTIFUL_POINT}}': aiData?.beautifulPoint || info.hotelSpecial || '洗練された空間デザインと、細やかなおもてなし。',
