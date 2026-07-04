@@ -36,25 +36,25 @@ function processFile(filePath, mode) {
         // 改行を含めて削除
         const part1 = content.slice(0, faqStart);
         let part2 = content.slice(faqEnd);
-        if (part2.startsWith('\\n')) part2 = part2.slice(1);
-        if (part2.startsWith('\\n')) part2 = part2.slice(1);
+        if (part2.startsWith('\n')) part2 = part2.slice(1);
+        if (part2.startsWith('\n')) part2 = part2.slice(1);
         content = part1 + part2;
     }
 
     // 2. 新しい位置に挿入
     if (mode === 'city') {
-        // cityページ： {{CITY_GUIDE_SECTION}} または </section>\\n\\n        <section id="budget-guide" の直前
+        // cityページ： {{CITY_GUIDE_SECTION}} または </section>\n\n        <section id="budget-guide" の直前
         const target = '<section id="budget-guide"';
-        content = content.replace(target, FAQ_HTML + '\\n        ' + target);
+        content = content.replace(target, FAQ_HTML + '\n        ' + target);
     } else if (mode === 'niche') {
         // nicheページ： hotels section の終わり (つまり </section> の直後で、</main>の前)
         // {{NICHE_GUIDE_HTML}} または fallbackMessage の直前が望ましいが、確実なのは hotels セクションの終わり
-        const target = '        </section>\\n\\n    </main>';
+        const target = '        </section>\n\n    </main>';
         if (content.includes(target)) {
-            content = content.replace(target, '        </section>\\n' + FAQ_HTML + '\\n    </main>');
+            content = content.replace(target, '        </section>\n' + FAQ_HTML + '\n    </main>');
         } else {
             // template用
-            content = content.replace('        </section>\\n    </main>', '        </section>\\n' + FAQ_HTML + '\\n    </main>');
+            content = content.replace('        </section>\n    </main>', '        </section>\n' + FAQ_HTML + '\n    </main>');
         }
     }
 
