@@ -151,7 +151,10 @@ function renderHotelCards(hotels, city) {
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥${priceLabel}</span><span style="font-size: 0.9rem">~ /泊</span></div>
                         <div class="review-widget"><div class="review-stars">${starsHtml}</div><div class="review-score">${reviewAvg !== '---' ? reviewAvg : ''}</div><div class="review-count">(${reviewCount}件の口コミ)</div></div>
-                        <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="booking-button">詳細・予約を見る</a>
+                        <div class="booking-button-container">
+                            <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
+                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="booking-button" data-hotel-name="${info.hotelName}" data-category="${city.en}">空室状況と料金をチェック</a>
+                        </div>
                     </div>
                 </div>`;
     }

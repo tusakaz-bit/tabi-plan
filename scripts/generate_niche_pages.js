@@ -99,7 +99,7 @@ function filterHotels(hotels, filterRules) {
     });
 }
 
-function renderHotelCards(hotels) {
+function renderHotelCards(hotels, niche) {
     if (!hotels || hotels.length === 0) {
         return '<p class="error-message">本日は条件に完全に合致するプランが見つかりませんでした。別の条件もお試しください。</p>';
     }
@@ -144,7 +144,10 @@ function renderHotelCards(hotels) {
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥${priceLabel}</span><span style="font-size: 0.9rem">~ /泊</span></div>
                         <div class="review-widget"><div class="review-stars">${starsHtml}</div><div class="review-score">${reviewAvg !== '---' ? reviewAvg : ''}</div><div class="review-count">(${reviewCount}件の口コミ)</div></div>
-                        <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="booking-button">詳細・予約を見る</a>
+                        <div class="booking-button-container">
+                            <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
+                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="booking-button" data-hotel-name="${info.hotelName}" data-category="${niche.city}/${niche.slug}">空室状況と料金をチェック</a>
+                        </div>
                     </div>
                 </div>`;
     }
@@ -234,7 +237,7 @@ async function run() {
              hotels.sort((a, b) => a.hotel[0].hotelBasicInfo.hotelMinCharge - b.hotel[0].hotelBasicInfo.hotelMinCharge);
         }
 
-        const hotelsHtml = renderHotelCards(hotels);
+        const hotelsHtml = renderHotelCards(hotels, niche);
 
         // 4. HTMLのレンダリングと保存
         const now = new Date();
