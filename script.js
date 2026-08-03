@@ -404,4 +404,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ブラウザの開発者コンソール等から手動でテスト・実行できるようにグローバルスコープへ露出
     window.applyDynamicPromotions = applyDynamicPromotions;
+
+    // ==========================================
+    // GA4 アフィリエイトリンク クリックトラッキング (遅延遷移・イベント委譲版)
+    // ==========================================
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('https://hb.afl.rakuten.co.jp/')) {
+            // 通信完了前にページ遷移/タブ展開するのを防ぐため、標準のリンク動作を一旦キャンセル
+            e.preventDefault();
+            
+            const hotelName = link.getAttribute('data-hotel-name') || 'unknown_hotel';
+            const category = link.getAttribute('data-category') || 'unknown_category';
+            const target = link.getAttribute('target') || '_self';
+
+            // 実際の遷移を行うコールバック関数
+            const navigateToAffiliate = () => {
+                if (target === '_blank') {
+                    window.open(href, '_blank', 'noopener,noreferrer');
+                } else {
+                    window.location.href = href;
+                }
+            };
+
+            // GA4のタグが読み込まれているか確認
+            if (typeof gtag === 'function') {
+                console.log(`[GA4] Sending event: click_rakuten_affiliate (Hotel: ${hotelName}, Category: ${category})`);
+                
+                // コールバックが二重に実行されるのを防ぐフラグ
+                let isNavigated = false;
+                const safeNavigate = () => {
+                    if (!isNavigated) {
+                        isNavigated = true;
+                        navigateToAffiliate();
+                    }
+                };
+
+                // GA4へイベント送信し、完了後に遷移を実行
+                gtag('event', 'click_rakuten_affiliate', {
+                    page_location: window.location.href,
+                    hotel_name: hotelName,
+                    category: category,
+                    outbound_url: href,
+                    event_callback: safeNavigate
+                });
+                
+                // ネットワークエラーや遅延でコールバックが呼ばれない場合に備え、300ms後に強制遷移
+                setTimeout(safeNavigate, 300);
+            } else {
+                // gtagがブロックされている（広告ブロッカー等）場合は即座に遷移
+                navigateToAffiliate();
+            }
+        }
+    });
 });
