@@ -8,7 +8,11 @@ const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 const TEMPLATE_PATH = path.join(__dirname, 'themes/niche_template.html');
 const CONFIG_PATH = path.join(__dirname, 'niche_config.json');
-
+const SEO_OVERRIDES_PATH = path.join(__dirname, 'seo_overrides.json');
+let seoOverrides = {};
+if (fs.existsSync(SEO_OVERRIDES_PATH)) {
+    seoOverrides = JSON.parse(fs.readFileSync(SEO_OVERRIDES_PATH, 'utf8'));
+}
 const CITY_CODES = {
     tokyo:   { middle: 'tokyo', small: 'tokyo' },
     osaka:   { middle: 'osaka', small: 'shi' },
@@ -245,8 +249,16 @@ async function run() {
             year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Tokyo'
         }).format(now);
 
-        const pageTitle = `${niche.title} | Tabi Plan`;
-        const metaDesc = `【毎朝自動更新】${niche.keyword}に合致するコスパ最強ホテルを厳選。料金順に毎日更新しています。`;
+        let pageTitle = `${niche.title} | Tabi Plan`;
+        let metaDesc = `【毎朝自動更新】${niche.keyword}に合致するコスパ最強ホテルを厳選。料金順に毎日更新しています。`;
+        
+        const pageKey = `/${niche.city}/${niche.slug}/`;
+        if (seoOverrides[pageKey]) {
+            console.log(`🎯 [SEO適用] ニッチページ ${niche.title} にSEOメタデータを適用します`);
+            if (seoOverrides[pageKey].title) pageTitle = seoOverrides[pageKey].title;
+            if (seoOverrides[pageKey].metaDescription) metaDesc = seoOverrides[pageKey].metaDescription;
+        }
+
         const breadcrumbCity = `${niche.cityName}のホテル`;
         const breadcrumbNiche = niche.keyword;
         
