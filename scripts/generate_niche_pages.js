@@ -237,8 +237,12 @@ async function run() {
         }
 
         if (hotels.length > 0) {
-             // 料金の安い順にソート（コスパ特化）
-             hotels.sort((a, b) => a.hotel[0].hotelBasicInfo.hotelMinCharge - b.hotel[0].hotelBasicInfo.hotelMinCharge);
+            if (niche.sort === 'review') {
+                hotels.sort((a, b) => (b.hotel[0].hotelBasicInfo.reviewAverage || 0) - (a.hotel[0].hotelBasicInfo.reviewAverage || 0));
+            } else {
+                // デフォルト: 料金の安い順にソート（コスパ特化）
+                hotels.sort((a, b) => a.hotel[0].hotelBasicInfo.hotelMinCharge - b.hotel[0].hotelBasicInfo.hotelMinCharge);
+            }
         }
 
         const hotelsHtml = renderHotelCards(hotels, niche);

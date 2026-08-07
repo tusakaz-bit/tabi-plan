@@ -614,4 +614,16 @@
     <lastmod>2026-08-07</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://tabi-plan.org/kyoto/kawaramachi-cheap/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/kyoto/kawaramachi-stylish/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
