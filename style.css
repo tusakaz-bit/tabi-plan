@@ -407,6 +407,7 @@ a {
 .hotels-section {
     padding: 5rem 0 10rem;
     scroll-margin-top: 80px;
+    background-color: var(--bg-color);
 }
 
 .section-header {
