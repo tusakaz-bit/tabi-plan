@@ -23,21 +23,21 @@ const CITY_CODES = {
 };
 
 const CITY_BG = {
-    tokyo: "url('../../bg_tokyo_1776258940200.png')",
-    osaka: "url('../../bg_osaka_1775740031415.png')",
-    kyoto: "url('../../bg_kyoto_night_1776398726246.png')",
-    sapporo: "url('../../bg_sapporo_japanese_dark_hero_1776434374881.png')",
-    okinawa: "url('../../bg_okinawa_japanese_dark_hero_beach_1776487605725.png')",
-    fukuoka: "url('../../bg_fukuoka.png')"
+    tokyo: "url('../../bg_tokyo_new.jpg')",
+    osaka: "url('../../bg_osaka_new.jpg')",
+    kyoto: "url('../../bg_kyoto_new.jpg')",
+    sapporo: "url('../../bg_sapporo_new.jpg')",
+    okinawa: "url('../../bg_okinawa_new.jpg')",
+    fukuoka: "url('../../bg_fukuoka_new.jpg')"
 };
 
 const CITY_BG_FILENAME = {
-    tokyo: "bg_tokyo_1776258940200.png",
-    osaka: "bg_osaka_1775740031415.png",
-    kyoto: "bg_kyoto_night_1776398726246.png",
-    sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
-    okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
-    fukuoka: "bg_fukuoka.png"
+    tokyo: "bg_tokyo_new.jpg",
+    osaka: "bg_osaka_new.jpg",
+    kyoto: "bg_kyoto_new.jpg",
+    sapporo: "bg_sapporo_new.jpg",
+    okinawa: "bg_okinawa_new.jpg",
+    fukuoka: "bg_fukuoka_new.jpg"
 };
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

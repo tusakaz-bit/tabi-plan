@@ -10,21 +10,21 @@ const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
 const TEMPLATE_PATH = path.join(__dirname, 'themes/city_template.html');
 
 const CITIES = [
-    { name: '東京', en: 'tokyo',   middle: 'tokyo',   small: 'tokyo',   detail: 'A', baseStation: '東京', bgImage: "url('../bg_tokyo_1776258940200.png'), url('../bg_tokyo.png')" },
-    { name: '大阪', en: 'osaka',   middle: 'osaka',   small: 'shi',     detail: 'D', baseStation: '大阪・梅田', bgImage: "url('../bg_osaka_1775740031415.png'), url('../bg_osaka.png')" },
-    { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B', baseStation: '京都', bgImage: "url('../bg_kyoto_night_1776398726246.png'), url('../bg_kyoto.png')" },
-    { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B', baseStation: '札幌', bgImage: "url('../bg_sapporo_japanese_dark_hero_1776434374881.png'), url('../bg_sapporo.png')" },
-    { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '', baseStation: '那覇空港', bgImage: "url('../bg_okinawa_japanese_dark_hero_beach_1776487605725.png'), url('../bg_okinawa.png')" },
-    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多', bgImage: "url('../bg_fukuoka.png')" }
+    { name: '東京', en: 'tokyo',   middle: 'tokyo',   small: 'tokyo',   detail: 'A', baseStation: '東京', bgImage: "url('../bg_tokyo_new.jpg'), url('../bg_tokyo_new.jpg')" },
+    { name: '大阪', en: 'osaka',   middle: 'osaka',   small: 'shi',     detail: 'D', baseStation: '大阪・梅田', bgImage: "url('../bg_osaka_new.jpg'), url('../bg_osaka_new.jpg')" },
+    { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B', baseStation: '京都', bgImage: "url('../bg_kyoto_new.jpg'), url('../bg_kyoto_new.jpg')" },
+    { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B', baseStation: '札幌', bgImage: "url('../bg_sapporo_new.jpg'), url('../bg_sapporo_new.jpg')" },
+    { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '', baseStation: '那覇空港', bgImage: "url('../bg_okinawa_new.jpg'), url('../bg_okinawa_new.jpg')" },
+    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多', bgImage: "url('../bg_fukuoka_new.jpg')" }
 ];
 
 const CITY_BG_FILENAME = {
-    tokyo: "bg_tokyo_1776258940200.png",
-    osaka: "bg_osaka_1775740031415.png",
-    kyoto: "bg_kyoto_night_1776398726246.png",
-    sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
-    okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
-    fukuoka: "bg_fukuoka.png"
+    tokyo: "bg_tokyo_new.jpg",
+    osaka: "bg_osaka_new.jpg",
+    kyoto: "bg_kyoto_new.jpg",
+    sapporo: "bg_sapporo_new.jpg",
+    okinawa: "bg_okinawa_new.jpg",
+    fukuoka: "bg_fukuoka_new.jpg"
 };
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

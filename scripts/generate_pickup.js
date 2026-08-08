@@ -401,12 +401,12 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
     const defaultDesc = `<p class="description-lead">旅の疲れを癒やす心地よい空間。</p><p class="description-paragraph">${info.hotelInformationEmail || '詳しい情報は予約ページをご確認ください。'}</p><p class="description-paragraph">モダンなインテリアと落ち着いた照明が、上質なひとときを演出します。</p>`;
 
     const CITY_BG_FILENAME = {
-        tokyo: "bg_tokyo_1776258940200.png",
-        osaka: "bg_osaka_1775740031415.png",
-        kyoto: "bg_kyoto_night_1776398726246.png",
-        sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
-        okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
-        fukuoka: "bg_fukuoka.png"
+        tokyo: "bg_tokyo_new.jpg",
+        osaka: "bg_osaka_new.jpg",
+        kyoto: "bg_kyoto_new.jpg",
+        sapporo: "bg_sapporo_new.jpg",
+        okinawa: "bg_okinawa_new.jpg",
+        fukuoka: "bg_fukuoka_new.jpg"
     };
 
     let ogImage = 'https://tabi-plan.org/favicon.svg'; // デフォルトフォールバック

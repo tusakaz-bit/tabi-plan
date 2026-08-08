@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 const CITY_BG_FILENAME = {
-    tokyo: "bg_tokyo_1776258940200.png",
-    osaka: "bg_osaka_1775740031415.png",
-    kyoto: "bg_kyoto_night_1776398726246.png",
-    sapporo: "bg_sapporo_japanese_dark_hero_1776434374881.png",
-    okinawa: "bg_okinawa_japanese_dark_hero_beach_1776487605725.png",
-    fukuoka: "bg_fukuoka.png"
+    tokyo: "bg_tokyo_new.jpg",
+    osaka: "bg_osaka_new.jpg",
+    kyoto: "bg_kyoto_new.jpg",
+    sapporo: "bg_sapporo_new.jpg",
+    okinawa: "bg_okinawa_new.jpg",
+    fukuoka: "bg_fukuoka_new.jpg"
 };
 
 const pickupDir = path.join(__dirname, '../pickup');
