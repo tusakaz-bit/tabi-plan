@@ -670,9 +670,9 @@ a {
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 700;
-    background: rgba(59, 130, 246, 0.25);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-    color: #bfdbfe;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #1d4ed8;
     letter-spacing: 0.02em;
 }
 
@@ -763,7 +763,7 @@ a {
 }
 
 .access-link:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .booking-button-container {
