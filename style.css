@@ -1777,3 +1777,34 @@ div.brand-concept-section p {
 .pickup-info p {
   color: #333333 !important;
 }
+
+/* 注目宿カード内テキスト・ボタンの完全ライトテーマ化（実際のクラス名ベース） */
+.pickup-title,
+.pickup-info h4,
+.pickup-info h3 {
+  color: #333333 !important;
+}
+.pickup-description,
+.pickup-info p {
+  color: #555555 !important;
+}
+.read-more {
+  color: #90B4CE !important;
+  font-weight: bold !important;
+}
+.pickup-tag {
+  color: #90B4CE !important;
+}
+
+/* ユーザー指定のセレクタ（featured-hotel-section）も念のためカバー */
+.featured-hotel-section h3,
+.featured-hotel-section .hotel-title,
+.featured-hotel-section h4 {
+  color: #333333 !important;
+}
+.featured-hotel-section .btn,
+.featured-hotel-section a.button,
+.featured-hotel-section a[class*="btn"] {
+  color: #90B4CE !important;
+  font-weight: bold !important;
+}
