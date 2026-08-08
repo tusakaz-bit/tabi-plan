@@ -1756,3 +1756,24 @@ div.brand-concept-section p {
 .niche-hero p {
   color: #FFFFFF !important;
 }
+
+/* 「本日の注目宿 (pickup-section)」の完全ライトテーマ化 */
+.pickup-section {
+  background: #FFFFFF !important;
+  color: #333333 !important;
+}
+.pickup-section .section-title,
+.pickup-section .section-subtitle,
+.pickup-section h3,
+.pickup-section p {
+  color: #333333 !important;
+}
+.pickup-card {
+  background: #FFFFFF !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+  border-color: rgba(144, 180, 206, 0.2) !important;
+}
+.pickup-info h3,
+.pickup-info p {
+  color: #333333 !important;
+}
