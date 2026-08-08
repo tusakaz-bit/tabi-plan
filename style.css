@@ -1708,3 +1708,37 @@ h1, h2, h3 {
   position: relative;
   z-index: 2;
 }
+
+/* 1. 「本日の注目宿」エリアの背景をクリーンな白へリセット */
+.featured-hotel-section,
+.featured-section-wrapper {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #333333 !important;
+}
+
+/* 注目宿セクション内のテキストをダークグレーへ */
+.featured-hotel-section h2,
+.featured-hotel-section p,
+.featured-hotel-section span,
+.featured-hotel-section .subtitle {
+  color: #333333 !important;
+}
+
+/* 2. Brand Conceptエリアの白飛び解消（より強力なセレクタで上書き） */
+section.brand-concept-section,
+div.brand-concept-section {
+  background: #F8F9FA !important; /* ほんのり色をつけてセクションを区切る */
+  background-color: #F8F9FA !important;
+  color: #333333 !important;
+}
+
+/* Brand Concept内の見出しとテキストを確実にダークグレーへ */
+section.brand-concept-section h2,
+section.brand-concept-section h3,
+section.brand-concept-section p,
+div.brand-concept-section h2,
+div.brand-concept-section h3,
+div.brand-concept-section p {
+  color: #333333 !important;
+}
