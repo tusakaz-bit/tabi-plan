@@ -957,9 +957,9 @@ a {
 
 /* Footer */
 .footer {
-    background: rgba(0, 0, 0, 0.4);
+    background: #F0F5F9;
     padding: 3rem 0;
-    border-top: 1px solid var(--card-border);
+    border-top: 1px solid rgba(144, 180, 206, 0.3);
 }
 
 .footer-content {
@@ -1051,10 +1051,11 @@ a {
 
 /* Glass Container for Information */
 .glass-container {
-    background: rgba(30, 41, 59, 0.5);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(144, 180, 206, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
     border-radius: 30px;
     padding: 4rem;
     text-align: center;
@@ -1534,8 +1535,8 @@ body.has-promo-bar .sticky-header {
 /* FAQ Section */
 .faq-section {
     padding: 3rem 1rem;
-    background: rgba(15, 15, 18, 0.9);
-    border-top: 1px solid rgba(255,255,255,0.05);
+    background: #F8F9FA;
+    border-top: 1px solid rgba(144, 180, 206, 0.2);
 }
 .faq-container {
     max-width: 800px;
@@ -1548,14 +1549,14 @@ body.has-promo-bar .sticky-header {
     text-align: center;
 }
 .faq-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #FFFFFF;
+    border: 1px solid rgba(144, 180, 206, 0.25);
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1rem;
 }
 .faq-q {
-    color: #fff;
+    color: #333333;
     margin-bottom: 1rem;
     font-size: 1.1rem;
     display: flex;
