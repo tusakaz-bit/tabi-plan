@@ -50,18 +50,20 @@
         }
 
         .archive-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: #FFFFFF;
+            border: 1px solid rgba(144, 180, 206, 0.3);
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s;
             text-decoration: none;
             color: inherit;
+            box-shadow: 0 4px 15px rgba(144, 180, 206, 0.1);
         }
 
         .archive-card:hover {
             transform: translateY(-10px);
-            border-color: #D4AF37;
+            border-color: #90B4CE;
+            box-shadow: 0 15px 30px rgba(144, 180, 206, 0.2);
         }
 
         .archive-image {
@@ -77,7 +79,7 @@
 
         .archive-date {
             font-size: 0.8rem;
-            color: #D4AF37;
+            color: #90B4CE;
             margin-bottom: 0.5rem;
             display: block;
         }
@@ -86,6 +88,7 @@
             font-size: 1.25rem;
             font-weight: 800;
             line-height: 1.4;
+            color: #1a1a2e;
         }
 
         /* ピル型タブUIのスタイル */
@@ -101,9 +104,9 @@
             padding: 0;
         }
         .filter-tab {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
+            background: #FFFFFF;
+            border: 1px solid rgba(144, 180, 206, 0.4);
+            color: #555577;
             padding: 10px 20px;
             border-radius: 50px;
             font-weight: 600;
@@ -113,26 +116,26 @@
             user-select: none;
         }
         .filter-tab:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
+            background: #EEF4FA;
+            color: #1a1a2e;
         }
         .filter-tab.active {
-            background: #D4AF37;
-            color: #000;
-            border-color: #D4AF37;
+            background: linear-gradient(135deg, #90B4CE, #6a99b8);
+            color: #FFFFFF;
+            border-color: transparent;
         }
     </style>
 </head>
-<body style="background-color: #0F0F12;">
-    <nav style="padding: 1rem 5%; background: rgba(15,15,18,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;">
-        <div class="logo" style="cursor: pointer;" onclick="window.location.href='../'">TABI <span>PLAN</span></div>
+<body style="background-color: #F4F7FB;">
+    <nav style="padding: 1rem 5%; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(144, 180, 206, 0.3);">
+        <div class="logo" style="cursor: pointer;" onclick="window.location.href='../'">TABI <span style="color: #90B4CE;">PLAN</span></div>
     </nav>
 
     <main class="container" style="padding: 6rem 2rem;">
         <div class="section-header">
-            <span class="badge" style="background: #D4AF37; color: black; padding: 0.2rem 0.8rem; border-radius: 2px; font-weight: 800; font-size: 0.7rem; margin-bottom: 0.5rem; display: inline-block;">Archive</span>
-            <h2 class="section-title" style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem;">過去のピックアップ宿</h2>
-            <p class="section-subtitle">これまでご紹介した「賢く、美しい名宿」たちの記録</p>
+            <span class="badge" style="background: #90B4CE; color: white; padding: 0.2rem 0.8rem; border-radius: 2px; font-weight: 800; font-size: 0.7rem; margin-bottom: 0.5rem; display: inline-block;">Archive</span>
+            <h2 class="section-title" style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem; color: #1a1a2e;">過去のピックアップ宿</h2>
+            <p class="section-subtitle" style="color: #555577;">これまでご紹介した「賢く、美しい名宿」たちの記録</p>
         </div>
 
         <div class="filter-tabs-container">
@@ -1325,7 +1328,7 @@
                     <p>ただし、楽天会員になって「楽天カード」でお支払いいただくと、宿泊代金に対してザクザクとポイントが貯まるため非常にお得です。</p>
                     <div class="faq-hint">
                         💡 <strong>さらにお得なヒント：</strong><br>
-                        今なら、楽天カードの新規入会キャンペーンで<strong style="color: #fbbf24;">数千円分のポイント還元</strong>を実施中です。もらったポイントを使えば、今回のホテル代が実質タダになるかも？<br>
+                        今なら、楽天カードの新規入会キャンペーンで<strong style="color: #90B4CE;">数千円分のポイント還元</strong>を実施中です。もらったポイントを使えば、今回のホテル代が実質タダになるかも？<br>
                         <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/tabiplan-web/?pc=https%3A%2F%2Fwww.rakuten-card.co.jp%2F&m=https%3A%2F%2Fwww.rakuten-card.co.jp%2F" target="_blank" rel="noopener noreferrer" class="faq-hint-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> 楽天カードの新規入会キャンペーンを確認する</a>
                     </div>
                 </div>
