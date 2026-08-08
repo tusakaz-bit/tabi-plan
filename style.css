@@ -1742,3 +1742,17 @@ div.brand-concept-section h3,
 div.brand-concept-section p {
   color: #333333 !important;
 }
+
+/* ヒーローエリアのテキストを強制的に白へ（背景画像上の視認性確保） */
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content p,
+.hero-content .title,
+.hero-content .description,
+.portal-hero .title,
+.portal-hero p,
+.niche-hero .niche-title,
+.niche-hero p {
+  color: #FFFFFF !important;
+}
