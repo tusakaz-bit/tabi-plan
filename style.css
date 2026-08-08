@@ -1808,3 +1808,49 @@ div.brand-concept-section p {
   color: #90B4CE !important;
   font-weight: bold !important;
 }
+
+/* ========================================
+   最終クリーンアップ：ライトモード完全移行
+   ======================================== */
+
+/* 1. 「本日の注目宿」下部の丸いボタン（View All等）の白飛び解消 */
+.featured-section-wrapper .view-all,
+.featured-section-wrapper a[class*="btn"],
+.featured-section-wrapper a[href*="/"],
+.pickup-container ~ div a {
+  background-color: #90B4CE !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+/* 2. 各都市ページの下部エリアをライトテーマへ全面リセット */
+.city-description,
+.seo-content,
+.seo-text-area,
+.bottom-section,
+.related-articles,
+.city-page-bottom,
+.niche-content-section {
+  background-color: #FAFAFA !important;
+  color: #333333 !important;
+}
+
+/* 上記エリア内の見出しとテキストをダークグレーへ */
+.city-description h2, .city-description h3, .city-description p,
+.seo-content h2, .seo-content h3, .seo-content p,
+.seo-text-area h2, .seo-text-area h3, .seo-text-area p,
+.bottom-section h2, .bottom-section h3, .bottom-section p,
+.bottom-section a,
+.related-articles h2, .related-articles h3, .related-articles p,
+.related-articles a,
+.niche-content-section h2, .niche-content-section h3, .niche-content-section p {
+  color: #333333 !important;
+}
+
+/* 3. 各都市・ニッチページのホテルカード内テキスト視認性確保 */
+.hotel-card .price,
+.hotel-card .tag,
+.hotel-card .feature-tag,
+.hotel-card .review-score {
+  color: #333333 !important;
+}
