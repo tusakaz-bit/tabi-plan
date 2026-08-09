@@ -268,11 +268,11 @@ async function run() {
         
         // 独自解説セクションをラップ
         const guideHtmlWrapper = niche.staticContent.guideHtml ? `
-        <section id="niche-guide" style="background: rgba(15, 15, 18, 0.9); padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <section id="niche-guide" style="background-color: var(--bg-color); padding: 3rem 0; border-top: 1px solid rgba(144, 180, 206, 0.2); border-bottom: 1px solid rgba(144, 180, 206, 0.2);">
             <div class="container">
                 <div class="glass-container" style="padding: 2.5rem;">
-                    <h2 style="font-size: 1.4rem; color: #fbbf24; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(251, 191, 36, 0.3); padding-bottom: 0.8rem;"><i class="fa-solid fa-book-open"></i> ${niche.cityName}スタッフの独自解説</h2>
-                    <div style="line-height: 1.8; color: rgba(255,255,255,0.85);">
+                    <h2 style="font-size: 1.4rem; color: #90B4CE; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(144, 180, 206, 0.3); padding-bottom: 0.8rem;"><i class="fa-solid fa-book-open"></i> ${niche.cityName}スタッフの独自解説</h2>
+                    <div style="line-height: 1.8; color: #555577;">
                         ${niche.staticContent.guideHtml}
                     </div>
                 </div>

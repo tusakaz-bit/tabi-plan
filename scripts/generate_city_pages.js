@@ -411,9 +411,9 @@ async function run() {
         let nicheLinksHtml = '';
         const cityNiches = Object.values(nicheConfig).filter(n => n.city === city.en);
         if (cityNiches.length > 0) {
-            const links = cityNiches.map(n => `<a href="${n.slug}/" class="booking-button" style="display:inline-block; margin: 0.5rem; background: #1e293b; color: #fbbf24; border: 1px solid #fbbf24;">${n.keyword} <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i></a>`).join('');
+            const links = cityNiches.map(n => `<a href="${n.slug}/" class="booking-button" style="display:inline-block; margin: 0.5rem; background: #FFFFFF; color: #555577; border: 1px solid rgba(144, 180, 206, 0.4); box-shadow: 0 4px 15px rgba(144, 180, 206, 0.1);">${n.keyword} <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i></a>`).join('');
             nicheLinksHtml = `
-        <section id="niche-links" class="hotels-section" style="background: rgba(15, 15, 18, 0.9);">
+        <section id="niche-links" class="hotels-section" style="background-color: var(--bg-color); border-top: 1px solid rgba(144, 180, 206, 0.2);">
             <div class="container">
                 <div class="section-header">
                     <h3 class="section-title">Niche Collections</h3>
