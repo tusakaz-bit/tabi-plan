@@ -1877,3 +1877,13 @@ header a.logo {
 header a.logo span {
   color: #90B4CE !important;
 }
+
+
+/* FOMOポップアップ（「現在〇〇人が見ています」）を全ページで非表示 */
+#fomo-alert, .fomo-alert {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
