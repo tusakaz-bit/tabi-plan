@@ -37,8 +37,8 @@
     <style>
         :root {
             --accent-gold: #D4AF37;
-            --bg-dark: #0F0F12;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --bg-dark: #F4F7FB;
+            --card-bg: #FFFFFF;
         }
 
         .pickup-hero {
@@ -55,7 +55,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 30%, var(--bg-dark));
+            background: linear-gradient(to bottom, rgba(244, 247, 251, 0) 30%, var(--bg-color) 100%);
         }
 
         .hero-content {
@@ -65,8 +65,8 @@
         }
 
         .category-tag {
-            background: var(--accent-gold);
-            color: black;
+            background: #90B4CE;
+            color: #FFFFFF;
             padding: 0.3rem 1rem;
             font-size: 0.8rem;
             font-weight: 800;
@@ -80,6 +80,7 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            color: #1a1a2e;
         }
 
         .article-body {
@@ -91,12 +92,11 @@
         }
 
         .glass-card {
-            background: rgba(20, 20, 25, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #FFFFFF;
+            border: 1px solid rgba(144, 180, 206, 0.4);
             padding: 3rem;
             border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(144, 180, 206, 0.1);
         }
 
         .highlights {
@@ -104,7 +104,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(144, 180, 206, 0.3);
             padding-bottom: 3rem;
         }
 
@@ -300,10 +300,10 @@
     </nav>
 
     <header class="pickup-hero">
-        <div class="rakuten-credit" style="bottom: 50px; left: 5%; z-index: 20; position: absolute;">Rakuten Travel</div>
+        <div class="rakuten-credit" style="bottom: 10px; right: 5%; z-index: 20; position: absolute; color: #555577; background: rgba(255,255,255,0.8); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">Rakuten Travel</div>
         <div class="hero-content">
             <span class="category-tag">{{CATEGORY_NAME}}</span>
-            <span class="publish-date" style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-left: 1rem;">{{PUBLISH_DATE}} 掲載</span>
+            <span class="publish-date" style="color: #555577; font-size: 0.9rem; margin-left: 1rem;">{{PUBLISH_DATE}} 掲載</span>
             <h1 class="hotel-title">{{HOTEL_NAME}}</h1>
             <p style="color: #555577; font-size: 1.2rem;">{{CATCHCOPY}}</p>
         </div>
