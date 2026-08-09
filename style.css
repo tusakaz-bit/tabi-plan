@@ -1856,3 +1856,24 @@ div.brand-concept-section p {
 .hotel-card .review-score {
   color: #333333 !important;
 }
+
+
+/* ヘッダーロゴの基本テキスト色（「TABI」部分）をダークグレーに指定し、白飛びを解消 */
+.site-logo,
+.site-title,
+.header-logo,
+.logo-text,
+.logo,
+header a.logo {
+  color: #333333 !important;
+}
+
+/* ロゴ内のアクセント部分（「PLAN」部分）はブランドカラーを維持 */
+.site-logo span,
+.site-title span,
+.header-logo span,
+.logo-text span,
+.logo span,
+header a.logo span {
+  color: #90B4CE !important;
+}
