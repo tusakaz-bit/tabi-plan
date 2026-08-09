@@ -60,6 +60,8 @@
             position: relative;
             height: 70vh;
             background: url('https://img.travel.rakuten.co.jp/share/HOTEL/29165/29165.jpg?v=2') center/cover no-repeat;
+            background-color: transparent !important;
+            box-shadow: none !important;
             display: flex;
             align-items: flex-end;
             padding: 4rem 5%;
@@ -70,7 +72,10 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: none;
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+            display: none !important;
         }
 
         .hero-content {
@@ -95,8 +100,8 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: #90B4CE;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            color: #90B4CE !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
         }
 
         .article-body {
@@ -235,12 +240,12 @@
     </nav>
 
     <header class="pickup-hero">
-        <div class="rakuten-credit" style="bottom: 20px; left: 5%;">Rakuten Travel</div>
+        <div class="rakuten-credit" style="position: absolute !important; bottom: 20px !important; right: 5% !important; z-index: 20 !important; display: inline-block !important; padding: 4px 12px !important; background-color: rgba(0, 0, 0, 0.6) !important; border-radius: 4px !important; width: auto !important; max-width: max-content !important; color: white !important; font-size: 0.8rem !important; text-shadow: none !important; box-shadow: none !important; border: none !important; line-height: 1.5 !important;">Rakuten Travel</div>
         <div class="hero-content">
             <span class="category-tag">本日の注目宿 - 大阪</span>
             <span class="publish-date" style="color: #555577; font-size: 0.9rem; margin-left: 1rem;">2026-05-13 掲載</span>
             <h1 class="hotel-title">ホテルイルクオーレなんば</h1>
-            <p style="color: #90B4CE; font-size: 1.2rem; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">大阪なんばの心臓部で、心躍る旅の拠点「ホテルイルクオーレなんば」へ。</p>
+            <p style="color: #90B4CE !important; font-size: 1.2rem !important; font-weight: bold !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important; background: transparent !important; padding: 0 !important; margin: 0 !important; display: inline-block !important;">大阪なんばの心臓部で、心躍る旅の拠点「ホテルイルクオーレなんば」へ。</p>
         </div>
     </header>
 
