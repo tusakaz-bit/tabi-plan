@@ -135,7 +135,7 @@ async function run() {
     const title = `【${dateStr}】${niche.cityName}おすすめホテル｜${niche.keyword.replace(/ /g, '・')}の最安値ランキング`;
 
     // 導入文（イントロ）
-    const intro = `${niche.cityName}で「${niche.keyword}」を探しているあなたへ。毎朝自動更新している <a href="https://tabi-plan.org/${niche.city}/${niche.slug}/" style="color: #D4AF37; font-weight: bold;">Tabi Plan ${niche.cityName}特設ページ</a> から、本日の注目ホテルをピックアップしてご紹介します！`;
+    const intro = `${niche.cityName}で「${niche.keyword}」を探しているあなたへ。毎朝自動更新している <a href="https://tabi-plan.org/${niche.city}/${niche.slug}/" style="color: #90B4CE; font-weight: bold;">Tabi Plan ${niche.cityName}特設ページ</a> から、本日の注目ホテルをピックアップしてご紹介します！`;
 
     // 都市オブジェクト（generateHtmlBody用）
     const cityObj = { name: niche.cityName, id: niche.city };

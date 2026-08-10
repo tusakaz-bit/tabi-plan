@@ -87,10 +87,16 @@ async function generateHatenaAIContent(hotelInfo) {
 最安料金目安: ${hotelInfo.price ? hotelInfo.price + '円〜' : '不明'}
 クチコミ評価: ${hotelInfo.reviewAverage || '4.0'} / 5.0（${hotelInfo.reviewCount || 0}件）
 
+【作成ルール・トーン＆マナー（厳守）】
+1. プロの旅行ライターが執筆したような、洗練された美しい日本語（クリーン＆リラクシングなトーン）で記述してください。
+2. 「バグ級」「コスパ崩壊」「発見！」などの品のない安易な煽りワードは一切禁止します。
+3. 読者の感情や五感に寄り添い、落ち着いた魅力が伝わる文章にしてください。
+4. 楽天APIの元の説明文の単なるコピペは禁止です。
+
 【出力フォーマット（必ずこのJSONのみを出力すること）】
 {
-  "summary": "クチコミ評価と価格帯をもとに、このホテルの最大の魅力や強みを読者視点で端的にまとめた50〜60文字の評価短評。体言止めや感嘆表現でリズムよく。",
-  "description": "「客観的ロジック（なぜ安い・お得なのか）」と「緊急性・限定性（なぜ今すぐ予約すべきか）」を含んだ、読者を強烈に惹きつける日本語のオリジナル紹介文（約150〜200文字）。プレーンテキスト（HTMLタグ不要）。"
+  "summary": "このホテルの最大の魅力や強みを読者視点で端的にまとめた50〜60文字の評価短評。体言止めや感嘆表現で上品に。",
+  "description": "客観的な魅力（なぜお得なのか）と、情緒的な魅力（どんな素晴らしい体験ができるか）を含んだオリジナル紹介文（約150〜200文字）。プレーンテキスト（HTMLタグ不要）。"
 }
 `;
         const response = await ai.models.generateContent({
@@ -150,34 +156,34 @@ async function generateHtmlBody(city, intro, hotels) {
 
         // AIが生成したホテルごとの評価短評バッジ（失敗時は非表示）
         const aiBadgeHtml = aiSummary
-            ? `<span style="background: #e2e8f0; color: #334155; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px; font-weight: bold; margin-bottom: 5px; display: inline-block;">${aiSummary}</span><br>`
+            ? `<span style="background: #FAFAFA; border: 1px solid #90B4CE; color: #333333; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px; font-weight: bold; margin-bottom: 5px; display: inline-block;">${aiSummary}</span><br>`
             : '';
 
         body += `
-<h3 style="border-left: 5px solid #D4AF37; padding-left: 15px; margin-top: 30px; margin-bottom: 15px;">${index + 1}. ${hotel.name}</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; background: #f9f9f9; padding: 20px; border-radius: 8px;">
+<h3 style="border-left: 5px solid #90B4CE; padding-left: 15px; margin-top: 30px; margin-bottom: 15px; color: #333333;">${index + 1}. ${hotel.name}</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; background: #FAFAFA; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
     <div style="flex: 1; min-width: 200px; position: relative;">
-        <img src="${hotel.imageUrl}" alt="${hotel.name}" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block;" />
-        <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0, 0, 0, 0.6); color: white; padding: 2px 8px; font-size: 0.7rem; border-radius: 3px; font-weight: bold; pointer-events: none; z-index: 5;">Rakuten Travel</div>
+        <img src="${hotel.imageUrl}" alt="${hotel.name}" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); display: block;" />
+        <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(255, 255, 255, 0.8); color: #333333; padding: 2px 8px; font-size: 0.7rem; border-radius: 3px; font-weight: bold; pointer-events: none; z-index: 5;">Rakuten Travel</div>
     </div>
     <div style="flex: 2; min-width: 250px;">
         ${reviewHtml}
-        <p style="font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.8; background: #fff; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0; white-space: pre-wrap;">${aiBadgeHtml}${aiBadgeHtml ? '<br>' : ''}${aiDescription}</p>
-        <p style="font-size: 1.2rem; color: #d32f2f; font-weight: bold; margin-bottom: 15px;">最安料金目安：${Number(hotel.price).toLocaleString()}円〜</p>
-        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #D4AF37; color: white; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem;">最安値プランを楽天トラベルで確認する</a></p>
+        <p style="font-size: 0.95rem; color: #333333; margin-bottom: 15px; line-height: 1.8; background: #FFFFFF; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0; white-space: pre-wrap;">${aiBadgeHtml}${aiBadgeHtml ? '<br>' : ''}${aiDescription}</p>
+        <p style="font-size: 1.2rem; color: #e63946; font-weight: bold; margin-bottom: 15px;">最安料金目安：${Number(hotel.price).toLocaleString()}円〜</p>
+        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #90B4CE; color: #333333; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem; border: 1px solid #7a9cb5;">最安値プランを楽天トラベルで確認する</a></p>
     </div>
 </div>
 `;
     }
 
     body += `
-<hr style="margin-top: 40px;" />
-<div style="background: #e2e8f0; padding: 25px; border-radius: 8px; text-align: center;">
-    <h4 style="margin-top: 0; color: #334155; font-size: 1.2rem;">✨ ${city.name}の観光をもっと楽しむなら ✨</h4>
-    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+<hr style="margin-top: 40px; border: none; border-top: 1px solid #e2e8f0;" />
+<div style="background: #FAFAFA; border: 1px solid #90B4CE; padding: 25px; border-radius: 8px; text-align: center;">
+    <h4 style="margin-top: 0; color: #333333; font-size: 1.2rem;">✨ ${city.name}の観光をもっと楽しむなら ✨</h4>
+    <p style="font-size: 0.95rem; color: #333333; margin-bottom: 20px; line-height: 1.6;">
         宿泊費を賢く抑えた予算で、旅先でしかできない極上の体験を。地元民しか知らない隠れ家スポットや、賢く贅沢な旅（Smart & Luxury）のプランニングは、Tabi Plan公式サイトで！
     </p>
-    <a href="https://tabi-plan.org/${city.id}/" style="display: inline-block; background: #334155; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <a href="https://tabi-plan.org/${city.id}/" style="display: inline-block; background: #90B4CE; color: #333333; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #7a9cb5;">
         Tabi Plan ${city.name}特設ガイドを見る
     </a>
 </div>

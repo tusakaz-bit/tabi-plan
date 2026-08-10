@@ -147,16 +147,16 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Noto Sans JP', sans-serif; max-width: 680px; margin: 0 auto; color: #1a1a2e;">
 
 <!-- 🔷 タイトルバナー -->
-<div style="background: linear-gradient(135deg, #1e3a5f 0%, #0f2044 100%); border-radius: 12px; padding: 24px 20px; margin-bottom: 24px; text-align: center;">
-  <p style="color: #fbbf24; font-size: 0.8rem; font-weight: bold; margin: 0 0 6px; letter-spacing: 2px;">📍 ${city.label}</p>
-  <h2 style="color: #ffffff; font-size: 1.4rem; font-weight: 900; margin: 0 0 8px; line-height: 1.4;">【${today}更新】<br>${city.name}の格安ホテル TOP${hotelList.length}選</h2>
-  <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">楽天トラベル最安値データを毎朝自動更新中</p>
+<div style="background: #FAFAFA; border: 1px solid #90B4CE; border-radius: 12px; padding: 24px 20px; margin-bottom: 24px; text-align: center;">
+  <p style="color: #90B4CE; font-size: 0.8rem; font-weight: bold; margin: 0 0 6px; letter-spacing: 2px;">📍 ${city.label}</p>
+  <h2 style="color: #333333; font-size: 1.4rem; font-weight: 900; margin: 0 0 8px; line-height: 1.4;">【${today}更新】<br>${city.name}の格安ホテル TOP${hotelList.length}選</h2>
+  <p style="color: #666666; font-size: 0.85rem; margin: 0;">楽天トラベル最安値データを毎朝自動更新中</p>
 </div>
 
 <!-- 🔷 公式サイト誘導バナー（上部） -->
-<div style="background: #fff8e1; border: 2px solid #fbbf24; border-radius: 10px; padding: 14px 16px; margin-bottom: 24px; text-align: center;">
+<div style="background: #FAFAFA; border: 2px solid #90B4CE; border-radius: 10px; padding: 14px 16px; margin-bottom: 24px; text-align: center;">
   <p style="margin: 0 0 6px; font-size: 0.85rem; color: #555;">📌 より多くのホテルを比較したい方はこちら</p>
-  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #e63946; color: #fff; font-weight: bold; font-size: 0.95rem; padding: 10px 24px; border-radius: 8px; text-decoration: none;">
+  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #90B4CE; color: #333333; font-weight: bold; font-size: 0.95rem; padding: 10px 24px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
     🏨 【毎朝更新】${city.name}の格安ホテルランキングを見る →
   </a>
   <p style="margin: 8px 0 0; font-size: 0.75rem; color: #888;">Tabi Plan（tabi-plan.org）| 楽天トラベル公式APIデータ使用</p>
@@ -182,9 +182,9 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
 <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
 
   <!-- ランクバッジ＋ホテル名 -->
-  <div style="background: #1e3a5f; padding: 10px 16px; display: flex; align-items: center; gap: 10px;">
+  <div style="background: #FAFAFA; border-bottom: 1px solid #e2e8f0; padding: 10px 16px; display: flex; align-items: center; gap: 10px;">
     <span style="font-size: 1.4rem;">${rankLabel}</span>
-    <span style="color: #fff; font-weight: 700; font-size: 0.95rem; line-height: 1.3;">${info.hotelName}</span>
+    <span style="color: #333333; font-weight: 700; font-size: 0.95rem; line-height: 1.3;">${info.hotelName}</span>
   </div>
 
   <!-- 画像（楽天トラベル規約：クレジット表記必須） -->
@@ -205,7 +205,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
     <!-- 評価 -->
     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
       <span style="color: #f59e0b; font-size: 1rem; letter-spacing: 1px;">${stars}</span>
-      <span style="font-weight: 700; color: #1e3a5f;">${review}</span>
+      <span style="font-weight: 700; color: #333333;">${review}</span>
       <span style="font-size: 0.8rem; color: #888;">${reviewCount}</span>
     </div>
 
@@ -216,7 +216,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
     </div>
 
     <!-- 予約ボタン（楽天規約：テキストリンク必須） -->
-    <a href="${hotelUrl}" target="_blank" rel="noopener noreferrer" style="display: block; background: linear-gradient(135deg, #e63946, #c1121f); color: #fff; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 13px; border-radius: 8px; text-decoration: none;">
+    <a href="${hotelUrl}" target="_blank" rel="noopener noreferrer" style="display: block; background: #90B4CE; color: #333333; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 13px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
       🛎️ 空室・料金を楽天トラベルで確認する
     </a>
 
@@ -228,13 +228,13 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
     // ---- フッターセクション ----
     html += `
 <!-- 🔷 公式サイト誘導バナー（下部） -->
-<div style="background: linear-gradient(135deg, #1e3a5f 0%, #0f2044 100%); border-radius: 12px; padding: 20px; margin-top: 8px; text-align: center;">
-  <p style="color: #fbbf24; font-weight: bold; font-size: 0.9rem; margin: 0 0 6px;">📊 さらに多くのホテルを比較したい方へ</p>
-  <p style="color: rgba(255,255,255,0.8); font-size: 0.82rem; margin: 0 0 14px;">「Tabi Plan」では${city.name}の格安ホテルを<br>毎朝自動で最安値に更新してランキング掲載しています</p>
-  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #fbbf24; color: #1e3a5f; font-weight: 900; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none;">
+<div style="background: #FAFAFA; border: 1px solid #90B4CE; border-radius: 12px; padding: 20px; margin-top: 8px; text-align: center;">
+  <p style="color: #333333; font-weight: bold; font-size: 0.9rem; margin: 0 0 6px;">📊 さらに多くのホテルを比較したい方へ</p>
+  <p style="color: #555555; font-size: 0.82rem; margin: 0 0 14px;">「Tabi Plan」では${city.name}の格安ホテルを<br>毎朝自動で最安値に更新してランキング掲載しています</p>
+  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #90B4CE; color: #333333; font-weight: 900; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
     ▶ ${city.name}の格安ホテルランキングへ（無料）
   </a>
-  <p style="color: rgba(255,255,255,0.5); font-size: 0.7rem; margin: 10px 0 0;">※ 画像は楽天ウェブサービスAPIより取得。楽天トラベルへの誘導のみに使用しています。</p>
+  <p style="color: #888888; font-size: 0.7rem; margin: 10px 0 0;">※ 画像は楽天ウェブサービスAPIより取得。楽天トラベルへの誘導のみに使用しています。</p>
 </div>
 
 <!-- 🔷 免責・クレジット表記 -->
