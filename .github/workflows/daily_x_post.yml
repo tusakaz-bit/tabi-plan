@@ -2,11 +2,8 @@ name: Daily X Post Draft Generator
 
 on:
   schedule:
-    # 毎日 日本時間 午前7:00, 8:15, 9:30, 11:00 に分散投稿（Bufferキュー時間帯に合致）
-    - cron: '0 22 * * *'  # JST 7:00
-    - cron: '15 23 * * *' # JST 8:15
-    - cron: '30 0 * * *'  # JST 9:30
-    - cron: '0 2 * * *'   # JST 11:00
+    # 毎日 日本時間 午前7:00 (UTC 22:00) に1回だけ実行し、Buffer用のドラフトをまとめて4件生成＆はてなブログへ1件投稿します。
+    - cron: '0 22 * * *'
   workflow_dispatch: # 手動実行ボタンを有効化
 
 permissions:
