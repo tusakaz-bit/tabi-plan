@@ -156,7 +156,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
 <!-- 🔷 公式サイト誘導バナー（上部） -->
 <div style="background: #FAFAFA; border: 2px solid #90B4CE; border-radius: 10px; padding: 14px 16px; margin-bottom: 24px; text-align: center;">
   <p style="margin: 0 0 6px; font-size: 0.85rem; color: #555;">📌 より多くのホテルを比較したい方はこちら</p>
-  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #90B4CE; color: #333333; font-weight: bold; font-size: 0.95rem; padding: 10px 24px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
+  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #90B4CE; color: #FFFFFF !important; font-weight: bold; font-size: 0.95rem; padding: 10px 24px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
     🏨 【毎朝更新】${city.name}の格安ホテルランキングを見る →
   </a>
   <p style="margin: 8px 0 0; font-size: 0.75rem; color: #888;">Tabi Plan（tabi-plan.org）| 楽天トラベル公式APIデータ使用</p>
@@ -216,7 +216,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
     </div>
 
     <!-- 予約ボタン（楽天規約：テキストリンク必須） -->
-    <a href="${hotelUrl}" target="_blank" rel="noopener noreferrer" style="display: block; background: #90B4CE; color: #333333; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 13px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
+    <a href="${hotelUrl}" target="_blank" rel="noopener noreferrer" style="display: block; background: #90B4CE; color: #FFFFFF !important; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 13px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
       🛎️ 空室・料金を楽天トラベルで確認する
     </a>
 
@@ -231,7 +231,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
 <div style="background: #FAFAFA; border: 1px solid #90B4CE; border-radius: 12px; padding: 20px; margin-top: 8px; text-align: center;">
   <p style="color: #333333; font-weight: bold; font-size: 0.9rem; margin: 0 0 6px;">📊 さらに多くのホテルを比較したい方へ</p>
   <p style="color: #555555; font-size: 0.82rem; margin: 0 0 14px;">「Tabi Plan」では${city.name}の格安ホテルを<br>毎朝自動で最安値に更新してランキング掲載しています</p>
-  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #90B4CE; color: #333333; font-weight: 900; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
+  <a href="${cityPageUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #90B4CE; color: #FFFFFF !important; font-weight: 900; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; border: 1px solid #7a9cb5;">
     ▶ ${city.name}の格安ホテルランキングへ（無料）
   </a>
   <p style="color: #888888; font-size: 0.7rem; margin: 10px 0 0;">※ 画像は楽天ウェブサービスAPIより取得。楽天トラベルへの誘導のみに使用しています。</p>

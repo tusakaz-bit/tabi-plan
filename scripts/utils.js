@@ -170,7 +170,7 @@ async function generateHtmlBody(city, intro, hotels) {
         ${reviewHtml}
         <p style="font-size: 0.95rem; color: #333333; margin-bottom: 15px; line-height: 1.8; background: #FFFFFF; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0; white-space: pre-wrap;">${aiBadgeHtml}${aiBadgeHtml ? '<br>' : ''}${aiDescription}</p>
         <p style="font-size: 1.2rem; color: #e63946; font-weight: bold; margin-bottom: 15px;">最安料金目安：${Number(hotel.price).toLocaleString()}円〜</p>
-        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #90B4CE; color: #333333; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem; border: 1px solid #7a9cb5;">最安値プランを楽天トラベルで確認する</a></p>
+        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #90B4CE; color: #FFFFFF !important; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem; border: 1px solid #7a9cb5;">最安値プランを楽天トラベルで確認する</a></p>
     </div>
 </div>
 `;
@@ -183,7 +183,7 @@ async function generateHtmlBody(city, intro, hotels) {
     <p style="font-size: 0.95rem; color: #333333; margin-bottom: 20px; line-height: 1.6;">
         宿泊費を賢く抑えた予算で、旅先でしかできない極上の体験を。地元民しか知らない隠れ家スポットや、賢く贅沢な旅（Smart & Luxury）のプランニングは、Tabi Plan公式サイトで！
     </p>
-    <a href="https://tabi-plan.org/${city.id}/" style="display: inline-block; background: #90B4CE; color: #333333; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #7a9cb5;">
+    <a href="https://tabi-plan.org/${city.id}/" style="display: inline-block; background: #90B4CE; color: #FFFFFF !important; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #7a9cb5;">
         Tabi Plan ${city.name}特設ガイドを見る
     </a>
 </div>
