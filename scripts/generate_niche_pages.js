@@ -150,7 +150,7 @@ function renderHotelCards(hotels, niche) {
                         <div class="review-widget"><div class="review-stars">${starsHtml}</div><div class="review-score">${reviewAvg !== '---' ? reviewAvg : ''}</div><div class="review-count">(${reviewCount}件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
-                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="booking-button" data-hotel-name="${info.hotelName}" data-category="${niche.city}/${niche.slug}">空室状況と料金をチェック</a>
+                            <a href="${targetUrl}" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="${info.hotelName}" data-category="${niche.city}/${niche.slug}">空室状況と料金をチェック</a>
                         </div>
                     </div>
                 </div>`;

@@ -17,7 +17,7 @@ const FAQ_HTML = `
                     <p style="background: rgba(251, 191, 36, 0.1); padding: 1rem; border-radius: 6px; border-left: 3px solid #fbbf24;">
                         💡 <strong>さらにお得なヒント：</strong><br>
                         今なら、楽天カードの新規入会キャンペーンで<strong style="color: #fbbf24;">数千円分のポイント還元</strong>を実施中です。もらったポイントを使えば、今回のホテル代が実質タダになるかも？<br>
-                        <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/tabiplan-web/?pc=https%3A%2F%2Fwww.rakuten-card.co.jp%2F&m=https%3A%2F%2Fwww.rakuten-card.co.jp%2F" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 0.8rem; color: #fbbf24; text-decoration: underline;"><i class="fa-solid fa-arrow-up-right-from-square"></i> 楽天カードの新規入会キャンペーンを確認する</a>
+                        <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/tabiplan-web/?pc=https%3A%2F%2Fwww.rakuten-card.co.jp%2F&m=https%3A%2F%2Fwww.rakuten-card.co.jp%2F" target="_blank" rel="sponsored noopener noreferrer" style="display: inline-block; margin-top: 0.8rem; color: #fbbf24; text-decoration: underline;"><i class="fa-solid fa-arrow-up-right-from-square"></i> 楽天カードの新規入会キャンペーンを確認する</a>
                     </p>
                 </div>
             </div>
