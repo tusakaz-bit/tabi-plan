@@ -173,7 +173,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
         const reviewCount = info.reviewCount ? `（${info.reviewCount}件）` : '';
         const stars = info.reviewAverage ? buildStars(info.reviewAverage) : '☆☆☆☆☆';
         const imageUrl = info.hotelImageUrl || '';
-        const hotelUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html`;
+        const hotelUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html`;
         const address = `${info.address1 || ''}${info.address2 || ''}`;
         const rankLabel = ['🥇', '🥈', '🥉'][index] || `${index + 1}位`;
 

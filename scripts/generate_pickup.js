@@ -431,7 +431,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         '{{MIN_CHARGE}}': info.hotelMinCharge ? `${Number(info.hotelMinCharge).toLocaleString()}円〜` : '設定なし',
         '{{RATING}}': rating,
         '{{FACILITIES}}': 'Wi-Fi, レストラン, 大浴場, ルームサービス等',
-        '{{AFFILIATE_URL}}': `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`,
+        '{{AFFILIATE_URL}}': `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${hotelNo}%2F${hotelNo}.html`,
         '{{PUBLISH_DATE}}': jstDate,
         '{{FILENAME}}': fileName,
         '{{META_DESCRIPTION}}': aiData?.metaDescription || `${info.hotelName}の紹介。${info.hotelSpecial || ''}`.substring(0, 140),
