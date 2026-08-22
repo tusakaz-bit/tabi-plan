@@ -1,0 +1,31 @@
+name: Fix Past Hatena Posts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-hatena:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: |
+          cd scripts
+          npm install
+          npm install xml2js axios dotenv
+
+      - name: Fix Past Hatena Posts
+        run: |
+          cd scripts
+          node fix_past_hatena.js
+        env:
+          HATENA_ID: ${{ secrets.HATENA_ID }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
