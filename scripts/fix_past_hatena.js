@@ -25,8 +25,8 @@ async function fixEntry(editLink, title, originalContent, categories) {
     let content = originalContent;
     let modified = false;
 
-    if (!content.includes('アフィリエイト広告を利用')) {
-        content = '<p style="font-size: 0.75rem; color: #64748b; text-align: right; margin: 0 0 10px 0;">PR：本ページはプロモーションが含まれています</p>\n' + content;
+    if (!content.includes('PR：本ページはプロモーションが含まれています')) {
+        content = '<p style="font-size: 0.8rem; color: #888888; text-align: left; letter-spacing: 0.5px;">PR：本ページはプロモーションが含まれています</p>\n' + content;
         modified = true;
     }
 

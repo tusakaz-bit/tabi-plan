@@ -122,7 +122,7 @@ async function generateHatenaAIContent(hotelInfo) {
 }
 
 async function generateHtmlBody(city, intro, hotels) {
-    let body = `<p>${intro}</p>\n<hr />\n`;
+    let body = `<p style="font-size: 0.8rem; color: #888888; text-align: left; letter-spacing: 0.5px;">PR：本ページはプロモーションが含まれています</p>\n<p>${intro}</p>\n<hr />\n`;
 
     for (let index = 0; index < hotels.length; index++) {
         const hotel = hotels[index];
