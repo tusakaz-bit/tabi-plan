@@ -25,6 +25,18 @@ async function fixEntry(editLink, title, originalContent, categories) {
     let content = originalContent;
     let modified = false;
 
+    // Replace old PR notice if it exists
+    if (content.includes('※当サイトはアフィリエイト広告を利用しています')) {
+        content = content.replace(/<p[^>]*>※当サイトはアフィリエイト広告を利用しています<\/p>\n?/g, '');
+        modified = true;
+    }
+    
+    // Remove mojibake if it exists
+    if (content.includes('PRE本ペEジはプロモーションが含まれてぁEぁE')) {
+        content = content.replace(/<p[^>]*>PRE本ペEジはプロモーションが含まれてぁEぁE.*?<\/p>\n?/g, '');
+        modified = true;
+    }
+
     if (!content.includes('PR：本ページはプロモーションが含まれています')) {
         content = '<p style="font-size: 0.8rem; color: #888888; text-align: left; letter-spacing: 0.5px;">PR：本ページはプロモーションが含まれています</p>\n' + content;
         modified = true;
