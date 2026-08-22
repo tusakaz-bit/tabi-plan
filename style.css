@@ -1895,3 +1895,7 @@ header a.logo span {
     text-align: left;
     letter-spacing: 0.5px;
 }
+.hero-content .pr-notation, .niche-hero .pr-notation {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
