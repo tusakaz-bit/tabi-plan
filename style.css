@@ -1887,3 +1887,11 @@ header a.logo span {
   pointer-events: none !important;
   z-index: -1 !important;
 }
+/* アフィリエイトPR表記のスタイル */
+.pr-notation {
+    font-size: 0.8rem !important;
+    color: #888888 !important;
+    margin-bottom: 16px;
+    text-align: left;
+    letter-spacing: 0.5px;
+}

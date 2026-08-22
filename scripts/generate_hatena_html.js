@@ -146,7 +146,7 @@ function buildHatenaHTML(hotels, city, cityKey, limit) {
 
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Noto Sans JP', sans-serif; max-width: 680px; margin: 0 auto; color: #1a1a2e;">
 
-<p style="font-size: 0.75rem; color: #64748b; text-align: right; margin: 0 0 10px 0;">※当サイトはアフィリエイト広告を利用しています</p>
+<p style="font-size: 0.75rem; color: #64748b; text-align: right; margin: 0 0 10px 0;">PR：本ページはプロモーションが含まれています</p>
 <!-- 🔷 タイトルバナー -->
 <div style="background: #FAFAFA; border: 1px solid #90B4CE; border-radius: 12px; padding: 24px 20px; margin-bottom: 24px; text-align: center;">
   <p style="color: #90B4CE; font-size: 0.8rem; font-weight: bold; margin: 0 0 6px; letter-spacing: 2px;">📍 ${city.label}</p>
