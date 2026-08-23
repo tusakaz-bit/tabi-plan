@@ -28,7 +28,7 @@
     {
       "@type": "TouristDestination",
       "name": "大阪 / OSAKA",
-      "description": "食い倒れの街・大阪を遊び尽くす完全ガイド！定番の道頓堀や大阪城から、予算を抑える賢い観光パス活用術、キタ・ミナミなどエリア別の滞在拠点選び、絶品お好み焼き・串カツまで魅力を徹底解説。次の旅行を最高にするための、大阪の非日常体験と役立つ旅行情報が満載の一冊です。",
+      "description": "大阪観光を120%楽しむための完全ガイド。キタ・ミナミのエリア別特徴から、おすすめの滞在拠点、交通パスを使った節約術、お好み焼きや串カツなどの絶品ローカルグルメ、非日常の文化体験まで、大阪旅行を賢く魅力的にプロデュースする情報を徹底解説します。",
       "touristType": [
         "Sightseeing",
         "Gourmet",
@@ -46,22 +46,6 @@
           "position": 1,
           "item": {
             "@type": "Hotel",
-            "name": "ホテルダイヤモンド",
-            "image": "https://img.travel.rakuten.co.jp/share/HOTEL/139439/139439.jpg",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "大阪府",
-              "streetAddress": "大阪市西成区太子1-13-21",
-              "addressCountry": "JP"
-            },
-            "url": "https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F139439%2F139439.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F139439%2F139439.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Hotel",
             "name": "ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）",
             "image": "https://img.travel.rakuten.co.jp/share/HOTEL/188308/188308.jpg",
             "address": {
@@ -71,6 +55,22 @@
               "addressCountry": "JP"
             },
             "url": "https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188308%2F188308.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188308%2F188308.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Hotel",
+            "name": "ホテルダイヤモンド",
+            "image": "https://img.travel.rakuten.co.jp/share/HOTEL/139439/139439.jpg",
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "大阪府",
+              "streetAddress": "大阪市西成区太子1-13-21",
+              "addressCountry": "JP"
+            },
+            "url": "https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F139439%2F139439.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F139439%2F139439.html"
           }
         },
         {
@@ -226,7 +226,7 @@
     <header class="header">
     
         <div class="container">
-            <h1 class="logo"></h1>
+            <h1 class="logo" style="cursor: pointer;" onclick="window.location.href='/'">TABI <span>PLAN</span></h1>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -248,7 +248,8 @@
                     <p class="subtitle">大阪 City Guide</p>
                     <h2 class="title" style="font-family: 'Noto Sans JP', sans-serif;">次の旅を、<br>大阪の中心から。</h2>
                     <div class="pr-notation">PR：本ページはプロモーションが含まれています</div>
-                    <p class="description">エネルギッシュな街の活気と、歴史ある文化が美しく調和する水の都、大阪。絶品ローカルグルメから世界的なエンターテインメントまで、訪れるたびに新しい感動が出迎えてくれます。一歩踏み出すだけで、誰もが笑顔になれる特別な旅がここから始まります。</p>
+                    
+                    <p class="description">食いだおれの街、歴史が息づく城下町、そして最先端のトレンドが交差する「水の都」大阪へようこそ。人情味あふれるローカルな出会いと、五感を刺激するダイナミックな体験が、あなたを待っています。</p>
                     <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-bottom: 0.8rem; letter-spacing: 1px;">▶ 希望のプランを選んでスキップ</p>
                     <div class="hero-category-tags">
                         <button class="hero-cat-tag" data-tab="deals"><i class="fa-solid fa-yen-sign"></i> 最安値</button>
@@ -276,13 +277,33 @@
                     <button class="tab-button" data-tab="station">駅チカ</button>
                 </div>
 
-                <p class="update-time" style="font-size: 0.85rem; color: #90B4CE; text-align: right; margin-bottom: 1rem;">最終更新: 2026/08/23 07:21</p>
+                <p class="update-time" style="font-size: 0.85rem; color: #90B4CE; text-align: right; margin-bottom: 1rem;">最終更新: 2026/08/24 07:21</p>
                 
                 <!-- 最安値プラン -->
                 <div id="hotels-container-deals" class="hotels-grid tab-content-grid active" style="display: grid;">
                     
                 <div class="hotel-card">
                     <div class="rank-badge">1</div>
+                    <div class="hotel-image-wrapper">
+                        <img src="https://img.travel.rakuten.co.jp/share/HOTEL/188308/188308.jpg" alt="ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）" class="hotel-image" loading="lazy">
+                        <div class="rakuten-credit">Rakuten Travel</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h4 class="hotel-title">ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）</h4>
+                        <div class="hotel-address"><i class="fa-solid fa-location-dot"></i> <span>大阪府大阪市浪速区恵美須東2-1-24</span></div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
+                            <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ御堂筋線・... 徒歩5分</span>
+                        </div>
+                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥1,053</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.33</div><div class="review-count">(287件の口コミ)</div></div>
+                        <div class="booking-button-container">
+                            <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
+                            <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188308%2F188308.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188308%2F188308.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）" data-category="osaka">空室状況と料金をチェック</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-card">
+                    <div class="rank-badge">2</div>
                     <div class="hotel-image-wrapper">
                         <img src="https://img.travel.rakuten.co.jp/share/HOTEL/139439/139439.jpg" alt="ホテルダイヤモンド" class="hotel-image" loading="lazy">
                         <div class="rakuten-credit">Rakuten Travel</div>
@@ -298,26 +319,6 @@
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F139439%2F139439.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F139439%2F139439.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテルダイヤモンド" data-category="osaka">空室状況と料金をチェック</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="hotel-card">
-                    <div class="rank-badge">2</div>
-                    <div class="hotel-image-wrapper">
-                        <img src="https://img.travel.rakuten.co.jp/share/HOTEL/188308/188308.jpg" alt="ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）" class="hotel-image" loading="lazy">
-                        <div class="rakuten-credit">Rakuten Travel</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h4 class="hotel-title">ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）</h4>
-                        <div class="hotel-address"><i class="fa-solid fa-location-dot"></i> <span>大阪府大阪市浪速区恵美須東2-1-24</span></div>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                            <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ御堂筋線・... 徒歩5分</span>
-                        </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥1,170</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.33</div><div class="review-count">(287件の口コミ)</div></div>
-                        <div class="booking-button-container">
-                            <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
-                            <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188308%2F188308.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188308%2F188308.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ザ・ワンファイブ大阪新世界（旧：ｔｈｅ　ｂ　大阪新世界）" data-category="osaka">空室状況と料金をチェック</a>
                         </div>
                     </div>
                 </div>
@@ -499,7 +500,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 「大阪駅 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥3,510</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.95</div><div class="review-count">(10089件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.94</div><div class="review-count">(10094件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F2613%2F2613.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F2613%2F2613.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="新阪急ホテルアネックス" data-category="osaka">空室状況と料金をチェック</a>
@@ -519,7 +520,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,625</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.12</div><div class="review-count">(838件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.11</div><div class="review-count">(846件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F164988%2F164988.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F164988%2F164988.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="アインズ・イン梅田東" data-category="osaka">空室状況と料金をチェック</a>
@@ -539,7 +540,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪駅御堂筋口 徒歩10分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,760</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.17</div><div class="review-count">(3815件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.17</div><div class="review-count">(3834件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F1210%2F1210.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F1210%2F1210.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテルビナリオ梅田" data-category="osaka">空室状況と料金をチェック</a>
@@ -559,7 +560,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 新大阪駅『東口 徒歩4分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥6,700</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.35</div><div class="review-count">(342件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.35</div><div class="review-count">(347件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188051%2F188051.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F188051%2F188051.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="新大阪ステーションホテル" data-category="osaka">空室状況と料金をチェック</a>
@@ -578,8 +579,8 @@
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,300</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.31</div><div class="review-count">(1629件の口コミ)</div></div>
+                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,400</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.32</div><div class="review-count">(1644件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F166013%2F166013.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F166013%2F166013.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ＤＥＬ　ｓｔｙｌｅ　大阪東天満　ｂｙ　Ｄａｉｗａ　Ｒｏｙｎｅｔ　Ｈｏｔｅｌ" data-category="osaka">空室状況と料金をチェック</a>
@@ -599,7 +600,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,600</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.10</div><div class="review-count">(166件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.07</div><div class="review-count">(167件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F179013%2F179013.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F179013%2F179013.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ＨＯＴＥＬ　ＴＨＥ　ＲＯＣＫ" data-category="osaka">空室状況と料金をチェック</a>
@@ -619,7 +620,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,000</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.44</div><div class="review-count">(1619件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.44</div><div class="review-count">(1634件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F151344%2F151344.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F151344%2F151344.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="天然温泉　四季彩の湯　スーパーホテルＰｒｅｍｉｅｒ大阪本町駅前" data-category="osaka">空室状況と料金をチェック</a>
@@ -639,7 +640,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ御堂筋線中... 徒歩15分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥5,100</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.31</div><div class="review-count">(2902件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.30</div><div class="review-count">(2924件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F128487%2F128487.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F128487%2F128487.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ハートンホテル北梅田" data-category="osaka">空室状況と料金をチェック</a>
@@ -659,7 +660,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ御堂筋線　... 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,200</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.23</div><div class="review-count">(317件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.19</div><div class="review-count">(321件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F160925%2F160925.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F160925%2F160925.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテルコード心斎橋" data-category="osaka">空室状況と料金をチェック</a>
@@ -679,7 +680,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 中央線・千日前線【阿... 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥3,600</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.39</div><div class="review-count">(6701件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.40</div><div class="review-count">(6729件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F217%2F217.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F217%2F217.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="湯元「花乃井」スーパーホテル大阪天然温泉" data-category="osaka">空室状況と料金をチェック</a>
@@ -704,7 +705,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥3,000</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.33</div><div class="review-count">(3094件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.34</div><div class="review-count">(3102件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F810%2F810.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F810%2F810.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテルフクラシア大阪ベイ" data-category="osaka">空室状況と料金をチェック</a>
@@ -724,7 +725,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,600</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.31</div><div class="review-count">(2081件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.31</div><div class="review-count">(2093件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F177697%2F177697.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F177697%2F177697.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ＡＢホテル大阪堺筋本町" data-category="osaka">空室状況と料金をチェック</a>
@@ -744,7 +745,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ御堂筋線 ... 徒歩1分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥5,954</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.38</div><div class="review-count">(297件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i></div><div class="review-score">4.50</div><div class="review-count">(297件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F180698%2F180698.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F180698%2F180698.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="グリッズプレミアムホテル大阪なんば" data-category="osaka">空室状況と料金をチェック</a>
@@ -764,7 +765,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥6,600</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.26</div><div class="review-count">(3500件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.26</div><div class="review-count">(3512件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F1145%2F1145.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F1145%2F1145.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="都シティ　大阪天王寺" data-category="osaka">空室状況と料金をチェック</a>
@@ -783,8 +784,8 @@
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,114</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.95</div><div class="review-count">(739件の口コミ)</div></div>
+                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,356</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.95</div><div class="review-count">(740件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F165190%2F165190.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F165190%2F165190.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="フォーポイント　フレックス　ｂｙ　シェラトン　大阪梅田" data-category="osaka">空室状況と料金をチェック</a>
@@ -804,7 +805,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪上本町駅 徒歩3分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥3,780</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.96</div><div class="review-count">(1967件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.97</div><div class="review-count">(1976件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F2597%2F2597.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F2597%2F2597.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテル　アウィーナ大阪" data-category="osaka">空室状況と料金をチェック</a>
@@ -824,7 +825,7 @@
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥3,388</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.90</div><div class="review-count">(706件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.90</div><div class="review-count">(709件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F172128%2F172128.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F172128%2F172128.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="フォーポイント　フレックス　ｂｙ　シェラトン　大阪北浜" data-category="osaka">空室状況と料金をチェック</a>
@@ -843,8 +844,8 @@
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,000</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.31</div><div class="review-count">(828件の口コミ)</div></div>
+                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,500</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.31</div><div class="review-count">(829件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F1985%2F1985.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F1985%2F1985.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="大和屋本店＜大阪府＞" data-category="osaka">空室状況と料金をチェック</a>
@@ -884,7 +885,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 線・大阪メトロ御堂筋... 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥5,100</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.94</div><div class="review-count">(1476件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.91</div><div class="review-count">(1482件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F166198%2F166198.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F166198%2F166198.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ＳＡＲＡＳＡ　ＨＯＴＥＬ新大阪（サラサ　ホテル新大阪）" data-category="osaka">空室状況と料金をチェック</a>
@@ -1114,7 +1115,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 線・大阪メトロ御堂筋... 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥5,100</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.94</div><div class="review-count">(1476件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star-half-stroke" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">3.91</div><div class="review-count">(1482件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F166198%2F166198.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F166198%2F166198.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ＳＡＲＡＳＡ　ＨＯＴＥＬ新大阪（サラサ　ホテル新大阪）" data-category="osaka">空室状況と料金をチェック</a>
@@ -1154,7 +1155,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ御堂筋線な... 徒歩2分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥6,142</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.25</div><div class="review-count">(210件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.26</div><div class="review-count">(212件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F187493%2F187493.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F187493%2F187493.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="東横ＩＮＮ大阪なんば" data-category="osaka">空室状況と料金をチェック</a>
@@ -1174,7 +1175,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> Osaka Metr... 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥5,029</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.22</div><div class="review-count">(2277件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.22</div><div class="review-count">(2279件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F67337%2F67337.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F67337%2F67337.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="東横ＩＮＮ淀屋橋駅南" data-category="osaka">空室状況と料金をチェック</a>
@@ -1194,7 +1195,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> なんば駅・25番出口 徒歩2分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥5,250</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.46</div><div class="review-count">(539件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.46</div><div class="review-count">(545件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F179146%2F179146.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F179146%2F179146.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ベッセルインなんば（難波・道頓堀）" data-category="osaka">空室状況と料金をチェック</a>
@@ -1213,8 +1214,8 @@
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas fa-location-dot"></i> 好アクセス（詳細はページ内へ）</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥7,344</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.38</div><div class="review-count">(3752件の口コミ)</div></div>
+                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥7,056</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.40</div><div class="review-count">(3760件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F76887%2F76887.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F76887%2F76887.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテルモントレ　グラスミア大阪" data-category="osaka">空室状況と料金をチェック</a>
@@ -1233,7 +1234,7 @@
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas fa-walking"></i> 大阪メトロ　中央線【... 徒歩5分</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,805</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥2,618</span><span style="font-size: 0.9rem">~ /泊</span></div>
                         <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.27</div><div class="review-count">(132件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
@@ -1274,7 +1275,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 動物園前駅2番出口 徒歩3分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥3,510</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.05</div><div class="review-count">(1384件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.06</div><div class="review-count">(1395件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F177521%2F177521.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F177521%2F177521.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="ホテル中央ブリッジ" data-category="osaka">空室状況と料金をチェック</a>
@@ -1294,7 +1295,7 @@
                             <span class="transit-badge"><i class="fas fa-walking"></i> 梅田から阪急電車で一... 徒歩5分</span>
                         </div>
                         <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥4,988</span><span style="font-size: 0.9rem">~ /泊</span></div>
-                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.02</div><div class="review-count">(185件の口コミ)</div></div>
+                        <div class="review-widget"><div class="review-stars"><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-solid fa-star" style="color: #fbbf24;"></i><i class="fa-regular fa-star" style="color: #94a3b8;"></i></div><div class="review-score">4.03</div><div class="review-count">(186件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
                             <a href="https://hb.afl.rakuten.co.jp/hgc/047ad0f1.183c70cf.047ad0f2.1e4c3769/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F172950%2F172950.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F172950%2F172950.html" target="_blank" rel="sponsored noopener noreferrer" class="booking-button" data-hotel-name="東横ＩＮＮ大阪阪急十三駅西口２" data-category="osaka">空室状況と料金をチェック</a>
@@ -1332,7 +1333,7 @@
         <section id="city-guide-article" class="hotels-section" style="padding-top: 0; background: transparent;">
             <div class="container">
                 <div class="glass-container city-guide-column" style="padding: 3rem; line-height: 1.8;">
-                    <h3>大阪の魅力と、旅のコンセプト</h3><p>大阪は、歴史ある文化とエネルギッシュな現代カルチャーが融合した日本屈指のエンターテインメント都市です。活気あふれる商店街や、最先端のトレンドが生まれるショッピングエリア、そして温かい人情味が織りなす街の雰囲気は、訪れる人々を瞬時に魅了します。</p><p>今回の旅のコンセプトは、大阪ならではの食・遊・歴をバランスよく体験することです。定番の観光スポットを巡るだけでなく、ローカルな路地裏に潜む名店を訪ねたり、地元の人々との温かいふれあいを楽しんだりする、一歩踏み込んだ深い旅をご提案します。</p><h3>予算を抑えて賢く楽しむ、大阪滞在の秘訣</h3><p>大阪をお得に賢く満喫するためには、旅行者向けの観光パスをフル活用するのが鉄則です。たとえば、<strong>大阪周遊パス</strong>を利用すれば、市内の地下鉄やバスが乗り放題になるだけでなく、<strong>梅田スカイビル</strong>の空中庭園展望台や<strong>大阪城天守閣</strong>などの主要観光スポットの入場料が無料または割引になります。</p><p>また、宿泊費を抑えるなら、デザイン性の高いブティックホステルやカプセルホテルの進化系を検討してみましょう。<strong>心斎橋</strong>や<strong>難波</strong>の周辺には、安価でありながらお洒落で快適な宿泊施設が数多く点在しており、浮いた予算を絶品グルメや体験に回すことができます。</p><h3>エリアで選ぶ、大阪の滞在拠点と賢い移動戦略</h3><p><strong>キタエリア（梅田）：</strong>大阪の北の玄関口である<strong>梅田駅</strong>周辺は、洗練された超高層ビル群と広大な地下街が広がるエリアです。京都や神戸へのアクセスも抜群で、ビジネスにも観光にも最適な拠点となります。最新のトレンドが集まる商業施設が多く、大人の洗練されたナイトライフを楽しみたい方におすすめです。</p><p><strong>ミナミエリア（難波・心斎橋）：</strong>大阪らしい活気とグリコの看板でおなじみの<strong>道頓堀</strong>を擁する、エネルギッシュな中心地です。深夜まで営業している飲食店やバーがひしめき合い、食べ歩きやショッピングを遊び尽くしたいアクティブな旅行者に最適な滞在拠点と言えます。</p><p><strong>ベイエリア（天保山・此花）：</strong>世界的に人気のテーマパークである<strong>ユニバーサル・スタジオ・ジャパン（USJ）</strong>や、世界最大級の水族館<strong>海遊館</strong>が集まる臨海地域です。ファミリー層やグループ旅行に最適で、大阪港の美しい夕日や潮風を感じながら、リゾート気分の滞在を楽しむことができます。</p><h3>大阪でしか出会えない、絶品ローカルグルメ</h3><p>天下の台所や食い倒れの街と称される大阪に来たなら、まずは本場の粉もんを制覇しましょう。<strong>道頓堀</strong>の名店で味わう、外はカリッ、中はトロッとした究極のたこ焼きや、お出汁の効いた生地が自慢のお好み焼きは格別です。ソースの香ばしい匂いに誘われて、ついつい食べ歩きが止まらなくなります。</p><p>さらに、独自の食文化として外せないのが、<strong>新世界</strong>の周辺で発展した串カツです。薄い衣でサクッと揚げられた串カツを、秘伝のソースに一度だけ浸して食べるスタイルは旅のハイライトになります。また、コラーゲンたっぷりのホルモン焼きや、出汁の効いたうどんなど、ディープなB級グルメの世界も魅力に満ちています。</p><h3>旅をもっと豊かに、大阪ならではの非日常体験</h3><p>大阪の魅力をより深く体感するなら、水の都としての側面を体験できる<strong>アクアライナー</strong>でのリバークルーズがおすすめです。川面から眺める大阪城の石垣やレトロな中之島のビル群は、普段の街歩きとは一味違うロマンチックな表情を見せてくれます。季節ごとに異なる美しさを持つ水辺の景色は、心に残る非日常の瞬間となるでしょう。</p><p>伝統と革新が交差する大阪は、訪れるたびに新しい発見とエネルギーを私たちに与えてくれます。活気ある街の雰囲に身をゆだね、人々の温かさに触れる旅は、あなたの日常に素晴らしいスパイスを加えてくれるはずです。さあ、次の週末は、驚きと感動が詰まった大阪へ出かけてみませんか。</p>
+                    <h3>大阪の魅力と、旅のコンセプト</h3><p>天下の台所として栄え、独自の文化を育んできた街、<strong>大阪</strong>。活気あふれる商店街から、最先端のトレンドが発信されるモダンなエリア、そして歴史を今に伝える名所まで、多様な魅力が凝縮されています。訪れるたびに新しい発見があり、温かい人々との触れ合いが旅の思い出をさらに色鮮やかに彩ります。</p><p>今回の旅のコンセプトは「暮らすように旅する大阪」です。ただ観光地を巡るだけでなく、路地裏の名店に飛び込んでみたり、ローカルな私鉄に乗って下町情緒に浸ったり。大都市ならではの洗練された利便性を享受しながら、人情味あふれる大阪の真髄を深く体験する、そんな欲張りな旅をご提案します。</p><h3>予算を抑えて賢く楽しむ、大阪滞在の秘訣</h3><p>大阪をお得に、そしてスマートに旅するためには、交通パスの活用が不可欠です。特におすすめなのが「<strong>大阪周遊パス</strong>」です。このパスを使えば、<strong>Osaka Metro</strong>や主要な市営バスが乗り放題になるだけでなく、<strong>梅田スカイビル</strong>の空中庭園展望台や<strong>大阪城天守閣</strong>など、人気の観光スポットの入場料が無料または割引になります。</p><p>また、宿泊費を賢く抑えるなら、ゲストハウスやビジネスホテルが密集する<strong>新今宮駅</strong>周辺や、交通の便が良くアットホームな宿が多い<strong>西成区</strong>、<strong>大正区</strong>エリアに注目してみましょう。近年はリノベーションされたお洒落なホステルも増えており、清潔で快適な個室にリーズナブルな価格で滞在することが可能です。</p><p>さらに、食文化の街・大阪では、市場の食べ歩きやローカルスーパーの惣菜コーナーも外せません。活気ある<strong>黒門市場</strong>で新鮮な海鮮を少しずつ味わったり、地元のスーパーで大阪名物の「いか焼き」や「箱寿司」を買い求めて公園でピクニック気分を味わうのも、お財布に優しくローカルな日常を体験できる賢い選択です。</p><h3>エリアで選ぶ、大阪の滞在拠点と賢い移動戦略</h3><p><strong>キタエリア（梅田・大阪駅周辺）：</strong>大阪の北の玄関口である<strong>梅田駅</strong>周辺は、洗練されたショッピングビルや超高層ビルが立ち並ぶ近代的なエリアです。<strong>JR大阪駅</strong>をはじめ、主要な私鉄や地下鉄が集中しているため、京都や神戸、奈良といった近隣都市へのアクセスも抜群です。フットワーク軽く関西広域を巡りたい旅行者にとって、最も利便性の高い滞在拠点と言えるでしょう。</p><p><strong>ミナミエリア（難波・心斎橋）：</strong>大阪らしいエネルギッシュな夜を楽しみたいなら、<strong>なんば駅</strong>や<strong>心斎橋駅</strong>周辺が最適です。巨大なネオン看板が輝く<strong>道頓堀</strong>や、若者文化の発信地である<strong>アメリカ村</strong>、レトロな雰囲気が漂う<strong>法善寺横丁</strong>など、徒歩圏内に見どころが凝縮されています。深夜まで営業している飲食店も多く、眠らない街の活気を肌で感じることができます。</p><p><strong>天王寺・新世界エリア：</strong>下町情緒と最新トレンドが融合したユニークなエリアです。日本屈指の高層ビル<strong>あべのハルカス</strong>がそびえ立つ一方で、一歩足を踏み入れれば、<strong>通天閣</strong>を中心に串カツ店が軒を連ねる<strong>新世界</strong>の賑やかなレトロ空間が広がります。<strong>天王寺駅</strong>は関西空港からのアクセスも良く、個性的で変化に富んだ大阪を体験したい方におすすめです。</p><p><strong>ベイエリア（ユニバーサルシティ・天保山）：</strong>ファミリーやテーマパーク好きに最適なのが、<strong>ユニバーサル・スタジオ・ジャパン（USJ）</strong>を擁するベイエリアです。<strong>ユニバーサルシティ駅</strong>周辺の公式ホテルに滞在すれば、パーク開園から閉園まで時間を気にせず遊び尽くせます。世界最大級の水族館である<strong>海遊館</strong>や大型観覧車がある<strong>天保山</strong>へも無料の渡船やキャプテンラインで行き来でき、開放的な港町の雰囲気を満喫できます。</p><h3>大阪でしか出会えない、絶品ローカルグルメ</h3><p>大阪のグルメと言えば、やはり「粉もん」と「串カツ」は外せません。まずは<strong>なんば</strong>にある老舗<strong>美津の</strong>や<strong>味乃家</strong>で、ふわふわ食感のお好み焼きを堪能しましょう。秘伝のソースとマヨネーズが鉄板の上で焦げる香りは食欲をそそります。たこ焼きなら、出汁の効いた生地が自慢の<strong>わなか</strong>や、外カリ中トロの元祖とされる<strong>会津屋</strong>を食べ比べるのが醍醐味です。</p><p>さらにディープな食体験を求めるなら、<strong>新世界</strong>の<strong>八重勝</strong>や<strong>てんぐ</strong>で味わう串カツがおすすめです。サクサクの衣をまとった新鮮な食材を、秘伝のソースに一度だけ浸して口に運ぶ瞬間は格別です。また、<strong>鶴橋駅</strong>周辺に広がるコリアンタウンでは、本格的な焼肉やキムチ、最新の韓国スイーツなど、食欲を刺激するエキゾチックなグルメ旅も同時に楽しめます。</p><h3>旅をもっと豊かに、大阪ならではの非日常体験</h3><p>旅の締めくくりには、伝統と現代が交差する大阪ならではの文化体験に浸ってみませんか。例えば、日本独自の芸能である「人形浄瑠璃 文楽」を<strong>国立文楽劇場</strong>で鑑賞したり、<strong>なんばグランド花月</strong>で本場のお笑い・吉本新喜劇を観て大笑いする時間は、他では味わえない特別な思い出になります。</p><p>また、夕暮れ時には<strong>淀川</strong>の河川敷を散歩したり、<strong>中之島公園</strong>のレトロな洋館建築のライトアップを眺めながら、リバーサイドのお洒落なカフェでクラフトビールを傾けるのも素敵です。エネルギッシュな喧騒から少し離れ、水の都・大阪の美しく穏やかな一面に触れることで、あなたの大阪旅行はより深く、忘れがたいものとなるでしょう。</p>
                 </div>
             </div>
         </section>
