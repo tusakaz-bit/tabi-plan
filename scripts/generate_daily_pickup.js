@@ -8,7 +8,8 @@ const CITIES = [
     { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B' },
     { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B' },
     { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '' },
-    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '' }
+    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '' },
+    { name: '金沢', en: 'kanazawa', middle: 'ishikawa', small: 'kanazawa', detail: '' }
 ];
 
 async function updateIndexHtml(articleData, city) {

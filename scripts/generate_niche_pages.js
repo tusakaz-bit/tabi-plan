@@ -19,7 +19,8 @@ const CITY_CODES = {
     kyoto:   { middle: 'kyoto', small: 'shi' },
     sapporo: { middle: 'hokkaido', small: 'sapporo' },
     okinawa: { middle: 'okinawa', small: 'nahashi' },
-    fukuoka: { middle: 'hukuoka', small: 'fukuoka' }
+    fukuoka: { middle: 'hukuoka', small: 'fukuoka' },
+    kanazawa: { middle: 'ishikawa', small: 'kanazawa' }
 };
 
 const CITY_BG = {
@@ -28,7 +29,8 @@ const CITY_BG = {
     kyoto: "url('../../bg_kyoto_new.jpg')",
     sapporo: "url('../../bg_sapporo_new.jpg')",
     okinawa: "url('../../bg_okinawa_new.jpg')",
-    fukuoka: "url('../../bg_fukuoka_new.jpg')"
+    fukuoka: "url('../../bg_fukuoka_new.jpg')",
+    kanazawa: "url('../../bg_kanazawa_new.jpg')"
 };
 
 const CITY_BG_FILENAME = {
@@ -37,7 +39,8 @@ const CITY_BG_FILENAME = {
     kyoto: "bg_kyoto_new.jpg",
     sapporo: "bg_sapporo_new.jpg",
     okinawa: "bg_okinawa_new.jpg",
-    fukuoka: "bg_fukuoka_new.jpg"
+    fukuoka: "bg_fukuoka_new.jpg",
+    kanazawa: "bg_kanazawa_new.jpg"
 };
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

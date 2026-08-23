@@ -15,7 +15,8 @@ const CITIES = [
     { name: '京都', en: 'kyoto',   middle: 'kyoto',   small: 'shi',     detail: 'B', baseStation: '京都', bgImage: "url('../bg_kyoto_new.jpg'), url('../bg_kyoto_new.jpg')" },
     { name: '札幌', en: 'sapporo', middle: 'hokkaido', small: 'sapporo', detail: 'B', baseStation: '札幌', bgImage: "url('../bg_sapporo_new.jpg'), url('../bg_sapporo_new.jpg')" },
     { name: '沖縄', en: 'okinawa', middle: 'okinawa', small: 'nahashi', detail: '', baseStation: '那覇空港', bgImage: "url('../bg_okinawa_new.jpg'), url('../bg_okinawa_new.jpg')" },
-    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多', bgImage: "url('../bg_fukuoka_new.jpg')" }
+    { name: '福岡', en: 'fukuoka', middle: 'hukuoka', small: 'fukuoka', detail: '', baseStation: '博多', bgImage: "url('../bg_fukuoka_new.jpg')" },
+    { name: '金沢', en: 'kanazawa', middle: 'ishikawa', small: 'kanazawa', detail: '', baseStation: '金沢', bgImage: "url('../bg_kanazawa_new.jpg')" }
 ];
 
 const CITY_BG_FILENAME = {
@@ -24,7 +25,8 @@ const CITY_BG_FILENAME = {
     kyoto: "bg_kyoto_new.jpg",
     sapporo: "bg_sapporo_new.jpg",
     okinawa: "bg_okinawa_new.jpg",
-    fukuoka: "bg_fukuoka_new.jpg"
+    fukuoka: "bg_fukuoka_new.jpg",
+    kanazawa: "bg_kanazawa_new.jpg"
 };
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
