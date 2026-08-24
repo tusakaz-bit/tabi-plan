@@ -324,7 +324,9 @@ async function run() {
         });
 
         // フィルタ処理
-        const filterName = city.en === 'okinawa' ? '那覇市' : (city.en === 'sapporo' ? '札幌市' : (city.en === 'kyoto' ? '京都市' : (city.en === 'osaka' ? '大阪市' : (city.en === 'tokyo' ? '東京都' : '福岡市'))));
+        let filterName = city.name + '市';
+        if (city.en === 'tokyo') filterName = '東京都';
+        if (city.en === 'okinawa') filterName = '那覇市';
 
         const hotelsDeals = filterHotels(dealsData?.hotels, filterName);
         const hotelsLadies = filterHotels(ladiesData?.hotels, filterName);
