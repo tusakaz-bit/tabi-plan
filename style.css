@@ -1171,23 +1171,23 @@ body.has-promo-bar .sticky-header {
     width: 100%;
     min-height: 45px;
     height: auto;
-    padding: 8px 32px 8px 24px; /* 左右と上下に適度な余白を設ける */
+    padding: 8px 32px 8px 24px;
     font-size: 0.85rem;
     font-weight: 700;
     text-align: center;
-    color: #ffffff;
+    color: #333333;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     z-index: 2000;
     position: relative;
     text-decoration: none;
     transition: all 0.3s ease;
     letter-spacing: 0.03em;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: #FFFDF5;
+    border-bottom: 1px solid #E2D8B3;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .promo-banner-bar span {
@@ -1196,14 +1196,15 @@ body.has-promo-bar .sticky-header {
 }
 
 .promo-banner-bar i {
-    font-size: 1rem;
-    flex-shrink: 0; /* 改行時にアイコンが潰れないように固定 */
+    color: #90B4CE;
+    font-size: 1.1rem;
+    flex-shrink: 0;
     animation: promoShake 2.5s infinite;
 }
 
 .promo-banner-bar:hover {
-    filter: brightness(1.15);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    filter: brightness(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* スマホ表示におけるお知らせバーの最適化（改行対策） */
@@ -1219,28 +1220,13 @@ body.has-promo-bar .sticky-header {
 }
 
 /* 5と0のつく日（当日）：ゴールド＆レッドの力強いグラデーション */
-.promo-banner-50-active {
-    background: linear-gradient(90deg, #bf1e2e 0%, #d97706 50%, #bf1e2e 100%);
-    background-size: 200% auto;
-    animation: promoGradientShift 4s ease infinite;
-    border-bottom: 1px solid rgba(251, 191, 36, 0.3);
-}
+.promo-banner-50-active { /* Styles merged into .promo-banner-bar */ }
 
 /* 5と0のつく日（前日フライング）：少し落ち着いた予告用ゴールドブルー */
-.promo-banner-50-pre {
-    background: linear-gradient(90deg, #1e3a8a 0%, #d97706 50%, #1e3a8a 100%);
-    background-size: 200% auto;
-    animation: promoGradientShift 4s ease infinite;
-    border-bottom: 1px solid rgba(251, 191, 36, 0.2);
-}
+.promo-banner-50-pre { /* Styles merged into .promo-banner-bar */ }
 
 /* スーパーSALE：最高級エナジーレッドとネオンのパルス効果 */
-.promo-banner-supersale {
-    background: linear-gradient(90deg, #dc2626 0%, #7f1d1d 50%, #dc2626 100%);
-    background-size: 200% auto;
-    animation: promoGradientShift 3s ease infinite, promoPulseGlow 2s infinite;
-    border-bottom: 1px solid rgba(239, 68, 68, 0.4);
-}
+.promo-banner-supersale { /* Styles merged into .promo-banner-bar */ }
 
 /* CVR最大化マイクロコピー */
 .promo-micro-copy {
@@ -1257,19 +1243,18 @@ body.has-promo-bar .sticky-header {
     max-width: 580px;
     text-align: center;
     letter-spacing: 0.02em;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    text-decoration: none; /* リンクのデフォルト下線を排除 */
-    cursor: pointer; /* 常にクリック可能なポインター */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: #FFFDF5;
+    border: 1px solid #E2D8B3;
+    color: #333333;
 }
 
 /* ホバー時に優しく浮き上がり発光するマイクロインタラクション */
 .promo-micro-copy:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    filter: brightness(1.18); /* 微発光させてクリックを促進 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    filter: brightness(0.98);
 }
 
 .promo-micro-copy:active {
@@ -1278,51 +1263,25 @@ body.has-promo-bar .sticky-header {
 }
 
 /* 5と0のつく日（当日）マイクロコピー */
-.promo-micro-50-active {
-    background: rgba(217, 119, 6, 0.08);
-    border: 1px solid rgba(217, 119, 6, 0.3);
-    color: #fbbf24;
-    animation: promoSubtleBounce 2.5s ease-in-out infinite;
-}
+.promo-micro-50-active { animation: promoSubtleBounce 2.5s ease-in-out infinite; }
 
-.promo-micro-50-active strong {
-    color: #ffffff;
-    background: #d97706;
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin: 0 3px;
-    font-weight: 800;
+.promo-micro-copy strong, .promo-banner-bar strong {
+    color: #D32F2F;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin: 0;
 }
 
 /* 5と0のつく日（前日フライング）マイクロコピー */
-.promo-micro-50-pre {
-    background: rgba(30, 58, 138, 0.15);
-    border: 1px solid rgba(217, 119, 6, 0.25);
-    color: #f3f4f6;
-    animation: promoSubtleBounce 3s ease-in-out infinite;
-}
+.promo-micro-50-pre { animation: promoSubtleBounce 3s ease-in-out infinite; }
 
-.promo-micro-50-pre strong {
-    color: #fbbf24;
-    font-weight: 800;
-}
+/* removed */
 
 /* スーパーSALEマイクロコピー */
-.promo-micro-supersale {
-    background: rgba(220, 38, 38, 0.08);
-    border: 1px solid rgba(220, 38, 38, 0.3);
-    color: #f87171;
-    animation: promoSubtleBounce 2s ease-in-out infinite, promoPulseBorder 2s infinite;
-}
+.promo-micro-supersale { animation: promoSubtleBounce 2s ease-in-out infinite; }
 
-.promo-micro-supersale strong {
-    color: #ffffff;
-    background: #dc2626;
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin: 0 3px;
-    font-weight: 800;
-}
+/* removed */
 
 /* スーパーSALE対象プランバッジ（カード用） */
 .hotel-card.promo-sale-eligible {

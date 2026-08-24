@@ -272,10 +272,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 bannerClass = promo.phase === 'pre' ? 'promo-banner-50-pre' : 'promo-banner-50-active';
             }
 
+            
+            let formattedBannerText = titleText.replace(
+                /(最大20%OFF|半額プラン|限定クーポン|5と0のつく日|対象施設限定|対象の高級宿・温泉宿|対象ホテルは要確認|まもなく開催！|本日は5と0のつく日！|年に数回|ビッグチャンス|スーパ\S+SALE|開催中|クーポン配布！)/g, 
+                '<strong>$1</strong>'
+            );
+            
             noticeBarEl.innerHTML = `
                 <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="promo-banner-bar ${bannerClass}">
                     <i class="fa-solid fa-gift"></i>
-                    <span>${titleText}</span>
+                    <span>${formattedBannerText}</span>
                     <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; margin-left: 5px; flex-shrink: 0;"></i>
                 </a>`;
             noticeBarEl.style.display = 'block';
