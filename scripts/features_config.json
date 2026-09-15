@@ -1,0 +1,94 @@
+{
+  "anniversary": {
+    "type": "pillar",
+    "slug": "anniversary",
+    "title": "記念日旅行 - コスパ重視で失敗しない宿",
+    "metaDescription": "記念日や誕生日の旅行に。お部屋の雰囲気や夜景が素敵で、かつコスパの高い厳選ホテルをご紹介します。",
+    "sectionATitle": "記念日だからこそ、賢く上質な選択を",
+    "sectionAContent": "記念日のホテル選びで最も重要なのは、「非日常感」と「安心感」です。当サイトでは、ただ高級で価格が高いだけの宿ではなく、限られた予算の中でも期待を超えるホスピタリティを提供してくれる「本当に満足度の高いホテル」だけを独自の品質基準で厳選しました。",
+    "clusters": [
+      "anniversary-kyoto",
+      "anniversary-fukuoka"
+    ]
+  },
+  "anniversary-kyoto": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/kyoto",
+    "city": "kyoto",
+    "title": "【京都】記念日におすすめのコスパ最強ホテル",
+    "metaDescription": "京都での記念日旅行に。雰囲気が良く、コスパも高いおすすめホテルを厳選。",
+    "sectionATitle": "京都の洗練された空間で、二人の特別な時間を",
+    "sectionAContent": "京都には和モダンなデザイナーズホテルからクラシックな洋館まで、記念日にふさわしい上質な宿が多数存在します。その中でも、クチコミ評価4.0以上の厳しい基準をクリアし、価格以上の価値を提供する宿だけをピックアップしました。",
+    "searchParams": {
+      "keyword": "京都 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    }
+  },
+  "anniversary-fukuoka": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/fukuoka",
+    "city": "fukuoka",
+    "title": "【福岡】記念日ステイにおすすめのおしゃれで安いホテル",
+    "metaDescription": "福岡での記念日デートに。夜景が綺麗でおしゃれ、かつコスパ抜群のホテルを厳選。",
+    "sectionATitle": "福岡の美食と夜景を彩る、記念日のためのホテル",
+    "sectionAContent": "美味しいグルメが揃う福岡での記念日旅行。食事にしっかり予算をかけられるよう、ホテルは「価格は抑えつつも、お部屋のデザインや展望が素晴らしい」高コスパな施設を選ぶのが賢い選択です。",
+    "searchParams": {
+      "keyword": "福岡 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    }
+  },
+  "solotravel-women": {
+    "type": "pillar",
+    "slug": "solotravel-women",
+    "title": "女子一人旅 - セキュリティと癒やしを両立する宿",
+    "metaDescription": "女性の一人旅に最適。セキュリティ対策が万全で、大浴場やスパなどの癒やし設備が充実したホテルをご紹介。",
+    "sectionATitle": "自分だけのご褒美時間を、最高にリラックスできる空間で",
+    "sectionAContent": "女子一人旅で絶対に妥協できないのが「安全性」と「水回りの清潔感」です。私たちは全てのホテルを、女性目線の厳しいチェック基準（セキュリティ、アメニティの充実度、お風呂の清潔さ）でスクリーニングしています。",
+    "clusters": [
+      "solotravel-women-sapporo",
+      "solotravel-women-tokyo"
+    ]
+  },
+  "solotravel-women-sapporo": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/sapporo",
+    "city": "sapporo",
+    "title": "【札幌】女子一人旅におすすめ！大浴場付き・高コスパなホテル",
+    "metaDescription": "札幌への女子一人旅に。安全で綺麗、温泉・大浴場が付いてコスパの高いホテルを厳選。",
+    "sectionATitle": "札幌グルメを満喫した後は、大浴場で芯まで温まる",
+    "sectionAContent": "札幌での一人旅は、美味しい海鮮やラーメンを巡るのが醍醐味。夜はホテルに戻って、足を伸ばせる大浴場で一日の疲れを癒やしましょう。セキュリティが高く、女性専用フロアや充実したアメニティを備えたホテルを厳選しました。",
+    "searchParams": {
+      "keyword": "札幌 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 12000
+    }
+  },
+  "solotravel-women-tokyo": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/tokyo",
+    "city": "tokyo",
+    "title": "【東京】女子一人旅・ご褒美ステイにおすすめの綺麗でおしゃれなホテル",
+    "metaDescription": "東京での女子一人旅やご褒美ステイに。洗練されたデザインで安心・安全、かつコスパの高いホテル。",
+    "sectionATitle": "東京のど真ん中で、日常を忘れる上質な一人時間を",
+    "sectionAContent": "ショッピングや観劇、アート巡りなど、目的が尽きない東京ステイ。一人でも安心して泊まれるだけでなく、洗練されたインテリアや素晴らしい眺望が楽しめる「ご褒美感」のあるホテルをピックアップしています。",
+    "searchParams": {
+      "keyword": "東京 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 15000
+    }
+  }
+}
