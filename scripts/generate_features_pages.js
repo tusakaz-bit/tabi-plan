@@ -122,10 +122,10 @@ async function run() {
         let navLinks = '';
         if (isCluster) {
             const parent = config[data.parent];
-            breadcrumbs = `<a href="../../">${parent.title}</a> <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 0.5rem;"></i> <span style="color: rgba(255,255,255,0.9);">${data.title}</span>`;
+            breadcrumbs = `<a href="../../">${parent.title}</a> <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 0.5rem;"></i> <span style="color: #666666;">${data.title}</span>`;
             navLinks = `<a href="../../">${parent.title}</a>`;
         } else {
-            breadcrumbs = `<span style="color: rgba(255,255,255,0.9);">${data.title}</span>`;
+            breadcrumbs = `<span style="color: #666666;">${data.title}</span>`;
             navLinks = ``;
         }
         
@@ -161,7 +161,7 @@ async function run() {
             .replace(/{{HERO_BG_IMAGE}}/g, bgImage)
             .replace(/{{NAV_LINKS}}/g, navLinks)
             .replace(/{{BREADCRUMBS_HTML}}/g, breadcrumbs)
-            .replace(/{{HERO_TITLE}}/g, data.title)
+            .replace(/{{HERO_TITLE}}/g, data.heroTitle || data.title)
             .replace(/{{SECTION_A_TITLE}}/g, data.sectionATitle)
             .replace(/{{SECTION_A_CONTENT}}/g, data.sectionAContent)
             .replace(/{{FEATURE_CLUSTERS_OR_HOTELS}}/g, sectionBHtml);
