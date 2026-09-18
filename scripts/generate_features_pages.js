@@ -78,11 +78,11 @@ function generateHotelCardHtml(hotel) {
     const link = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html`;
 
     return `
-    <div class="hotel-card" style="margin-bottom: 2rem; background: #FFF; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(144, 180, 206, 0.3); max-width: 100%; box-sizing: border-box;">
+    <div class="hotel-card" style="margin-bottom: 2rem; background: #FFF; border-radius: 12px; overflow: hidden; display: flex; flex-direction: row; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(144, 180, 206, 0.3); max-width: 100%; box-sizing: border-box;">
         <div class="hotel-image" style="flex: 1 1 250px; min-width: 0; background-image: url('${info.hotelImageUrl}'); background-size: cover; background-position: center; min-height: 250px; position: relative;">
             <div class="rakuten-credit">Rakuten Travel</div>
         </div>
-        <div class="hotel-info" style="flex: 2 1 250px; min-width: 0; padding: 1.5rem; max-width: 100%; box-sizing: border-box; overflow: hidden;">
+        <div class="hotel-info" style="flex: 2 1 250px; min-width: 0; padding: 1.5rem; max-width: 100%; box-sizing: border-box;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                 <h3 class="hotel-title" style="font-size: 1.5rem; color: #1a1a2e; margin: 0; max-width: 100%; word-break: break-word; overflow-wrap: anywhere;">${info.hotelName}</h3>
                 <span style="background: #eef2f5; color: #555577; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">
