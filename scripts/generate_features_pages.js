@@ -78,13 +78,13 @@ function generateHotelCardHtml(hotel) {
     const link = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html`;
 
     return `
-    <div class="hotel-card" style="margin-bottom: 2rem; background: #FFF; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(144, 180, 206, 0.3);">
+    <div class="hotel-card" style="margin-bottom: 2rem; background: #FFF; border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(144, 180, 206, 0.3); max-width: 100%; box-sizing: border-box;">
         <div class="hotel-image" style="flex: 1 1 250px; min-width: 0; background-image: url('${info.hotelImageUrl}'); background-size: cover; background-position: center; min-height: 250px; position: relative;">
             <div class="rakuten-credit">Rakuten Travel</div>
         </div>
-        <div class="hotel-info" style="flex: 2 1 250px; min-width: 0; padding: 1.5rem;">
+        <div class="hotel-info" style="flex: 2 1 250px; min-width: 0; padding: 1.5rem; max-width: 100%; box-sizing: border-box; overflow: hidden;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-                <h3 style="font-size: 1.5rem; color: #1a1a2e; margin: 0;">${info.hotelName}</h3>
+                <h3 class="hotel-title" style="font-size: 1.5rem; color: #1a1a2e; margin: 0; max-width: 100%; word-break: break-word; overflow-wrap: anywhere;">${info.hotelName}</h3>
                 <span style="background: #eef2f5; color: #555577; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">
                     <i class="fa-solid fa-star" style="color: #fbbf24;"></i> ${rating}
                 </span>
@@ -94,7 +94,7 @@ function generateHotelCardHtml(hotel) {
                 <span style="font-size: 0.85rem; color: #555577;"><i class="fa-solid fa-map-location-dot"></i> ${info.address1}${info.address2}</span>
                 <span style="font-size: 0.85rem; color: #e11d48; font-weight: bold;"><i class="fa-solid fa-yen-sign"></i> 最安 ${price}</span>
             </div>
-            <a href="${link}" target="_blank" rel="noopener noreferrer" class="booking-button" style="display: block; text-align: center; background: #90B4CE; color: #FFF; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+            <a href="${link}" target="_blank" rel="noopener noreferrer" class="booking-button" style="display: block; text-align: center; background: #90B4CE; color: #FFF; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s; max-width: 100%; box-sizing: border-box; white-space: normal; word-break: break-all;">
                 空室状況と最安値をチェック <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         </div>
