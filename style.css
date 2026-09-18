@@ -1873,3 +1873,33 @@ header a.logo span {
     paint-order: stroke fill;
     text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
 }
+
+/* �O���[�o���ȉ��s�œK�� (Japanese Line-Break Optimization) */
+p, h1, h2, h3, h4, h5, h6, .hotel-title, .spot-desc, .description, .subtitle {
+    word-break: auto-phrase;
+    line-break: strict;
+}
+.hotel-card p, .hotel-card .hotel-title, .pickup-card-link h4, .spot-desc, .feature-card p, .pickup-description {
+    overflow-wrap: break-word;
+}
+
+/* =========================================
+   グローバルな改行最適化 (Global Line-Break)
+========================================= */
+/* 1. 動的コンテンツの保護 (APIデータなど) */
+.hotel-card p, 
+.hotel-card .hotel-title, 
+.pickup-card-link h4, 
+.spot-desc, 
+.feature-card p, 
+.pickup-description {
+    /* ユーザー指定の自然な折り返し設定 */
+    word-break: keep-all; 
+    overflow-wrap: break-word;
+    line-break: strict;
+}
+
+/* 2. モダンブラウザ向けの自動文節改行 (Progressive Enhancement) */
+p, h1, h2, h3, h4, h5, h6, .hotel-title, .spot-desc, .description, .subtitle {
+    word-break: auto-phrase;
+}
