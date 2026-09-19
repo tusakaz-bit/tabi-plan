@@ -8,7 +8,12 @@
     "sectionAContent": "記念日のホテル選びで最も重要なのは、「非日常感」と「安心感」です。当サイトでは、ただ高級で価格が高いだけの宿ではなく、限られた予算の中でも期待を超えるホスピタリティを提供してくれる「本当に満足度の高いホテル」だけを独自の品質基準で厳選しました。",
     "clusters": [
       "anniversary-kyoto",
-      "anniversary-fukuoka"
+      "anniversary-fukuoka",
+      "anniversary-tokyo",
+      "anniversary-osaka",
+      "anniversary-sapporo",
+      "anniversary-okinawa",
+      "anniversary-kanazawa"
     ],
     "heroTitle": "<span style=\"display: inline-block;\">記念日旅行 - </span><span style=\"display: inline-block;\">コスパ重視で</span><span style=\"display: inline-block;\">失敗しない宿</span>"
   },
@@ -57,7 +62,12 @@
     "sectionAContent": "女子一人旅で絶対に妥協できないのが「安全性」と「水回りの清潔感」です。私たちは全てのホテルを、女性目線の厳しいチェック基準（セキュリティ、アメニティの充実度、お風呂の清潔さ）でスクリーニングしています。",
     "clusters": [
       "solotravel-women-sapporo",
-      "solotravel-women-tokyo"
+      "solotravel-women-tokyo",
+      "solotravel-women-osaka",
+      "solotravel-women-kyoto",
+      "solotravel-women-fukuoka",
+      "solotravel-women-okinawa",
+      "solotravel-women-kanazawa"
     ],
     "heroTitle": "<span style=\"display: inline-block;\">女子一人旅 - </span><span style=\"display: inline-block;\">セキュリティと</span><span style=\"display: inline-block;\">癒やしを</span><span style=\"display: inline-block;\">両立する宿</span>"
   },
@@ -96,5 +106,185 @@
       "maxPrice": 15000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【東京】</span><span style=\"display: inline-block;\">女子一人旅・</span><span style=\"display: inline-block;\">ご褒美ステイにおすすめの</span><span style=\"display: inline-block;\">綺麗でおしゃれなホテル</span>"
+  },
+  "anniversary-tokyo": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/tokyo",
+    "city": "tokyo",
+    "title": "【東京】記念日ステイにおすすめの洗練された高級感と高コスパホテル",
+    "metaDescription": "東京での特別な記念日に。夜景や上質なサービスを誇りつつ、コスパの高い厳選ホテル。",
+    "sectionATitle": "<span style=\"display: inline-block;\">東京の</span><span style=\"display: inline-block;\">無数にある</span><span style=\"display: inline-block;\">選択肢から、</span><span style=\"display: inline-block;\">ハズレを</span><span style=\"display: inline-block;\">徹底排除</span>",
+    "sectionAContent": "星の数ほどある東京のホテル。その中には見栄えだけが良くサービスにムラがある施設も少なくありません。私たちは口コミや独自の品質基準を元に、品質のブレを許さない厳格なスクリーニングを実施。大切な記念日を絶対に失敗させない、本物のホスピタリティを持つ宿だけを厳選しています。",
+    "searchParams": {
+      "keyword": "東京 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【東京】</span><span style=\"display: inline-block;\">記念日ステイにおすすめの</span><span style=\"display: inline-block;\">洗練された</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "anniversary-osaka": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/osaka",
+    "city": "osaka",
+    "title": "【大阪】記念日旅行におすすめの特別感あふれる高コスパホテル",
+    "metaDescription": "大阪での記念日デートに最適。夜景や食を堪能できる、価格以上の価値を持つホテルを厳選。",
+    "sectionATitle": "<span style=\"display: inline-block;\">活気ある</span><span style=\"display: inline-block;\">大阪だからこそ、</span><span style=\"display: inline-block;\">静寂と</span><span style=\"display: inline-block;\">品質を</span><span style=\"display: inline-block;\">担保する</span>",
+    "sectionAContent": "賑やかな大阪の街で記念日を過ごすなら、ホテル空間は二人のための静かで上質な場所であるべきです。客室の防音性や清掃の行き届き具合など、表層的なデザインだけでなく見えない部分の品質まで徹底的にこだわる宿のみを抽出しました。",
+    "searchParams": {
+      "keyword": "大阪 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【大阪】</span><span style=\"display: inline-block;\">記念日旅行におすすめの</span><span style=\"display: inline-block;\">特別感あふれる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "anniversary-sapporo": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/sapporo",
+    "city": "sapporo",
+    "title": "【札幌】記念日におすすめの美食と夜景を堪能できる高コスパホテル",
+    "metaDescription": "札幌での特別な記念日に。美しい夜景と北海道の美食を楽しめる厳選ホテル。",
+    "sectionATitle": "<span style=\"display: inline-block;\">札幌の</span><span style=\"display: inline-block;\">記念日を</span><span style=\"display: inline-block;\">完璧にする、</span><span style=\"display: inline-block;\">妥協なき</span><span style=\"display: inline-block;\">ホテル選び</span>",
+    "sectionAContent": "食の宝庫・札幌での記念日は、ディナーへの期待も高まります。だからこそ、ホテル滞在でも一切の妥協は許されません。施設の新しさや景観だけでなく、スタッフの対応力といったソフト面での不良要素を排除し、高いクオリティが安定しているホテルだけをご提案します。",
+    "searchParams": {
+      "keyword": "札幌 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【札幌】</span><span style=\"display: inline-block;\">記念日におすすめの</span><span style=\"display: inline-block;\">美食と夜景の</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "anniversary-okinawa": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/okinawa",
+    "city": "okinawa",
+    "title": "【沖縄・那覇】記念日旅行におすすめのリゾート感あふれるホテル",
+    "metaDescription": "沖縄での特別な記念日に。非日常のリゾート感と確かなホスピタリティを備えた厳選ホテル。",
+    "sectionATitle": "<span style=\"display: inline-block;\">リゾート特有の</span><span style=\"display: inline-block;\">サービスのムラを</span><span style=\"display: inline-block;\">徹底的に</span><span style=\"display: inline-block;\">排除する</span>",
+    "sectionAContent": "沖縄のリゾートホテルでは、繁忙期などのタイミングによってサービス品質にブレが生じることがあります。私たちはその不安定さを許容せず、いつ訪れても変わらない高品質なサービスと空間を提供し続ける、真に信頼できる宿のみを厳選しています。",
+    "searchParams": {
+      "keyword": "沖縄 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【沖縄】</span><span style=\"display: inline-block;\">記念日旅行におすすめの</span><span style=\"display: inline-block;\">リゾート感あふれる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "anniversary-kanazawa": {
+    "type": "cluster",
+    "parent": "anniversary",
+    "slug": "anniversary/kanazawa",
+    "city": "kanazawa",
+    "title": "【金沢】記念日旅行におすすめの風情漂う和モダンホテル",
+    "metaDescription": "金沢での記念日旅行に。伝統とモダンが交差する、上質でコスパの高い厳選ホテル。",
+    "sectionATitle": "<span style=\"display: inline-block;\">金沢の</span><span style=\"display: inline-block;\">伝統美に</span><span style=\"display: inline-block;\">ふさわしい、</span><span style=\"display: inline-block;\">本物の</span><span style=\"display: inline-block;\">クオリティを</span>",
+    "sectionAContent": "歴史と文化が息づく金沢では、ホテルにもその土地ならではの品格が求められます。名ばかりの「和風」ではなく、建材の質感や細やかなおもてなしの心など、厳しい独自基準で本物と呼べる品質を備えた宿だけをラインナップしました。",
+    "searchParams": {
+      "keyword": "金沢 記念日"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 18000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【金沢】</span><span style=\"display: inline-block;\">記念日旅行におすすめの</span><span style=\"display: inline-block;\">風情漂う</span><span style=\"display: inline-block;\">和モダンホテル</span>"
+  },
+  "solotravel-women-osaka": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/osaka",
+    "city": "osaka",
+    "title": "【大阪】女子一人旅におすすめの安全で快適な高コスパホテル",
+    "metaDescription": "大阪への女子一人旅に。セキュリティが高く、水回りが綺麗でリラックスできるホテルを厳選。",
+    "sectionATitle": "<span style=\"display: inline-block;\">大阪の</span><span style=\"display: inline-block;\">一人旅を</span><span style=\"display: inline-block;\">守る、</span><span style=\"display: inline-block;\">妥協なき</span><span style=\"display: inline-block;\">セキュリティ基準</span>",
+    "sectionAContent": "食い倒れやエンタメを楽しむ大阪一人旅。疲れて帰るホテルは、何よりも安全で清潔でなければなりません。私たちは水回りのわずかな不備や、防犯面での死角といった不良要素を徹底的に排除し、女性が心から安らげる環境を持つホテルのみを選定しています。",
+    "searchParams": {
+      "keyword": "大阪 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 12000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【大阪】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">安全で快適な</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "solotravel-women-kyoto": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/kyoto",
+    "city": "kyoto",
+    "title": "【京都】女子一人旅におすすめの風情と安心を備えた高コスパホテル",
+    "metaDescription": "京都での女子一人旅に。路地裏の宿でもセキュリティ基準をクリアした安全なホテルを厳選。",
+    "sectionATitle": "<span style=\"display: inline-block;\">路地裏の宿でも、</span><span style=\"display: inline-block;\">独自の</span><span style=\"display: inline-block;\">安全基準を</span><span style=\"display: inline-block;\">クリアした</span><span style=\"display: inline-block;\">宿のみを</span>",
+    "sectionAContent": "風情ある京都の路地裏には魅力的な宿が多い反面、女性一人では夜間のアクセスやセキュリティ面に不安が残ることもあります。当サイトでは、立地環境や夜間のフロント対応など、厳しい独自基準をクリアした安心のホテルだけをご紹介しています。",
+    "searchParams": {
+      "keyword": "京都 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 12000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【京都】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">風情と安心を備えた</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "solotravel-women-fukuoka": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/fukuoka",
+    "city": "fukuoka",
+    "title": "【福岡】女子一人旅におすすめの便利で綺麗な高コスパホテル",
+    "metaDescription": "福岡への女子一人旅に。アクセス抜群で清潔感があり、女性に嬉しいアメニティが充実したホテル。",
+    "sectionATitle": "<span style=\"display: inline-block;\">福岡での</span><span style=\"display: inline-block;\">一人ステイ、</span><span style=\"display: inline-block;\">品質のブレを</span><span style=\"display: inline-block;\">許さない</span><span style=\"display: inline-block;\">厳選宿</span>",
+    "sectionAContent": "コンパクトシティ福岡は一人旅に最適ですが、ホテルの選択肢が多いため品質にはバラツキがあります。私たちは清掃のクオリティやアメニティの質など、宿泊者の満足度を左右する要素に一切のブレを許さず、常に高い基準を保ち続けるホテルのみを厳選しました。",
+    "searchParams": {
+      "keyword": "福岡 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 12000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【福岡】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">便利で綺麗な</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "solotravel-women-okinawa": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/okinawa",
+    "city": "okinawa",
+    "title": "【沖縄・那覇】女子一人旅におすすめのリフレッシュできる高コスパホテル",
+    "metaDescription": "沖縄でのご褒美一人旅に。リゾート気分を安全に満喫できる、コスパ抜群の厳選ホテル。",
+    "sectionATitle": "<span style=\"display: inline-block;\">沖縄の</span><span style=\"display: inline-block;\">開放感と、</span><span style=\"display: inline-block;\">徹底した</span><span style=\"display: inline-block;\">管理基準の</span><span style=\"display: inline-block;\">両立を</span>",
+    "sectionAContent": "南国ならではの開放感を楽しみたい沖縄一人旅。しかし、非日常の空間であってもホテル側の管理体制に甘えがあってはなりません。水周りのカビや設備の老朽化といった不良要素を徹底排除し、清潔で洗練された癒やしの空間を提供する宿だけをピックアップしました。",
+    "searchParams": {
+      "keyword": "沖縄 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 12000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【沖縄】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">リフレッシュできる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+  },
+  "solotravel-women-kanazawa": {
+    "type": "cluster",
+    "parent": "solotravel-women",
+    "slug": "solotravel-women/kanazawa",
+    "city": "kanazawa",
+    "title": "【金沢】女子一人旅におすすめの情緒あふれる安全な高コスパホテル",
+    "metaDescription": "金沢での一人旅に。美術館巡りやカフェ巡りの拠点に最適な、綺麗で安全なホテルを厳選。",
+    "sectionATitle": "<span style=\"display: inline-block;\">金沢の</span><span style=\"display: inline-block;\">美意識に</span><span style=\"display: inline-block;\">応える、</span><span style=\"display: inline-block;\">一切の</span><span style=\"display: inline-block;\">妥協なき</span><span style=\"display: inline-block;\">ホテル選び</span>",
+    "sectionAContent": "美しい街並みやアートを楽しむ金沢一人旅では、滞在先にも高い美意識が求められます。単に新しくて綺麗なだけでなく、女性目線での細やかな配慮が行き届いているか。私たちは独自の厳しいスクリーニングで、心身ともに満たされる極上の宿のみを選定しています。",
+    "searchParams": {
+      "keyword": "金沢 女性"
+    },
+    "filters": {
+      "minReview": 4,
+      "maxPrice": 12000
+    },
+    "heroTitle": "<span style=\"display: inline-block;\">【金沢】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">情緒あふれる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   }
 }
