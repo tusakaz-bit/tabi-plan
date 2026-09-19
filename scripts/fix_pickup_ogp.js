@@ -26,7 +26,7 @@ for (const file of files) {
         }
     }
 
-    let ogImage = 'https://tabi-plan.org/favicon.svg'; // デフォルト
+    let ogImage = 'https://tabi-plan.org/favicon.png'; // デフォルト
     if (matchedCity) {
         ogImage = `https://tabi-plan.org/${CITY_BG_FILENAME[matchedCity]}`;
     }
