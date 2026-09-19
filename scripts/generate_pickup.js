@@ -389,7 +389,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
             "name": "Tabi Plan",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://tabi-plan.org/favicon.png"
+                "url": "https://tabi-plan.org/icon.jpg"
             }
         }
     };
@@ -409,7 +409,7 @@ async function generateArticle(hotelNo, category = '今週のピックアップ'
         fukuoka: "bg_fukuoka_new.jpg"
     };
 
-    let ogImage = 'https://tabi-plan.org/favicon.png'; // デフォルトフォールバック
+    let ogImage = 'https://tabi-plan.org/icon.jpg'; // デフォルトフォールバック
     if (cityEn && CITY_BG_FILENAME[cityEn.toLowerCase()]) {
         ogImage = `https://tabi-plan.org/${CITY_BG_FILENAME[cityEn.toLowerCase()]}`;
     }
