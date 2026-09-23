@@ -31,7 +31,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【京都】</span><span style=\"display: inline-block;\">記念日におすすめの</span><span style=\"display: inline-block;\">コスパ最強ホテル</span>"
   },
@@ -49,7 +50,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【福岡】</span><span style=\"display: inline-block;\">記念日ステイにおすすめの</span><span style=\"display: inline-block;\">おしゃれで安いホテル</span>"
   },
@@ -85,7 +87,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 12000
+      "maxPrice": 12000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【札幌】</span><span style=\"display: inline-block;\">女子一人旅におすすめ！</span><span style=\"display: inline-block;\">大浴場付き・</span><span style=\"display: inline-block;\">高コスパなホテル</span>"
   },
@@ -103,7 +106,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 15000
+      "maxPrice": 15000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【東京】</span><span style=\"display: inline-block;\">女子一人旅・</span><span style=\"display: inline-block;\">ご褒美ステイにおすすめの</span><span style=\"display: inline-block;\">綺麗でおしゃれなホテル</span>"
   },
@@ -121,7 +125,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【東京】</span><span style=\"display: inline-block;\">記念日ステイにおすすめの</span><span style=\"display: inline-block;\">洗練された</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -139,7 +144,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【大阪】</span><span style=\"display: inline-block;\">記念日旅行におすすめの</span><span style=\"display: inline-block;\">特別感あふれる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -157,7 +163,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【札幌】</span><span style=\"display: inline-block;\">記念日におすすめの</span><span style=\"display: inline-block;\">美食と夜景の</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -175,7 +182,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【沖縄】</span><span style=\"display: inline-block;\">記念日旅行におすすめの</span><span style=\"display: inline-block;\">リゾート感あふれる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -193,7 +201,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 18000
+      "maxPrice": 18000,
+      "minPrice": 5000
     },
     "heroTitle": "<span style=\"display: inline-block;\">【金沢】</span><span style=\"display: inline-block;\">記念日旅行におすすめの</span><span style=\"display: inline-block;\">風情漂う</span><span style=\"display: inline-block;\">和モダンホテル</span>"
   },
@@ -211,7 +220,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 12000
+      "maxPrice": 12000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【大阪】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">安全で快適な</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -229,7 +239,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 12000
+      "maxPrice": 12000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【京都】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">風情と安心を備えた</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -247,7 +258,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 12000
+      "maxPrice": 12000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【福岡】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">便利で綺麗な</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -265,7 +277,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 12000
+      "maxPrice": 12000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【沖縄】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">リフレッシュできる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   },
@@ -283,7 +296,8 @@
     },
     "filters": {
       "minReview": 4,
-      "maxPrice": 12000
+      "maxPrice": 12000,
+      "minPrice": 3500
     },
     "heroTitle": "<span style=\"display: inline-block;\">【金沢】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">情緒あふれる</span><span style=\"display: inline-block;\">高コスパホテル</span>"
   }

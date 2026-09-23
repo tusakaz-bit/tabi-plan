@@ -57,6 +57,7 @@ async function fetchHotels(searchParams, filters, cityEn, maxResults = 10) {
                 const info = h.hotel[0].hotelBasicInfo;
                 if (filters.minReview && (info.reviewAverage || 0) < filters.minReview) return false;
                 if (filters.maxPrice && (info.hotelMinCharge || 999999) > filters.maxPrice) return false;
+                if (filters.minPrice && (info.hotelMinCharge || 0) < filters.minPrice) return false;
                 return true;
             });
             
