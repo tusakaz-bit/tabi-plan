@@ -114,6 +114,7 @@ async function run() {
         format: 'json',
         keyword: niche.searchParams.keyword,
         hits: 20,
+        sort: 'standard',
     };
 
     // 最大3件のホテルを取得（フィルタ→フォールバック）
@@ -132,7 +133,7 @@ async function run() {
 
     // ---- ③ 記事タイトルと本文を生成 ----
     const dateStr = getDateString();
-    const title = `【${dateStr}】${niche.cityName}おすすめホテル｜${niche.keyword.replace(/ /g, '・')}の最安値ランキング`;
+    const title = `【${dateStr}】${niche.cityName}のおすすめホテル！高コスパで厳選した人気宿 TOP3`;
 
     // 導入文（イントロ）
     const intro = `${niche.cityName}で「${niche.keyword}」を探しているあなたへ。毎朝自動更新している <a href="https://tabi-plan.org/${niche.city}/${niche.slug}/" style="color: #90B4CE; font-weight: bold;">Tabi Plan ${niche.cityName}特設ページ</a> から、本日の注目ホテルをピックアップしてご紹介します！`;
@@ -145,7 +146,7 @@ async function run() {
     const body = await generateHtmlBody(cityObj, intro, hotels);
 
     // ---- ④ はてなブログへ投稿 ----
-    const tags = [niche.cityName, 'ホテル', '旅行', '格安ホテル', 'TabiPlan'];
+    const tags = [niche.cityName, 'ホテル', '旅行', '高コスパホテル', 'TabiPlan'];
     console.log(`📝 投稿タイトル: ${title}`);
     await postToHatena(title, body, tags);
 

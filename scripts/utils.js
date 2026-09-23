@@ -22,7 +22,7 @@ async function fetchRakutenApi(url, params, minReviewScore = 3.5, sortType = 'ch
         if (response.data && response.data.hotels && response.data.hotels.length > 0) {
             let filteredHotels = response.data.hotels
                 .map(h => h.hotel[0].hotelBasicInfo)
-                .filter(h => h.hotelMinCharge && h.hotelMinCharge >= 1000); // 1000円未満（¥1バグ）を除外
+                .filter(h => h.hotelMinCharge && h.hotelMinCharge >= 3000); // 1000円未満（¥1バグ）を除外
 
             // 民泊・ホステル等の除外
             filteredHotels = filteredHotels.filter(h => {
@@ -84,7 +84,7 @@ async function generateHatenaAIContent(hotelInfo) {
 【ホテル情報】
 ホテル名: ${hotelInfo.name}
 キャッチコピー: ${hotelInfo.special || 'なし'}
-最安料金目安: ${hotelInfo.price ? hotelInfo.price + '円〜' : '不明'}
+参考価格目安: ${hotelInfo.price ? hotelInfo.price + '円〜' : '不明'}
 クチコミ評価: ${hotelInfo.reviewAverage || '4.0'} / 5.0（${hotelInfo.reviewCount || 0}件）
 
 【作成ルール・トーン＆マナー（厳守）】
@@ -171,8 +171,8 @@ async function generateHtmlBody(city, intro, hotels) {
     <div style="flex: 2; min-width: 250px;">
         ${reviewHtml}
         <p style="font-size: 0.95rem; color: #333333; margin-bottom: 15px; line-height: 1.8; background: #FFFFFF; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0; white-space: pre-wrap;">${aiBadgeHtml}${aiBadgeHtml ? '<br>' : ''}${aiDescription}</p>
-        <p style="font-size: 1.2rem; color: #e63946; font-weight: bold; margin-bottom: 15px;">最安料金目安：${Number(hotel.price).toLocaleString()}円〜</p>
-        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #90B4CE; color: #FFFFFF !important; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem; border: 1px solid #7a9cb5;">最安値プランを楽天トラベルで確認する</a></p>
+        <p style="font-size: 1.2rem; color: #e63946; font-weight: bold; margin-bottom: 15px;">参考価格：¥${Number(hotel.price).toLocaleString()}〜 / 泊</p>\n        <p style="font-size: 0.85rem; color: #666; margin-top: 0; margin-bottom: 15px;">（※日程やプランにより変動します）</p>
+        <p><a href="${hotel.url}" target="_blank" style="display: block; background: #90B4CE; color: #FFFFFF !important; padding: 12px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; box-sizing: border-box; font-size: 0.95rem; border: 1px solid #7a9cb5;">空室状況と料金をチェック</a></p>
     </div>
 </div>
 `;
