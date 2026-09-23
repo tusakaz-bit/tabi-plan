@@ -73,7 +73,8 @@
     },
     "filters": {
       "maxPrice": 8000,
-      "minReview": 3.5
+      "minReview": 3.5,
+      "minPrice": 5000
     },
     "fallbackFilters": {
       "maxPrice": 12000,
@@ -95,7 +96,8 @@
     "sort": "review",
     "filters": {
       "maxPrice": 12000,
-      "minReview": 4
+      "minReview": 4,
+      "minPrice": 5000
     },
     "fallbackFilters": {
       "maxPrice": 16000,
@@ -137,7 +139,8 @@
     },
     "filters": {
       "maxPrice": 9000,
-      "minReview": 3.8
+      "minReview": 3.8,
+      "minPrice": 3500
     },
     "fallbackFilters": {
       "maxPrice": 12000,
@@ -179,7 +182,8 @@
     },
     "filters": {
       "maxPrice": 8000,
-      "minReview": 4
+      "minReview": 4,
+      "minPrice": 5000
     },
     "fallbackFilters": {
       "maxPrice": 12000,
@@ -392,7 +396,8 @@
     "sort": "review",
     "filters": {
       "maxPrice": 18000,
-      "minReview": 4.2
+      "minReview": 4.2,
+      "minPrice": 5000
     },
     "fallbackFilters": {
       "maxPrice": 25000,

@@ -91,6 +91,7 @@ function filterHotels(hotels, filterRules) {
 
         // 2. 設定された価格上限
         if (filterRules.maxPrice && info.hotelMinCharge > filterRules.maxPrice) return false;
+        if (filterRules.minPrice && info.hotelMinCharge < filterRules.minPrice) return false;
 
         // 3. 設定されたレビュー下限
         if (filterRules.minReview && (!info.reviewAverage || info.reviewAverage < filterRules.minReview)) return false;
@@ -149,7 +150,10 @@ function renderHotelCards(hotels, niche) {
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas ${transit.icon}"></i> ${transit.text}</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥${priceLabel}</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px;">
+                              <div class="hotel-price" style="margin-top: 0; white-space: nowrap;"><span style="font-size: 0.85rem">参考価格:</span> <span class="price-amount" style="font-size: 1.05rem;">¥${priceLabel}</span><span style="font-size: 0.85rem">〜/泊</span></div>
+                              <div style="font-size: 0.7rem; color: #888; line-height: 1.2;">（※日程やプランにより変動します）</div>
+                          </div>
                         <div class="review-widget"><div class="review-stars">${starsHtml}</div><div class="review-score">${reviewAvg !== '---' ? reviewAvg : ''}</div><div class="review-count">(${reviewCount}件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
@@ -223,6 +227,8 @@ async function run() {
             smallClassCode: cityCode.small,
             keyword: niche.searchParams.keyword
         };
+        if (niche.filters.minPrice) params.minCharge = niche.filters.minPrice;
+        if (niche.filters.maxPrice) params.maxCharge = niche.filters.maxPrice;
 
         console.log(`- Fetching hotels from Rakuten API...`);
         const data = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', params);

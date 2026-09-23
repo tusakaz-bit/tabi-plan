@@ -151,7 +151,10 @@ function renderHotelCards(hotels, city) {
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas ${transit.icon}"></i> ${transit.text}</span>
                         </div>
-                        <div class="hotel-price"><span style="font-size: 0.9rem">最安料金:</span> <span class="price-amount">¥${priceLabel}</span><span style="font-size: 0.9rem">~ /泊</span></div>
+                        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px;">
+                              <div class="hotel-price" style="margin-top: 0; white-space: nowrap;"><span style="font-size: 0.85rem">参考価格:</span> <span class="price-amount" style="font-size: 1.05rem;">¥${priceLabel}</span><span style="font-size: 0.85rem">〜/泊</span></div>
+                              <div style="font-size: 0.7rem; color: #888; line-height: 1.2;">（※日程やプランにより変動します）</div>
+                          </div>
                         <div class="review-widget"><div class="review-stars">${starsHtml}</div><div class="review-score">${reviewAvg !== '---' ? reviewAvg : ''}</div><div class="review-count">(${reviewCount}件の口コミ)</div></div>
                         <div class="booking-button-container">
                             <div class="booking-microcopy">＼ 楽天ポイントが貯まる・使える ／</div>
@@ -299,14 +302,16 @@ async function run() {
         console.log('- Fetching ladies...');
         const ladiesData = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', {
             ...baseParams,
-            keyword: 'レディース'
+            keyword: 'レディース',
+            minCharge: 3500
         });
 
         // C. カップル
         console.log('- Fetching couple...');
         const coupleData = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', {
             ...baseParams,
-            keyword: `${city.name} カップル`
+            keyword: `${city.name} カップル`,
+            minCharge: 5000
         });
 
         // D. 高級宿

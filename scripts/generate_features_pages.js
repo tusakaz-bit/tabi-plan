@@ -42,6 +42,8 @@ async function fetchHotels(searchParams, filters, cityEn, maxResults = 10) {
         smallClassCode: cityCode.small,
         keyword: searchParams.keyword
     };
+    if (filters.minPrice) params.minCharge = filters.minPrice;
+    if (filters.maxPrice) params.maxCharge = filters.maxPrice;
 
     let retries = 3;
     while (retries > 0) {
@@ -93,7 +95,10 @@ function generateHotelCardHtml(hotel) {
             <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">${info.hotelSpecial}</p>
             <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
                 <span style="font-size: 0.85rem; color: #555577;"><i class="fa-solid fa-map-location-dot"></i> ${info.address1}${info.address2}</span>
-                <span style="font-size: 0.85rem; color: #e11d48; font-weight: bold;"><i class="fa-solid fa-yen-sign"></i> 最安 ${price}</span>
+                <div style="display: flex; flex-direction: column; gap: 4px; white-space: nowrap;">
+                      <span style="font-size: 0.85rem; color: #e11d48; font-weight: bold;"><i class="fa-solid fa-yen-sign"></i> 参考価格: <span style="font-size: 1.05rem;">${price}</span></span>
+                      <span style="font-size: 0.7rem; color: #888; font-weight: normal; white-space: normal; line-height: 1.2;">（※日程やプランにより変動します）</span>
+                  </div>
             </div>
             <a href="${link}" target="_blank" rel="noopener noreferrer" class="booking-button" style="display: block; text-align: center; background: #90B4CE; color: #FFF; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s; max-width: 100%; box-sizing: border-box; white-space: normal; word-break: break-all;">
                 空室状況と最安値をチェック <i class="fa-solid fa-arrow-up-right-from-square"></i>
