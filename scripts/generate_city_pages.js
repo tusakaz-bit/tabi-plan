@@ -295,7 +295,7 @@ async function run() {
         console.log('- Fetching deals...');
         const dealsData = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426', {
             ...baseParams,
-            sort: '+roomCharge'
+            sort: 'standard'
         });
 
         // B. レディース

@@ -77,7 +77,7 @@ async function fetchHotels(cityConfig, limit = 10) {
         affiliateId: RAKUTEN_AFFILIATE_ID,
         format: 'json',
         hits: Math.min(limit + 5, 30),
-        sort: '+roomCharge', // 料金安い順
+        sort: 'standard', // 料金安い順
         largeClassCode: 'japan',
         middleClassCode: cityConfig.middle,
         smallClassCode: cityConfig.small,
