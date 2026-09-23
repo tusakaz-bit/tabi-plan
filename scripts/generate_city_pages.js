@@ -90,7 +90,7 @@ function filterHotels(hotels, cityName) {
         }
 
         // 2. ¥1 バグや異常な低価格を除外 (1000円未満を除外)
-        if (!info.hotelMinCharge || info.hotelMinCharge < 1000) return false;
+        if (!info.hotelMinCharge || parseInt(info.hotelMinCharge, 10) < 3000) return false;
 
         // 3. レビュー点数と件数での足切り (3.5点未満、または口コミ5件未満を除外)
         if (!info.reviewAverage || info.reviewAverage < 3.5) return false;
@@ -340,18 +340,23 @@ async function run() {
         const hotelsStation = filterHotels(stationData?.hotels, filterName);
 
         // カードHTML組み立て
-        const htmlDeals = renderHotelCards(hotelsDeals, city);
-        const htmlLadies = renderHotelCards(hotelsLadies, city);
-        const htmlCouple = renderHotelCards(hotelsCouple, city);
-        const htmlLuxury = renderHotelCards(hotelsLuxury, city);
-        const htmlStation = renderHotelCards(hotelsStation, city);
+        const hotelsDealsFiltered = hotelsDeals.filter(h => parseInt(h.hotel[0].hotelBasicInfo.hotelMinCharge, 10) >= 3000);
+        const hotelsLadiesFiltered = hotelsLadies.filter(h => parseInt(h.hotel[0].hotelBasicInfo.hotelMinCharge, 10) >= 3000);
+        const hotelsCoupleFiltered = hotelsCouple.filter(h => parseInt(h.hotel[0].hotelBasicInfo.hotelMinCharge, 10) >= 3000);
+        const hotelsLuxuryFiltered = hotelsLuxury.filter(h => parseInt(h.hotel[0].hotelBasicInfo.hotelMinCharge, 10) >= 3000);
+        const hotelsStationFiltered = hotelsStation.filter(h => parseInt(h.hotel[0].hotelBasicInfo.hotelMinCharge, 10) >= 3000);
 
+        const htmlDeals = renderHotelCards(hotelsDealsFiltered, city);
+        const htmlLadies = renderHotelCards(hotelsLadiesFiltered, city);
+        const htmlCouple = renderHotelCards(hotelsCoupleFiltered, city);
+        const htmlLuxury = renderHotelCards(hotelsLuxuryFiltered, city);
+        const htmlStation = renderHotelCards(hotelsStationFiltered, city);
         // 3. Gemini APIでコラムやメタタグ生成
         console.log('Generating AI Guide Content from Gemini...');
         const aiContent = await generateCityAIContent(city);
 
         // 4. JSON-LD（観光地＆ホテルリスト構造化データ）の構築
-        const allFeaturedHotels = [...hotelsDeals.slice(0, 5), ...hotelsLuxury.slice(0, 5)];
+        const allFeaturedHotels = [...hotelsDealsFiltered.slice(0, 5), ...hotelsLuxuryFiltered.slice(0, 5)];
         const itemListElement = allFeaturedHotels.map((h, index) => {
             const info = h.hotel[0].hotelBasicInfo;
             const targetUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html&m=https%3A%2F%2Ftravel.rakuten.co.jp%2FHOTEL%2F${info.hotelNo}%2F${info.hotelNo}.html`;

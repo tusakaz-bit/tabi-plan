@@ -87,11 +87,11 @@ function filterHotels(hotels, filterRules) {
         const info = h.hotel[0].hotelBasicInfo;
         
         // 1. ¥1 バグや異常な低価格を除外 (1000円未満を除外)
-        if (!info.hotelMinCharge || info.hotelMinCharge < 1000) return false;
+        if (!info.hotelMinCharge || parseInt(info.hotelMinCharge, 10) < 3000) return false;
 
         // 2. 設定された価格上限
         if (filterRules.maxPrice && info.hotelMinCharge > filterRules.maxPrice) return false;
-        if (filterRules.minPrice && info.hotelMinCharge < filterRules.minPrice) return false;
+        if (filterRules.minPrice && parseInt(info.hotelMinCharge, 10) < filterRules.minPrice) return false;
 
         // 3. 設定されたレビュー下限
         if (filterRules.minReview && (!info.reviewAverage || info.reviewAverage < filterRules.minReview)) return false;
@@ -254,7 +254,10 @@ async function run() {
             }
         }
 
-        const hotelsHtml = renderHotelCards(hotels, niche);
+        // フェイルセーフ：設定金額未満の宿を強制排除
+          const minPrice = niche.filters.minPrice || 3000;
+          hotels = hotels.filter(h => parseInt(h.hotel[0].hotelBasicInfo.hotelMinCharge, 10) >= minPrice);
+          const hotelsHtml = renderHotelCards(hotels, niche);
 
         // 4. HTMLのレンダリングと保存
         const now = new Date();
