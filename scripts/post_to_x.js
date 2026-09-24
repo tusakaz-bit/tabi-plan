@@ -32,12 +32,12 @@ async function generateXTweets(niche, hotel) {
 
 【対象の特設ページ（ニッチ条件）】
 都市名: ${niche.cityName}
-ターゲット層・キーワード: ${niche.keyword}
+ターゲット層・キーワード: ${niche.keyword.replace(/安い|格安/g, '高コスパ')}
 特設ページURL: ${BASE_URL}/${niche.city}/${niche.slug}/
 
 【ピックアップホテル例】
 ホテル名: ${hotel.name}
-最安料金目安: ${Number(hotel.price).toLocaleString()} 円〜
+参考価格: ${Number(hotel.price).toLocaleString()} 円〜
 クチコミ評価: ${hotel.reviewAverage || '4.0'} / 5.0
 ホテルの特徴（楽天APIより）: ${hotel.special || 'なし'}
 
@@ -45,7 +45,7 @@ async function generateXTweets(niche, hotel) {
 1. **親ツイート（tweet1）の作成ルール（厳守事項）**:
    - ターゲット層（女性、カップル、コスパ重視でも質を求める層）に刺さるよう、プロの旅行ライターのような洗練されたトーンで記述してください。
    - 【季節の訴求】「秋の連休（シルバーウィーク・紅葉）や年末年始の旅行に向けた早めの予約」を促すトーンを追加してください。
-   - 「バグ級」「コスパ崩壊」などの品のない煽りワードは一切禁止です。
+   - 「バグ級」「コスパ崩壊」「最安値」「格安」「安い」「ランキング」などの単語や品のない煽りワードは一切禁止です。
    - 「心地よい風」「朝の光」「洗練された空間」など、五感や旅行中の感情に訴えかける美しい情景描写を必ず1つ以上入れてください。
    - **【重要】**サイトのOGP画像（昼間のパウダーブルーの空）と統一するため、夜景など夜や暗さを連想させる情景描写は一切使用せず、朝〜昼の明るい情景描写に限定してください。
    - **【重要】**Pinterest等のOGP画像も含め、万一人物像やファッションに言及する場合（またはAIが画像を自動生成するシステムと連動する場合）は、常に「どの季節で見ても違和感がない」通年仕様（seasonless）のルールを厳格に維持してください。
@@ -57,7 +57,7 @@ async function generateXTweets(niche, hotel) {
 
 2. **子ツイート（tweet2）の作成ルール**:
    - こちらには**保存を促すCTAは含めず**、純粋に「今回ピックアップした『${hotel.name}』の魅力1文 ＋ 特設ページへの案内 ＋ URL」のみで構成してください。
-   - 「この他にも条件に合う厳選宿をランキングでまとめています👇」などの短い案内フレーズを使用してください。
+   - 「独自の品質基準（清潔感・セキュリティ・コスパ）で厳選した、ハズレなしの宿リストはこちら👇」などの「ランキング」という言葉を含まない案内フレーズを使用してください。
    - 必ず以下の特設ページURLを含めてください（文字数カウントに含まれます）：
      ${BASE_URL}/${niche.city}/${niche.slug}/
    - URLを含めて**厳密に全角130文字以内**（合計260ポイント/バイト以内）に収めてください。
@@ -72,7 +72,7 @@ async function generateXTweets(niche, hotel) {
 `;
 
         const response = await ai.models.generateContent({
-            model: 'gemini-2.0-flash',
+            model: 'gemini-3.6-flash',
             contents: prompt,
             config: {
                 responseMimeType: 'application/json'
@@ -153,8 +153,8 @@ async function run() {
             tweet2 = aiTweets.tweet2;
         } else {
             console.log(`[AI] ⚠️ Falling back to static templates.`);
-            tweet1 = `✨ 今日の宿選び\n${niche.cityName}で「${niche.keyword}」をお探しですか？\n評価★${hotel.reviewAverage || '-'}で1泊${Number(hotel.price).toLocaleString()}円〜と、非常に満足度の高い宿泊プランを見つけました。\n次の旅行のために保存推奨です✨ #${niche.cityName}旅行 #ホテル選び`;
-            tweet2 = `🏨 ${hotel.name}\n\n▼条件に合う厳選宿をランキングでまとめています👇\n${BASE_URL}/${niche.city}/${niche.slug}/`;
+            tweet1 = `✨ 今日の宿選び\n${niche.cityName}で「絶対に失敗しない・高コスパなホテル」をお探しですか？🌿\n評価★${hotel.reviewAverage || '-'}で参考価格 ${Number(hotel.price).toLocaleString()}円〜と、価格以上の感動が味わえる素晴らしい宿を見つけました。\n次の旅行の参考に、ぜひブックマーク（保存）推奨です✨ #${niche.cityName}旅行 #ホテル選び #TABIPLAN`;
+            tweet2 = `🏨 ${hotel.name}\n\n▼独自の品質基準（清潔感・セキュリティ・コスパ）で厳選した、ハズレなしの宿リストはこちら👇\n${BASE_URL}/${niche.city}/${niche.slug}/`;
         }
 
         summaryMarkdown += `---
