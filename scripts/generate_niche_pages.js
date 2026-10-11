@@ -3,6 +3,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const { GoogleGenAI } = require('@google/genai');
+const { detectEvCharging } = require('./ev_detector');
 
 const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
@@ -56,6 +57,9 @@ async function fetchRakutenAPI(url, params) {
             });
             return response.data;
         } catch (error) {
+            if (error.response && error.response.status === 404) {
+                return { hotels: [] };
+            }
             console.error(`API Error: ${error.message}. Retries remaining: ${retries - 1}`);
             retries--;
             if (retries === 0) throw error;
@@ -136,6 +140,10 @@ function renderHotelCards(hotels, niche) {
         }
 
         const transit = extractAccessInfo(info.access);
+        const isEv = detectEvCharging(info).hasEv;
+        const evBadgeHtml = isEv
+            ? '<span class="transit-badge ev-badge" style="background: #ecfdf5; color: #059669; border: 1px solid #10b981; font-weight: 700;"><i class="fa-solid fa-bolt"></i> EV充電設備あり</span>'
+            : '';
 
         html += `
                 <div class="hotel-card">
@@ -149,6 +157,7 @@ function renderHotelCards(hotels, niche) {
                         <div class="hotel-address"><i class="fa-solid fa-location-dot"></i> <span>${info.address1}${info.address2}</span></div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas ${transit.icon}"></i> ${transit.text}</span>
+                            ${evBadgeHtml}
                         </div>
                         <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px;">
                               <div class="hotel-price" style="margin-top: 0; white-space: nowrap;"><span style="font-size: 0.85rem">参考価格:</span> <span class="price-amount" style="font-size: 1.05rem;">¥${priceLabel}</span><span style="font-size: 0.85rem">〜/泊</span></div>
@@ -217,31 +226,91 @@ async function run() {
 
         // 2. 楽天APIからホテル取得
         const cityCode = CITY_CODES[niche.city];
-        const params = {
-            applicationId: RAKUTEN_APP_ID,
-            accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
-            affiliateId: RAKUTEN_AFFILIATE_ID,
-            format: 'json',
-            largeClassCode: 'japan',
-            middleClassCode: cityCode.middle,
-            smallClassCode: cityCode.small,
-            keyword: niche.searchParams.keyword
-        };
-        if (niche.filters.minPrice) params.minCharge = niche.filters.minPrice;
-        if (niche.filters.maxPrice) params.maxCharge = niche.filters.maxPrice;
-
-        console.log(`- Fetching hotels from Rakuten API...`);
-        const data = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', params);
-        
-        let hotels = filterHotels(data?.hotels, niche.filters);
+        let hotels = [];
         let fallbackMessage = '';
 
-        // 3. フォールバック判定（0件の場合、条件緩和）
-        if (hotels.length === 0 && niche.fallbackFilters) {
-            console.warn(`- No hotels found with strict filters. Applying fallback filters...`);
-            hotels = filterHotels(data?.hotels, niche.fallbackFilters);
-            if (hotels.length > 0) {
-                fallbackMessage = `<div class="fallback-alert"><i class="fa-solid fa-circle-info"></i> 本日は繁忙期または空室が少ないため、ご希望の条件を一部緩和（価格上限引き上げ等）して、おすすめのホテルを表示しています。</div>`;
+        if (niche.isEv) {
+            console.log(`- [EV特設] Fetching EV hotels with multi-keyword query for ${niche.cityName}...`);
+            const hotelMap = new Map();
+            const queries = [
+                { keyword: `${niche.cityName} EV充電` },
+                { keyword: `${niche.cityName} 電気自動車` },
+                { keyword: `${niche.cityName} 充電スタンド` },
+                { largeClassCode: 'japan', middleClassCode: cityCode.middle, keyword: 'EV充電' },
+                { largeClassCode: 'japan', middleClassCode: cityCode.middle, keyword: '電気自動車' },
+                { largeClassCode: 'japan', middleClassCode: cityCode.middle, keyword: '充電' }
+            ];
+
+            if (niche.searchParams && niche.searchParams.extraKeywords) {
+                for (const ekw of niche.searchParams.extraKeywords) {
+                    queries.push({ keyword: ekw });
+                }
+            }
+
+            for (const q of queries) {
+                await sleep(1000);
+                try {
+                    const res = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', {
+                        applicationId: RAKUTEN_APP_ID,
+                        accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
+                        affiliateId: RAKUTEN_AFFILIATE_ID,
+                        format: 'json',
+                        hits: 30,
+                        ...q
+                    });
+                    (res?.hotels || []).forEach(h => {
+                        const b = h.hotel[0].hotelBasicInfo;
+                        if (!hotelMap.has(b.hotelNo)) {
+                            hotelMap.set(b.hotelNo, h);
+                        }
+                    });
+                } catch (e) {}
+            }
+
+            const allHotels = Array.from(hotelMap.values());
+            hotels = allHotels.filter(h => {
+                const b = h.hotel[0].hotelBasicInfo;
+                if (!detectEvCharging(b).hasEv) return false;
+                if (!b.hotelMinCharge || parseInt(b.hotelMinCharge, 10) < 3000) return false;
+                if (b.reviewAverage && b.reviewAverage < 3.5) return false;
+                const name = (b.hotelName || '').toLowerCase();
+                if (name.includes('民泊') || name.includes('ホステル') || name.includes('ゲストハウス')) return false;
+                return true;
+            });
+
+            if (niche.allowedPrefectures && niche.allowedPrefectures.length > 0) {
+                hotels = hotels.filter(h => {
+                    const addr = (h.hotel[0].hotelBasicInfo.address1 || '') + (h.hotel[0].hotelBasicInfo.address2 || '');
+                    return niche.allowedPrefectures.some(pref => addr.includes(pref));
+                });
+            }
+            console.log(`- [EV特設] ${hotels.length} verified EV hotels matched for ${niche.cityName}.`);
+        } else {
+            const params = {
+                applicationId: RAKUTEN_APP_ID,
+                accessKey: 'pk_5MWJwVdIjLhdoj7Zg1RriahaHY2JahwsKyl6c3KDRkG',
+                affiliateId: RAKUTEN_AFFILIATE_ID,
+                format: 'json',
+                largeClassCode: 'japan',
+                middleClassCode: cityCode.middle,
+                smallClassCode: cityCode.small,
+                keyword: niche.searchParams.keyword
+            };
+            if (niche.filters.minPrice) params.minCharge = niche.filters.minPrice;
+            if (niche.filters.maxPrice) params.maxCharge = niche.filters.maxPrice;
+
+            console.log(`- Fetching hotels from Rakuten API...`);
+            const data = await fetchRakutenAPI('https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426', params);
+            
+            hotels = filterHotels(data?.hotels, niche.filters);
+
+            // 3. フォールバック判定（0件の場合、条件緩和）
+            if (hotels.length === 0 && niche.fallbackFilters) {
+                console.warn(`- No hotels found with strict filters. Applying fallback filters...`);
+                hotels = filterHotels(data?.hotels, niche.fallbackFilters);
+                if (hotels.length > 0) {
+                    fallbackMessage = `<div class="fallback-alert"><i class="fa-solid fa-circle-info"></i> 本日は繁忙期または空室が少ないため、ご希望の条件を一部緩和（価格上限引き上げ等）して、おすすめのホテルを表示しています。</div>`;
+                }
             }
         }
 

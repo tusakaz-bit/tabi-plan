@@ -3,6 +3,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const { GoogleGenAI } = require('@google/genai');
+const { detectEvCharging } = require('./ev_detector');
 
 const RAKUTEN_APP_ID = 'ecc263bd-2573-4a88-933e-159e08ff4fff';
 const RAKUTEN_AFFILIATE_ID = '047ad0f1.183c70cf.047ad0f2.1e4c3769';
@@ -46,6 +47,9 @@ async function fetchRakutenAPI(url, params) {
             });
             return response.data;
         } catch (error) {
+            if (error.response && error.response.status === 404) {
+                return { hotels: [] };
+            }
             console.error(`API Error: ${error.message}. Retries remaining: ${retries - 1}`);
             retries--;
             if (retries === 0) throw error;
@@ -137,6 +141,10 @@ function renderHotelCards(hotels, city) {
         }
 
         const transit = extractAccessInfo(info.access);
+        const isEv = detectEvCharging(info).hasEv;
+        const evBadgeHtml = isEv
+            ? '<span class="transit-badge ev-badge" style="background: #ecfdf5; color: #059669; border: 1px solid #10b981; font-weight: 700;"><i class="fa-solid fa-bolt"></i> EV充電設備あり</span>'
+            : '';
 
         html += `
                 <div class="hotel-card">
@@ -150,6 +158,7 @@ function renderHotelCards(hotels, city) {
                         <div class="hotel-address"><i class="fa-solid fa-location-dot"></i> <span>${info.address1}${info.address2}</span></div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem;">
                             <span class="transit-badge"><i class="fas ${transit.icon}"></i> ${transit.text}</span>
+                            ${evBadgeHtml}
                         </div>
                         <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px;">
                               <div class="hotel-price" style="margin-top: 0; white-space: nowrap;"><span style="font-size: 0.85rem">参考価格:</span> <span class="price-amount" style="font-size: 1.05rem;">¥${priceLabel}</span><span style="font-size: 0.85rem">〜/泊</span></div>
