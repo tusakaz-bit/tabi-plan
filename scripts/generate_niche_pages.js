@@ -183,6 +183,7 @@ async function generateStaticGuideHtml(niche) {
 旅行サイトの特集ページ用に、「${niche.keyword}」という条件でホテルを探しているユーザーに向けた独自の解説コラム（SEO対策用）を生成してください。
 【必須ルール】
 - <div>タグで囲み、内部は<h3>と<p>で構成すること
+- 必ず一文（句点「。」）ごとに改行（または空行）を入れ、テキストの塊を作らないこと（スマホでの可読性向上）
 - 文字数は400〜600文字程度
 - 以下3つの内容を含める：
   1. なぜ「${niche.keyword}」がおすすめなのか？（メリット）
@@ -196,7 +197,8 @@ async function generateStaticGuideHtml(niche) {
             model: 'gemini-3.5-flash',
             contents: prompt
         });
-        return response.text.replace(/\`\`\`html/g, '').replace(/\`\`\`/g, '').trim();
+        const cleanText = response.text.replace(/\`\`\`html/g, '').replace(/\`\`\`/g, '').trim();
+        return cleanText.replace(/([。！？][」』]?)(?![\s\n]*<\/p>)(?!<br)/g, '$1<br><br>');
     } catch (e) {
         console.error('AI generation failed:', e);
         return '';
@@ -349,14 +351,18 @@ async function run() {
         const breadcrumbCity = `${niche.cityName}のホテル`;
         const breadcrumbNiche = niche.keyword;
         
-        // 独自解説セクションをラップ（CSSクラスによるレスポンシブ・可読性最適化）
-        const guideHtmlWrapper = niche.staticContent.guideHtml ? `
+        // 独自解説セクションをラップ（句点での改行処理を挟み、スマホでの可読性を劇的向上）
+        let formattedGuideHtml = '';
+        if (niche.staticContent && niche.staticContent.guideHtml) {
+            formattedGuideHtml = niche.staticContent.guideHtml.replace(/([。！？][」』]?)(?![\s\n]*<\/p>)(?!<br)/g, '$1<br><br>');
+        }
+        const guideHtmlWrapper = formattedGuideHtml ? `
         <section id="niche-guide">
             <div class="container">
                 <div class="glass-container niche-guide-box">
                     <h2><i class="fa-solid fa-book-open"></i> ${niche.cityName}スタッフの独自解説</h2>
                     <div class="niche-guide-content">
-                        ${niche.staticContent.guideHtml}
+                        ${formattedGuideHtml}
                     </div>
                 </div>
             </div>
