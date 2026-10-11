@@ -1102,6 +1102,59 @@ a {
     font-weight: 700;
 }
 
+/* ニッチ特設ページ 独自解説コラムスタイル（可読性とスマホ表示を最優先） */
+#niche-guide {
+    background-color: var(--bg-color);
+    padding: 3rem 0;
+    border-top: 1px solid rgba(144, 180, 206, 0.2);
+    border-bottom: 1px solid rgba(144, 180, 206, 0.2);
+}
+
+#niche-guide .glass-container {
+    text-align: left;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(144, 180, 206, 0.08);
+}
+
+#niche-guide h2 {
+    font-size: 1.4rem;
+    color: #90B4CE;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(144, 180, 206, 0.3);
+    padding-bottom: 0.8rem;
+    text-align: left;
+}
+
+#niche-guide .niche-guide-content,
+#niche-guide .niche-guide-column,
+#niche-guide .glass-container > div {
+    line-height: 1.8;
+    color: #555577;
+    text-align: left;
+}
+
+#niche-guide h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-color, #90B4CE);
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+#niche-guide h3:first-child {
+    margin-top: 0;
+}
+
+#niche-guide p {
+    font-size: 16px;
+    color: var(--text-secondary, #555577);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    text-align: left !important;
+}
+
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1118,6 +1171,44 @@ a {
     .feature-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+    }
+
+    /* ニッチコラムのスマホ用余白・文字サイズ・左揃え最適化 */
+    #niche-guide {
+        padding: 2rem 0 !important;
+    }
+
+    #niche-guide .container {
+        padding: 0 15px !important;
+    }
+
+    #niche-guide .glass-container {
+        padding: 1.5rem 15px !important; /* 左右余白を15pxにして画面幅を広く活用 */
+        border-radius: 16px !important;
+        margin-top: 0.5rem !important;
+        text-align: left !important;
+    }
+
+    #niche-guide h2 {
+        font-size: 1.2rem !important;
+        margin-bottom: 1.2rem !important;
+        padding-bottom: 0.6rem !important;
+        text-align: left !important;
+    }
+
+    #niche-guide h3 {
+        font-size: 1.05rem !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.6rem !important;
+        text-align: left !important;
+        line-height: 1.4 !important;
+    }
+
+    #niche-guide p {
+        font-size: 15px !important; /* スマホで読みやすい15px */
+        line-height: 1.75 !important; /* 1.6〜1.8の快適な行間 */
+        margin-bottom: 1.1rem !important;
+        text-align: left !important; /* 本文の確実な左揃え */
     }
 }
 

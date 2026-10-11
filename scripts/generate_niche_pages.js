@@ -209,7 +209,9 @@ async function run() {
     const configData = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
     let configUpdated = false;
 
+    const targetFilter = process.argv[2];
     for (const [key, niche] of Object.entries(configData)) {
+        if (targetFilter && !key.includes(targetFilter)) continue;
         console.log(`\nProcessing niche: ${key}`);
 
         // 1. 静的コンテンツ（解説）の生成とキャッシュ
@@ -347,13 +349,13 @@ async function run() {
         const breadcrumbCity = `${niche.cityName}のホテル`;
         const breadcrumbNiche = niche.keyword;
         
-        // 独自解説セクションをラップ
+        // 独自解説セクションをラップ（CSSクラスによるレスポンシブ・可読性最適化）
         const guideHtmlWrapper = niche.staticContent.guideHtml ? `
-        <section id="niche-guide" style="background-color: var(--bg-color); padding: 3rem 0; border-top: 1px solid rgba(144, 180, 206, 0.2); border-bottom: 1px solid rgba(144, 180, 206, 0.2);">
+        <section id="niche-guide">
             <div class="container">
-                <div class="glass-container" style="padding: 2.5rem;">
-                    <h2 style="font-size: 1.4rem; color: #90B4CE; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(144, 180, 206, 0.3); padding-bottom: 0.8rem;"><i class="fa-solid fa-book-open"></i> ${niche.cityName}スタッフの独自解説</h2>
-                    <div style="line-height: 1.8; color: #555577;">
+                <div class="glass-container niche-guide-box">
+                    <h2><i class="fa-solid fa-book-open"></i> ${niche.cityName}スタッフの独自解説</h2>
+                    <div class="niche-guide-content">
                         ${niche.staticContent.guideHtml}
                     </div>
                 </div>

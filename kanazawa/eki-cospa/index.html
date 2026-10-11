@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../style.css?v=20260826-2">
+    <link rel="stylesheet" href="../../style.css?v=20261011-ev">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .niche-hero {
@@ -65,6 +65,85 @@
             margin-bottom: 2rem;
             text-align: left;
         }
+        /* 独自解説コラムのスタイル（PC / スマホ両対応・可読性最適化） */
+        #niche-guide {
+            background-color: var(--bg-color);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(144, 180, 206, 0.2);
+            border-bottom: 1px solid rgba(144, 180, 206, 0.2);
+        }
+        #niche-guide .glass-container {
+            text-align: left;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(144, 180, 206, 0.08);
+        }
+        #niche-guide h2 {
+            font-size: 1.4rem;
+            color: #90B4CE;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(144, 180, 206, 0.3);
+            padding-bottom: 0.8rem;
+            text-align: left;
+        }
+        #niche-guide .niche-guide-content,
+        #niche-guide .niche-guide-column,
+        #niche-guide .glass-container > div {
+            line-height: 1.8;
+            color: #555577;
+            text-align: left;
+        }
+        #niche-guide h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color, #90B4CE);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+            text-align: left;
+        }
+        #niche-guide h3:first-child {
+            margin-top: 0;
+        }
+        #niche-guide p {
+            font-size: 16px;
+            color: var(--text-secondary, #555577);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            text-align: left !important;
+        }
+        @media (max-width: 768px) {
+            #niche-guide {
+                padding: 2rem 0 !important;
+            }
+            #niche-guide .container {
+                padding: 0 15px !important;
+            }
+            #niche-guide .glass-container {
+                padding: 1.5rem 15px !important;
+                border-radius: 16px !important;
+                margin-top: 0.5rem !important;
+                text-align: left !important;
+            }
+            #niche-guide h2 {
+                font-size: 1.2rem !important;
+                margin-bottom: 1.2rem !important;
+                padding-bottom: 0.6rem !important;
+                text-align: left !important;
+            }
+            #niche-guide h3 {
+                font-size: 1.05rem !important;
+                margin-top: 1.5rem !important;
+                margin-bottom: 0.6rem !important;
+                text-align: left !important;
+                line-height: 1.4 !important;
+            }
+            #niche-guide p {
+                font-size: 15px !important;
+                line-height: 1.75 !important;
+                margin-bottom: 1.1rem !important;
+                text-align: left !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -102,17 +181,18 @@
 
         <!-- 独自解説コンテンツ -->
         
-        <section id="niche-guide" style="background-color: var(--bg-color); padding: 3rem 0; border-top: 1px solid rgba(144, 180, 206, 0.2); border-bottom: 1px solid rgba(144, 180, 206, 0.2);">
+        <section id="niche-guide">
             <div class="container">
-                <div class="glass-container" style="padding: 2.5rem;">
-                    <h2 style="font-size: 1.4rem; color: #90B4CE; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(144, 180, 206, 0.3); padding-bottom: 0.8rem;"><i class="fa-solid fa-book-open"></i> 金沢スタッフの独自解説</h2>
-                    <div style="line-height: 1.8; color: #555577;">
+                <div class="glass-container niche-guide-box">
+                    <h2><i class="fa-solid fa-book-open"></i> 金沢スタッフの独自解説</h2>
+                    <div class="niche-guide-content">
+
                         <div>
 <h3>金沢駅周辺で高コスパなホテルを選ぶメリット</h3>
 <p>北陸新幹線のターミナルである金沢駅周辺は、鼓門や兼六園へのバスアクセスも抜群の好立地。このエリアで安さと清潔感のバランスが取れた「高コスパホテル」を選ぶことで、浮いた宿泊費を近江町市場での海鮮グルメや、ひがし茶屋街でのカフェ巡りに回すことができます。賢いホテル選びが金沢観光の満足度を大きく引き上げます。</p>
 <h3>金沢駅エリアでのホテル選びのコツ</h3>
 <p>金沢駅周辺は近年新しいホテルが続々とオープンしている激戦区です。価格競争が起きているため、新しくて綺麗なホテルでも比較的リーズナブルに泊まれるのが特徴。選ぶ際は「大浴場の有無」や「朝食の質（海鮮丼など）」など、自分にとって外せないポイントを絞るのがコツです。レビュー点数4.0以上のホテルであれば、価格以上の満足感が期待できます。</p>
-</div>
+
                     </div>
                 </div>
             </div>
