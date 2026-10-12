@@ -249,8 +249,8 @@
     "parent": "solotravel-women",
     "slug": "solotravel-women/fukuoka",
     "city": "fukuoka",
-    "title": "【福岡】女子一人旅におすすめの便利で綺麗な高コスパホテル",
-    "metaDescription": "福岡への女子一人旅に。アクセス抜群で清潔感があり、女性に嬉しいアメニティが充実したホテル。",
+    "title": "【福岡・博多/天神】女性一人旅でも安心！駅近・きれいでコスパ抜群な格安ホテル特集",
+    "metaDescription": "福岡への女性一人旅で治安や清潔感が不安な方へ。博多・天神エリアで駅近、高セキュリティ、水回りが綺麗でコスパ抜群の厳選ホテルを紹介します。",
     "sectionATitle": "<span style=\"display: inline-block;\">福岡での</span><span style=\"display: inline-block;\">一人ステイ、</span><span style=\"display: inline-block;\">品質のブレを</span><span style=\"display: inline-block;\">許さない</span><span style=\"display: inline-block;\">厳選宿</span>",
     "sectionAContent": "コンパクトシティ福岡は一人旅に最適ですが、ホテルの選択肢が多いため品質にはバラツキがあります。私たちは清掃のクオリティやアメニティの質など、宿泊者の満足度を左右する要素に一切のブレを許さず、常に高い基準を保ち続けるホテルのみを厳選しました。",
     "searchParams": {
@@ -261,7 +261,7 @@
       "maxPrice": 12000,
       "minPrice": 3500
     },
-    "heroTitle": "<span style=\"display: inline-block;\">【福岡】</span><span style=\"display: inline-block;\">女子一人旅におすすめの</span><span style=\"display: inline-block;\">便利で綺麗な</span><span style=\"display: inline-block;\">高コスパホテル</span>"
+    "heroTitle": "【福岡・博多/天神】女性一人旅でも安心！駅近・きれいでコスパ抜群な格安ホテル特集"
   },
   "solotravel-women-okinawa": {
     "type": "cluster",

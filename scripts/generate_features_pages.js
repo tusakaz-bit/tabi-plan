@@ -120,6 +120,13 @@ async function run() {
     for (const [key, data] of Object.entries(config)) {
         console.log(`Processing: ${key}`);
         
+        // 独自キュレーション原稿対応ページ
+        if (key === 'solotravel-women-fukuoka') {
+            const { generateSolotravelFukuoka } = require('./generate_solotravel_fukuoka');
+            await generateSolotravelFukuoka();
+            continue;
+        }
+        
         let outHtml = template;
         
         const isCluster = data.type === 'cluster';
