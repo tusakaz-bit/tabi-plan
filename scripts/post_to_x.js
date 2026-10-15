@@ -69,20 +69,27 @@ async function generateXTweets(niche, hotel) {
 }
 `;
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-3.6-flash',
-            contents: prompt,
-            config: {
-                responseMimeType: 'application/json'
-            }
-        });
+        const candidateModels = ['gemini-2.5-flash', 'gemini-3.5-flash', 'gemini-2.0-flash'];
+        for (const modelName of candidateModels) {
+            try {
+                const response = await ai.models.generateContent({
+                    model: modelName,
+                    contents: prompt,
+                    config: {
+                        responseMimeType: 'application/json'
+                    }
+                });
 
-        const jsonText = response.text;
-        const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
-        const parsedData = JSON.parse(cleanedJson);
-        
-        if (parsedData.tweet1 && parsedData.tweet2) {
-            return parsedData;
+                const jsonText = response.text;
+                const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+                const parsedData = JSON.parse(cleanedJson);
+                
+                if (parsedData.tweet1 && parsedData.tweet2) {
+                    return parsedData;
+                }
+            } catch (modelErr) {
+                console.warn(`[AI] Model ${modelName} failed (${modelErr.message}). Trying fallback...`);
+            }
         }
     } catch (e) {
         console.error('Error generating tweets via Gemini:', e.message);
@@ -123,9 +130,30 @@ async function run() {
             hits: 10
         };
 
-        let hotels = await fetchRakutenApi(url, params, niche.filters.minReview, 'standard', 1);
+        const minReview = (niche.filters && niche.filters.minReview) ? niche.filters.minReview : 3.5;
+        let hotels = await fetchRakutenApi(url, params, minReview, 'standard', 1);
         if (!hotels || hotels.length === 0) {
-            hotels = await fetchRakutenApi(url, params, niche.fallbackFilters.minReview, 'standard', 1);
+            const fallbackReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
+            hotels = await fetchRakutenApi(url, params, fallbackReview, 'standard', 1);
+        }
+
+        // extraKeywordsによる検索フォールバック（EV充電ニッチなど）
+        if ((!hotels || hotels.length === 0) && niche.searchParams && niche.searchParams.extraKeywords) {
+            for (const extraKw of niche.searchParams.extraKeywords) {
+                const extraParams = { ...params, keyword: extraKw };
+                hotels = await fetchRakutenApi(url, extraParams, minReview, 'standard', 1);
+                if (!hotels || hotels.length === 0) {
+                    const fallbackReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
+                    hotels = await fetchRakutenApi(url, extraParams, fallbackReview, 'standard', 1);
+                }
+                if (hotels && hotels.length > 0) break;
+            }
+        }
+        
+        // 最終フェイルセーフ：都市名での検索
+        if (!hotels || hotels.length === 0) {
+            const cityParams = { ...params, keyword: niche.cityName };
+            hotels = await fetchRakutenApi(url, cityParams, 3.5, 'standard', 1);
         }
         
         if (!hotels || hotels.length === 0) {

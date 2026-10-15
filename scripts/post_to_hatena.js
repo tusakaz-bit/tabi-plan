@@ -118,10 +118,25 @@ async function run() {
     };
 
     // 最大3件のホテルを取得（フィルタ→フォールバック）
-    let hotels = await fetchRakutenApi(apiUrl, params, niche.filters.minReview, 'cheap', 3);
+    const minReview = (niche.filters && niche.filters.minReview) ? niche.filters.minReview : 3.5;
+    let hotels = await fetchRakutenApi(apiUrl, params, minReview, 'cheap', 3);
     if (!hotels || hotels.length === 0) {
         console.log('⚠️ 通常フィルタでホテルが見つかりません。フォールバックフィルタで再試行...');
-        hotels = await fetchRakutenApi(apiUrl, params, niche.fallbackFilters.minReview, 'cheap', 3);
+        const fallbackMinReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
+        hotels = await fetchRakutenApi(apiUrl, params, fallbackMinReview, 'cheap', 3);
+    }
+
+    // extraKeywordsによる検索フォールバック（EV充電ニッチなど）
+    if ((!hotels || hotels.length === 0) && niche.searchParams && niche.searchParams.extraKeywords) {
+        for (const extraKw of niche.searchParams.extraKeywords) {
+            const extraParams = { ...params, keyword: extraKw };
+            hotels = await fetchRakutenApi(apiUrl, extraParams, minReview, 'cheap', 3);
+            if (!hotels || hotels.length === 0) {
+                const fallbackMinReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
+                hotels = await fetchRakutenApi(apiUrl, extraParams, fallbackMinReview, 'cheap', 3);
+            }
+            if (hotels && hotels.length > 0) break;
+        }
     }
 
     if (!hotels || hotels.length === 0) {
