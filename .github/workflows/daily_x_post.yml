@@ -38,6 +38,7 @@ jobs:
           git add ../fukuoka/hakata-daiyokujo/index.html ../fukuoka/tenjin-sudomari/index.html ../osaka/shinosaka-cospa/index.html ../osaka/namba-couple/index.html
           git add ../tokyo/eki-kirei-yasui/index.html ../tokyo/shinjuku-joshitabi/index.html ../kyoto/eki-daiyokujo/index.html ../kyoto/kawaramachi-couple/index.html
           git add ../sapporo/eki-breakfast/index.html ../sapporo/susukino-sudomari/index.html ../okinawa/naha-kokusaidori/index.html ../okinawa/naha-airport-sogei/index.html
+          git add post_history.json
           git commit -m "Auto-generate daily pickup, niche, and city pages" || echo "No changes to commit"
           git push
         env:
@@ -48,6 +49,11 @@ jobs:
           cd scripts
           node post_to_x.js
           node post_to_hatena.js
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add post_history.json
+          git commit -m "Update post history from X drafts and Hatena" || echo "No changes to commit"
+          git push || echo "Push failed or nothing to push"
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           HATENA_ID: ${{ secrets.HATENA_ID }}

@@ -1,0 +1,1094 @@
+[
+  {
+    "hotelNo": 172310,
+    "hotelName": "都ホテル博多",
+    "postedAt": "2026-11-02T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 176736,
+    "hotelName": "天然温泉　奥湯河原の湯　スーパーホテルＰｒｅｍｉｅｒ秋葉原",
+    "postedAt": "2026-11-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 10888,
+    "hotelName": "リッチモンドホテル札幌大通",
+    "postedAt": "2026-10-31T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 29775,
+    "hotelName": "スーパーホテルなんば・日本橋",
+    "postedAt": "2026-10-30T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183245,
+    "hotelName": "スマイルホテル金沢西口駅前",
+    "postedAt": "2026-10-29T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 146107,
+    "hotelName": "アンダの森　大阪天王寺タワー",
+    "postedAt": "2026-10-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 16333,
+    "hotelName": "ニューオーサカホテル心斎橋",
+    "postedAt": "2026-10-27T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 160800,
+    "hotelName": "ベッセルイン心斎橋（本町・道頓堀）",
+    "postedAt": "2026-10-26T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178901,
+    "hotelName": "ＫＯＫＯ　ＨＯＴＥＬ　札幌大通（旧フィーノホテル札幌大通）",
+    "postedAt": "2026-10-25T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 172310,
+    "hotelName": "都ホテル博多",
+    "postedAt": "2026-10-24T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167516,
+    "hotelName": "ベルケンホテル・神田",
+    "postedAt": "2026-10-23T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 184120,
+    "hotelName": "ＫＯＫＯ　ＨＯＴＥＬ　Ｐｒｅｍｉｅｒ　金沢香林坊",
+    "postedAt": "2026-10-22T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 166514,
+    "hotelName": "ホテルヒラリーズ心斎橋",
+    "postedAt": "2026-10-21T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 18195,
+    "hotelName": "サンプラザホテル＜沖縄県＞",
+    "postedAt": "2026-10-20T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 182617,
+    "hotelName": "ランプライトブックスホテル札幌",
+    "postedAt": "2026-10-19T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147158,
+    "hotelName": "ホテルマイステイズプレミア金沢",
+    "postedAt": "2026-10-18T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 149369,
+    "hotelName": "ホテルグレイスリー那覇",
+    "postedAt": "2026-10-17T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 4822,
+    "hotelName": "ホテルイースト２１東京（オークラホテルズ＆リゾーツ）",
+    "postedAt": "2026-10-16T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 166513,
+    "hotelName": "ＡＢホテル京都四条堀川",
+    "postedAt": "2026-10-15T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 8961,
+    "hotelName": "八重洲ターミナルホテル",
+    "postedAt": "2026-10-14T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183231,
+    "hotelName": "チサンバジェット金沢駅前",
+    "postedAt": "2026-10-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 182423,
+    "hotelName": "天然温泉　加賀の宝泉　御宿　野乃金沢（ドーミーイン・御宿野乃　ホテルズグループ）",
+    "postedAt": "2026-10-12T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 15204,
+    "hotelName": "ホテル　サードニクス東京",
+    "postedAt": "2026-10-11T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 140720,
+    "hotelName": "チェックイン四条烏丸",
+    "postedAt": "2026-10-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 177743,
+    "hotelName": "Ｔマークシティホテル札幌大通",
+    "postedAt": "2026-10-09T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 80574,
+    "hotelName": "博多グリーンホテルアネックス",
+    "postedAt": "2026-10-08T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 665,
+    "hotelName": "キャナルシティ・福岡ワシントンホテル（２０２６年９月１日リニューアルオープン）",
+    "postedAt": "2026-10-07T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 136011,
+    "hotelName": "ホテルトラスティ大阪阿倍野",
+    "postedAt": "2026-10-06T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 10888,
+    "hotelName": "リッチモンドホテル札幌大通",
+    "postedAt": "2026-10-05T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178901,
+    "hotelName": "ＫＯＫＯ　ＨＯＴＥＬ　札幌大通（旧フィーノホテル札幌大通）",
+    "postedAt": "2026-10-04T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 179694,
+    "hotelName": "ハイアット　セントリック　金沢",
+    "postedAt": "2026-10-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 197689,
+    "hotelName": "アンカード・バイ・リーガ　大阪なんば（リーガロイヤルホテルズ）",
+    "postedAt": "2026-10-02T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167058,
+    "hotelName": "静鉄ホテルプレジオ博多駅前",
+    "postedAt": "2026-10-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 55347,
+    "hotelName": "ホテルモントレ京都",
+    "postedAt": "2026-09-30T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 10888,
+    "hotelName": "リッチモンドホテル札幌大通",
+    "postedAt": "2026-09-29T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 15901,
+    "hotelName": "金沢シティホテル",
+    "postedAt": "2026-09-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 165829,
+    "hotelName": "東急ステイ札幌",
+    "postedAt": "2026-09-27T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 18517,
+    "hotelName": "ドッとあ〜るホテルＨＡＫＡＴＡ",
+    "postedAt": "2026-09-26T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 151303,
+    "hotelName": "ホテルグレイスリー京都三条",
+    "postedAt": "2026-09-25T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 78126,
+    "hotelName": "ホテル　オーシャン（那覇国際通り）",
+    "postedAt": "2026-09-24T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 74637,
+    "hotelName": "アパホテル＆リゾート〈東京ベイ潮見〉",
+    "postedAt": "2026-09-23T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 172871,
+    "hotelName": "ホテルソビアルなんば大国町",
+    "postedAt": "2026-09-22T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147961,
+    "hotelName": "アーバンホテル京都二条プレミアム",
+    "postedAt": "2026-09-21T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 181785,
+    "hotelName": "ヒューイットリゾート那覇",
+    "postedAt": "2026-09-20T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 165175,
+    "hotelName": "ホテルインターゲート東京京橋",
+    "postedAt": "2026-09-19T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 197858,
+    "hotelName": "ホテルモントレ　ラ・スール那覇（２０２６年４月３日オープン）",
+    "postedAt": "2026-09-18T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167,
+    "hotelName": "ホテル日航大阪",
+    "postedAt": "2026-09-17T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 165176,
+    "hotelName": "ホテルインターゲート京都　四条新町",
+    "postedAt": "2026-09-16T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178901,
+    "hotelName": "ＫＯＫＯ　ＨＯＴＥＬ　札幌大通（旧フィーノホテル札幌大通）",
+    "postedAt": "2026-09-15T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167717,
+    "hotelName": "天然温泉　朝霧の湯　ドーミーインＰＲＥＭＩＵＭなんばＡＮＮＥＸ（ドーミーイン・御宿野乃　グループ）",
+    "postedAt": "2026-09-14T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178292,
+    "hotelName": "ホテル　ストレータ那覇",
+    "postedAt": "2026-09-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 15901,
+    "hotelName": "金沢シティホテル",
+    "postedAt": "2026-09-12T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 39646,
+    "hotelName": "京王プレッソイン日本橋茅場町",
+    "postedAt": "2026-09-11T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 50220,
+    "hotelName": "ホテルＪＡＬシティ那覇（国際通り）",
+    "postedAt": "2026-09-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 195942,
+    "hotelName": "ラ・ジェント・ホテル沖縄那覇",
+    "postedAt": "2026-09-09T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 76356,
+    "hotelName": "ホテルビスタ札幌［大通］",
+    "postedAt": "2026-09-08T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 182842,
+    "hotelName": "ホテルアベスト札幌",
+    "postedAt": "2026-09-07T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 27883,
+    "hotelName": "ホテルブライオン那覇",
+    "postedAt": "2026-09-06T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 108259,
+    "hotelName": "ホテルアクティブ！博多",
+    "postedAt": "2026-09-05T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 176757,
+    "hotelName": "沖縄ハーバービューホテル",
+    "postedAt": "2026-09-04T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 166514,
+    "hotelName": "ホテルヒラリーズ心斎橋",
+    "postedAt": "2026-09-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 263,
+    "hotelName": "ＡＮＡクラウンプラザホテル金沢　ｂｙ　ＩＨＧ",
+    "postedAt": "2026-09-02T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147512,
+    "hotelName": "金沢　彩の庭ホテル",
+    "postedAt": "2026-09-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 18391,
+    "hotelName": "アパホテル〈金沢中央〉",
+    "postedAt": "2026-08-31T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 67260,
+    "hotelName": "ＴＨＥ　ＬＵＩＧＡＮＳ　Ｓｐａ＆Ｒｅｓｏｒｔ(ザ・ルイガンズ.　スパ＆リゾート)",
+    "postedAt": "2026-08-30T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 922,
+    "hotelName": "センターホテル東京",
+    "postedAt": "2026-08-29T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 180499,
+    "hotelName": "フォーポイント　フレックス　ｂｙ　シェラトン　京都御池",
+    "postedAt": "2026-08-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 40768,
+    "hotelName": "アルモントホテル那覇おもろまち",
+    "postedAt": "2026-08-27T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 10888,
+    "hotelName": "リッチモンドホテル札幌大通",
+    "postedAt": "2026-08-26T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 1145,
+    "hotelName": "都シティ　大阪天王寺",
+    "postedAt": "2026-08-24T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 55347,
+    "hotelName": "ホテルモントレ京都",
+    "postedAt": "2026-08-23T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 134763,
+    "hotelName": "ダイワロイネットホテル那覇おもろまち",
+    "postedAt": "2026-08-22T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 160874,
+    "hotelName": "アパホテル〈なんば駅東〉",
+    "postedAt": "2026-08-21T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 176736,
+    "hotelName": "天然温泉　奥湯河原の湯　スーパーホテルＰｒｅｍｉｅｒ秋葉原",
+    "postedAt": "2026-08-20T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 191842,
+    "hotelName": "アパホテル＆リゾート〈大阪なんば駅前タワー〉",
+    "postedAt": "2026-08-19T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167058,
+    "hotelName": "静鉄ホテルプレジオ博多駅前",
+    "postedAt": "2026-08-18T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 844,
+    "hotelName": "ホテルＷＢＦ札幌中央",
+    "postedAt": "2026-08-17T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 79344,
+    "hotelName": "ダイワロイネットホテル博多祇園",
+    "postedAt": "2026-08-16T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 165176,
+    "hotelName": "ホテルインターゲート京都　四条新町",
+    "postedAt": "2026-08-15T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 27883,
+    "hotelName": "ホテルブライオン那覇",
+    "postedAt": "2026-08-14T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 197689,
+    "hotelName": "アンカード・バイ・リーガ　大阪なんば（リーガロイヤルホテルズ）",
+    "postedAt": "2026-08-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 43753,
+    "hotelName": "ソルヴィータホテル那覇",
+    "postedAt": "2026-08-12T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178446,
+    "hotelName": "京急ＥＸイン　東京・日本橋",
+    "postedAt": "2026-08-11T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 177913,
+    "hotelName": "ホテル　アンテルーム那覇",
+    "postedAt": "2026-08-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 16333,
+    "hotelName": "ニューオーサカホテル心斎橋",
+    "postedAt": "2026-08-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 172146,
+    "hotelName": "静鉄ホテルプレジオ京都烏丸御池",
+    "postedAt": "2026-08-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 76404,
+    "hotelName": "天然温泉　御笠の湯　ドーミーイン博多祇園（２０２６年４月１日リニューアルオープン）",
+    "postedAt": "2026-08-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 63392,
+    "hotelName": "ヴィアイン京都四条室町（ＪＲ西日本グループ）",
+    "postedAt": "2026-08-09T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 73870,
+    "hotelName": "コンフォートホテル那覇県庁前",
+    "postedAt": "2026-08-08T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147709,
+    "hotelName": "博多グリーンホテル１号館",
+    "postedAt": "2026-08-07T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 18195,
+    "hotelName": "サンプラザホテル＜沖縄県＞",
+    "postedAt": "2026-08-06T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 163087,
+    "hotelName": "ホテルアクアチッタナハ",
+    "postedAt": "2026-08-05T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 29246,
+    "hotelName": "ホテルザグランデ心斎橋なんば",
+    "postedAt": "2026-08-04T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178266,
+    "hotelName": "東京イーストサイド　ホテル櫂会",
+    "postedAt": "2026-08-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178610,
+    "hotelName": "ダイワロイネットホテル東京京橋　ＰＲＥＭＩＥＲ",
+    "postedAt": "2026-08-02T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 55347,
+    "hotelName": "ホテルモントレ京都",
+    "postedAt": "2026-08-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 137869,
+    "hotelName": "東京ステーションホテル",
+    "postedAt": "2026-07-31T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 197689,
+    "hotelName": "アンカード・バイ・リーガ　大阪なんば（リーガロイヤルホテルズ）",
+    "postedAt": "2026-07-30T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 187299,
+    "hotelName": "静鉄ホテルプレジオ大阪心斎橋",
+    "postedAt": "2026-07-29T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 18195,
+    "hotelName": "サンプラザホテル＜沖縄県＞",
+    "postedAt": "2026-07-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178414,
+    "hotelName": "ホテルロイヤルクラシック大阪",
+    "postedAt": "2026-07-27T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 177913,
+    "hotelName": "ホテル　アンテルーム那覇",
+    "postedAt": "2026-07-26T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 177853,
+    "hotelName": "ホテルアルファーワン北心斎橋",
+    "postedAt": "2026-07-25T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 166514,
+    "hotelName": "ホテルヒラリーズ心斎橋",
+    "postedAt": "2026-07-24T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 151302,
+    "hotelName": "京急ＥＸイン　秋葉原",
+    "postedAt": "2026-07-23T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 176737,
+    "hotelName": "ＧＡＲＤＥＮＳ　ＣＡＢＩＮ（ガーデンズ　キャビン）",
+    "postedAt": "2026-07-22T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 166,
+    "hotelName": "ホテル日航プリンセス京都",
+    "postedAt": "2026-07-21T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 180284,
+    "hotelName": "Ｔｈｅ３５８　ＵＭＩ",
+    "postedAt": "2026-07-20T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 181179,
+    "hotelName": "相鉄フレッサイン　神田大手町",
+    "postedAt": "2026-07-19T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 184617,
+    "hotelName": "Ｇｒａｎｄ　Ｅｍｐｉｒｅ　Ｈｏｔｅｌ（グランドエンパイアホテル）",
+    "postedAt": "2026-07-18T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 17712,
+    "hotelName": "西鉄イン日本橋",
+    "postedAt": "2026-07-17T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 191842,
+    "hotelName": "アパホテル＆リゾート〈大阪なんば駅前タワー〉",
+    "postedAt": "2026-07-16T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178610,
+    "hotelName": "ダイワロイネットホテル東京京橋　ＰＲＥＭＩＥＲ",
+    "postedAt": "2026-07-15T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 10888,
+    "hotelName": "リッチモンドホテル札幌大通",
+    "postedAt": "2026-07-14T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 1753,
+    "hotelName": "からすま京都ホテル",
+    "postedAt": "2026-07-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 27883,
+    "hotelName": "ホテルブライオン那覇",
+    "postedAt": "2026-07-12T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183903,
+    "hotelName": "ＳＡＮ　ＧＲＡＮ　ＨＯＴＥＬ　札幌大通公園",
+    "postedAt": "2026-07-11T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 166,
+    "hotelName": "ホテル日航プリンセス京都",
+    "postedAt": "2026-07-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 136808,
+    "hotelName": "リーガロイヤルグラン沖縄",
+    "postedAt": "2026-07-09T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183903,
+    "hotelName": "ＳＡＮ　ＧＲＡＮ　ＨＯＴＥＬ　札幌大通公園",
+    "postedAt": "2026-07-08T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 68555,
+    "hotelName": "ホテルマイステイズ京都四条",
+    "postedAt": "2026-07-07T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 14019,
+    "hotelName": "石狩の湯　ドーミーインＰＲＥＭＩＵＭ札幌（ドーミーイン・御宿野乃　ホテルズグループ）",
+    "postedAt": "2026-07-06T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178610,
+    "hotelName": "ダイワロイネットホテル東京京橋　ＰＲＥＭＩＥＲ",
+    "postedAt": "2026-07-05T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 38282,
+    "hotelName": "ホテルパームロイヤルリゾート国際通り（旧：ホテルパームロイヤルNAHA国際通り）",
+    "postedAt": "2026-07-04T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 184117,
+    "hotelName": "Ｌ　ｓｔａｙ＆ｇｒｏｗ晴海",
+    "postedAt": "2026-07-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 844,
+    "hotelName": "ホテルＷＢＦ札幌中央",
+    "postedAt": "2026-07-02T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 16333,
+    "hotelName": "ニューオーサカホテル心斎橋",
+    "postedAt": "2026-07-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167519,
+    "hotelName": "ノボテル沖縄那覇",
+    "postedAt": "2026-06-30T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 849,
+    "hotelName": "グランドメルキュール札幌大通公園",
+    "postedAt": "2026-06-29T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 172409,
+    "hotelName": "ＤＤＤ　ＨＯＴＥＬ",
+    "postedAt": "2026-06-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 130025,
+    "hotelName": "西鉄リゾートイン那覇",
+    "postedAt": "2026-06-27T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 182884,
+    "hotelName": "ホテルリソルトリニティ那覇",
+    "postedAt": "2026-06-26T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 177853,
+    "hotelName": "ホテルアルファーワン北心斎橋",
+    "postedAt": "2026-06-25T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 184617,
+    "hotelName": "Ｇｒａｎｄ　Ｅｍｐｉｒｅ　Ｈｏｔｅｌ（グランドエンパイアホテル）",
+    "postedAt": "2026-06-24T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 108259,
+    "hotelName": "ホテルアクティブ！博多",
+    "postedAt": "2026-06-23T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 182842,
+    "hotelName": "ホテルアベスト札幌",
+    "postedAt": "2026-06-22T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 196890,
+    "hotelName": "ホリデイ・イン＆スイーツ札幌大通公園　ｂｙ　ＩＨＧ",
+    "postedAt": "2026-06-20T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183459,
+    "hotelName": "ＨＯＴＥＬ　ＴＨＥ　ＬＥＢＥＮ　ＯＳＡＫＡ（ホテル　ザ　レーベン大阪）",
+    "postedAt": "2026-06-19T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147961,
+    "hotelName": "アーバンホテル京都二条プレミアム",
+    "postedAt": "2026-06-18T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 176737,
+    "hotelName": "ＧＡＲＤＥＮＳ　ＣＡＢＩＮ（ガーデンズ　キャビン）",
+    "postedAt": "2026-06-17T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183776,
+    "hotelName": "四条河原町温泉　空庭テラス京都　別邸",
+    "postedAt": "2026-06-16T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 75325,
+    "hotelName": "天然温泉　御所の湯　スーパーホテル京都・四条河原町",
+    "postedAt": "2026-06-15T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 160960,
+    "hotelName": "京王プレッソイン東京駅八重洲",
+    "postedAt": "2026-06-14T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147709,
+    "hotelName": "博多グリーンホテル１号館",
+    "postedAt": "2026-06-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 164491,
+    "hotelName": "からくさホテル札幌",
+    "postedAt": "2026-06-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 130025,
+    "hotelName": "西鉄リゾートイン那覇",
+    "postedAt": "2026-06-12T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183584,
+    "hotelName": "四条河原町温泉　空庭テラス京都",
+    "postedAt": "2026-06-12T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 197858,
+    "hotelName": "ホテルモントレ　ラ・スール那覇（２０２６年４月３日オープン）",
+    "postedAt": "2026-06-11T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 136213,
+    "hotelName": "ダイワロイネットホテル京都四条烏丸",
+    "postedAt": "2026-06-10T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 52875,
+    "hotelName": "アパホテル〈天王寺駅前〉",
+    "postedAt": "2026-06-09T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 70234,
+    "hotelName": "ホテルリソルトリニティ札幌",
+    "postedAt": "2026-06-08T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 67899,
+    "hotelName": "ニコーカプセルホテル　リフレ",
+    "postedAt": "2026-06-07T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 10888,
+    "hotelName": "リッチモンドホテル札幌大通",
+    "postedAt": "2026-06-06T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 187115,
+    "hotelName": "ヴィアインプライム札幌大通＜鈴蘭の湯＞（ＪＲ西日本グループ）",
+    "postedAt": "2026-06-05T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 1430,
+    "hotelName": "札幌ビューホテル大通公園",
+    "postedAt": "2026-06-04T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 160800,
+    "hotelName": "ベッセルイン心斎橋（本町・道頓堀）",
+    "postedAt": "2026-06-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 167573,
+    "hotelName": "京王プレリアホテル京都烏丸五条",
+    "postedAt": "2026-06-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178967,
+    "hotelName": "ホテルフロント・イン福岡空港",
+    "postedAt": "2026-06-02T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178901,
+    "hotelName": "ＫＯＫＯ　ＨＯＴＥＬ　札幌大通（旧フィーノホテル札幌大通）",
+    "postedAt": "2026-06-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 172146,
+    "hotelName": "静鉄ホテルプレジオ京都烏丸御池",
+    "postedAt": "2026-05-31T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 27883,
+    "hotelName": "ホテルブライオン那覇",
+    "postedAt": "2026-05-30T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 136011,
+    "hotelName": "ホテルトラスティ大阪阿倍野",
+    "postedAt": "2026-05-29T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 165175,
+    "hotelName": "ホテルインターゲート東京京橋",
+    "postedAt": "2026-05-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183359,
+    "hotelName": "スーパーホテルＰｒｅｍｉｅｒなんば心斎橋天然温泉「なにわ美肌の湯」",
+    "postedAt": "2026-05-27T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 196890,
+    "hotelName": "ホリデイ・イン＆スイーツ札幌大通公園　ｂｙ　ＩＨＧ",
+    "postedAt": "2026-05-26T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 140720,
+    "hotelName": "チェックイン四条烏丸",
+    "postedAt": "2026-05-25T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 55347,
+    "hotelName": "ホテルモントレ京都",
+    "postedAt": "2026-05-23T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 147709,
+    "hotelName": "博多グリーンホテル１号館",
+    "postedAt": "2026-05-21T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 1145,
+    "hotelName": "都シティ　大阪天王寺",
+    "postedAt": "2026-05-20T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 187156,
+    "hotelName": "Ｒａｋｕｔｅｎ　ＳＴＡＹ　ＵＲＢＡＮ　京都四条大宮（旧：ホテルメルディア京都四条大宮）",
+    "postedAt": "2026-05-19T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 178446,
+    "hotelName": "京急ＥＸイン　東京・日本橋",
+    "postedAt": "2026-05-17T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 14019,
+    "hotelName": "石狩の湯　ドーミーインＰＲＥＭＩＵＭ札幌（ドーミーイン・御宿野乃　ホテルズグループ）",
+    "postedAt": "2026-05-16T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 196246,
+    "hotelName": "ＴＨＥ　ＮＥＳＴ那覇",
+    "postedAt": "2026-05-15T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 177853,
+    "hotelName": "ホテルアルファーワン北心斎橋",
+    "postedAt": "2026-05-14T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 29165,
+    "hotelName": "ホテルイルクオーレなんば",
+    "postedAt": "2026-05-13T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 184582,
+    "hotelName": "The Okura Tokyo",
+    "postedAt": "2026-05-09T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 188124,
+    "hotelName": "ザ・ホテル青龍 京都清水",
+    "postedAt": "2026-05-07T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183710,
+    "hotelName": "Ace Hotel Kyoto（エースホテル京都）",
+    "postedAt": "2026-05-03T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 172876,
+    "hotelName": "THE BLOSSOM HAKATA Premier",
+    "postedAt": "2026-05-01T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 179353,
+    "hotelName": "ONSEN RYOKAN 由縁 札幌",
+    "postedAt": "2026-04-28T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 180526,
+    "hotelName": "Zentis Osaka",
+    "postedAt": "2026-04-24T09:00:00+09:00",
+    "category": "pickup"
+  },
+  {
+    "hotelNo": 183423,
+    "hotelName": "HOTEL HISOCA IKEBUKURO",
+    "postedAt": "2026-04-22T09:00:00+09:00",
+    "category": "pickup"
+  }
+]

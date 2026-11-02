@@ -16,6 +16,9 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { getDateString, fetchRakutenApi, generateHtmlBody, RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID } = require('./utils');
+const { HistoryManager } = require('./history_manager');
+
+const historyManager = new HistoryManager();
 
 // ========================================
 // はてなブログ認証設定
@@ -117,23 +120,23 @@ async function run() {
         sort: 'standard',
     };
 
-    // 最大3件のホテルを取得（フィルタ→フォールバック）
+    // 最大10件取得してフィルタ
     const minReview = (niche.filters && niche.filters.minReview) ? niche.filters.minReview : 3.5;
-    let hotels = await fetchRakutenApi(apiUrl, params, minReview, 'cheap', 3);
+    let hotels = await fetchRakutenApi(apiUrl, params, minReview, 'cheap', 10);
     if (!hotels || hotels.length === 0) {
         console.log('⚠️ 通常フィルタでホテルが見つかりません。フォールバックフィルタで再試行...');
         const fallbackMinReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
-        hotels = await fetchRakutenApi(apiUrl, params, fallbackMinReview, 'cheap', 3);
+        hotels = await fetchRakutenApi(apiUrl, params, fallbackMinReview, 'cheap', 10);
     }
 
     // extraKeywordsによる検索フォールバック（EV充電ニッチなど）
     if ((!hotels || hotels.length === 0) && niche.searchParams && niche.searchParams.extraKeywords) {
         for (const extraKw of niche.searchParams.extraKeywords) {
             const extraParams = { ...params, keyword: extraKw };
-            hotels = await fetchRakutenApi(apiUrl, extraParams, minReview, 'cheap', 3);
+            hotels = await fetchRakutenApi(apiUrl, extraParams, minReview, 'cheap', 10);
             if (!hotels || hotels.length === 0) {
                 const fallbackMinReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
-                hotels = await fetchRakutenApi(apiUrl, extraParams, fallbackMinReview, 'cheap', 3);
+                hotels = await fetchRakutenApi(apiUrl, extraParams, fallbackMinReview, 'cheap', 10);
             }
             if (hotels && hotels.length > 0) break;
         }
@@ -144,9 +147,19 @@ async function run() {
         return;
     }
 
-    console.log(`✅ ${hotels.length}件のホテルを取得しました。`);
+    // ---- ③ 30日以内の重複を除外して上位3件を選択 ----
+    const hotelExtractor = h => {
+        const hotelNoMatch = (h.url || '').match(/HOTEL\/(\d+)\//);
+        return {
+            hotelNo: hotelNoMatch ? parseInt(hotelNoMatch[1], 10) : null,
+            hotelName: h.name
+        };
+    };
 
-    // ---- ③ 記事タイトルと本文を生成 ----
+    const selectedHotels = historyManager.selectMultipleHotelsWithInterval(hotels, hotelExtractor, 3, 30);
+    console.log(`✅ 厳選された3件のホテル:`, selectedHotels.map(h => h.name));
+
+    // ---- ④ 記事タイトルと本文を生成 ----
     const dateStr = getDateString();
     const title = `【${dateStr}】${niche.cityName}のおすすめホテル！高コスパで厳選した人気宿 TOP3`;
 
@@ -158,12 +171,22 @@ async function run() {
 
     // 画像付きホテルカードHTMLを生成（utils.js の generateHtmlBody を使用）
     console.log('🤖 Gemini AIでホテル紹介文を生成中...');
-    const body = await generateHtmlBody(cityObj, intro, hotels);
+    const body = await generateHtmlBody(cityObj, intro, selectedHotels);
 
-    // ---- ④ はてなブログへ投稿 ----
+    // ---- ⑤ はてなブログへ投稿 ----
     const tags = [niche.cityName, 'ホテル', '旅行', '高コスパホテル', 'TabiPlan'];
     console.log(`📝 投稿タイトル: ${title}`);
     await postToHatena(title, body, tags);
+
+    // 投稿履歴を記録
+    for (const h of selectedHotels) {
+        const info = hotelExtractor(h);
+        historyManager.recordPost({
+            hotelNo: info.hotelNo,
+            hotelName: info.hotelName,
+            category: 'hatena'
+        });
+    }
 
     console.log('✅ 完了しました。');
 }

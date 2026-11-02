@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { fetchRakutenApi, RAKUTEN_APP_ID, RAKUTEN_AFFILIATE_ID } = require('./utils');
 const { GoogleGenAI } = require('@google/genai');
+const { HistoryManager } = require('./history_manager');
 
+const historyManager = new HistoryManager();
 const BASE_URL = 'https://tabi-plan.org';
 
 function countXPoints(str) {
@@ -81,7 +83,7 @@ async function generateXTweets(niche, hotel) {
                 });
 
                 const jsonText = response.text;
-                const cleanedJson = jsonText.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '').trim();
+                const cleanedJson = jsonText.replace(/```json/g, '').replace(/```/g, '').trim();
                 const parsedData = JSON.parse(cleanedJson);
                 
                 if (parsedData.tweet1 && parsedData.tweet2) {
@@ -127,24 +129,24 @@ async function run() {
             affiliateId: RAKUTEN_AFFILIATE_ID,
             format: 'json',
             keyword: niche.searchParams.keyword,
-            hits: 10
+            hits: 15
         };
 
         const minReview = (niche.filters && niche.filters.minReview) ? niche.filters.minReview : 3.5;
-        let hotels = await fetchRakutenApi(url, params, minReview, 'standard', 1);
+        let hotels = await fetchRakutenApi(url, params, minReview, 'standard', 10);
         if (!hotels || hotels.length === 0) {
             const fallbackReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
-            hotels = await fetchRakutenApi(url, params, fallbackReview, 'standard', 1);
+            hotels = await fetchRakutenApi(url, params, fallbackReview, 'standard', 10);
         }
 
         // extraKeywordsによる検索フォールバック（EV充電ニッチなど）
         if ((!hotels || hotels.length === 0) && niche.searchParams && niche.searchParams.extraKeywords) {
             for (const extraKw of niche.searchParams.extraKeywords) {
                 const extraParams = { ...params, keyword: extraKw };
-                hotels = await fetchRakutenApi(url, extraParams, minReview, 'standard', 1);
+                hotels = await fetchRakutenApi(url, extraParams, minReview, 'standard', 10);
                 if (!hotels || hotels.length === 0) {
                     const fallbackReview = (niche.fallbackFilters && niche.fallbackFilters.minReview) ? niche.fallbackFilters.minReview : 3.0;
-                    hotels = await fetchRakutenApi(url, extraParams, fallbackReview, 'standard', 1);
+                    hotels = await fetchRakutenApi(url, extraParams, fallbackReview, 'standard', 10);
                 }
                 if (hotels && hotels.length > 0) break;
             }
@@ -153,7 +155,7 @@ async function run() {
         // 最終フェイルセーフ：都市名での検索
         if (!hotels || hotels.length === 0) {
             const cityParams = { ...params, keyword: niche.cityName };
-            hotels = await fetchRakutenApi(url, cityParams, 3.5, 'standard', 1);
+            hotels = await fetchRakutenApi(url, cityParams, 3.5, 'standard', 10);
         }
         
         if (!hotels || hotels.length === 0) {
@@ -161,8 +163,21 @@ async function run() {
             continue;
         }
 
-        const hotel = hotels[0];
-        
+        // 30日以内の重複を除外してホテルを選定
+        const hotelExtractor = h => {
+            const hotelNoMatch = (h.url || '').match(/HOTEL\/(\d+)\//);
+            return {
+                hotelNo: hotelNoMatch ? parseInt(hotelNoMatch[1], 10) : null,
+                hotelName: h.name
+            };
+        };
+
+        const selection = historyManager.selectHotelWithInterval(hotels, hotelExtractor, 30);
+        const hotel = selection.selectedHotel || hotels[0];
+        const extracted = hotelExtractor(hotel);
+
+        console.log(`[Deduplication] Selected hotel: ${extracted.hotelName} (Reason: ${selection.reason})`);
+
         // API制限を回避するために15秒待機（初回以外）
         if (i > 0) {
             console.log('Waiting 15 seconds to avoid rate limits...');
@@ -182,6 +197,13 @@ async function run() {
             tweet1 = `✨ 今日の宿選び\n${niche.cityName}で「絶対に失敗しない・高コスパなホテル」をお探しですか？🌿\n評価★${hotel.reviewAverage || '-'}で参考価格 ${Number(hotel.price).toLocaleString()}円〜と、価格以上の感動が味わえる素晴らしい宿を見つけました。\n次の旅行の参考に、ぜひブックマーク（保存）推奨です✨ #${niche.cityName}旅行 #ホテル選び #TABIPLAN`;
             tweet2 = `🏨 ${hotel.name}\n\n▼独自の品質基準（清潔感・セキュリティ・コスパ）で厳選した、ハズレなしの宿リストはこちら👇\n${BASE_URL}/${niche.city}/${niche.slug}/`;
         }
+
+        // 投稿原稿を履歴に記録
+        historyManager.recordPost({
+            hotelNo: extracted.hotelNo,
+            hotelName: extracted.hotelName,
+            category: 'x_post'
+        });
 
         summaryMarkdown += `---
 

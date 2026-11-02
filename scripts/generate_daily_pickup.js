@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const { generateArticle, findPremiumHotels } = require('./generate_pickup');
+const { HistoryManager } = require('./history_manager');
+
+const historyManager = new HistoryManager();
 
 const CITIES = [
     { name: '東京', en: 'tokyo',   middle: 'tokyo',   small: 'tokyo',   detail: 'A' },
@@ -76,27 +79,70 @@ async function updateIndexHtml(articleData, city) {
 async function run() {
     console.log('Generating daily pickup article...');
     
-    // ランダムな都市を選択
-    const city = CITIES[Math.floor(Math.random() * CITIES.length)];
-    console.log(`Selected city: ${city.name}`);
-
-    // その都市の高級ホテル（評価4.0以上）を取得
-    const premiumHotels = await findPremiumHotels(city);
+    // 都市をランダムにシャッフルして30日以内に投稿されていないホテルを探索
+    const shuffledCities = [...CITIES].sort(() => Math.random() - 0.5);
     
-    if (premiumHotels && premiumHotels.length > 0) {
-        // ランダムに1つ選ぶ
-        const selectedHotel = premiumHotels[Math.floor(Math.random() * premiumHotels.length)];
-        const hotelNo = selectedHotel.hotel[0].hotelBasicInfo.hotelNo;
-        
+    let chosenHotel = null;
+    let chosenCity = null;
+    let fallbackHotel = null;
+    let fallbackCity = null;
+
+    for (const city of shuffledCities) {
+        console.log(`Checking candidate hotels for city: ${city.name}`);
+        const premiumHotels = await findPremiumHotels(city);
+        if (!premiumHotels || premiumHotels.length === 0) continue;
+
+        // 30日以内の重複を除外して選定
+        const selection = historyManager.selectHotelWithInterval(
+            premiumHotels,
+            h => ({
+                hotelNo: h.hotel[0].hotelBasicInfo.hotelNo,
+                hotelName: h.hotel[0].hotelBasicInfo.hotelName
+            }),
+            30,
+            'pickup'
+        );
+
+        if (selection.selectedHotel && !selection.fallbackUsed) {
+            chosenHotel = selection.selectedHotel;
+            chosenCity = city;
+            console.log(`✅ [Deduplication] Selected ${chosenHotel.hotel[0].hotelBasicInfo.hotelName} for ${city.name} (${selection.reason})`);
+            break;
+        } else if (selection.selectedHotel && !fallbackHotel) {
+            // 直近30日以内のホテルしかない場合のフォールバック候補として最古のホテルを保持
+            fallbackHotel = selection.selectedHotel;
+            fallbackCity = city;
+        }
+    }
+
+    const targetHotel = chosenHotel || fallbackHotel;
+    const targetCity = chosenCity || fallbackCity;
+
+    if (targetHotel && targetCity) {
+        const hotelBasicInfo = targetHotel.hotel[0].hotelBasicInfo;
+        const hotelNo = hotelBasicInfo.hotelNo;
+        const hotelName = hotelBasicInfo.hotelName;
+
+        if (!chosenHotel) {
+            console.warn(`⚠️ [Deduplication] All candidates within 30 days. Fallback to oldest: ${hotelName} (${targetCity.name})`);
+        }
+
         // 記事を生成（都市の英語名をスラグに使用）
-        const articleData = await generateArticle(hotelNo, `本日の注目宿 - ${city.name}`, city.en);
+        const articleData = await generateArticle(hotelNo, `本日の注目宿 - ${targetCity.name}`, targetCity.en);
         
         if (articleData) {
-            // トップページを更新
-            await updateIndexHtml(articleData, city);
+            // トップページ・一覧・サイトマップを更新
+            await updateIndexHtml(articleData, targetCity);
+
+            // 投稿履歴を post_history.json に記録
+            historyManager.recordPost({
+                hotelNo: hotelNo,
+                hotelName: hotelName,
+                category: 'pickup'
+            });
         }
     } else {
-        console.log('No premium hotels found for the selected city.');
+        console.log('No premium hotels found across all cities.');
     }
 }
 
