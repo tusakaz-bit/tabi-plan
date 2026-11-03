@@ -1,5 +1,11 @@
 [
   {
+    "hotelNo": 7251,
+    "hotelName": "ホテルクリオコート博多",
+    "postedAt": "2026-11-03T03:22:41.954Z",
+    "category": "pickup"
+  },
+  {
     "hotelNo": 172310,
     "hotelName": "都ホテル博多",
     "postedAt": "2026-11-02T09:00:00+09:00",
