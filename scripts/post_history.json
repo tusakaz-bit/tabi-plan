@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ホテル西山（南相馬原町店）",
+    "postedAt": "2026-11-04T02:02:32.768Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "シェアハウス新浦安",
+    "postedAt": "2026-11-04T02:02:32.767Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルベネックス米沢",
+    "postedAt": "2026-11-04T02:02:32.767Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "クインテッサホテル福岡天神南",
+    "postedAt": "2026-11-04T02:02:04.919Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "天然温泉　鼓門の湯　スーパーホテルＰｒｅｍｉｅｒ金沢駅東口",
+    "postedAt": "2026-11-04T02:01:44.005Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ザ・スクエアホテル金沢",
+    "postedAt": "2026-11-04T02:01:23.528Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルルートイン金沢駅前",
+    "postedAt": "2026-11-04T02:00:56.752Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 191842,
     "hotelName": "アパホテル＆リゾート〈大阪なんば駅前タワー〉",
     "postedAt": "2026-11-04T01:57:07.252Z",
