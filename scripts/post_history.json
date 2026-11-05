@@ -1,5 +1,35 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "カントリーイン　ミルキーハウス",
+    "postedAt": "2026-11-05T02:07:42.127Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "四万温泉　豊島屋",
+    "postedAt": "2026-11-05T02:07:30.556Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルマイステイズ福岡天神南",
+    "postedAt": "2026-11-05T02:07:05.564Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "和倉温泉　宿守屋寿苑",
+    "postedAt": "2026-11-05T02:06:38.598Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "Ｒａｋｕｔｅｎ　ＳＴＡＹ　ＵＲＢＡＮ　四条河原町（旧：ホテルメルディア四条河原町）",
+    "postedAt": "2026-11-05T02:06:15.857Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 31454,
     "hotelName": "狸の湯　ドーミーイン札幌ＡＮＮＥＸ",
     "postedAt": "2026-11-05T02:02:23.154Z",
