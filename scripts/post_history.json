@@ -1,5 +1,11 @@
 [
   {
+    "hotelNo": 9515,
+    "hotelName": "札幌プリンスホテル",
+    "postedAt": "2026-11-06T02:03:56.093Z",
+    "category": "pickup"
+  },
+  {
     "hotelNo": null,
     "hotelName": "カントリーイン　ミルキーハウス",
     "postedAt": "2026-11-05T02:07:42.127Z",
