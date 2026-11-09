@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ワイズホテル新大阪",
+    "postedAt": "2026-11-09T01:36:17.802Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アパホテル〈新大阪　南方駅前〉",
+    "postedAt": "2026-11-09T01:36:17.802Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "からくさホテルグランデ新大阪タワー",
+    "postedAt": "2026-11-09T01:36:17.801Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテル　オーシャン（那覇国際通り）",
+    "postedAt": "2026-11-09T01:35:49.345Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルマイステイズ札幌すすきの",
+    "postedAt": "2026-11-09T01:35:27.674Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルグレイスリー札幌",
+    "postedAt": "2026-11-09T01:35:07.322Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルリソル京都　河原町三条",
+    "postedAt": "2026-11-09T01:34:45.616Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 53383,
     "hotelName": "サウナ＆カプセル　ＡＭＺＡ（アムザ）（男性専用）",
     "postedAt": "2026-11-09T01:30:56.871Z",
