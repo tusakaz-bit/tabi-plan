@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ベッセルインなんば（難波・道頓堀）",
+    "postedAt": "2026-11-10T04:07:12.092Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホリデイ・イン大阪難波　ｂｙ　ＩＨＧ",
+    "postedAt": "2026-11-10T04:07:12.092Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＷＥＬＬＳＴＡＹ難波",
+    "postedAt": "2026-11-10T04:07:12.091Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテル・トリフィート博多祇園",
+    "postedAt": "2026-11-10T04:06:33.903Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "お宿いしちょう",
+    "postedAt": "2026-11-10T04:06:11.394Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルアマネク京都河原町五条",
+    "postedAt": "2026-11-10T04:05:51.652Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "オリエンタルヒルズ沖縄",
+    "postedAt": "2026-11-10T04:05:21.706Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 180271,
     "hotelName": "ホテル　かずさや",
     "postedAt": "2026-11-10T04:01:28.411Z",
