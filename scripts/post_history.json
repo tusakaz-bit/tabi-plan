@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ハートンホテル心斎橋長堀通",
+    "postedAt": "2026-11-11T01:51:29.436Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルオリエンタルエクスプレス大阪心斎橋",
+    "postedAt": "2026-11-11T01:51:29.435Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルトレンド西心斎橋",
+    "postedAt": "2026-11-11T01:51:29.434Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "金沢湯涌温泉　湯の出旅館",
+    "postedAt": "2026-11-11T01:51:02.044Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ｗａｃａｓａ　旅音",
+    "postedAt": "2026-11-11T01:50:40.167Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ダイワロイネットホテル金沢駅西口",
+    "postedAt": "2026-11-11T01:50:19.199Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "福岡フローラルイン西中洲",
+    "postedAt": "2026-11-11T01:49:56.873Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 176718,
     "hotelName": "ＪＲ東日本ホテルメッツ　プレミア　東京ベイ新木場",
     "postedAt": "2026-11-11T01:46:03.398Z",
