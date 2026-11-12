@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ホテル銀座ダイエー",
+    "postedAt": "2026-11-12T02:52:04.702Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルサンルート浅草",
+    "postedAt": "2026-11-12T02:52:04.702Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アーバンステイ押上",
+    "postedAt": "2026-11-12T02:52:04.701Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルマイステイズ福岡天神南",
+    "postedAt": "2026-11-12T02:51:40.010Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "和倉温泉　宿守屋寿苑",
+    "postedAt": "2026-11-12T02:51:18.971Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＧＬＡＮＳＩＴ　ＫＹＯＴＯ　ＫＡＷＡＲＡＭＡＣＨＩ（グランジット　京都河原町）",
+    "postedAt": "2026-11-12T02:50:56.939Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＣＡＮＤＥＯ　ＨＯＴＥＬＳ（カンデオホテルズ）福岡天神",
+    "postedAt": "2026-11-12T02:50:35.910Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 16008,
     "hotelName": "アパホテル〈札幌大通駅前南〉",
     "postedAt": "2026-11-12T02:46:38.032Z",
