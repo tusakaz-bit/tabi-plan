@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "プレミアホテル－ＣＡＢＩＮ－新宿",
+    "postedAt": "2026-11-13T02:35:16.348Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "安心お宿　Ｔｏｋｙｏ　Ｍａｎ　新宿駅南口店",
+    "postedAt": "2026-11-13T02:35:16.347Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ナインアワーズ北新宿",
+    "postedAt": "2026-11-13T02:35:16.346Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "カントリーイン　ミルキーハウス",
+    "postedAt": "2026-11-13T02:34:40.330Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルベネックス米沢",
+    "postedAt": "2026-11-13T02:34:18.353Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "リーガロイヤルグラン沖縄",
+    "postedAt": "2026-11-13T02:33:57.421Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルベルマーレ",
+    "postedAt": "2026-11-13T02:33:34.590Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 180588,
     "hotelName": "天然温泉　鼓門の湯　スーパーホテルＰｒｅｍｉｅｒ金沢駅東口",
     "postedAt": "2026-11-13T02:29:43.091Z",
