@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ロワジールホテル京都東寺",
+    "postedAt": "2026-11-14T02:08:45.866Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "エスペリアホテル京都｜ミストサウナ付大浴場",
+    "postedAt": "2026-11-14T02:08:45.865Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "チサンプレミアム京都九条",
+    "postedAt": "2026-11-14T02:08:45.865Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "新大阪江坂東急ＲＥＩホテル",
+    "postedAt": "2026-11-14T02:08:02.884Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ｌｙｆ天神福岡（ライフ天神福岡）",
+    "postedAt": "2026-11-14T02:07:39.968Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルリソルトリニティ博多",
+    "postedAt": "2026-11-14T02:07:18.428Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "絶景温泉と魚介満腹の宿　稲取東海ホテル湯苑",
+    "postedAt": "2026-11-14T02:06:50.249Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 108259,
     "hotelName": "ホテルアクティブ！博多",
     "postedAt": "2026-11-14T02:02:53.839Z",
