@@ -1,5 +1,11 @@
 [
   {
+    "hotelNo": 922,
+    "hotelName": "センターホテル東京",
+    "postedAt": "2026-11-15T01:34:42.656Z",
+    "category": "pickup"
+  },
+  {
     "hotelNo": null,
     "hotelName": "ロワジールホテル京都東寺",
     "postedAt": "2026-11-14T02:08:45.866Z",
