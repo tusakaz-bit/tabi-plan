@@ -1,0 +1,27 @@
+{
+  "fukuoka-solo-female-travel-hotels": {
+    "slug": "fukuoka-solo-female-travel-hotels",
+    "city": "Fukuoka",
+    "jaEquivalentPath": "/fukuoka/female-solo-hotels/",
+    "seo": {
+      "title": "Best Safe & Affordable Hotels in Fukuoka for Female Solo Travelers | Tabi Plan",
+      "metaDescription": "Discover highly secure, clean, and conveniently located hotels in Fukuoka (Hakata & Tenjin) curated specifically for female solo travelers.",
+      "ogImage": "https://tabi-plan.org/en/assets/images/ogp/fukuoka-female-solo.jpg"
+    },
+    "hero": {
+      "h1": "Best Hotels for Female Solo Travelers in Fukuoka",
+      "subtitle": "Safe, Clean, and Affordable stays near Hakata & Tenjin stations",
+      "bgImage": "/bg_fukuoka.jpg"
+    },
+    "guideSections": [
+      {
+        "heading": "3 Tips for Choosing a Safe Hotel as a Solo Female Traveler",
+        "bodyHtml": "<p>Fukuoka is generally a very safe city, but for complete peace of mind, we recommend hotels that offer these three features:</p><ul><li><strong>Station Proximity:</strong> Look for hotels within a 5-minute walk from major subway stations (like Hakata, Tenjin, or Nakasu-Kawabata) to minimize walking with luggage.</li><li><strong>High Security:</strong> Accommodations with elevator keycard access and 24-hour front desk services ensure only registered guests can enter guest floors.</li><li><strong>Ladies-Only Floors:</strong> Some premium budget hotels offer dedicated floors for women, featuring upgraded amenities and extra security.</li></ul>"
+      }
+    ],
+    "hotelIds": [
+      "resol-trinity-hakata"
+    ],
+    "updatedAt": "2026-11-14"
+  }
+}

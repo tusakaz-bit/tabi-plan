@@ -1276,4 +1276,28 @@
     <lastmod>2026-11-15</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://tabi-plan.org/en/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/en/about/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/en/privacy/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/en/guides/fukuoka-solo-female-travel-hotels/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PERSW1V95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4PERSW1V95');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{SEO_META_TAGS}}
+    <title>{{PAGE_TITLE}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <!-- OGP Settings -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="{{PAGE_TITLE}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{CANONICAL_URL}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/jpeg" href="/icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=20261011-ev">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .niche-hero {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            position: relative;
+        }
+        .breadcrumbs {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            text-align: left;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .breadcrumbs a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        .niche-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+            color: #FFFFFF;
+        }
+        #niche-guide ul {
+            padding-left: 1.25rem;
+            margin: 0.75rem 0 1rem;
+        }
+        #niche-guide li {
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            #niche-guide .container {
+                padding: 0 15px !important;
+            }
+            #niche-guide .glass-container {
+                padding: 1.5rem 15px !important;
+                border-radius: 16px !important;
+            }
+            #niche-guide p, #niche-guide li {
+                font-size: 15px !important;
+                line-height: 1.75 !important;
+                text-align: left !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation" style="background-image: {{HERO_BG_IMAGE}}; background-size: cover; background-position: center;">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    {{HEADER}}
+
+    <main>
+        {{MAIN_CONTENT}}
+    </main>
+
+    {{FOOTER}}
+</body>
+</html>

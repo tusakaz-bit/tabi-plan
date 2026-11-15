@@ -1,0 +1,46 @@
+{
+  "resol-trinity-hakata": {
+    "id": "resol-trinity-hakata",
+    "rakutenHotelNo": 141973,
+    "city": "Fukuoka",
+    "area": "Nakasu-Kawabata",
+    "en": {
+      "name": "Hotel Resol Trinity Hakata",
+      "catchcopy": "Safe, clean, and elegant—ideal for female solo travelers in the heart of Fukuoka.",
+      "description": "Conveniently located just a 1-minute walk from Nakasu-Kawabata Station. This hotel features excellent security, an exclusive ladies-only floor, and a beautiful top-floor public bath. It provides a peaceful retreat while being steps away from Fukuoka's vibrant food scene and Tenjin shopping district.",
+      "access": "1 min walk from Nakasu-Kawabata Subway Station (Direct from Fukuoka Airport)",
+      "highlights": [
+        "Ladies-Only Floor",
+        "Top-Floor Public Bath",
+        "High Security (Keycard Access)",
+        "1 min from Subway"
+      ],
+      "priceEstimate": {
+        "minJpy": 12000,
+        "approxUsd": 80
+      }
+    },
+    "rating": {
+      "score": 4.5,
+      "reviewCount": 1850
+    },
+    "media": {
+      "imagePath": "/en/assets/images/hotels/resol-trinity-hakata.jpg",
+      "imageAlt": "Elegant guest room at Hotel Resol Trinity Hakata"
+    },
+    "otaLinks": {
+      "booking": {
+        "url": "https://www.booking.com/searchresults.html?...",
+        "enabled": true
+      },
+      "agoda": {
+        "url": "https://www.agoda.com/partners/partnersearch.aspx?...",
+        "enabled": true
+      },
+      "expedia": {
+        "url": "",
+        "enabled": false
+      }
+    }
+  }
+}
