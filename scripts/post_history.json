@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "タッセルイン京都　河原町二条",
+    "postedAt": "2026-11-15T01:40:18.984Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ｈｏｔｅｌ　ＧＯＣＯ　ｓｔａｙ　京都四条河原町",
+    "postedAt": "2026-11-15T01:40:18.983Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "Ｒａｋｕｔｅｎ　ＳＴＡＹ　ＵＲＢＡＮ　四条寺町（旧：ホテルメルディア四条河原町アネックス）",
+    "postedAt": "2026-11-15T01:40:18.982Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルマイステイズ西新宿",
+    "postedAt": "2026-11-15T01:39:48.353Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "湯河原温泉　ホテル　眺望山荘",
+    "postedAt": "2026-11-15T01:39:26.786Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "変なホテル大阪　心斎橋",
+    "postedAt": "2026-11-15T01:39:03.705Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "フェアフィールド・バイ・マリオット大阪難波",
+    "postedAt": "2026-11-15T01:38:41.975Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 922,
     "hotelName": "センターホテル東京",
     "postedAt": "2026-11-15T01:34:42.656Z",
