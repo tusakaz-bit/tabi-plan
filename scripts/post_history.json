@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ベッセルイン札幌中島公園（すすきの徒歩圏内）",
+    "postedAt": "2026-11-16T01:45:05.791Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "リッチモンドホテル札幌駅前",
+    "postedAt": "2026-11-16T01:45:05.790Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "札幌ビューホテル大通公園",
+    "postedAt": "2026-11-16T01:45:05.790Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "天然温泉　空沼の湯　スーパーホテル札幌・すすきの",
+    "postedAt": "2026-11-16T01:44:41.278Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＪＲイン札幌北２条",
+    "postedAt": "2026-11-16T01:44:20.357Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "天然温泉　御所の湯　スーパーホテル京都・四条河原町",
+    "postedAt": "2026-11-16T01:43:59.968Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "京都駅前　さと茂旅館",
+    "postedAt": "2026-11-16T01:43:37.500Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 2122,
     "hotelName": "アパホテル〈金沢西〉",
     "postedAt": "2026-11-16T01:39:47.843Z",
