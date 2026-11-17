@@ -1,5 +1,11 @@
 [
   {
+    "hotelNo": 70234,
+    "hotelName": "ホテルリソルトリニティ札幌",
+    "postedAt": "2026-11-17T04:24:56.961Z",
+    "category": "pickup"
+  },
+  {
     "hotelNo": null,
     "hotelName": "ベッセルイン札幌中島公園（すすきの徒歩圏内）",
     "postedAt": "2026-11-16T01:45:05.791Z",
