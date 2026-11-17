@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "アパホテル〈札幌すすきの駅西〉",
+    "postedAt": "2026-11-17T04:30:11.556Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "スマイルホテルプレミアム札幌すすきの",
+    "postedAt": "2026-11-17T04:30:11.556Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "スマイルホテル札幌すすきの南",
+    "postedAt": "2026-11-17T04:30:11.555Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "変なホテルプレミア京都　五条烏丸（旧ウォーターマークホテル京都）",
+    "postedAt": "2026-11-17T04:29:43.783Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "三井ガーデンホテル京都河原町浄教寺",
+    "postedAt": "2026-11-17T04:29:22.138Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＨＯＴＥＬ　ＳＡＮＳＵＩ　ＮＡＨＡ　琉球温泉　波之上の湯",
+    "postedAt": "2026-11-17T04:29:02.891Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルアベスト那覇国際通り",
+    "postedAt": "2026-11-17T04:28:41.382Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 70234,
     "hotelName": "ホテルリソルトリニティ札幌",
     "postedAt": "2026-11-17T04:24:56.961Z",
