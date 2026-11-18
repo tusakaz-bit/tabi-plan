@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ＢｉＢｉ　Ｈｏｔｅｌ　国際通り",
+    "postedAt": "2026-11-18T03:27:42.251Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アルファベッドイン那覇国際通りＥＡＳＴ",
+    "postedAt": "2026-11-18T03:27:42.251Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "グランツイン国際通り",
+    "postedAt": "2026-11-18T03:27:42.250Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "山代温泉　ゆ湯の宿　白山菖蒲亭",
+    "postedAt": "2026-11-18T03:27:13.223Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アパホテル〈金沢駅前〉",
+    "postedAt": "2026-11-18T03:26:51.555Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "Ｔｈｅ　ＢＲＥＡＫＦＡＳＴ　ＨＯＴＥＬ福岡中洲",
+    "postedAt": "2026-11-18T03:26:30.858Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "静鉄ホテルプレジオ博多駅前",
+    "postedAt": "2026-11-18T03:26:09.483Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 187115,
     "hotelName": "ヴィアインプライム札幌大通＜鈴蘭の湯＞（ＪＲ西日本グループ）",
     "postedAt": "2026-11-18T03:22:21.091Z",
