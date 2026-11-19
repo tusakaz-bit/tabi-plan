@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ホテル　グランビュー沖縄",
+    "postedAt": "2026-11-19T03:08:22.967Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ヤンバルエクスペリエンスホテル　ヌンガニク",
+    "postedAt": "2026-11-19T03:08:22.966Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "デイゴホテル",
+    "postedAt": "2026-11-19T03:08:22.966Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルインディゴ箱根強羅　ｂｙ　ＩＨＧ",
+    "postedAt": "2026-11-19T03:07:47.585Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "東急ステイ京都阪井座（四条河原町）",
+    "postedAt": "2026-11-19T03:07:24.546Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "リッチモンドホテル天神西通",
+    "postedAt": "2026-11-19T03:07:02.652Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "天然温泉　加賀の湧泉　ドーミーイン金沢",
+    "postedAt": "2026-11-19T03:06:41.892Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 130025,
     "hotelName": "西鉄リゾートイン那覇",
     "postedAt": "2026-11-19T03:02:54.593Z",
