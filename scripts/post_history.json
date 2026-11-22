@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "東急ステイ博多",
+    "postedAt": "2026-11-22T02:04:31.553Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "プレジデントホテル博多",
+    "postedAt": "2026-11-22T02:04:31.553Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＫＯＫＯ　ＨＯＴＥＬ　博多駅前",
+    "postedAt": "2026-11-22T02:04:31.552Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アクアサイド　イン　サニーフィッシュ",
+    "postedAt": "2026-11-22T02:03:56.050Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "Ｊｕｓｔ　Ｓｌｅｅｐ　大阪心斎橋",
+    "postedAt": "2026-11-22T02:03:32.996Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "フォーズホテル　近鉄　大阪難波",
+    "postedAt": "2026-11-22T02:03:10.701Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アスティルホテル新大阪　プレシャス",
+    "postedAt": "2026-11-22T02:02:49.786Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 153347,
     "hotelName": "京急ＥＸイン　東銀座",
     "postedAt": "2026-11-22T01:58:58.740Z",
