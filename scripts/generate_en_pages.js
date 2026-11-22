@@ -334,8 +334,12 @@ const STATIC_EN_PAGES = [
                             <p style="margin: 0; font-size: 0.88rem; color: #475569;">Namba, Shinsaibashi &amp; Shin-Osaka</p>
                         </a>
                         <a href="#guides" class="glass-container" style="padding: 1.25rem; text-decoration: none; color: inherit; text-align: left;">
-                            <h3 style="margin: 0 0 0.35rem; color: #0f172a;">Fukuoka &amp; Sapporo</h3>
-                            <p style="margin: 0; font-size: 0.88rem; color: #475569;">Hakata, Tenjin &amp; Odori</p>
+                            <h3 style="margin: 0 0 0.35rem; color: #0f172a;">Fukuoka</h3>
+                            <p style="margin: 0; font-size: 0.88rem; color: #475569;">Hakata &amp; Tenjin</p>
+                        </a>
+                        <a href="#guides" class="glass-container" style="padding: 1.25rem; text-decoration: none; color: inherit; text-align: left;">
+                            <h3 style="margin: 0 0 0.35rem; color: #0f172a;">Sapporo</h3>
+                            <p style="margin: 0; font-size: 0.88rem; color: #475569;">Sapporo Station &amp; Susukino</p>
                         </a>
                     </div>
                 </div>
