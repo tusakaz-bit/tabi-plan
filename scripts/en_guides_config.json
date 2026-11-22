@@ -23,5 +23,55 @@
       "resol-trinity-hakata"
     ],
     "updatedAt": "2026-11-14"
+  },
+  "tokyo-clean-station-hotels": {
+    "slug": "tokyo-clean-station-hotels",
+    "city": "Tokyo",
+    "jaEquivalentPath": "/tokyo/",
+    "seo": {
+      "title": "Best Clean & Convenient Station-Side Hotels in Tokyo | TABI-PLAN",
+      "metaDescription": "Curated selection of spotless, safe, and well-connected hotels near major JR and subway stations in Tokyo for international visitors.",
+      "ogImage": "https://tabi-plan.org/bg_tokyo_new.jpg"
+    },
+    "hero": {
+      "h1": "Best Clean & Station-Adjacent Hotels in Tokyo",
+      "subtitle": "Effortless transit access, modern security, and relaxing stays in the heart of Tokyo",
+      "bgImage": "/bg_tokyo_new.jpg"
+    },
+    "guideSections": [
+      {
+        "heading": "How to Pick the Best Base in Tokyo",
+        "bodyHtml": "<p>Tokyo's rail network is vast, so choosing a hotel within a 5-minute walk of a major JR Yamanote Line or Subway hub saves hours of travel time. Look for modern Japanese business hotels that offer keycode security and communal baths for maximum comfort after sightseeing.</p>"
+      }
+    ],
+    "hotelIds": [
+      "super-hotel-premier-akihabara"
+    ],
+    "updatedAt": "2026-11-23"
+  },
+  "kyoto-central-value-hotels": {
+    "slug": "kyoto-central-value-hotels",
+    "city": "Kyoto",
+    "jaEquivalentPath": "/kyoto/",
+    "seo": {
+      "title": "Best Value & Well-Located Hotels in Central Kyoto | TABI-PLAN",
+      "metaDescription": "Discover clean, affordable, and conveniently located hotels around Shijo and Kyoto Station for exploring temples and Gion.",
+      "ogImage": "https://tabi-plan.org/bg_tokyo_new.jpg"
+    },
+    "hero": {
+      "h1": "Best Value & Central Hotels in Kyoto",
+      "subtitle": "Stay near Shijo and major bus/subway routes for easy sightseeing across Kyoto",
+      "bgImage": "/bg_tokyo_new.jpg"
+    },
+    "guideSections": [
+      {
+        "heading": "Why Central Shijo is Ideal for First-Time Visitors",
+        "bodyHtml": "<p>While Kyoto Station is convenient for Shinkansen arrivals, staying around the Shijo corridor puts you within walking distance of Nishiki Market and Gion, with direct city buses to major temples like Kiyomizu-dera and Kinkaku-ji.</p>"
+      }
+    ],
+    "hotelIds": [
+      "ab-hotel-kyoto-shijo-horikawa"
+    ],
+    "updatedAt": "2026-11-23"
   }
 }

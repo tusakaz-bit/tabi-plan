@@ -1335,4 +1335,16 @@
     <lastmod>2026-11-22</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://tabi-plan.org/en/guides/tokyo-clean-station-hotels/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tabi-plan.org/en/guides/kyoto-central-value-hotels/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

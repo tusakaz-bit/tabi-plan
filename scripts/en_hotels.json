@@ -42,5 +42,93 @@
         "enabled": false
       }
     }
+  },
+  "super-hotel-premier-akihabara": {
+    "id": "super-hotel-premier-akihabara",
+    "rakutenHotelNo": 172472,
+    "city": "Tokyo",
+    "area": "Akihabara / Chiyoda",
+    "en": {
+      "name": "Super Hotel Premier Akihabara",
+      "catchcopy": "Natural hot spring baths and superb transit access in central Tokyo.",
+      "description": "Located just a 4-minute walk from Akihabara Station, this modern hotel features a relaxing natural hot spring bath, high-security keycode entry, and an organic breakfast buffet. Ideal for travelers looking for spotless rooms and effortless access to Tokyo Station, Ueno, and Shinjuku.",
+      "access": "4 min walk from JR Akihabara Station (Showa-dori Exit)",
+      "highlights": [
+        "Natural Hot Spring",
+        "Keycode Security",
+        "4 min from JR Station",
+        "Complimentary Welcome Bar"
+      ],
+      "priceEstimate": {
+        "minJpy": 15000,
+        "approxUsd": 100
+      }
+    },
+    "rating": {
+      "score": 4.4,
+      "reviewCount": 2100
+    },
+    "media": {
+      "imagePath": "/en/assets/images/hotels/super-hotel-premier-akihabara.jpg",
+      "imageAlt": "Clean modern room at Super Hotel Premier Akihabara"
+    },
+    "otaLinks": {
+      "booking": {
+        "url": "https://www.booking.com/",
+        "enabled": true
+      },
+      "agoda": {
+        "url": "https://www.agoda.com/",
+        "enabled": true
+      },
+      "expedia": {
+        "url": "",
+        "enabled": false
+      }
+    }
+  },
+  "ab-hotel-kyoto-shijo-horikawa": {
+    "id": "ab-hotel-kyoto-shijo-horikawa",
+    "rakutenHotelNo": 168235,
+    "city": "Kyoto",
+    "area": "Shijo-Horikawa / Central Kyoto",
+    "en": {
+      "name": "AB Hotel Kyoto Shijo Horikawa",
+      "catchcopy": "Great value stay in central Kyoto with a relaxing public bath and easy bus/subway access.",
+      "description": "Situated along Shijo Street in the heart of Kyoto, this clean and functional hotel offers a large communal bath and easy access to Nishiki Market, Gion, and Arashiyama via direct buses and nearby Hankyu/Subway stations.",
+      "access": "7 min walk from Hankyu Omiya Station or Shijo Subway Station",
+      "highlights": [
+        "Public Bath Included",
+        "Central Shijo Location",
+        "Direct Bus to Gion & Kyoto Sta.",
+        "High Value for Money"
+      ],
+      "priceEstimate": {
+        "minJpy": 11000,
+        "approxUsd": 73
+      }
+    },
+    "rating": {
+      "score": 4.3,
+      "reviewCount": 1420
+    },
+    "media": {
+      "imagePath": "/en/assets/images/hotels/ab-hotel-kyoto-shijo-horikawa.jpg",
+      "imageAlt": "Comfortable guest room at AB Hotel Kyoto Shijo Horikawa"
+    },
+    "otaLinks": {
+      "booking": {
+        "url": "https://www.booking.com/",
+        "enabled": true
+      },
+      "agoda": {
+        "url": "https://www.agoda.com/",
+        "enabled": true
+      },
+      "expedia": {
+        "url": "",
+        "enabled": false
+      }
+    }
   }
 }
