@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ホテルリブマックス博多中洲",
+    "postedAt": "2026-11-23T02:26:57.723Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＨＯＴＥＬ　博多中洲　ＩＮＮ",
+    "postedAt": "2026-11-23T02:26:57.723Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＭＫホテルズ　西中洲",
+    "postedAt": "2026-11-23T02:26:57.722Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "東急ステイ札幌",
+    "postedAt": "2026-11-23T02:26:30.553Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "四条河原町温泉　空庭テラス京都",
+    "postedAt": "2026-11-23T02:26:09.861Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ベッセルホテルカンパーナ京都五条｜サウナ付大浴場（京都１号店）",
+    "postedAt": "2026-11-23T02:25:48.802Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "住友不動産ホテル　ヴィラフォンテーヌ東京新宿",
+    "postedAt": "2026-11-23T02:25:27.825Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 63392,
     "hotelName": "ヴィアイン京都四条室町（ＪＲ西日本グループ）",
     "postedAt": "2026-11-23T02:21:44.244Z",
