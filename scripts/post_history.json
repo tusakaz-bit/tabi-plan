@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "ｗａｃａｓａ　旅音",
+    "postedAt": "2026-11-25T04:56:32.536Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ザ・スクエアホテル金沢",
+    "postedAt": "2026-11-25T04:56:32.536Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "一里野高原ホテル　ろあん",
+    "postedAt": "2026-11-25T04:56:32.535Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "スマイルホテル金沢西口駅前",
+    "postedAt": "2026-11-25T04:56:00.321Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "エスペリアホテル福岡中洲",
+    "postedAt": "2026-11-25T04:55:40.097Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "西鉄ホテル　クルーム博多",
+    "postedAt": "2026-11-25T04:55:18.830Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "Ｌｅｎ　Ｋｙｏｔｏ　Ｋａｗａｒａｍａｃｈｉ",
+    "postedAt": "2026-11-25T04:54:56.366Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 8961,
     "hotelName": "八重洲ターミナルホテル",
     "postedAt": "2026-11-25T04:51:09.376Z",
