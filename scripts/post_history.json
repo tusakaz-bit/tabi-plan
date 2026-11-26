@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "天然温泉リラックスパーク　テルメ金沢",
+    "postedAt": "2026-11-26T04:12:49.810Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アパホテル〈金沢中央〉",
+    "postedAt": "2026-11-26T04:12:49.809Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "アパホテル〈金沢片町〉",
+    "postedAt": "2026-11-26T04:12:49.809Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテルアマネク京都河原町五条",
+    "postedAt": "2026-11-26T04:12:20.386Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ベストウェスタンプラス福岡天神南",
+    "postedAt": "2026-11-26T04:11:58.599Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "金沢白鳥路　ホテル山楽",
+    "postedAt": "2026-11-26T04:11:36.821Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "山代温泉　ゆ湯の宿　白山菖蒲亭",
+    "postedAt": "2026-11-26T04:11:15.846Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 547,
     "hotelName": "アパホテル〈金沢駅前〉",
     "postedAt": "2026-11-26T04:07:32.333Z",
