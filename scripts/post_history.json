@@ -1,5 +1,47 @@
 [
   {
+    "hotelNo": null,
+    "hotelName": "Ｒａｋｕｔｅｎ　ＳＴＡＹ　ＵＲＢＡＮ　四条寺町（旧：ホテルメルディア四条河原町アネックス）",
+    "postedAt": "2026-11-28T03:52:06.666Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＧＬＡＮＳＩＴ　ＫＹＯＴＯ　ＫＡＷＡＲＡＭＡＣＨＩ（グランジット　京都河原町）",
+    "postedAt": "2026-11-28T03:52:06.660Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ＦＯＲＺＡ　ホテルフォルツァ京都四条河原町",
+    "postedAt": "2026-11-28T03:52:06.659Z",
+    "category": "hatena"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "西鉄ホテルクルーム博多祇園　櫛田神社前",
+    "postedAt": "2026-11-28T03:51:32.094Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "東横ＩＮＮ堺駅前",
+    "postedAt": "2026-11-28T03:51:08.604Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "カントリーイン　ミルキーハウス",
+    "postedAt": "2026-11-28T03:50:47.235Z",
+    "category": "x_post"
+  },
+  {
+    "hotelNo": null,
+    "hotelName": "ホテル西山（南相馬原町店）",
+    "postedAt": "2026-11-28T03:50:25.065Z",
+    "category": "x_post"
+  },
+  {
     "hotelNo": 178266,
     "hotelName": "東京イーストサイド　ホテル櫂会",
     "postedAt": "2026-11-28T03:46:37.470Z",
